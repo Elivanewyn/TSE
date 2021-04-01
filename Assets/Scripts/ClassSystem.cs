@@ -2,6 +2,198 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Skill
+{
+    protected string name_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+
+    public Skill(string skillName)
+    {
+        name_ = skillName;
+    }
+
+    public void Use()                       //may want to make this more efficient by splitting if statements by class and skill tree
+    {
+        if (name_ == "Fireball")
+        {
+            //shoot fireball
+        }
+        else if (name_ == "Fire Blast")
+        {
+            //shoot fireblast
+        }
+        //etc
+    }
+}
+
+public class WeaponType
+{
+    protected string type_;
+
+    public string type
+    {
+        get { return type_; }
+        set { type_ = value; }
+    }
+
+    public WeaponType(string type)
+    {
+        type_ = type;
+    }
+    public WeaponType() { }
+}
+
+public class Wand : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public Wand(string name)
+    {
+        type_ = "Wand";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+public class Sword : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public Sword()
+    {
+        type_ = "Sword";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+public class Knife : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public Knife(string name)
+    {
+        type_ = "Knife";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+public class TwoHanded : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public TwoHanded(string name)
+    {
+        type_ = "TwoHanded";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+public class KnuckleDuster : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public KnuckleDuster(string name)
+    {
+        type_ = "KnuckleDuster";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+public class BowMount : WeaponType
+{
+    private string name_;
+    protected int damage_;
+
+    public string name
+    {
+        get { return name_; }
+        set { name_ = value; }
+    }
+    public int damage
+    {
+        get { return damage_; }
+        set { damage_ = value; }
+    }
+
+    public BowMount(string name)
+    {
+        type_ = "BowMount";
+        name_ = name;
+        //damage_ = ?
+    }
+}
+
+
+
 public class PlayerClass
 {
     //basic info on each class
@@ -12,22 +204,20 @@ public class PlayerClass
     protected int stealth_;
     protected int dext_;
 
-    //will need a class for Skills that will be used for following attributes. For now they will be represented as strings
-    protected string[] basicSkills_;
-    protected string[] skillTreeOne_;
+    protected Skill[] basicSkills_;
+    protected Skill[] skillTreeOne_;
     protected string skillTreeOneName_;
 
-    protected string[] skillTreeTwo_;
+    protected Skill[] skillTreeTwo_;
     protected string skillTreeTwoName_;
 
-    protected string[] skillTreeThree_;
+    protected Skill[] skillTreeThree_;
     protected string skillTreeThreeName_;
 
-    protected string[] skillTreeFour_;
+    protected Skill[] skillTreeFour_;
     protected string skillTreeFourName_;
 
-    //will need a class for Weapons, a child class for types of weapons (eg Sword) and child class for types of those weapons (eg Wooden Sword). Here represented as strings
-    protected string weaponType_;
+    protected WeaponType weaponType_;
 
 
     public string name
@@ -75,6 +265,7 @@ public class PlayerClass
         intelligence_ = 0;
         stealth_ = 0;
         dext_ = 0;
+        weaponType_ = new WeaponType("default");
     }
 }
 
@@ -90,43 +281,43 @@ public class WizardClass : PlayerClass
         stealth_ = 2;
         dext_ = 1;
         SetSkills();
-        weaponType_ = "Wand";
+        weaponType_ = new WeaponType("Wand");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Fireball";
-        basicSkills_[1] = "Lightning Strike";
-        basicSkills_[2] = "Frost Wave";
-        basicSkills_[3] = "Healing Chime";
+        basicSkills_[0] = new Skill("Fireball");
+        basicSkills_[1] = new Skill("Lightning Strike");
+        basicSkills_[2] = new Skill("Frost Wave");
+        basicSkills_[3] = new Skill("Healing Chime");
 
         skillTreeOneName_ = "Fire";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "Fire Blast";
-        skillTreeOne_[2] = "Flamethrower";
-        skillTreeOne_[3] = "Flame Burst";
-        skillTreeOne_[4] = "Flame Inferno";
+        skillTreeOne_[1] = new Skill("Fire Blast");
+        skillTreeOne_[2] = new Skill("Flamethrower");
+        skillTreeOne_[3] = new Skill("Flame Burst");
+        skillTreeOne_[4] = new Skill("Flame Inferno");
 
         skillTreeTwoName_ = "Lightning";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "Lightning Bolt";
-        skillTreeTwo_[2] = "Electric Cage";
-        skillTreeTwo_[3] = "Plasma Charge";
-        skillTreeTwo_[4] = "Lightning Pillar";
+        skillTreeTwo_[1] = new Skill("Lightning Bolt");
+        skillTreeTwo_[2] = new Skill("Electric Cage");
+        skillTreeTwo_[3] = new Skill("Plasma Charge");
+        skillTreeTwo_[4] = new Skill("Lightning Pillar");
 
         skillTreeThreeName_ = "Ice";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "Ice Prison";
-        skillTreeThree_[2] = "Freezing Breath";
-        skillTreeThree_[3] = "Ice Crash";
-        skillTreeThree_[4] = "Freezing Land";
+        skillTreeThree_[1] = new Skill("Ice Prison");
+        skillTreeThree_[2] = new Skill("Freezing Breath");
+        skillTreeThree_[3] = new Skill("Ice Crash");
+        skillTreeThree_[4] = new Skill("Freezing Land");
 
         skillTreeFourName_ = "Utility";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "Speed Boost";
-        skillTreeFour_[2] = "Evasion Amplification";
-        skillTreeFour_[3] = "Defence Boost";
-        skillTreeFour_[4] = "Health Renewal";
+        skillTreeFour_[1] = new Skill("Speed Boost");
+        skillTreeFour_[2] = new Skill("Evasion Amplification");
+        skillTreeFour_[3] = new Skill("Defence Boost");
+        skillTreeFour_[4] = new Skill("Health Renewal");
     }
 }
 
@@ -142,43 +333,43 @@ public class KnightClass : PlayerClass
         stealth_ = 1;
         dext_ = 1;
         SetSkills();
-        weaponType_ = "Sword";
+        weaponType_ = new WeaponType("Sword");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Large Swing";
-        basicSkills_[1] = "Block";
-        basicSkills_[2] = "Roll";
-        basicSkills_[3] = "Sprint";
+        basicSkills_[0] = new Skill("Large Swing");
+        basicSkills_[1] = new Skill("Block");
+        basicSkills_[2] = new Skill("Roll");
+        basicSkills_[3] = new Skill("Sprint");
 
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "Lunge";
-        skillTreeOne_[2] = "Dual Slice";
-        skillTreeOne_[3] = "Flame Sword";
-        skillTreeOne_[4] = "";
+        skillTreeOne_[1] = new Skill("Lunge");
+        skillTreeOne_[2] = new Skill("Dual Slice");
+        skillTreeOne_[3] = new Skill("Flame Sword");
+        skillTreeOne_[4] = new Skill("");
 
         skillTreeTwoName_ = "Defensive";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "Parry";
-        skillTreeTwo_[2] = "Warrior's Spirit";
-        skillTreeTwo_[3] = "";
-        skillTreeTwo_[4] = "";
+        skillTreeTwo_[1] = new Skill("Parry");
+        skillTreeTwo_[2] = new Skill("Warrior's Spirit");
+        skillTreeTwo_[3] = new Skill("");
+        skillTreeTwo_[4] = new Skill("");
 
         skillTreeThreeName_ = "Evasion";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "Lion's Roar";
-        skillTreeThree_[2] = "";
-        skillTreeThree_[3] = "";
-        skillTreeThree_[4] = "";
+        skillTreeThree_[1] = new Skill("Lion's Roar");
+        skillTreeThree_[2] = new Skill("");
+        skillTreeThree_[3] = new Skill("");
+        skillTreeThree_[4] = new Skill("");
 
         skillTreeFourName_ = "Movement";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "Dash";
-        skillTreeFour_[2] = "";
-        skillTreeFour_[3] = "";
-        skillTreeFour_[4] = "";
+        skillTreeFour_[1] = new Skill("Dash");
+        skillTreeFour_[2] = new Skill("");
+        skillTreeFour_[3] = new Skill("");
+        skillTreeFour_[4] = new Skill("");
     }
 }
 
@@ -194,43 +385,43 @@ public class AssassinClass : PlayerClass
         stealth_ = 3;
         dext_ = 2;
         SetSkills();
-        weaponType_ = "Knife";
+        weaponType_ = new WeaponType("Knife");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Throwing Knife";
-        basicSkills_[1] = "Smoke Bomb";
-        basicSkills_[2] = "Slash";
-        basicSkills_[3] = "Counter";
+        basicSkills_[0] = new Skill("Throwing Knife");
+        basicSkills_[1] = new Skill("Smoke Bomb");
+        basicSkills_[2] = new Skill("Slash");
+        basicSkills_[3] = new Skill("Counter");
 
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "Poison Dart";
-        skillTreeOne_[2] = "";
-        skillTreeOne_[3] = "";
-        skillTreeOne_[4] = "Assassinate";
+        skillTreeOne_[1] = new Skill("Poison Dart");
+        skillTreeOne_[2] = new Skill("");
+        skillTreeOne_[3] = new Skill("");
+        skillTreeOne_[4] = new Skill("Assassinate");
 
         skillTreeTwoName_ = "Stealth";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "Invisibility";
-        skillTreeTwo_[2] = "";
-        skillTreeTwo_[3] = "";
-        skillTreeTwo_[4] = "";
+        skillTreeTwo_[1] = new Skill("Invisibility");
+        skillTreeTwo_[2] = new Skill("");
+        skillTreeTwo_[3] = new Skill("");
+        skillTreeTwo_[4] = new Skill("");
 
         skillTreeThreeName_ = "Potions";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "Weakness";
-        skillTreeThree_[2] = "Poison";
-        skillTreeThree_[3] = "";
-        skillTreeThree_[4] = "";
+        skillTreeThree_[1] = new Skill("Weakness");
+        skillTreeThree_[2] = new Skill("Poison");
+        skillTreeThree_[3] = new Skill("");
+        skillTreeThree_[4] = new Skill("");
 
         skillTreeFourName_ = "Magic";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "";
-        skillTreeFour_[2] = "";
-        skillTreeFour_[3] = "";
-        skillTreeFour_[4] = "";
+        skillTreeFour_[1] = new Skill("");
+        skillTreeFour_[2] = new Skill("");
+        skillTreeFour_[3] = new Skill("");
+        skillTreeFour_[4] = new Skill("");
     }
 }
 
@@ -246,43 +437,43 @@ public class TankClass : PlayerClass
         stealth_ = 1;
         dext_ = 1;
         SetSkills();
-        weaponType_ = "Two-Handed";
+        weaponType_ = new WeaponType("Two-Handed");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Heavy Swing";
-        basicSkills_[1] = "Shield Wall";
-        basicSkills_[2] = "Charge";
-        basicSkills_[3] = "Weapon Swing";
+        basicSkills_[0] = new Skill("Heavy Swing");
+        basicSkills_[1] = new Skill("Shield Wall");
+        basicSkills_[2] = new Skill("Charge");
+        basicSkills_[3] = new Skill("Weapon Swing");
 
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "Shield Bash";
-        skillTreeOne_[2] = "";
-        skillTreeOne_[3] = "";
-        skillTreeOne_[4] = "";
+        skillTreeOne_[1] = new Skill("Shield Bash");
+        skillTreeOne_[2] = new Skill("");
+        skillTreeOne_[3] = new Skill("");
+        skillTreeOne_[4] = new Skill("");
 
         skillTreeTwoName_ = "Defensive";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "Block";
-        skillTreeTwo_[2] = "";
-        skillTreeTwo_[3] = "";
-        skillTreeTwo_[4] = "";
+        skillTreeTwo_[1] = new Skill("Block");
+        skillTreeTwo_[2] = new Skill("");
+        skillTreeTwo_[3] = new Skill("");
+        skillTreeTwo_[4] = new Skill("");
 
         skillTreeThreeName_ = "Aggro";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "";
-        skillTreeThree_[2] = "";
-        skillTreeThree_[3] = "";
-        skillTreeThree_[4] = "";
+        skillTreeThree_[1] = new Skill("");
+        skillTreeThree_[2] = new Skill("");
+        skillTreeThree_[3] = new Skill("");
+        skillTreeThree_[4] = new Skill("");
 
         skillTreeFourName_ = "";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "";
-        skillTreeFour_[2] = "";
-        skillTreeFour_[3] = "";
-        skillTreeFour_[4] = "";
+        skillTreeFour_[1] = new Skill("");
+        skillTreeFour_[2] = new Skill("");
+        skillTreeFour_[3] = new Skill("");
+        skillTreeFour_[4] = new Skill("");
     }
 }
 
@@ -297,43 +488,43 @@ public class BrawlerClass : PlayerClass
         stealth_ = 2;
         dext_ = 3;
         SetSkills();
-        weaponType_ = "Knuckle-Duster";
+        weaponType_ = new WeaponType("Knuckle-Duster");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Uppercut";
-        basicSkills_[1] = "Kick";
-        basicSkills_[2] = "Slide";
-        basicSkills_[3] = "Block";
+        basicSkills_[0] = new Skill("Uppercut");
+        basicSkills_[1] = new Skill("Kick");
+        basicSkills_[2] = new Skill("Slide");
+        basicSkills_[3] = new Skill("Block");
 
         skillTreeOneName_ = "";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "";
-        skillTreeOne_[2] = "";
-        skillTreeOne_[3] = "";
-        skillTreeOne_[4] = "";
+        skillTreeOne_[1] = new Skill("");
+        skillTreeOne_[2] = new Skill("");
+        skillTreeOne_[3] = new Skill("");
+        skillTreeOne_[4] = new Skill("");
 
         skillTreeTwoName_ = "";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "";
-        skillTreeTwo_[2] = "";
-        skillTreeTwo_[3] = "";
-        skillTreeTwo_[4] = "";
+        skillTreeTwo_[1] = new Skill("");
+        skillTreeTwo_[2] = new Skill("");
+        skillTreeTwo_[3] = new Skill("");
+        skillTreeTwo_[4] = new Skill("");
 
         skillTreeThreeName_ = "";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "";
-        skillTreeThree_[2] = "";
-        skillTreeThree_[3] = "";
-        skillTreeThree_[4] = "";
+        skillTreeThree_[1] = new Skill("");
+        skillTreeThree_[2] = new Skill("");
+        skillTreeThree_[3] = new Skill("");
+        skillTreeThree_[4] = new Skill("");
 
         skillTreeFourName_ = "";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "";
-        skillTreeFour_[2] = "";
-        skillTreeFour_[3] = "";
-        skillTreeFour_[4] = "";
+        skillTreeFour_[1] = new Skill("");
+        skillTreeFour_[2] = new Skill("");
+        skillTreeFour_[3] = new Skill("");
+        skillTreeFour_[4] = new Skill("");
     }
 }
 
@@ -348,44 +539,42 @@ public class RangerClass : PlayerClass
         stealth_ = 3;
         dext_ = 2;
         SetSkills();
-        weaponType_ = "Bow/Mount";
+        weaponType_ = new WeaponType("BowMount");
     }
 
     private void SetSkills()
     {
-        basicSkills_[0] = "Arrow Flurry";
-        basicSkills_[1] = "Saddle Up";
-        basicSkills_[2] = "Hood";
-        basicSkills_[3] = "Fire Arrow";
+        basicSkills_[0] = new Skill("Arrow Flurry");
+        basicSkills_[1] = new Skill("Saddle Up");
+        basicSkills_[2] = new Skill("Hood");
+        basicSkills_[3] = new Skill("Fire Arrow");
 
         skillTreeOneName_ = "";
         skillTreeOne_[0] = basicSkills_[0];
-        skillTreeOne_[1] = "";
-        skillTreeOne_[2] = "";
-        skillTreeOne_[3] = "";
-        skillTreeOne_[4] = "";
+        skillTreeOne_[1] = new Skill("");
+        skillTreeOne_[2] = new Skill("");
+        skillTreeOne_[3] = new Skill("");
+        skillTreeOne_[4] = new Skill("");
 
         skillTreeTwoName_ = "Mount";
         skillTreeTwo_[0] = basicSkills_[1];
-        skillTreeTwo_[1] = "";
-        skillTreeTwo_[2] = "";
-        skillTreeTwo_[3] = "";
-        skillTreeTwo_[4] = "";
+        skillTreeTwo_[1] = new Skill("");
+        skillTreeTwo_[2] = new Skill("");
+        skillTreeTwo_[3] = new Skill("");
+        skillTreeTwo_[4] = new Skill("");
 
         skillTreeThreeName_ = "";
         skillTreeThree_[0] = basicSkills_[2];
-        skillTreeThree_[1] = "";
-        skillTreeThree_[2] = "";
-        skillTreeThree_[3] = "";
-        skillTreeThree_[4] = "";
+        skillTreeThree_[1] = new Skill("");
+        skillTreeThree_[2] = new Skill("");
+        skillTreeThree_[3] = new Skill("");
+        skillTreeThree_[4] = new Skill("");
 
         skillTreeFourName_ = "";
         skillTreeFour_[0] = basicSkills_[3];
-        skillTreeFour_[1] = "";
-        skillTreeFour_[2] = "";
-        skillTreeFour_[3] = "";
-        skillTreeFour_[4] = "";
+        skillTreeFour_[1] = new Skill("");
+        skillTreeFour_[2] = new Skill("");
+        skillTreeFour_[3] = new Skill("");
+        skillTreeFour_[4] = new Skill("");
     }
 }
-
-

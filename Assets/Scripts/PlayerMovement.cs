@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
+    public int maxHealth = 10;
+    public int health { get { return currentHealth; } }
+    int currentHealth;
+
     bool isGrounded = false;
     public Transform groundChecker;
     public float checkGroundRadius;
@@ -19,11 +23,15 @@ public class PlayerMovement : MonoBehaviour
     public float rememberGrounded;
     private float lastTimeGrounded;
 
+    public Canvas inventory;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        inventory.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,6 +41,19 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         BetterJump();
         CheckGrounded();
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ChangeHealth(-1);
+        }
+        if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
+        {
+            inventory.enabled = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.F))
+        {
+            inventory.enabled = true;
+        }
     }
 
 
@@ -76,5 +97,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2D.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        Debug.Log(currentHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UIBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 }

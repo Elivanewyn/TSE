@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float rememberGrounded;
     private float lastTimeGrounded;
+    public float invincibleTime = 1.0f;
+    private float nextInvincible;
 
     public Canvas inventory;
 
@@ -53,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.F))
         {
             inventory.enabled = true;
+        }
+
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -104,5 +112,32 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(currentHealth);
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIBar.instance.SetValue(currentHealth / (float)maxHealth);
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
+        {
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-2);
+        }
+
+        if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
+        {
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-1);
+        }
+
+        
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "skeletonmage")
+        {
+            
+            ChangeHealth(-3);
+        }
     }
 }

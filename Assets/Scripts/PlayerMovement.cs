@@ -50,10 +50,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
         {
+            Time.timeScale = 1f;
             inventory.enabled = false;
         }
         else if(Input.GetKeyDown(KeyCode.F))
         {
+            Time.timeScale = 0.0f;
+            
             inventory.enabled = true;
         }
 

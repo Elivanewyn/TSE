@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+
     public GameObject playerAttack;
     public float fireRate = 1.0f;
     private float nextFire;

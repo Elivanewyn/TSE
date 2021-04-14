@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Skill
 {
     protected string name_;
+    protected bool isActive_;
 
     public string name
     {
@@ -12,9 +14,16 @@ public class Skill
         set { name_ = value; }
     }
 
+    public bool isActive
+    {
+        get { return isActive_; }
+        set { isActive_ = value; }
+    }
+
     public Skill(string skillName)
     {
         name_ = skillName;
+        isActive_ = false;
     }
 
     public void Use()                       //may want to make this more efficient by splitting if statements by class and skill tree
@@ -290,6 +299,10 @@ public class WizardClass : PlayerClass
         basicSkills_[1] = new Skill("Lightning Strike");
         basicSkills_[2] = new Skill("Frost Wave");
         basicSkills_[3] = new Skill("Healing Chime");
+        foreach (Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
 
         skillTreeOneName_ = "Fire";
         skillTreeOne_[0] = basicSkills_[0];
@@ -343,6 +356,11 @@ public class KnightClass : PlayerClass
         basicSkills_[2] = new Skill("Roll");
         basicSkills_[3] = new Skill("Sprint");
 
+        foreach(Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
+
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
         skillTreeOne_[1] = new Skill("Lunge");
@@ -394,6 +412,10 @@ public class AssassinClass : PlayerClass
         basicSkills_[1] = new Skill("Smoke Bomb");
         basicSkills_[2] = new Skill("Slash");
         basicSkills_[3] = new Skill("Counter");
+        foreach (Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
 
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
@@ -446,6 +468,10 @@ public class TankClass : PlayerClass
         basicSkills_[1] = new Skill("Shield Wall");
         basicSkills_[2] = new Skill("Charge");
         basicSkills_[3] = new Skill("Weapon Swing");
+        foreach (Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
 
         skillTreeOneName_ = "Offensive";
         skillTreeOne_[0] = basicSkills_[0];
@@ -497,6 +523,10 @@ public class BrawlerClass : PlayerClass
         basicSkills_[1] = new Skill("Kick");
         basicSkills_[2] = new Skill("Slide");
         basicSkills_[3] = new Skill("Block");
+        foreach (Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
 
         skillTreeOneName_ = "";
         skillTreeOne_[0] = basicSkills_[0];
@@ -548,6 +578,10 @@ public class RangerClass : PlayerClass
         basicSkills_[1] = new Skill("Saddle Up");
         basicSkills_[2] = new Skill("Hood");
         basicSkills_[3] = new Skill("Fire Arrow");
+        foreach (Skill i in basicSkills_)
+        {
+            i.isActive = true;
+        }
 
         skillTreeOneName_ = "";
         skillTreeOne_[0] = basicSkills_[0];

@@ -2337,7 +2337,9 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls: [{m_Target: {fileID: 0}, m_MethodName: '', m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: '', m_IntArgument: 0,
+            m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!1001 &406426343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50195,6 +50197,12 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5250761614839055624, guid: 26a2ff5bb68f1cc499305731c2f9808d,
+        type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 3369635124843261181, guid: dff338441f0a7924f8682265ad11d103,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26a2ff5bb68f1cc499305731c2f9808d, type: 3}
 --- !u!1001 &6605573309170855079

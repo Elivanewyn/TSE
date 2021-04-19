@@ -7,7 +7,6 @@ public class SkeletonTank : MonoBehaviour
     private GameObject Player;
     public float speed;
     public int maxHealth = 800;
-    public int expValue = 12;
     new Rigidbody2D rigidbody2D;
 
     void Start()
@@ -34,7 +33,6 @@ public class SkeletonTank : MonoBehaviour
 
         if (maxHealth == 0)
         {
-            GameManager.Instance.currentExp += expValue;
             Destroy(gameObject);
         }
     }

@@ -11,7 +11,6 @@ public class SkeletonMage : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     public float fireRate = 1.0f;
     private float nextFire;
-    public int expValue = 8;
 
     void Start()
     {
@@ -40,7 +39,6 @@ public class SkeletonMage : MonoBehaviour
 
         if (maxHealth == 0)
         {
-            GameManager.Instance.currentExp += expValue;
             Destroy(gameObject);
         }
     }

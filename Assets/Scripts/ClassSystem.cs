@@ -204,7 +204,7 @@ public class PlayerClass
     protected int stealth_;
     protected int dext_;
 
-    public Skill[] basicSkills_;
+    protected Skill[] basicSkills_;
     protected Skill[] skillTreeOne_;
     protected string skillTreeOneName_;
 

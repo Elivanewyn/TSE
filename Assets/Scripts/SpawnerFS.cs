@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonTank : MonoBehaviour
+public class SpawnerFS : MonoBehaviour
 {
     private GameObject Player;
+    public GameObject enemySpawn;
     public float speed;
-    public int maxHealth = 800;
-    public int expValue = 12;
+    public int maxHealth = 600;
     new Rigidbody2D rigidbody2D;
+    public float fireRate = 1.0f;
+    private float nextFire;
+    public int expValue = 20;
 
     void Start()
     {
@@ -18,10 +21,13 @@ public class SkeletonTank : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && Time.time > nextFire)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+            nextFire = Time.time + fireRate;
+            GameObject SkeletonFootSoldier = Instantiate(enemySpawn, rigidbody2D.position + Vector2.up * 4f, Quaternion.identity);
         }
+
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -45,3 +51,4 @@ public class SkeletonTank : MonoBehaviour
 
     }
 }
+

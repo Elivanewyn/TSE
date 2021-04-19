@@ -7,6 +7,7 @@ public class SkeletonFS : MonoBehaviour
     private GameObject Player;
     public float speed;
     public int maxHealth = 400;
+    public int expValue = 5;
     new Rigidbody2D rigidbody2D;
 
     void Start()
@@ -33,6 +34,7 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth == 0)
         {
+            GameManager.Instance.currentExp += expValue;
             Destroy(gameObject);
         }
     }

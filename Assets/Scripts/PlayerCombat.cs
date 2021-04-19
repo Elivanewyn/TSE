@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public float fireRate = 1.0f;
     private float nextFire;
     Rigidbody2D rb2D;
+    public int totalExp;
 
     // Start is called before the first frame update
     void Start()

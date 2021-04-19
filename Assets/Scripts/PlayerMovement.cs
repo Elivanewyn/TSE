@@ -33,6 +33,31 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         BetterJump();
         CheckGrounded();
+<<<<<<< Updated upstream
+=======
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ChangeHealth(-1);
+        }
+        if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
+        {
+            Time.timeScale = 1f;
+            inventory.enabled = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.F))
+        {
+            Time.timeScale = 0.0f;
+            
+            inventory.enabled = true;
+        }
+
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+>>>>>>> Stashed changes
     }
 
 

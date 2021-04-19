@@ -12,18 +12,28 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
+    public int maxHealth = 10;
+    public int health { get { return currentHealth; } }
+    int currentHealth;
+
     bool isGrounded = false;
     public Transform groundChecker;
     public float checkGroundRadius;
     public LayerMask groundLayer;
     public float rememberGrounded;
     private float lastTimeGrounded;
+    public float invincibleTime = 1.0f;
+    private float nextInvincible;
+
+    public Canvas inventory;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        inventory.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,8 +43,6 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         BetterJump();
         CheckGrounded();
-<<<<<<< Updated upstream
-=======
 
         if(Input.GetKeyDown(KeyCode.C))
         {
@@ -57,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
->>>>>>> Stashed changes
     }
 
 
@@ -100,6 +107,40 @@ public class PlayerMovement : MonoBehaviour
         else if(rb2D.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
         {
             rb2D.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        Debug.Log(currentHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UIBar.instance.SetValue(currentHealth / (float)maxHealth);
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
+        {
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-2);
+        }
+
+        if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
+        {
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-1);
+        }
+
+        
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "skeletonmage")
+        {
+            
+            ChangeHealth(-3);
         }
     }
 }

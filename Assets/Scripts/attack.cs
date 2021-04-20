@@ -7,6 +7,8 @@ public class attack : MonoBehaviour
     Rigidbody2D rigidbody2d;
     public float life = 6;
     public float damage;
+    public float speed;
+    public bool hitsEnemies = true;
 
     private void Awake()
     {
@@ -19,15 +21,18 @@ public class attack : MonoBehaviour
         StartCoroutine(wait(life));
     }
 
-    public void Launch(Vector2 direction, float force)
+    public void Launch(Vector2 direction)
     {
-        rigidbody2d.AddForce(direction * force);
+        rigidbody2d.AddForce(direction * speed);
     }
 
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
@@ -37,7 +42,8 @@ public class attack : MonoBehaviour
 
     IEnumerator wait(float life)
     {
-        yield return new WaitForSeconds(0.5f);
+        //Debug.Log(life);
+        yield return new WaitForSeconds(life);
         Destroy(gameObject);
     }
 }

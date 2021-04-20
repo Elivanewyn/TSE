@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 10;
     public int health { get { return currentHealth; } }
     int currentHealth;
+    public float defence = 1f;
 
     bool isGrounded = false;
     public Transform groundChecker;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Canvas inventory;
 
+    public int evadeChance = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -113,6 +115,17 @@ public class PlayerMovement : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         Debug.Log(currentHealth);
+
+        if(amount < 0 && evadeChance > 0)
+        {
+            System.Random rnd = new System.Random();
+            int rndNum = rnd.Next(1, 100);
+            if(rndNum <= evadeChance)
+            {
+                amount = 0;
+            }
+        }
+
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIBar.instance.SetValue(currentHealth / (float)maxHealth);
     }

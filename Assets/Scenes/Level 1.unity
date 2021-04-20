@@ -50262,6 +50262,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334523, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334521, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50322,6 +50327,11 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1210924920}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: checkGroundRadius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334527, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_Mass
@@ -50336,13 +50346,23 @@ PrefabInstance:
         type: 3}
       propertyPath: skill1
       value: 
-      objectReference: {fileID: 3369635124843261181, guid: 20b5168503a8e254784bc11e7db08c55,
+      objectReference: {fileID: 6951919462881905973, guid: de2ae8f389955d84f829b8862d1a8282,
         type: 3}
     - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: skill2
       value: 
-      objectReference: {fileID: 4883709049928314337, guid: f5c2b1bdf1b5e8b4180271340c038eeb,
+      objectReference: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
         type: 3}
+    - target: {fileID: 7649394907210972401, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296617953255, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

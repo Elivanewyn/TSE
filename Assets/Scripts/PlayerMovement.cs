@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
 
     Rigidbody2D rb2D;
 
@@ -12,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
-    public int maxHealth = 10;
-    public int health { get { return currentHealth; } }
-    int currentHealth;
-    public float defence = 1f;
+    public float maxHealth = 10;
+    public float health { get { return currentHealth; } }
+    float currentHealth;
+
+    public float defence = 0.1f;
+    public float dexterity = 0.1f;
 
     bool isGrounded = false;
     public Transform groundChecker;
@@ -48,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            ChangeHealth(-1);
+            ChangeHealth(-1f);
         }
         if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
         {
@@ -112,9 +115,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
-        Debug.Log(currentHealth);
+        
+
+        if(amount < 0)
+        {
+            amount = amount + defence;
+        }
 
         if(amount < 0 && evadeChance > 0)
         {
@@ -125,8 +133,7 @@ public class PlayerMovement : MonoBehaviour
                 amount = 0;
             }
         }
-
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
         UIBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 

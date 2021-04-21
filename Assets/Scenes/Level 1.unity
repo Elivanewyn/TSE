@@ -410,58 +410,48 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7591264296465694619}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &39408870
-BoxCollider2D:
+--- !u!114 &39408865
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39408864}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.81, y: 0.66}
-    newSize: {x: 0.324, y: 0.264}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.51}
-  m_EdgeRadius: 0
---- !u!61 &39408871
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39408864}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.09}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.81, y: 0.66}
-    newSize: {x: 0.324, y: 0.264}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.47}
-  m_EdgeRadius: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439bf718db2c84e41b33d48267833b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireball: {fileID: 3369635124843261181, guid: 20b5168503a8e254784bc11e7db08c55,
+    type: 3}
+  fireblast: {fileID: 1825782850680061026, guid: 76134c7e1f9150644a076912a02f93bb,
+    type: 3}
+  flamethrower: {fileID: 1180263884627993153, guid: 29280f2bdde77c94f9343620768a8fe3,
+    type: 3}
+  flameburst: {fileID: 5306655345292874975, guid: a710c465bee67444689565badf38f089,
+    type: 3}
+  flameinferno: {fileID: 8491531817521522513, guid: 404756aec9fcb9b4781754ad14bc6f8e,
+    type: 3}
+  lightningstrike: {fileID: 4883709049928314337, guid: f5c2b1bdf1b5e8b4180271340c038eeb,
+    type: 3}
+  lightningbolt: {fileID: 8180841632163424785, guid: fd7963663deb66a428ab54a3c954f17a,
+    type: 3}
+  electriccage: {fileID: 4883709049928314337, guid: f5c2b1bdf1b5e8b4180271340c038eeb,
+    type: 3}
+  plasmacharge: {fileID: 855277191318765703, guid: 57931ad4586ee1d49a241858fcd18804,
+    type: 3}
+  lightningpillar: {fileID: 4831267837302273798, guid: 4745a3139b729c143a5afddd0dd6b6ca,
+    type: 3}
+  frostwave: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  iceprison: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  freezingbreath: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  icecrash: {fileID: 6951919462881905973, guid: de2ae8f389955d84f829b8862d1a8282,
+    type: 3}
+  freezingland: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
 --- !u!1 &44155961
 GameObject:
   m_ObjectHideFlags: 0
@@ -50331,6 +50321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: checkGroundRadius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: defence
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334527, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}

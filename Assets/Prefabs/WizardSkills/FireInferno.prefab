@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8491531817521522515}
   - component: {fileID: 8491531817521522514}
   m_Layer: 9
-  m_Name: FlameThrower 1
+  m_Name: FireInferno
   m_TagString: attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,8 @@ MonoBehaviour:
   damage: 4
   speed: 750
   hitsEnemies: 0
+  cooldown: 0
+  cost: 0
 --- !u!50 &8491531817521522514
 Rigidbody2D:
   serializedVersion: 4

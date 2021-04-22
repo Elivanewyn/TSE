@@ -24,24 +24,26 @@ public class PlayerCombat : MonoBehaviour
 
     Vector2 direction;
 
+    public SpriteRenderer playerSprite;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
         currentMana = maxMana;
-        currentClass = ClassSystem.wizard;
+        currentClass = ClassSystem.assassin;
 
 
-        equippedSkill1 = currentClass.basicSkills_[0];
-        equippedSkill2 = currentClass.basicSkills[1];
+        equippedSkill1 = currentClass.skillTreeThree[3];
+        equippedSkill2 = currentClass.skillTreeThree[4];
 
 
         cooldown1 = equippedSkill1.cooldown;
         cooldown2 = equippedSkill2.cooldown;
 
-        cooldownTime1 = cooldown1;
-        cooldownTime2 = cooldown2;
+        cooldownTime1 = 0;
+        cooldownTime2 = 0;
         nextRecharge = rechargeRate;
     }
 
@@ -55,14 +57,14 @@ public class PlayerCombat : MonoBehaviour
 
 
 
-        if ((Input.GetKey(KeyCode.E)) && (Time.time > cooldownTime1))
+        if ((Input.GetKey(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
             cooldownTime1 = Time.time + cooldown1;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill1.cost));
             equippedSkill1.Use(rb2D, direction, gameObject);
         }
-        if((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2))
+        if((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
@@ -83,4 +85,16 @@ public class PlayerCombat : MonoBehaviour
         UIBar.mana.SetValue(currentMana / (float)maxMana);
     }
 
+
+
+    public IEnumerator AssassinInvis()
+    {
+        cooldownTime1 = 1000f;
+        cooldownTime2 = 1000f;
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        yield return new WaitForSeconds(15);
+        cooldownTime1 = 0;
+        cooldownTime2 = 0;
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
 }

@@ -159,4 +159,27 @@ public class PlayerMovement : MonoBehaviour
             ChangeHealth(-3);
         }
     }
+
+
+
+
+    public IEnumerator WizardSpeedBoost()
+    {
+        speed += 3;
+        yield return new WaitForSeconds(8);
+        speed -= 3;
+    }
+    public IEnumerator WizardEvasionAmplification()
+    {
+        evadeChance += 10;
+        yield return new WaitForSeconds(15);
+        evadeChance -= 10;
+    }
+
+    public IEnumerator WizardDefenceBoost()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(15);
+        defence -= 0.1f;
+    }
 }

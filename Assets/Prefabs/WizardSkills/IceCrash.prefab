@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6951919462881905960}
   - component: {fileID: 6951919462881905975}
   - component: {fileID: 6951919462881905974}
-  - component: {fileID: 1219168202059557404}
   m_Layer: 9
   m_Name: IceCrash
   m_TagString: attack
@@ -146,15 +145,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1219168202059557404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6951919462881905973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa6db11b6d962b46b17982a3211aa3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

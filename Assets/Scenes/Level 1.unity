@@ -452,6 +452,25 @@ MonoBehaviour:
     type: 3}
   freezingland: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
     type: 3}
+  throwingknife: {fileID: 5324773578461033593, guid: ec0dc10da36e86e4995abfcf44a3d1e1,
+    type: 3}
+  poisondart: {fileID: 7844364873678035973, guid: 645adcf969445dc45bbc7993893a00ab,
+    type: 3}
+  smokebomb: {fileID: 8021371409166469617, guid: 3a948909adef8f24f8265bfe6cfc23f6,
+    type: 3}
+  weakness: {fileID: 7114065559269945749, guid: 0fb7b7e9cd6b36b47844091ee086a488,
+    type: 3}
+  poison: {fileID: 1102894598101175576, guid: 394053a398019ac45913f2f55cff6f7f, type: 3}
+  slowness: {fileID: 7375599485554875928, guid: 8aec7c6372247eb44a07c95e3737bbc5,
+    type: 3}
+  paralysis: {fileID: 8860307753449364503, guid: 3ffda99d5f8d51546b9526eedca6ee60,
+    type: 3}
+--- !u!212 &39408871 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7591264296427334522, guid: 9536382fffc021146b260878ef4866e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7591264296465694619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &44155961
 GameObject:
   m_ObjectHideFlags: 0
@@ -50552,6 +50571,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
         type: 3}
+    - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: playerSprite
+      value: 
+      objectReference: {fileID: 39408871}
     - target: {fileID: 7649394907210972401, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_Layer

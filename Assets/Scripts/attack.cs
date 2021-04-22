@@ -26,6 +26,12 @@ public class attack : MonoBehaviour
         rigidbody2d.AddForce(direction * speed);
     }
 
+    public void Throw(Vector2 direction)
+    {
+        rigidbody2d.AddForce(Vector2.up * 200);
+        rigidbody2d.AddForce(direction * speed);
+    }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -46,4 +52,7 @@ public class attack : MonoBehaviour
         yield return new WaitForSeconds(life);
         Destroy(gameObject);
     }
+
+
+    
 }

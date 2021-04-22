@@ -25,40 +25,40 @@ public class ClassSystem : MonoBehaviour
 
     public static WizardClass wizard = new WizardClass();
 
-    void Start()
+    void Awake()
     {
-        wizard.basicSkills[0] = new Skill("Fireball", fireball);
-        wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike);
-        wizard.basicSkills[2] = new Skill("Frost Wave", frostwave);
-        wizard.basicSkills[3] = new Skill("Healing Chime");
+        wizard.basicSkills[0] = new Skill("Fireball", fireball, 0.5f, 0.5f);
+        wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike, 1.3f, 1f);
+        wizard.basicSkills[2] = new Skill("Frost Wave", frostwave, 5f, 5f);
+        wizard.basicSkills[3] = new Skill("Healing Chime", 8f, 9f);
         foreach (Skill i in wizard.basicSkills)
         {
             i.isActive = true;
         }
 
         wizard.skillTreeOne[0] = wizard.basicSkills[0];
-        wizard.skillTreeOne[1] = new Skill("Fire Blast", fireblast);
-        wizard.skillTreeOne[2] = new Skill("Flamethrower", flamethrower);
-        wizard.skillTreeOne[3] = new Skill("Flame Burst", flameburst);
-        wizard.skillTreeOne[4] = new Skill("Flame Inferno", flameinferno);
+        wizard.skillTreeOne[1] = new Skill("Fire Blast", fireblast, 0.2f, 1.5f);
+        wizard.skillTreeOne[2] = new Skill("Flamethrower", flamethrower, 0f, 0.1f);
+        wizard.skillTreeOne[3] = new Skill("Flame Burst", flameburst, 0.4f, 4.5f);
+        wizard.skillTreeOne[4] = new Skill("Flame Inferno", flameinferno, 3.5f, 8f);
 
         wizard.skillTreeTwo[0] = wizard.basicSkills[1];
-        wizard.skillTreeTwo[1] = new Skill("Lightning Bolt", lightningbolt);
-        wizard.skillTreeTwo[2] = new Skill("Electric Cage", electriccage);
-        wizard.skillTreeTwo[3] = new Skill("Plasma Charge", plasmacharge);
-        wizard.skillTreeTwo[4] = new Skill("Lightning Pillar", lightningpillar);
+        wizard.skillTreeTwo[1] = new Skill("Lightning Bolt", lightningbolt, 1.5f, 3f);
+        wizard.skillTreeTwo[2] = new Skill("Electric Cage", electriccage, 9f, 10f);
+        wizard.skillTreeTwo[3] = new Skill("Plasma Charge", plasmacharge, 5f, 8f);
+        wizard.skillTreeTwo[4] = new Skill("Lightning Pillar", lightningpillar, 18f, 14f);
 
         wizard.skillTreeThree[0] = wizard.basicSkills[2];
-        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison);
-        wizard.skillTreeThree[2] = new Skill("Freezing Breath", freezingbreath);
-        wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash);
-        wizard.skillTreeThree[4] = new Skill("Freezing Land", freezingland);
+        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f);
+        wizard.skillTreeThree[2] = new Skill("Freezing Breath", freezingbreath, 0f, 0.1f);
+        wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash, 0.5f, 5.5f);
+        wizard.skillTreeThree[4] = new Skill("Freezing Land", freezingland, 10f, 10f);
 
         wizard.skillTreeFour[0] = wizard.basicSkills[3];
-        wizard.skillTreeFour[1] = new Skill("Speed Boost");
-        wizard.skillTreeFour[2] = new Skill("Evasion Amplification");
-        wizard.skillTreeFour[3] = new Skill("Defence Boost");
-        wizard.skillTreeFour[4] = new Skill("Health Renewal");
+        wizard.skillTreeFour[1] = new Skill("Speed Boost", 13f, 8.5f);
+        wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 13f, 9f);
+        wizard.skillTreeFour[3] = new Skill("Defence Boost", 13f, 9f);
+        wizard.skillTreeFour[4] = new Skill("Health Renewal", 15f, 16f);
     }
 
 
@@ -68,6 +68,8 @@ public class ClassSystem : MonoBehaviour
         private string name_;
         private int skillSlot_;   //0 the skill is unequipped, 1 is in slot 1, 2is in slot 2.
         private bool isActive_;   //is the skill unlocked.
+        private float cooldown_;
+        private float cost_;
 
         public GameObject prefab;
 
@@ -89,6 +91,18 @@ public class ClassSystem : MonoBehaviour
             set { isActive_ = value; }
         }
 
+        public float cooldown
+        {
+            get { return cooldown_; }
+            set { cooldown_ = value; }
+        }
+
+        public float cost
+        {
+            get { return cost_; }
+            set { cost_ = value; }
+        }
+
 
         public Skill(string skillName)
         {
@@ -105,6 +119,29 @@ public class ClassSystem : MonoBehaviour
             isActive_ = false;
             prefab = skillPrefab;
         }
+        //old constructors. delete soon
+
+
+        public Skill(string skillName, float skillCooldown, float skillCost)
+        {
+            name_ = skillName;
+            skillSlot_ = 0;
+            isActive_ = false;
+            cooldown_ = skillCooldown;
+            cost_ = skillCost;
+        }
+        //constructor for skills without an object needed (eg. healing chime)
+
+        public Skill(string skillName, GameObject skillPrefab, float skillCooldown, float skillCost)
+        {
+            name_ = skillName;
+            skillSlot_ = 0;
+            isActive_ = false;
+            prefab = skillPrefab;
+            cooldown_ = skillCooldown;
+            cost_ = skillCost;
+        }
+
 
         public void Use(Rigidbody2D rb2D, Vector2 direction, GameObject playerObject)           //may want to make this more efficient by splitting if statements by class and skill tree
         {
@@ -451,7 +488,7 @@ public class ClassSystem : MonoBehaviour
         protected int stealth_;
         protected int dext_;
 
-        protected Skill[] basicSkills_ = new Skill[4];
+        public Skill[] basicSkills_ = new Skill[4];
 
         protected Skill[] skillTreeOne_ = new Skill[5];
         protected string skillTreeOneName_;

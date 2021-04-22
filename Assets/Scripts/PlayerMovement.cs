@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-
     Rigidbody2D rb2D;
 
     public float speed = 7.0f;
@@ -117,8 +115,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
-        
-
         if(amount < 0)
         {
             amount = amount + defence;
@@ -134,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
-        UIBar.instance.SetValue(currentHealth / (float)maxHealth);
+        UIBar.health.SetValue(currentHealth / (float)maxHealth);
     }
 
     void OnCollisionStay2D(Collision2D other)

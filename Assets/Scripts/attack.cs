@@ -9,8 +9,6 @@ public class attack : MonoBehaviour
     public float damage;
     public float speed;
     public bool hitsEnemies = true;
-    public float cooldown;
-    public int cost;
 
     private void Awake()
     {

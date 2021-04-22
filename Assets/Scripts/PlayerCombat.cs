@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public static ClassSystem.PlayerClass currentClass;
-    public ClassSystem.Skill equippedSkill1;
+    private ClassSystem.Skill equippedSkill1;
     public ClassSystem.Skill equippedSkill2;
 
-    public float fireRate = 1.0f;
-    private float nextFire;
+    public float cooldown1;
+    private float cooldownTime1;
+    public float cooldown2;
+    private float cooldownTime2;
+
+    public float rechargeRate = 1.0f;
+    private float nextRecharge;
 
     public float maxMana = 20;
     public float mana { get { return currentMana; } }
@@ -27,9 +32,17 @@ public class PlayerCombat : MonoBehaviour
         currentMana = maxMana;
         currentClass = ClassSystem.wizard;
 
-        equippedSkill1 = currentClass.basicSkills[0];
+
+        equippedSkill1 = currentClass.basicSkills_[0];
         equippedSkill2 = currentClass.basicSkills[1];
 
+
+        cooldown1 = equippedSkill1.cooldown;
+        cooldown2 = equippedSkill2.cooldown;
+
+        cooldownTime1 = cooldown1;
+        cooldownTime2 = cooldown2;
+        nextRecharge = rechargeRate;
     }
 
     // Update is called once per frame
@@ -42,29 +55,32 @@ public class PlayerCombat : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.E) && Time.time > nextFire)
+        if ((Input.GetKey(KeyCode.E)) && (Time.time > cooldownTime1))
         {
-            nextFire = Time.time + fireRate;
+            cooldownTime1 = Time.time + cooldown1;
+            nextRecharge = Time.time + rechargeRate;
+            ChangeMana(-(equippedSkill1.cost));
             equippedSkill1.Use(rb2D, direction, gameObject);
         }
-        if(Input.GetKey(KeyCode.Q) && Time.time > nextFire)
+        if((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2))
         {
-            nextFire = Time.time + fireRate;
+            cooldownTime2 = Time.time + cooldown2;
+            nextRecharge = Time.time + rechargeRate;
+            ChangeMana(-(equippedSkill2.cooldown));
             equippedSkill2.Use(rb2D, direction, gameObject);
         }
 
-        if(currentMana < maxMana && Time.time > nextFire)
+        if(currentMana < maxMana && Time.time > nextRecharge)
         {
             ChangeMana(0.5f);
-            nextFire = Time.time + fireRate;
+            nextRecharge = Time.time + rechargeRate;
         }
     }
 
     public void ChangeMana(float amount)
     {
         currentMana = Mathf.Clamp(currentMana + amount, 0f, maxMana);
-        Debug.Log(currentMana);
-        //UIBar.instance.SetValue(currentMana / (float)maxMana);
+        UIBar.mana.SetValue(currentMana / (float)maxMana);
     }
 
 }

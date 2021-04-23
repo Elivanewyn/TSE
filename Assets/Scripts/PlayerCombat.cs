@@ -31,12 +31,11 @@ public class PlayerCombat : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
-        currentMana = maxMana;
         currentClass = ClassSystem.assassin;
 
 
-        equippedSkill1 = currentClass.skillTreeThree[3];
-        equippedSkill2 = currentClass.skillTreeThree[4];
+        equippedSkill1 = currentClass.skillTreeFour[1];
+        equippedSkill2 = currentClass.skillTreeFour[3];
 
 
         cooldown1 = equippedSkill1.cooldown;
@@ -45,12 +44,36 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime1 = 0;
         cooldownTime2 = 0;
         nextRecharge = rechargeRate;
+
+        PlayerMovement player = gameObject.GetComponent<PlayerMovement>();
+        player.maxHealth = currentClass.strength * 10;
+        player.health = player.maxHealth;
+        player.defence = currentClass.defence;
+        maxMana = currentClass.intelligence * 20;
+        currentMana = maxMana;
+
+        if (currentClass.dext == 1)
+        {
+            player.speed = 8f;
+            player.jumpForce = 8.0f;
+        }
+        else if (currentClass.dext == 2)
+        {
+            player.speed = 10.5f;
+            player.jumpForce = 10f;
+        }
+        else if (currentClass.dext == 3)
+        {
+            player.speed = 14f;
+            player.jumpForce = 12f;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
+        if (Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
@@ -64,7 +87,7 @@ public class PlayerCombat : MonoBehaviour
             ChangeMana(-(equippedSkill1.cost));
             equippedSkill1.Use(rb2D, direction, gameObject);
         }
-        if((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
+        if ((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
@@ -72,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
             equippedSkill2.Use(rb2D, direction, gameObject);
         }
 
-        if(currentMana < maxMana && Time.time > nextRecharge)
+        if (currentMana < maxMana && Time.time > nextRecharge)
         {
             ChangeMana(0.5f);
             nextRecharge = Time.time + rechargeRate;

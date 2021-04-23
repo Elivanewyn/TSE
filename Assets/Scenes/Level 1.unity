@@ -50549,6 +50549,16 @@ PrefabInstance:
       propertyPath: defence
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: maxJumps
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: numberOfJumps
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334527, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_Mass

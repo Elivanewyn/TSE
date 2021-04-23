@@ -12,11 +12,10 @@ public class PlayerMovement : MonoBehaviour
     public float lowJumpMultiplier = 2.0f;
 
     public float maxHealth = 10;
-    public float health { get { return currentHealth; } }
+    public float health { get { return currentHealth; } set { value = currentHealth; } }
     float currentHealth;
 
     public float defence = 0.1f;
-    public float dexterity = 0.1f;
 
     bool isGrounded = false;
     public Transform groundChecker;
@@ -31,12 +30,16 @@ public class PlayerMovement : MonoBehaviour
 
     public int evadeChance = 0;
 
+    public int maxJumps = 1;
+    int numberOfJumps;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         inventory.enabled = false;
+        numberOfJumps = maxJumps;
     }
 
     // Update is called once per frame
@@ -80,9 +83,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGrounded))
+        if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+            numberOfJumps--;
         }
     }
 
@@ -90,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(groundChecker.position, checkGroundRadius, groundLayer);
 
-        if(collider != null) { isGrounded = true; }
+        if(collider != null) { isGrounded = true; numberOfJumps = maxJumps; }
         else
         {
             if(isGrounded)
@@ -117,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(amount < 0)
         {
-            amount = amount + defence;
+            amount += defence;
         }
 
         if(amount < 0 && evadeChance > 0)
@@ -182,4 +186,5 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(15);
         defence -= 0.1f;
     }
+
 }

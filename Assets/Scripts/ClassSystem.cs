@@ -88,8 +88,8 @@ public class ClassSystem : MonoBehaviour
 
         assassin.skillTreeOne[0] = assassin.basicSkills[0];
         assassin.skillTreeOne[1] = new Skill("Poison Dart", poisondart, 4f, 2.5f, "Assassin");
-        assassin.skillTreeOne[2] = new Skill("");
-        assassin.skillTreeOne[3] = new Skill("");
+        assassin.skillTreeOne[2] = new Skill("Slide");
+        assassin.skillTreeOne[3] = new Skill("Taunt");
         assassin.skillTreeOne[4] = new Skill("Assassinate");
 
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
@@ -105,10 +105,10 @@ public class ClassSystem : MonoBehaviour
         assassin.skillTreeThree[4] = new Skill("Paralysis", paralysis, 15f, 10f, "Assassin");
 
         assassin.skillTreeFour[0] = assassin.basicSkills[3];
-        assassin.skillTreeFour[1] = new Skill("");
-        assassin.skillTreeFour[2] = new Skill("");
-        assassin.skillTreeFour[3] = new Skill("");
-        assassin.skillTreeFour[4] = new Skill("");
+        assassin.skillTreeFour[1] = new Skill("Double Jump", 2f, 8f, "Assassin");
+        assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin");
+        assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin");
+        assassin.skillTreeFour[4] = new Skill("Transform");
     }
 
 
@@ -429,6 +429,18 @@ public class ClassSystem : MonoBehaviour
                     projectile.Launch(direction);
                     return;
                 }
+                else if (name_ == "Slide")
+                {
+                    //will wait until level is populated
+                }
+                else if (name_ == "Taunt")
+                {
+                    //will wait until level is populated
+                }
+                else if (name_ == "Assassinate")
+                {
+                    //will wait until level is populated
+                }
 
 
 
@@ -510,6 +522,36 @@ public class ClassSystem : MonoBehaviour
                 if (name_ == "Counter")
                 {
                     //will wait until populated
+                }
+                else if (name_ == "Double Jump")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    if (player.maxJumps == 1)
+                    {
+                        player.maxJumps = 2;        //activate double jump skill
+                    }
+                    else { player.maxJumps = 1; }   //deactivate double jump skill
+                    return;
+                }
+                else if (name_ == "Wall Jump")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    if(player.checkGroundRadius == 0.5f)
+                    {
+                        player.checkGroundRadius = 1;           //activate wall jump skill
+                    }
+                    else { player.checkGroundRadius = 0.5f; }   //deactivate wall jump skill
+                    return;
+                }
+                else if (name_ == "Triple Jump")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    if (player.maxJumps <= 2)
+                    {
+                        player.maxJumps = 3;        //activate triple jump skill
+                    }
+                    else { player.maxJumps = 1; }   //deactivate triple jump skill
+                    return;
                 }
 
             }
@@ -637,7 +679,7 @@ public class ClassSystem : MonoBehaviour
         //basic info on each class
         protected string name_;
         protected int strength_;
-        protected int defence_;
+        protected float defence_;
         protected int intelligence_;
         protected int stealth_;
         protected int dext_;
@@ -671,7 +713,7 @@ public class ClassSystem : MonoBehaviour
             set { strength_ = value; }
         }
 
-        public int defence
+        public float defence
         {
             get { return defence_; }
             set { defence_ = value; }
@@ -744,7 +786,7 @@ public class ClassSystem : MonoBehaviour
         {
             name_ = "Wizard";
             strength_ = 1;
-            defence_ = 1;
+            defence_ = 0.1f;
             intelligence_ = 3;
             stealth_ = 2;
             dext_ = 1;
@@ -768,7 +810,7 @@ public class ClassSystem : MonoBehaviour
         {
             name_ = "Knight";
             strength_ = 3;
-            defence_ = 2;
+            defence_ = 0.2f;
             intelligence_ = 1;
             stealth_ = 1;
             dext_ = 1;
@@ -825,10 +867,10 @@ public class ClassSystem : MonoBehaviour
         {
             name_ = "Assassin";
             strength_ = 1;
-            defence_ = 1;
+            defence_ = 0.1f;
             intelligence_ = 2;
             stealth_ = 3;
-            dext_ = 2;
+            dext_ = 3;
             SetSkills();
             weaponType_ = new WeaponType("Knife");
         }
@@ -849,9 +891,9 @@ public class ClassSystem : MonoBehaviour
         {
             name_ = "Ranger";
             strength_ = 2;
-            defence_ = 1;
+            defence_ = 0.3f;
             intelligence_ = 1;
-            stealth_ = 3;
+            stealth_ = 2;
             dext_ = 2;
             SetSkills();
             weaponType_ = new WeaponType("BowMount");

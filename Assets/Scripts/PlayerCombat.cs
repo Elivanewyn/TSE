@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public static ClassSystem.PlayerClass currentClass;
-    private ClassSystem.Skill equippedSkill1;
+    public ClassSystem.Skill equippedSkill1;
     public ClassSystem.Skill equippedSkill2;
 
     public float cooldown1;
@@ -111,6 +111,17 @@ public class PlayerCombat : MonoBehaviour
 
 
     public IEnumerator AssassinInvis()
+    {
+        cooldownTime1 = 1000f;
+        cooldownTime2 = 1000f;
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        yield return new WaitForSeconds(15);
+        cooldownTime1 = 0;
+        cooldownTime2 = 0;
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+    public IEnumerator CriticalStrike()
     {
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;

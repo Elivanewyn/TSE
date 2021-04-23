@@ -94,9 +94,9 @@ public class ClassSystem : MonoBehaviour
 
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
         assassin.skillTreeTwo[1] = new Skill("Invisibility", 20f, 9.5f, "Assassin");
-        assassin.skillTreeTwo[2] = new Skill("");
-        assassin.skillTreeTwo[3] = new Skill("");
-        assassin.skillTreeTwo[4] = new Skill("");
+        assassin.skillTreeTwo[2] = new Skill("Critical Strike");
+        assassin.skillTreeTwo[3] = new Skill("Shadow Sneak");
+        assassin.skillTreeTwo[4] = new Skill("Super Stealth");
 
         assassin.skillTreeThree[0] = assassin.basicSkills[2];
         assassin.skillTreeThree[1] = new Skill("Weakness", weakness, 10f, 7f, "Assassin");
@@ -108,7 +108,7 @@ public class ClassSystem : MonoBehaviour
         assassin.skillTreeFour[1] = new Skill("Double Jump", 2f, 8f, "Assassin");
         assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin");
         assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin");
-        assassin.skillTreeFour[4] = new Skill("Transform");
+        assassin.skillTreeFour[4] = new Skill("Shadow Clone");
     }
 
 
@@ -466,6 +466,21 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.AssassinInvis());
                     return;
                 }
+                else if (name_ == "Critical Strike")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.CriticalStrike());
+                    //will change damage when enemy/player interactions been done
+                    return;
+                }
+                else if (name_ == "Shadow Sneak")
+                {
+                    //will wait until level is populated
+                }
+                else if (name_ == "Super Stealth")
+                {
+                    //will wait for stealth stat to be done
+                }
                 
 
 
@@ -552,6 +567,10 @@ public class ClassSystem : MonoBehaviour
                     }
                     else { player.maxJumps = 1; }   //deactivate triple jump skill
                     return;
+                }
+                else if (name_ == "Shadow Clone")
+                {
+                    //will wait for the level to be populated
                 }
 
             }

@@ -470,6 +470,11 @@ MonoBehaviour:
   spear: {fileID: 5905120180717818502, guid: e445c0fe0b23282449c910d11f361e03, type: 3}
   firearrow: {fileID: 2511490291506432640, guid: ad115c58b3ed7014eb0f49603b77ac92,
     type: 3}
+  icearrow: {fileID: 7910860580818601372, guid: 3133e9507008bcc47af037003fd19f14,
+    type: 3}
+  thunderarrow: {fileID: 0}
+  shadowarrow: {fileID: 0}
+  lightarrow: {fileID: 0}
 --- !u!212 &39408871 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7591264296427334522, guid: 9536382fffc021146b260878ef4866e6,
@@ -50567,6 +50572,11 @@ PrefabInstance:
     - target: {fileID: 7591264296427334527, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334527, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,

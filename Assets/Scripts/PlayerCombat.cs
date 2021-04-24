@@ -34,8 +34,8 @@ public class PlayerCombat : MonoBehaviour
         currentClass = ClassSystem.ranger;
 
 
-        equippedSkill1 = currentClass.skillTreeOne[1];
-        equippedSkill2 = currentClass.basicSkills[3];
+        equippedSkill1 = currentClass.skillTreeTwo[1];
+        equippedSkill2 = currentClass.skillTreeOne[1];
 
 
         cooldown1 = equippedSkill1.cooldown;
@@ -157,5 +157,44 @@ public class PlayerCombat : MonoBehaviour
         projectile3.life = 1f;
         projectile3.speed = 1000;
         projectile3.Launch(direction);
+    }
+
+    public IEnumerator RangerSpearFlurry(GameObject prefab)
+    {
+        GameObject Spear1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile1 = Spear1.GetComponent<attack>();
+        projectile1.damage = 3f;
+        projectile1.life = 5;
+        projectile1.speed = 1600;
+        projectile1.Throw(direction);
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject Spear2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile2 = Spear2.GetComponent<attack>();
+        projectile2.damage = 3f;
+        projectile2.life = 5;
+        projectile2.speed = 1600;
+        projectile2.Throw(direction);
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject Spear3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile3 = Spear3.GetComponent<attack>();
+        projectile3.damage = 3f;
+        projectile3.life = 5;
+        projectile3.speed = 1600;
+        projectile3.Throw(direction);
+    }
+
+
+    public IEnumerator RangerCharge()
+    {
+        Vector2 tempDirection = direction;
+        if(tempDirection == Vector2.up || tempDirection == Vector2.down) { tempDirection = Vector2.right; }
+        for(int i = 0; i <= 5; i++)
+        {
+            rb2D.velocity = tempDirection * 50;
+            yield return new WaitForSeconds(0.03f);
+        }
+        rb2D.velocity = Vector2.zero;
     }
 }

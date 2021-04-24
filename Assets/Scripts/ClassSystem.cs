@@ -39,6 +39,10 @@ public class ClassSystem : MonoBehaviour
     public GameObject spear;
 
     public GameObject firearrow;
+    public GameObject icearrow;
+    public GameObject thunderarrow;
+    public GameObject shadowarrow;
+    public GameObject lightarrow;
 
 
     public static WizardClass wizard = new WizardClass();
@@ -122,7 +126,7 @@ public class ClassSystem : MonoBehaviour
         ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger");
         ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger");
         ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger");
-        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 4f, 3f, "Ranger");
+        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 3f, 3f, "Ranger");
         foreach (Skill i in ranger.basicSkills)
         {
             i.isActive = true;
@@ -130,12 +134,12 @@ public class ClassSystem : MonoBehaviour
 
         ranger.skillTreeOne[0] = ranger.basicSkills[0];
         ranger.skillTreeOne[1] = new Skill("Spear", spear, 1.5f, 5f, "Ranger");
-        ranger.skillTreeOne[2] = new Skill("");
+        ranger.skillTreeOne[2] = new Skill("Spear Flurry", spear, 2.5f, 8f, "Ranger");
         ranger.skillTreeOne[3] = new Skill("");
         ranger.skillTreeOne[4] = new Skill("");
 
         ranger.skillTreeTwo[0] = ranger.basicSkills[1];
-        ranger.skillTreeTwo[1] = new Skill("");
+        ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger");
         ranger.skillTreeTwo[2] = new Skill("");
         ranger.skillTreeTwo[3] = new Skill("");
         ranger.skillTreeTwo[4] = new Skill("");
@@ -147,10 +151,10 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeThree[4] = new Skill("");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
-        ranger.skillTreeFour[1] = new Skill("");
-        ranger.skillTreeFour[2] = new Skill("");
-        ranger.skillTreeFour[3] = new Skill("");
-        ranger.skillTreeFour[4] = new Skill("");
+        ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 3f, 3.5f, "Ranger");
+        ranger.skillTreeFour[2] = new Skill("Thunder Arrow", thunderarrow, 4f, 5f, "Ranger");
+        ranger.skillTreeFour[3] = new Skill("Shadow Arrow", shadowarrow, 3f, 6f, "Ranger");
+        ranger.skillTreeFour[4] = new Skill("Light Arrow", lightarrow, 20f, 15f, "Ranger");
     }
 
 
@@ -633,8 +637,14 @@ public class ClassSystem : MonoBehaviour
                     attack projectile = Spear.GetComponent<attack>();
                     projectile.damage = 3f;
                     projectile.life = 5;
-                    projectile.speed = 1200;
+                    projectile.speed = 1600;
                     projectile.Throw(direction);
+                    return;
+                }
+                else if (name_ == "Spear Flurry")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerSpearFlurry(prefab));
                     return;
                 }
 
@@ -655,6 +665,12 @@ public class ClassSystem : MonoBehaviour
                         player.jumpForce += 2f;
                         player.transform.localScale = new Vector3(10, 10, 1);
                     }
+                    return;
+                }
+                else if (name_ == "Charge")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerCharge());
                     return;
                 }
 
@@ -684,6 +700,50 @@ public class ClassSystem : MonoBehaviour
                     attack projectile = FArrow.GetComponent<attack>();
                     projectile.damage = 0.5f;
                     projectile.life = 2f;
+                    projectile.speed = 850;
+                    projectile.Launch(direction);
+                    return;
+                }
+                else if (name_ == "Ice Arrow")
+                {
+                    GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = IArrow.GetComponent<attack>();
+                    projectile.damage = 0.5f;
+                    projectile.life = 2f;
+                    projectile.speed = 850;
+                    projectile.Launch(direction);
+                    return;
+                }
+                else if (name_ == "Thunder Arrow")
+                {
+                    GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = TArrow.GetComponent<attack>();
+                    projectile.damage = 0.5f;
+                    projectile.life = 5f;
+                    projectile.speed = 850;
+                    projectile.Launch(direction);
+                    return;
+                }
+                else if (name_ == "Shadow Arrow")
+                {
+                    GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = SArrow.GetComponent<attack>();
+                    projectile.damage = 0.5f;
+                    projectile.life = 5f;
+                    projectile.speed = 850;
+                    projectile.Launch(direction);
+                    return;
+                }
+                else if (name_ == "Light Arrow")
+                {
+                    GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = LArrow.GetComponent<attack>();
+                    projectile.damage = 10f;
+                    projectile.life = 3f;
                     projectile.speed = 850;
                     projectile.Launch(direction);
                     return;

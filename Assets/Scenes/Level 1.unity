@@ -465,6 +465,11 @@ MonoBehaviour:
     type: 3}
   paralysis: {fileID: 8860307753449364503, guid: 3ffda99d5f8d51546b9526eedca6ee60,
     type: 3}
+  arrowflurry: {fileID: 3593543814772851977, guid: 5fc22b996db4cb947bcbefb7fef32fa0,
+    type: 3}
+  spear: {fileID: 5905120180717818502, guid: e445c0fe0b23282449c910d11f361e03, type: 3}
+  firearrow: {fileID: 2511490291506432640, guid: ad115c58b3ed7014eb0f49603b77ac92,
+    type: 3}
 --- !u!212 &39408871 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7591264296427334522, guid: 9536382fffc021146b260878ef4866e6,

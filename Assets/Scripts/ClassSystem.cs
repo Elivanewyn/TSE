@@ -35,9 +35,16 @@ public class ClassSystem : MonoBehaviour
     public GameObject paralysis;
 
 
+    public GameObject arrowflurry;
+    public GameObject spear;
+
+    public GameObject firearrow;
+
+
     public static WizardClass wizard = new WizardClass();
     //knight
     public static AssassinClass assassin = new AssassinClass();
+    public static RangerClass ranger = new RangerClass();
 
 
     void Awake()
@@ -109,6 +116,41 @@ public class ClassSystem : MonoBehaviour
         assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin");
         assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin");
         assassin.skillTreeFour[4] = new Skill("Shadow Clone");
+
+
+
+        ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger");
+        ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger");
+        ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger");
+        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 4f, 3f, "Ranger");
+        foreach (Skill i in ranger.basicSkills)
+        {
+            i.isActive = true;
+        }
+
+        ranger.skillTreeOne[0] = ranger.basicSkills[0];
+        ranger.skillTreeOne[1] = new Skill("Spear", spear, 1.5f, 5f, "Ranger");
+        ranger.skillTreeOne[2] = new Skill("");
+        ranger.skillTreeOne[3] = new Skill("");
+        ranger.skillTreeOne[4] = new Skill("");
+
+        ranger.skillTreeTwo[0] = ranger.basicSkills[1];
+        ranger.skillTreeTwo[1] = new Skill("");
+        ranger.skillTreeTwo[2] = new Skill("");
+        ranger.skillTreeTwo[3] = new Skill("");
+        ranger.skillTreeTwo[4] = new Skill("");
+
+        ranger.skillTreeThree[0] = ranger.basicSkills[2];
+        ranger.skillTreeThree[1] = new Skill("");
+        ranger.skillTreeThree[2] = new Skill("");
+        ranger.skillTreeThree[3] = new Skill("");
+        ranger.skillTreeThree[4] = new Skill("");
+
+        ranger.skillTreeFour[0] = ranger.basicSkills[3];
+        ranger.skillTreeFour[1] = new Skill("");
+        ranger.skillTreeFour[2] = new Skill("");
+        ranger.skillTreeFour[3] = new Skill("");
+        ranger.skillTreeFour[4] = new Skill("");
     }
 
 
@@ -398,6 +440,7 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.ChangeHealth(3);
+                    return;
                 }
             }
 
@@ -469,7 +512,7 @@ public class ClassSystem : MonoBehaviour
                 else if (name_ == "Critical Strike")
                 {
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
-                    player.StartCoroutine(player.CriticalStrike());
+                    player.StartCoroutine(player.AssassinCriticalStrike());
                     //will change damage when enemy/player interactions been done
                     return;
                 }
@@ -573,6 +616,78 @@ public class ClassSystem : MonoBehaviour
                     //will wait for the level to be populated
                 }
 
+            }
+
+            else if (skillClass_ == "Ranger")
+            {
+                if (name_ == "Arrow Flurry")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerArrowFlurry(prefab));
+                    return;
+                }
+                else if (name_ == "Spear")
+                {
+                    GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = Spear.GetComponent<attack>();
+                    projectile.damage = 3f;
+                    projectile.life = 5;
+                    projectile.speed = 1200;
+                    projectile.Throw(direction);
+                    return;
+                }
+
+
+                if(name_ == "Saddle Up")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+
+                    if (player.jumpForce == 10f)
+                    {
+                        player.speed += 5f;
+                        player.jumpForce -= 2f;
+                        player.transform.localScale = new Vector3(12, 15, 1);
+                    }
+                    else
+                    {
+                        player.speed -= 5f;
+                        player.jumpForce += 2f;
+                        player.transform.localScale = new Vector3(10, 10, 1);
+                    }
+                    return;
+                }
+
+
+                if (name_ == "Hood")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+
+                    if(player.defence == 0.3f)
+                    {
+                        player.defence = 0.1f;
+                        //increase stealth
+                    }
+                    else
+                    {
+                        player.defence = 0.3f;
+                        //decrease stealth back
+                    }
+                    return;
+                }
+
+
+                if(name_ == "Fire Arrow")
+                {
+                    GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = FArrow.GetComponent<attack>();
+                    projectile.damage = 0.5f;
+                    projectile.life = 2f;
+                    projectile.speed = 850;
+                    projectile.Launch(direction);
+                    return;
+                }
             }
         }
     }
@@ -920,42 +1035,10 @@ public class ClassSystem : MonoBehaviour
 
         private void SetSkills()
         {
-            basicSkills_[0] = new Skill("Arrow Flurry");
-            basicSkills_[1] = new Skill("Saddle Up");
-            basicSkills_[2] = new Skill("Hood");
-            basicSkills_[3] = new Skill("Fire Arrow");
-            foreach (Skill i in basicSkills_)
-            {
-                i.isActive = true;
-            }
-
-            skillTreeOneName_ = "";
-            skillTreeOne_[0] = basicSkills_[0];
-            skillTreeOne_[1] = new Skill("");
-            skillTreeOne_[2] = new Skill("");
-            skillTreeOne_[3] = new Skill("");
-            skillTreeOne_[4] = new Skill("");
-
-            skillTreeTwoName_ = "Mount";
-            skillTreeTwo_[0] = basicSkills_[1];
-            skillTreeTwo_[1] = new Skill("");
-            skillTreeTwo_[2] = new Skill("");
-            skillTreeTwo_[3] = new Skill("");
-            skillTreeTwo_[4] = new Skill("");
-
-            skillTreeThreeName_ = "";
-            skillTreeThree_[0] = basicSkills_[2];
-            skillTreeThree_[1] = new Skill("");
-            skillTreeThree_[2] = new Skill("");
-            skillTreeThree_[3] = new Skill("");
-            skillTreeThree_[4] = new Skill("");
-
-            skillTreeFourName_ = "";
-            skillTreeFour_[0] = basicSkills_[3];
-            skillTreeFour_[1] = new Skill("");
-            skillTreeFour_[2] = new Skill("");
-            skillTreeFour_[3] = new Skill("");
-            skillTreeFour_[4] = new Skill("");
+           skillTreeOneName_ = "Ranged";
+           skillTreeTwoName_ = "Mount";
+           skillTreeThreeName_ = "Scout";
+           skillTreeFourName_ = "Elemental";
         }
     }
 }

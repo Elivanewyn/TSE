@@ -31,11 +31,11 @@ public class PlayerCombat : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
-        currentClass = ClassSystem.assassin;
+        currentClass = ClassSystem.ranger;
 
 
-        equippedSkill1 = currentClass.skillTreeFour[1];
-        equippedSkill2 = currentClass.skillTreeFour[3];
+        equippedSkill1 = currentClass.skillTreeOne[1];
+        equippedSkill2 = currentClass.basicSkills[3];
 
 
         cooldown1 = equippedSkill1.cooldown;
@@ -121,7 +121,7 @@ public class PlayerCombat : MonoBehaviour
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
-    public IEnumerator CriticalStrike()
+    public IEnumerator AssassinCriticalStrike()
     {
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;
@@ -130,5 +130,32 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime1 = 0;
         cooldownTime2 = 0;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+
+    public IEnumerator RangerArrowFlurry(GameObject prefab)
+    {
+        GameObject Arrow1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile1 = Arrow1.GetComponent<attack>();
+        projectile1.damage = 0.5f;
+        projectile1.life = 1f;
+        projectile1.speed = 1000;
+        projectile1.Launch(direction);
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject Arrow2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile2 = Arrow2.GetComponent<attack>();
+        projectile2.damage = 0.5f;
+        projectile2.life = 1f;
+        projectile2.speed = 1000;
+        projectile2.Launch(direction);
+        yield return new WaitForSeconds(0.3f);
+
+        GameObject Arrow3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        attack projectile3 = Arrow3.GetComponent<attack>();
+        projectile3.damage = 0.5f;
+        projectile3.life = 1f;
+        projectile3.speed = 1000;
+        projectile3.Launch(direction);
     }
 }

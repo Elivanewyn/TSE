@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1095083570855044994}
   - component: {fileID: 1095083570855045053}
   - component: {fileID: 6940186334268195259}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SkeletonMage
   m_TagString: skeletonfs
   m_Icon: {fileID: 0}

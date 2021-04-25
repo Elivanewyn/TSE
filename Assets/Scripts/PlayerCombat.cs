@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public ClassSystem.Skill equippedSkill1;
     public ClassSystem.Skill equippedSkill2;
 
@@ -31,11 +31,11 @@ public class PlayerCombat : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
-        currentClass = ClassSystem.knight;
+        //currentClass = ClassSystem.knight;
 
 
-        equippedSkill1 = currentClass.basicSkills[2];
-        equippedSkill2 = currentClass.basicSkills[2];
+        equippedSkill1 = currentClass.basicSkills[0];
+        equippedSkill2 = currentClass.basicSkills[1];
 
 
         cooldown1 = equippedSkill1.cooldown;

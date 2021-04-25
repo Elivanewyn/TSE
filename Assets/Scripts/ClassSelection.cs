@@ -5,23 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class ClassSelection : MonoBehaviour
 {
+    public GameObject playerPrefab;
     public void WizardSelect()
     {
-        //Code to set class to wizard.
+        PlayerCombat.currentClass = ClassSystem.wizard;
         Debug.Log("Class: Wizard");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void KnightSelect()
     {
-        //Code to set class to knight.
+        PlayerCombat.currentClass = ClassSystem.knight;
         Debug.Log("Class: Knight");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void AssassinSelect()
     {
-        //Code to set class to assassin.
+        PlayerCombat.currentClass = ClassSystem.assassin;
         Debug.Log("Class: Assassin");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -42,7 +43,7 @@ public class ClassSelection : MonoBehaviour
 
     public void RangerSelect()
     {
-        //Code to set class to ranger.
+        PlayerCombat.currentClass = ClassSystem.ranger;
         Debug.Log("Class: Ranger");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

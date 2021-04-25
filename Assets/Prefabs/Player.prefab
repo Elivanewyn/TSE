@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 7591264296427334520}
   - component: {fileID: 7591264295744213756}
   - component: {fileID: 7591264295744213747}
-  m_Layer: 0
-  m_Name: Player 1
+  - component: {fileID: 39408865}
+  m_Layer: 10
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7591264296427334523}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.5, y: -22.2, z: 0.025832225}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
@@ -103,13 +104,17 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   maxHealth: 10
+  defence: 0.1
   groundChecker: {fileID: 4737666712265473435}
   checkGroundRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   rememberGrounded: 0.1
+  invincibleTime: 1
   inventory: {fileID: 0}
+  evadeChance: 0
+  maxJumps: 1
 --- !u!50 &7591264296427334527
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +134,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &7591264296427334520
 BoxCollider2D:
@@ -155,7 +160,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20228711, y: 0.37495807}
+  m_Size: {x: 0.2, y: 0.37495807}
   m_EdgeRadius: 0
 --- !u!251 &7591264295744213756
 PlatformEffector2D:
@@ -188,9 +193,154 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8218b7d655352b34997fe23ef771eb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAttack: {fileID: 3369635124843261181, guid: dff338441f0a7924f8682265ad11d103,
+  cooldown1: 0
+  cooldown2: 0
+  rechargeRate: 1
+  maxMana: 20
+  playerSprite: {fileID: 7591264296427334522}
+--- !u!114 &39408865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591264296427334523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439bf718db2c84e41b33d48267833b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wizardPortrait: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
+  knightPortrait: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  assassinPortrait: {fileID: 21300000, guid: 2e93c637a24e04d8ea6b2cfd9df53739, type: 3}
+  fireball: {fileID: 3369635124843261181, guid: 20b5168503a8e254784bc11e7db08c55,
     type: 3}
-  fireRate: 1
+  fireballPortrait: {fileID: 21300000, guid: bead47d786e844adba7899d02e8851eb, type: 3}
+  fireblast: {fileID: 1825782850680061026, guid: 76134c7e1f9150644a076912a02f93bb,
+    type: 3}
+  fireblastPortrait: {fileID: 21300000, guid: 764d28acbc3994af2873c2c42bdab986, type: 3}
+  flamethrower: {fileID: 1180263884627993153, guid: 29280f2bdde77c94f9343620768a8fe3,
+    type: 3}
+  flamethrowerPortrait: {fileID: 21300000, guid: c47945c92819e41d584c4aff1694e68f,
+    type: 3}
+  flameburst: {fileID: 5306655345292874975, guid: a710c465bee67444689565badf38f089,
+    type: 3}
+  flameburstPortrait: {fileID: 21300000, guid: 1cbab147f3d6a4298afd5dc425552309, type: 3}
+  flameinferno: {fileID: 8491531817521522513, guid: 404756aec9fcb9b4781754ad14bc6f8e,
+    type: 3}
+  flameinfernoPortrait: {fileID: 21300000, guid: c81d4f5e629154ef9bf7c5b3cad8f9d8,
+    type: 3}
+  lightningstrike: {fileID: 4883709049928314337, guid: f5c2b1bdf1b5e8b4180271340c038eeb,
+    type: 3}
+  lightningstrikePortrait: {fileID: 21300000, guid: 05693a8fd758747cab019551188b0447,
+    type: 3}
+  lightningbolt: {fileID: 8180841632163424785, guid: fd7963663deb66a428ab54a3c954f17a,
+    type: 3}
+  lightningboltPortrait: {fileID: 21300000, guid: 05693a8fd758747cab019551188b0447,
+    type: 3}
+  electriccage: {fileID: 4883709049928314337, guid: f5c2b1bdf1b5e8b4180271340c038eeb,
+    type: 3}
+  electriccagePortrait: {fileID: 21300000, guid: e4dfb8af17a354fd4a5278f311c19e03,
+    type: 3}
+  plasmacharge: {fileID: 855277191318765703, guid: 57931ad4586ee1d49a241858fcd18804,
+    type: 3}
+  plasmachargePortrait: {fileID: 21300000, guid: 05693a8fd758747cab019551188b0447,
+    type: 3}
+  lightningpillar: {fileID: 4831267837302273798, guid: 4745a3139b729c143a5afddd0dd6b6ca,
+    type: 3}
+  lightningpillarPortrait: {fileID: 21300038, guid: ae3918a914038694d852d0bb81f62473,
+    type: 3}
+  frostwave: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  frostwavePortrait: {fileID: 21300000, guid: e4dfb8af17a354fd4a5278f311c19e03, type: 3}
+  iceprison: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  iceprisonPortrait: {fileID: 21300000, guid: e4dfb8af17a354fd4a5278f311c19e03, type: 3}
+  freezingbreath: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  freezingbreathPortrait: {fileID: 21300000, guid: fa784bc593d3c4633915415271d46c72,
+    type: 3}
+  icecrash: {fileID: 6951919462881905973, guid: de2ae8f389955d84f829b8862d1a8282,
+    type: 3}
+  icecrashPortrait: {fileID: 21300000, guid: 675365aa3ad6e43d68d9a1c619c7e63a, type: 3}
+  freezingland: {fileID: 7125477276523781009, guid: 44538dadcdada0e44bd57f3fd0428124,
+    type: 3}
+  freezinglandPortrait: {fileID: 21300000, guid: fa784bc593d3c4633915415271d46c72,
+    type: 3}
+  healingchimePortrait: {fileID: 21300004, guid: a75445bb16444f14f96fdf9c734945cc,
+    type: 3}
+  speedboostPortrait: {fileID: 21300000, guid: 45d89eb64f4af4d5c907c7c5ef5b9cee, type: 3}
+  evasionPortrait: {fileID: 21300000, guid: ab8c6ad7260aa4988b3a67bd49e66038, type: 3}
+  defenceboostPortrait: {fileID: 21300000, guid: d2c46d6a6e7d821449f2f29ef3b15d17,
+    type: 3}
+  healthrenewalPortrait: {fileID: 21300004, guid: a75445bb16444f14f96fdf9c734945cc,
+    type: 3}
+  rollPortrait: {fileID: 21300152, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  throwingknife: {fileID: 5324773578461033593, guid: ec0dc10da36e86e4995abfcf44a3d1e1,
+    type: 3}
+  throwingknifePortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
+    type: 3}
+  poisondart: {fileID: 7844364873678035973, guid: 645adcf969445dc45bbc7993893a00ab,
+    type: 3}
+  poisondartPortrait: {fileID: 21300000, guid: fa784bc593d3c4633915415271d46c72, type: 3}
+  sidePortrait: {fileID: 21300000, guid: 28371f9328a2e48b796541177eb24014, type: 3}
+  tauntPortrait: {fileID: 21300000, guid: e7c078d706e274250b9575d98a633383, type: 3}
+  assassinatePortrait: {fileID: 21300000, guid: e24df99c276a946cdb2b9eced4636715,
+    type: 3}
+  smokebomb: {fileID: 8021371409166469617, guid: 3a948909adef8f24f8265bfe6cfc23f6,
+    type: 3}
+  smokebombPortrait: {fileID: 21300000, guid: 30e4f85892c46449cbd4ea836c389c9b, type: 3}
+  invisPortrait: {fileID: 21300000, guid: 1d5c2b524d7734240a82bc6b06f841c8, type: 3}
+  criticalPortrait: {fileID: 21300000, guid: fa30da05166464cc2b0a50c521d038aa, type: 3}
+  shadowPortrait: {fileID: 21300000, guid: a63af4d6a65b042e69387b3a6a5a576a, type: 3}
+  superstealthPortrait: {fileID: 21300000, guid: 3bd6ae9ed48144bf6b53332d6b4a753a,
+    type: 3}
+  slashPortrait: {fileID: 21300000, guid: 778e2557a1c9d429b91f3c123afef7c1, type: 3}
+  weakness: {fileID: 7114065559269945749, guid: 0fb7b7e9cd6b36b47844091ee086a488,
+    type: 3}
+  weaknessPortrait: {fileID: 21300016, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+  poison: {fileID: 1102894598101175576, guid: 394053a398019ac45913f2f55cff6f7f, type: 3}
+  poisonPortrait: {fileID: 21300016, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+  slowness: {fileID: 7375599485554875928, guid: 8aec7c6372247eb44a07c95e3737bbc5,
+    type: 3}
+  slownessPortrait: {fileID: 21300016, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+  paralysis: {fileID: 8860307753449364503, guid: 3ffda99d5f8d51546b9526eedca6ee60,
+    type: 3}
+  paralysisPortrait: {fileID: 21300016, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+  counterSprite: {fileID: 21300000, guid: 3e90b4fc793f24ef0a5a8e969d02327e, type: 3}
+  doublePortrait: {fileID: 21300000, guid: fa30da05166464cc2b0a50c521d038aa, type: 3}
+  walljumpPortrait: {fileID: 21300000, guid: 524b5c7e638cf48d3a4c0d3ede2f4768, type: 3}
+  triplePortrait: {fileID: 21300000, guid: fa30da05166464cc2b0a50c521d038aa, type: 3}
+  shadowclonePortrait: {fileID: 21300000, guid: 04e5a1d1ff3dc4c7f81a700a52c1d002,
+    type: 3}
+  arrowflurry: {fileID: 3593543814772851977, guid: 5fc22b996db4cb947bcbefb7fef32fa0,
+    type: 3}
+  arrowflurryPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
+    type: 3}
+  spear: {fileID: 5905120180717818502, guid: e445c0fe0b23282449c910d11f361e03, type: 3}
+  spearPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  spearflurryPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
+    type: 3}
+  saddleupPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  chargePortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  hoodPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  firearrow: {fileID: 2511490291506432640, guid: ad115c58b3ed7014eb0f49603b77ac92,
+    type: 3}
+  firearrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  icearrow: {fileID: 7910860580818601372, guid: 3133e9507008bcc47af037003fd19f14,
+    type: 3}
+  icearrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  thunderarrow: {fileID: 2287464470175325551, guid: e265db8b607e2ce4fae2dfd508396dbf,
+    type: 3}
+  thunderarrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
+    type: 3}
+  shadowarrow: {fileID: 3209697879975740385, guid: 0625ea0c1ec7d92419d78a526fdd0a27,
+    type: 3}
+  shadowarrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
+    type: 3}
+  lightarrow: {fileID: 1080310119953201692, guid: f2978ea7a96a0344da1ba7c9761480bd,
+    type: 3}
+  lightarrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
 --- !u!1 &7591264296617953255
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +352,7 @@ GameObject:
   - component: {fileID: 7591264296617953051}
   - component: {fileID: 7591264296617953252}
   - component: {fileID: 7591264296617953254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -282,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4737666712265473435}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

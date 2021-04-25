@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8026252397323558117}
   - component: {fileID: 8026252397323558106}
   - component: {fileID: 8026252397323558107}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SkeletonFootSoldier
   m_TagString: skeletonfs
   m_Icon: {fileID: 0}
@@ -170,4 +170,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   maxHealth: 400
-  EXPValue: 5

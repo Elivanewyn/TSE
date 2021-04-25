@@ -472,9 +472,12 @@ MonoBehaviour:
     type: 3}
   icearrow: {fileID: 7910860580818601372, guid: 3133e9507008bcc47af037003fd19f14,
     type: 3}
-  thunderarrow: {fileID: 0}
-  shadowarrow: {fileID: 0}
-  lightarrow: {fileID: 0}
+  thunderarrow: {fileID: 2287464470175325551, guid: e265db8b607e2ce4fae2dfd508396dbf,
+    type: 3}
+  shadowarrow: {fileID: 3209697879975740385, guid: 0625ea0c1ec7d92419d78a526fdd0a27,
+    type: 3}
+  lightarrow: {fileID: 1080310119953201692, guid: f2978ea7a96a0344da1ba7c9761480bd,
+    type: 3}
 --- !u!212 &39408871 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7591264296427334522, guid: 9536382fffc021146b260878ef4866e6,

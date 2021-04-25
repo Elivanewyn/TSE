@@ -31,11 +31,11 @@ public class PlayerCombat : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
-        currentClass = ClassSystem.ranger;
+        currentClass = ClassSystem.knight;
 
 
-        equippedSkill1 = currentClass.skillTreeTwo[1];
-        equippedSkill2 = currentClass.skillTreeOne[1];
+        equippedSkill1 = currentClass.basicSkills[2];
+        equippedSkill2 = currentClass.basicSkills[2];
 
 
         cooldown1 = equippedSkill1.cooldown;
@@ -108,6 +108,9 @@ public class PlayerCombat : MonoBehaviour
         UIBar.mana.SetValue(currentMana / (float)maxMana);
     }
 
+
+
+    
 
 
     public IEnumerator AssassinInvis()

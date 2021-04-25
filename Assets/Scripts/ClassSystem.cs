@@ -46,7 +46,7 @@ public class ClassSystem : MonoBehaviour
 
 
     public static WizardClass wizard = new WizardClass();
-    //knight
+    public static KnightClass knight = new KnightClass();
     public static AssassinClass assassin = new AssassinClass();
     public static RangerClass ranger = new RangerClass();
 
@@ -85,6 +85,42 @@ public class ClassSystem : MonoBehaviour
         wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 13f, 9f, "Wizard");
         wizard.skillTreeFour[3] = new Skill("Defence Boost", 13f, 9f, "Wizard");
         wizard.skillTreeFour[4] = new Skill("Health Renewal", 15f, 16f, "Wizard");
+
+
+
+        knight.basicSkills[0] = new Skill("Large Swing");
+        knight.basicSkills[1] = new Skill("Block");
+        knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight");
+        knight.basicSkills[3] = new Skill("Sprint");
+
+        foreach (Skill i in knight.basicSkills)
+        {
+            i.isActive = true;
+        }
+
+        knight.skillTreeOne[0] = knight.basicSkills[0];
+        knight.skillTreeOne[1] = new Skill("Lunge");
+        knight.skillTreeOne[2] = new Skill("Dual Slice");
+        knight.skillTreeOne[3] = new Skill("Flame Sword");
+        knight.skillTreeOne[4] = new Skill("");
+
+        knight.skillTreeTwo[0] = knight.basicSkills[1];
+        knight.skillTreeTwo[1] = new Skill("Parry");
+        knight.skillTreeTwo[2] = new Skill("Warrior's Spirit");
+        knight.skillTreeTwo[3] = new Skill("");
+        knight.skillTreeTwo[4] = new Skill("");
+
+        knight.skillTreeThree[0] = knight.basicSkills[2];
+        knight.skillTreeThree[1] = new Skill("Lion's Roar");
+        knight.skillTreeThree[2] = new Skill("");
+        knight.skillTreeThree[3] = new Skill("");
+        knight.skillTreeThree[4] = new Skill("");
+
+        knight.skillTreeFour[0] = knight.basicSkills[3];
+        knight.skillTreeFour[1] = new Skill("Dash");
+        knight.skillTreeFour[2] = new Skill("");
+        knight.skillTreeFour[3] = new Skill("");
+        knight.skillTreeFour[4] = new Skill("");
 
 
 
@@ -450,6 +486,14 @@ public class ClassSystem : MonoBehaviour
 
             else if (skillClass_ == "Knight")
             {
+
+
+                if(name_ == "Roll")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightRoll());
+                    return;
+                }
             }
 
             else if (skillClass_ == "Assassin")
@@ -1014,43 +1058,10 @@ public class ClassSystem : MonoBehaviour
 
         private void SetSkills()
         {
-            basicSkills_[0] = new Skill("Large Swing");
-            basicSkills_[1] = new Skill("Block");
-            basicSkills_[2] = new Skill("Roll");
-            basicSkills_[3] = new Skill("Sprint");
-
-            foreach (Skill i in basicSkills_)
-            {
-                i.isActive = true;
-            }
-
             skillTreeOneName_ = "Offensive";
-            skillTreeOne_[0] = basicSkills_[0];
-            skillTreeOne_[1] = new Skill("Lunge");
-            skillTreeOne_[2] = new Skill("Dual Slice");
-            skillTreeOne_[3] = new Skill("Flame Sword");
-            skillTreeOne_[4] = new Skill("");
-
             skillTreeTwoName_ = "Defensive";
-            skillTreeTwo_[0] = basicSkills_[1];
-            skillTreeTwo_[1] = new Skill("Parry");
-            skillTreeTwo_[2] = new Skill("Warrior's Spirit");
-            skillTreeTwo_[3] = new Skill("");
-            skillTreeTwo_[4] = new Skill("");
-
             skillTreeThreeName_ = "Evasion";
-            skillTreeThree_[0] = basicSkills_[2];
-            skillTreeThree_[1] = new Skill("Lion's Roar");
-            skillTreeThree_[2] = new Skill("");
-            skillTreeThree_[3] = new Skill("");
-            skillTreeThree_[4] = new Skill("");
-
             skillTreeFourName_ = "Movement";
-            skillTreeFour_[0] = basicSkills_[3];
-            skillTreeFour_[1] = new Skill("Dash");
-            skillTreeFour_[2] = new Skill("");
-            skillTreeFour_[3] = new Skill("");
-            skillTreeFour_[4] = new Skill("");
         }
     }
 

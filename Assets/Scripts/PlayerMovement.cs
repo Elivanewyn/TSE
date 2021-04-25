@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb2D;
+    private int xDirection = 1;
+    private bool stopManualMove = false;
 
     public float speed = 7.0f;
     public float jumpForce = 6.0f;
@@ -77,8 +79,14 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
+        float x2 = Input.GetAxis("Horizontal");
+        if(x2 > 0) { xDirection = 1; }
+        else if (x2 <0) { xDirection = -1; }
         float moveBy = x * speed;
-        rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        if (!stopManualMove)
+        {
+            rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        }
     }
 
     void Jump()
@@ -159,7 +167,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonmage")
         {
-            
             ChangeHealth(-3);
         }
     }
@@ -187,4 +194,11 @@ public class PlayerMovement : MonoBehaviour
         defence -= 0.1f;
     }
 
+    public IEnumerator KnightRoll()
+    {
+        rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
+        stopManualMove = true;
+        yield return new WaitForSeconds(0.4f);
+        stopManualMove = false;
+    }
 }

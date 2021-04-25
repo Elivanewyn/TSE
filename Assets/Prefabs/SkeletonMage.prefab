@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1095083570855044994}
   - component: {fileID: 1095083570855045053}
   - component: {fileID: 6940186334268195259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonMage
   m_TagString: skeletonfs
   m_Icon: {fileID: 0}
@@ -170,6 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mageFire: {fileID: 2405201991037912033, guid: df37a2e0bc2fb7e44a022cf09d4680d9,
     type: 3}
-  speed: 1
+  speed: 0
   maxHealth: 400
   fireRate: 3

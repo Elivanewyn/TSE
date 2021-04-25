@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SkeletonFS : MonoBehaviour
 {
     private GameObject Player;
     public float speed;
     public int maxHealth = 400;
     new Rigidbody2D rigidbody2D;
+    public int EXPValue = 5;
 
     void Start()
     {
@@ -33,7 +35,9 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth == 0)
         {
+            
             Destroy(gameObject);
+            
         }
     }
 

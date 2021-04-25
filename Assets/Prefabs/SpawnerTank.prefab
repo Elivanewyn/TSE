@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3029749940561138490}
   - component: {fileID: 3029749940561138437}
   - component: {fileID: 2682264320056520732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnerTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}

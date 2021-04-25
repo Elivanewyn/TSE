@@ -5,14 +5,24 @@ using UnityEngine.UI;
 
 public class UIBar : MonoBehaviour
 {
-    public static UIBar instance { get; private set; }
+    public static UIBar health { get; private set; }
+    public static UIBar mana { get; private set; }
 
     public Image bar;
     float originalSize;
 
+    public bool isHealth;
+
     void Awake()
     {
-        instance = this;
+        if (isHealth)
+        {
+            health = this;
+        }
+        else
+        {
+            mana = this;
+        }
     }
 
     void Start()

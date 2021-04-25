@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3369635124843261152}
   - component: {fileID: 3369635124843261183}
   - component: {fileID: 3369635124843261182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fireball
   m_TagString: attack
   m_Icon: {fileID: 0}
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 6
   damage: 1
+  speed: 0
+  hitsEnemies: 1
 --- !u!50 &3369635124843261182
 Rigidbody2D:
   serializedVersion: 4

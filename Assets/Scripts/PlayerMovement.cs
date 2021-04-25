@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     Rigidbody2D rb2D;
+    private int xDirection = 1;
+    private bool stopManualMove = false;
 
     public float speed = 7.0f;
     public float jumpForce = 6.0f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
-    public int maxHealth = 10;
-    public int health { get { return currentHealth; } }
-    int currentHealth;
+    public float maxHealth = 10;
+    public float health { get { return currentHealth; } set { value = currentHealth; } }
+    float currentHealth;
+
+    public float defence = 0.1f;
 
     bool isGrounded = false;
     public Transform groundChecker;
@@ -27,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Canvas inventory;
 
+    public int evadeChance = 0;
+
+    public int maxJumps = 1;
+    int numberOfJumps;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         inventory.enabled = false;
+        numberOfJumps = maxJumps;
     }
 
     // Update is called once per frame
@@ -46,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-            ChangeHealth(-1);
+            ChangeHealth(-1f);
         }
         if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
         {
@@ -71,15 +79,22 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
+        float x2 = Input.GetAxis("Horizontal");
+        if(x2 > 0) { xDirection = 1; }
+        else if (x2 <0) { xDirection = -1; }
         float moveBy = x * speed;
-        rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        if (!stopManualMove)
+        {
+            rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        }
     }
 
     void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGrounded))
+        if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+            numberOfJumps--;
         }
     }
 
@@ -87,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(groundChecker.position, checkGroundRadius, groundLayer);
 
-        if(collider != null) { isGrounded = true; }
+        if(collider != null) { isGrounded = true; numberOfJumps = maxJumps; }
         else
         {
             if(isGrounded)
@@ -110,11 +125,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
-        Debug.Log(currentHealth);
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIBar.instance.SetValue(currentHealth / (float)maxHealth);
+        if(amount < 0)
+        {
+            amount += defence;
+        }
+
+        if(amount < 0 && evadeChance > 0)
+        {
+            System.Random rnd = new System.Random();
+            int rndNum = rnd.Next(1, 100);
+            if(rndNum <= evadeChance)
+            {
+                amount = 0;
+            }
+        }
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
+        UIBar.health.SetValue(currentHealth / (float)maxHealth);
     }
 
     void OnCollisionStay2D(Collision2D other)
@@ -139,8 +167,38 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonmage")
         {
-            
             ChangeHealth(-3);
         }
+    }
+
+
+
+
+    public IEnumerator WizardSpeedBoost()
+    {
+        speed += 3;
+        yield return new WaitForSeconds(8);
+        speed -= 3;
+    }
+    public IEnumerator WizardEvasionAmplification()
+    {
+        evadeChance += 10;
+        yield return new WaitForSeconds(15);
+        evadeChance -= 10;
+    }
+
+    public IEnumerator WizardDefenceBoost()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(15);
+        defence -= 0.1f;
+    }
+
+    public IEnumerator KnightRoll()
+    {
+        rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
+        stopManualMove = true;
+        yield return new WaitForSeconds(0.4f);
+        stopManualMove = false;
     }
 }

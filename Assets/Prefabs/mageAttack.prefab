@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2405201991037912044}
   - component: {fileID: 2405201991037912035}
   - component: {fileID: 2405201991037912034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mageAttack
   m_TagString: skeletonmage
   m_Icon: {fileID: 0}

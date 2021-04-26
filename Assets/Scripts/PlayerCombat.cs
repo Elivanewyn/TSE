@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
-    public ClassSystem.Skill equippedSkill1;
-    public ClassSystem.Skill equippedSkill2;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.Skill equippedSkill1;
+    public static ClassSystem.Skill equippedSkill2;
+    public Image skill1Portrait;
+    public Image skill2Portrait;
 
     public float cooldown1;
     private float cooldownTime1;
@@ -26,6 +29,9 @@ public class PlayerCombat : MonoBehaviour
 
     public SpriteRenderer playerSprite;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,9 @@ public class PlayerCombat : MonoBehaviour
 
         equippedSkill1 = currentClass.basicSkills[0];
         equippedSkill2 = currentClass.basicSkills[1];
+
+        skill1Portrait.sprite = equippedSkill1.portrait;
+        skill2Portrait.sprite = equippedSkill2.portrait;
 
 
         cooldown1 = equippedSkill1.cooldown;
@@ -79,6 +88,8 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
 
 
+        ChangeCooldown();
+
 
         if ((Input.GetKey(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
@@ -95,6 +106,11 @@ public class PlayerCombat : MonoBehaviour
             equippedSkill2.Use(rb2D, direction, gameObject);
         }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ChangeSkills();
+        }
+
         if (currentMana < maxMana && Time.time > nextRecharge)
         {
             ChangeMana(0.5f);
@@ -109,7 +125,28 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+    void ChangeCooldown()
+    {
+        float temp1 = Mathf.Clamp(cooldownTime1 - Time.time, 0f, cooldown1);
+        float temp2 = Mathf.Clamp(cooldownTime2 - Time.time, 0f, cooldown2);
+        SkillUI.skill1.SetValue(temp1 / cooldown1);
+        SkillUI.skill2.SetValue(temp2 / cooldown2);
+    }
 
+
+
+    public void ChangeSkills()
+    {
+        skill1Portrait.sprite = equippedSkill1.portrait;
+        skill2Portrait.sprite = equippedSkill2.portrait;
+
+
+        cooldown1 = equippedSkill1.cooldown;
+        cooldown2 = equippedSkill2.cooldown;
+
+        cooldownTime1 = 0;
+        cooldownTime2 = 0;
+    }
     
 
 

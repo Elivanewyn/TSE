@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1321832879
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
   m_Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
@@ -193,6 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8218b7d655352b34997fe23ef771eb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill1Portrait: {fileID: 0}
+  skill2Portrait: {fileID: 0}
   cooldown1: 0
   cooldown2: 0
   rechargeRate: 1

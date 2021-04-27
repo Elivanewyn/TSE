@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 1;
     int numberOfJumps;
 
+    private Animator animator;
+    private float delayToIdle = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,11 +55,14 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         BetterJump();
         CheckGrounded();
+        animator.SetFloat("AirSpeedY", rb2D.velocity.y);
 
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            ChangeHealth(-1f);
-        }
+
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    ChangeHealth(-1f);
+        //}
+
         if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
         {
             Time.timeScale = 1f;
@@ -76,16 +83,32 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float x2 = Input.GetAxis("Horizontal");
-        if(x2 > 0) { xDirection = 1; }
-        else if (x2 <0) { xDirection = -1; }
+        if(x2 > 0) { xDirection = 1; GetComponent<SpriteRenderer>().flipX = false; }
+        else if (x2 <0) { xDirection = -1; GetComponent<SpriteRenderer>().flipX = true; }
         float moveBy = x * speed;
         if (!stopManualMove)
         {
             rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        }
+
+
+        if (Mathf.Abs(x2) > Mathf.Epsilon)
+        {
+            delayToIdle = 0.05f;
+            animator.SetInteger("AnimState", 1);
+        }
+
+        else
+        {
+            delayToIdle -= Time.deltaTime;
+            if (delayToIdle < 0)
+                animator.SetInteger("AnimState", 0);
         }
     }
 
@@ -93,6 +116,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
+            animator.SetTrigger("Jump");
+            animator.SetBool("Grounded", false);
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             numberOfJumps--;
         }
@@ -102,7 +127,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(groundChecker.position, checkGroundRadius, groundLayer);
 
-        if(collider != null) { isGrounded = true; numberOfJumps = maxJumps; }
+        if(collider != null) 
+        {
+            isGrounded = true;
+            numberOfJumps = maxJumps;
+            animator.SetBool("Grounded", isGrounded);
+        }
         else
         {
             if(isGrounded)
@@ -110,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
                 lastTimeGrounded = Time.time;
             }
             isGrounded = false;
+            animator.SetBool("Grounded", isGrounded);
         }
     }
 
@@ -149,12 +180,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
+            animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-2);
         }
 
         if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
         {
+            animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-1);
         }
@@ -167,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonmage")
         {
+            animator.SetTrigger("Hurt");
             ChangeHealth(-3);
         }
     }
@@ -198,7 +232,16 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
-        yield return new WaitForSeconds(0.4f);
+        animator.SetTrigger("Roll");
+        yield return new WaitForSeconds(0.5f);
         stopManualMove = false;
+    }
+
+
+
+    void AE_ResetRoll()
+    {
+        bool m_rolling;
+        m_rolling = false;
     }
 }

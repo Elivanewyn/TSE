@@ -9,6 +9,8 @@ public class ClassSystem : MonoBehaviour
     public Sprite knightPortrait;
     public Sprite assassinPortrait;
 
+    public Animator knightAnimator;
+
 
     public GameObject fireball;
     public Sprite fireballPortrait;

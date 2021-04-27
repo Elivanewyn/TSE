@@ -9,6 +9,7 @@ public class SkillSelection : MonoBehaviour
     Transform parent;
     Transform sibling;
     Image skillFrame;
+    public Text skillDescription;
 
     ClassSystem.PlayerClass currentClass = PlayerCombat.currentClass;
 
@@ -114,6 +115,10 @@ public class SkillSelection : MonoBehaviour
     void Update()
     {
         //Debug.Log(currentClass.skillTreeOne[1].isActive);
+        if(selectedSkill != null)
+        {
+            skillDescription.text = selectedSkill.name + ": " + selectedSkill.description + ".";
+        }
     }
 
 

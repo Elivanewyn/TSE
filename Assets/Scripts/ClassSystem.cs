@@ -117,45 +117,45 @@ public class ClassSystem : MonoBehaviour
     void Awake()
     {
         wizard.portrait = wizardPortrait;
-        wizard.basicSkills[0] = new Skill("Fireball", fireball, 0.5f, 0.5f, "Wizard", fireballPortrait);
-        wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike, 1.3f, 1f, "Wizard", lightningstrikePortrait);
-        wizard.basicSkills[2] = new Skill("Frost Wave", frostwave, 5f, 5f, "Wizard", frostwavePortrait);
-        wizard.basicSkills[3] = new Skill("Healing Chime", 8f, 9f, "Wizard", healingchimePortrait);
+        wizard.basicSkills[0] = new Skill("Fireball", fireball, 0.5f, 0.5f, "Wizard", fireballPortrait, "Shoots a small fireball ahead of you");
+        wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike, 1.3f, 1f, "Wizard", lightningstrikePortrait, "Shoot a small lightning bolt in a spot ahead of you");
+        wizard.basicSkills[2] = new Skill("Frost Wave", frostwave, 5f, 5f, "Wizard", frostwavePortrait, "Decreases enemies speed, and increases the damage taken for a period of time in a small area");
+        wizard.basicSkills[3] = new Skill("Healing Chime", 8f, 9f, "Wizard", healingchimePortrait, "Recover a small amount of health");
         foreach (Skill i in wizard.basicSkills)
         {
             i.isActive = true;
         }
 
         wizard.skillTreeOne[0] = wizard.basicSkills[0];
-        wizard.skillTreeOne[1] = new Skill("Fire Blast", fireblast, 0.2f, 1.5f, "Wizard", fireblastPortrait);
-        wizard.skillTreeOne[2] = new Skill("Flamethrower", flamethrower, 0f, 0.1f, "Wizard", flamethrowerPortrait);
-        wizard.skillTreeOne[3] = new Skill("Flame Burst", flameburst, 0.4f, 4.5f, "Wizard", flameburstPortrait);
-        wizard.skillTreeOne[4] = new Skill("Flame Inferno", flameinferno, 3.5f, 8f, "Wizard", flameinfernoPortrait);
+        wizard.skillTreeOne[1] = new Skill("Fire Blast", fireblast, 0.2f, 1.5f, "Wizard", fireblastPortrait, "Shoot a medium sized fireball ahead of you");
+        wizard.skillTreeOne[2] = new Skill("Flamethrower", flamethrower, 0f, 0.1f, "Wizard", flamethrowerPortrait, "Shoots continuous fire ahead, small range");
+        wizard.skillTreeOne[3] = new Skill("Flame Burst", flameburst, 0.4f, 4.5f, "Wizard", flameburstPortrait, "Shoot a large fireball ahead of you");
+        wizard.skillTreeOne[4] = new Skill("Flame Inferno", flameinferno, 3.5f, 8f, "Wizard", flameinfernoPortrait, "Creates a tornado of fire, which moves forwards until it makes contact with a wall, will damage any enemies who makes contact with the tornado");
 
         wizard.skillTreeTwo[0] = wizard.basicSkills[1];
-        wizard.skillTreeTwo[1] = new Skill("Lightning Bolt", lightningbolt, 1.5f, 3f, "Wizard", lightningboltPortrait);
-        wizard.skillTreeTwo[2] = new Skill("Electric Cage", electriccage, 9f, 10f, "Wizard", electriccagePortrait);
-        wizard.skillTreeTwo[3] = new Skill("Plasma Charge", plasmacharge, 5f, 8f, "Wizard", plasmachargePortrait);
-        wizard.skillTreeTwo[4] = new Skill("Lightning Pillar", lightningpillar, 18f, 14f, "Wizard", lightningpillarPortrait);
+        wizard.skillTreeTwo[1] = new Skill("Lightning Bolt", lightningbolt, 1.5f, 3f, "Wizard", lightningboltPortrait, "Shoot a medium sized lightning bolt in a spot ahead of you");
+        wizard.skillTreeTwo[2] = new Skill("Electric Cage", electriccage, 9f, 10f, "Wizard", electriccagePortrait, "Traps target in a cage, which paralyses target for a period of time");
+        wizard.skillTreeTwo[3] = new Skill("Plasma Charge", plasmacharge, 5f, 8f, "Wizard", plasmachargePortrait, "Shoots a large sized lightning bolt in a spot ahead of you");
+        wizard.skillTreeTwo[4] = new Skill("Lightning Pillar", lightningpillar, 18f, 14f, "Wizard", lightningpillarPortrait, "Sets up a pillar, which will attacks the enemy who is closest");
 
         wizard.skillTreeThree[0] = wizard.basicSkills[2];
-        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f, "Wizard", iceprisonPortrait);
-        wizard.skillTreeThree[2] = new Skill("Freezing Breath", freezingbreath, 0f, 0.1f, "Wizard", freezingbreathPortrait);
-        wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash, 0.5f, 5.5f, "Wizard", icecrashPortrait);
-        wizard.skillTreeThree[4] = new Skill("Freezing Land", freezingland, 10f, 10f, "Wizard", freezinglandPortrait);
+        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f, "Wizard", iceprisonPortrait, "Traps enemies in a cage, which will prevent movement and increases the damage taken for a period of time");
+        wizard.skillTreeThree[2] = new Skill("Freezing Breath", freezingbreath, 0f, 0.1f, "Wizard", freezingbreathPortrait, "Attacks forwards, damaging enemies in range and decreases enemies speed");
+        wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash, 0.5f, 5.5f, "Wizard", icecrashPortrait, "Shoot an icicle in front of you");
+        wizard.skillTreeThree[4] = new Skill("Freezing Land", freezingland, 10f, 10f, "Wizard", freezinglandPortrait, "Attacks forwards, damaging enemies in range, higher damage and range than 'Freezing Breath'");
 
         wizard.skillTreeFour[0] = wizard.basicSkills[3];
-        wizard.skillTreeFour[1] = new Skill("Speed Boost", 13f, 8.5f, "Wizard", speedboostPortrait);
-        wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 13f, 9f, "Wizard", evasionPortrait);
-        wizard.skillTreeFour[3] = new Skill("Defence Boost", 13f, 9f, "Wizard", defenceboostPortrait);
-        wizard.skillTreeFour[4] = new Skill("Health Renewal", 15f, 16f, "Wizard", healthrenewalPortrait);
+        wizard.skillTreeFour[1] = new Skill("Speed Boost", 13f, 8.5f, "Wizard", speedboostPortrait, "Speeds you up for a short period of time");
+        wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 13f, 9f, "Wizard", evasionPortrait, "Have a chance to evade attacks for a short period of time");
+        wizard.skillTreeFour[3] = new Skill("Defence Boost", 13f, 9f, "Wizard", defenceboostPortrait, "Increase your defence for a short period of time");
+        wizard.skillTreeFour[4] = new Skill("Health Renewal", 15f, 16f, "Wizard", healthrenewalPortrait, "Recover a medium amount of health");
 
 
 
         knight.portrait = knightPortrait;
         knight.basicSkills[0] = new Skill("Large Swing");
         knight.basicSkills[1] = new Skill("Block");
-        knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait);
+        knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait, "Roll left or right");
         knight.basicSkills[3] = new Skill("Sprint");
 
         foreach (Skill i in knight.basicSkills)
@@ -190,8 +190,8 @@ public class ClassSystem : MonoBehaviour
 
 
         assassin.portrait = assassinPortrait;
-        assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait);
-        assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 8f, 3f, "Assassin", smokebombPortrait);
+        assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
+        assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 8f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
         assassin.basicSkills[2] = new Skill("Slash");
         assassin.basicSkills[3] = new Skill("Counter");
         foreach (Skill i in assassin.basicSkills)
@@ -200,49 +200,49 @@ public class ClassSystem : MonoBehaviour
         }
 
         assassin.skillTreeOne[0] = assassin.basicSkills[0];
-        assassin.skillTreeOne[1] = new Skill("Poison Dart", poisondart, 4f, 2.5f, "Assassin", poisondartPortrait);
+        assassin.skillTreeOne[1] = new Skill("Poison Dart", poisondart, 4f, 2.5f, "Assassin", poisondartPortrait, "Fire a dart which inflicts the target with poison, which inflicts damage over time, but will leave the target at 1 hp");
         assassin.skillTreeOne[2] = new Skill("Slide");
         assassin.skillTreeOne[3] = new Skill("Taunt");
         assassin.skillTreeOne[4] = new Skill("Assassinate");
 
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
-        assassin.skillTreeTwo[1] = new Skill("Invisibility", 20f, 9.5f, "Assassin", invisPortrait);
+        assassin.skillTreeTwo[1] = new Skill("Invisibility", 20f, 9.5f, "Assassin", invisPortrait, "Go invisible for a period of time. Enemies won't attack, but neither can you");
         assassin.skillTreeTwo[2] = new Skill("Critical Strike");
         assassin.skillTreeTwo[3] = new Skill("Shadow Sneak");
         assassin.skillTreeTwo[4] = new Skill("Super Stealth");
 
         assassin.skillTreeThree[0] = assassin.basicSkills[2];
-        assassin.skillTreeThree[1] = new Skill("Weakness", weakness, 10f, 7f, "Assassin", weaknessPortrait);
-        assassin.skillTreeThree[2] = new Skill("Poison", poison, 10f, 6.5f, "Assassin", poisonPortrait);
-        assassin.skillTreeThree[3] = new Skill("Slowness", slowness, 10f, 7.5f, "Assassin", slownessPortrait);
-        assassin.skillTreeThree[4] = new Skill("Paralysis", paralysis, 15f, 10f, "Assassin", paralysisPortrait);
+        assassin.skillTreeThree[1] = new Skill("Weakness", weakness, 10f, 7f, "Assassin", weaknessPortrait, "Throw a potion of weakness at the enemy, which increases the damage the enemy will recieve");
+        assassin.skillTreeThree[2] = new Skill("Poison", poison, 10f, 6.5f, "Assassin", poisonPortrait, "Throws a potion of poison at the enemy, which will inflict damage over time, but will leave the target at 1 hp");
+        assassin.skillTreeThree[3] = new Skill("Slowness", slowness, 10f, 7.5f, "Assassin", slownessPortrait, "Throw a potion of slowness at the enemy, slowing them down");
+        assassin.skillTreeThree[4] = new Skill("Paralysis", paralysis, 15f, 10f, "Assassin", paralysisPortrait, "Throw a potion of paralysis at the enemy, paralyzing them for a short time");
 
         assassin.skillTreeFour[0] = assassin.basicSkills[3];
-        assassin.skillTreeFour[1] = new Skill("Double Jump", 2f, 8f, "Assassin", doublePortrait);
-        assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin", walljumpPortrait);
-        assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin", triplePortrait);
+        assassin.skillTreeFour[1] = new Skill("Double Jump", 2f, 8f, "Assassin", doublePortrait, "Gain the ability to double jump when activated");
+        assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin", walljumpPortrait, "Gain the ability to wall jump when activated");
+        assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin", triplePortrait, "Gain the ability to triple jump when activated");
         assassin.skillTreeFour[4] = new Skill("Shadow Clone");
 
 
 
         ranger.portrait = knightPortrait;
-        ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait);
-        ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait);
-        ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait);
-        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 3f, 3f, "Ranger", firearrowPortrait);
+        ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait, "Shoot three arrows in the direction you're facing");
+        ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait, "Mount your horse to move faster");
+        ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait, "Increase your stealth, decrease your defence");
+        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 3f, 3f, "Ranger", firearrowPortrait, "Shoot a fire arrow in the direction you're facing");
         foreach (Skill i in ranger.basicSkills)
         {
             i.isActive = true;
         }
 
         ranger.skillTreeOne[0] = ranger.basicSkills[0];
-        ranger.skillTreeOne[1] = new Skill("Spear", spear, 1.5f, 5f, "Ranger", spearPortrait);
-        ranger.skillTreeOne[2] = new Skill("Spear Flurry", spear, 2.5f, 8f, "Ranger", spearflurryPortrait);
+        ranger.skillTreeOne[1] = new Skill("Spear", spear, 1.5f, 5f, "Ranger", spearPortrait, "Shoot a spear in the direction you're facing");
+        ranger.skillTreeOne[2] = new Skill("Spear Flurry", spear, 2.5f, 8f, "Ranger", spearflurryPortrait, "Shoot three spears in the direction you're facing");
         ranger.skillTreeOne[3] = new Skill("Bouncy Arrow");
         ranger.skillTreeOne[4] = new Skill("Heavan's Flurry");
 
         ranger.skillTreeTwo[0] = ranger.basicSkills[1];
-        ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait);
+        ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Make your horse charge a short distance");
         ranger.skillTreeTwo[2] = new Skill("");
         ranger.skillTreeTwo[3] = new Skill("Flame Charge");
         ranger.skillTreeTwo[4] = new Skill("Mount's Protection");
@@ -254,10 +254,10 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeThree[4] = new Skill("");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
-        ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 3f, 3.5f, "Ranger", icearrowPortrait);
-        ranger.skillTreeFour[2] = new Skill("Thunder Arrow", thunderarrow, 4f, 5f, "Ranger", thunderarrowPortrait);
-        ranger.skillTreeFour[3] = new Skill("Shadow Arrow", shadowarrow, 3f, 6f, "Ranger", shadowarrowPortrait);
-        ranger.skillTreeFour[4] = new Skill("Light Arrow", lightarrow, 20f, 15f, "Ranger", lightarrowPortrait);
+        ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 3f, 3.5f, "Ranger", icearrowPortrait, "Shoot an ice arrow in the direction you're facing");
+        ranger.skillTreeFour[2] = new Skill("Thunder Arrow", thunderarrow, 4f, 5f, "Ranger", thunderarrowPortrait, "Shoot a thunder arrow in the direction you're facing");
+        ranger.skillTreeFour[3] = new Skill("Shadow Arrow", shadowarrow, 3f, 6f, "Ranger", shadowarrowPortrait, "Shoot a shadow arrow in the direction you're facing");
+        ranger.skillTreeFour[4] = new Skill("Light Arrow", lightarrow, 20f, 15f, "Ranger", lightarrowPortrait, "Shoot a light arrow in the direction you're facing. Kills most enemies instantly");
     }
 
 
@@ -265,6 +265,7 @@ public class ClassSystem : MonoBehaviour
     public class Skill
     {
         private string name_;
+        private string description_;
         private int skillSlot_;   //0 the skill is unequipped, 1 is in slot 1, 2is in slot 2.
         private bool isActive_;   //is the skill unlocked.
         private float cooldown_;
@@ -279,6 +280,14 @@ public class ClassSystem : MonoBehaviour
             get { return name_; }
             set { name_ = value; }
         }
+
+
+        public string description
+        {
+            get { return description_; }
+            set { description_ = value; }
+        }
+
 
         public int skillSlot
         {
@@ -324,10 +333,10 @@ public class ClassSystem : MonoBehaviour
             skillSlot_ = 0;
             isActive_ = false;
         }
-        //constructor for skills without an object needed (eg. healing chime)
+        //constructor for skills without an object needed (eg. healing chime). delete soon
 
 
-        public Skill(string skillName, float skillCooldown, float skillCost, string aClass, Sprite skillPortrait)
+        public Skill(string skillName, float skillCooldown, float skillCost, string aClass, Sprite skillPortrait, string skillDescription)
         {
             name_ = skillName;
             skillSlot_ = 0;
@@ -336,10 +345,11 @@ public class ClassSystem : MonoBehaviour
             cost_ = skillCost;
             skillClass_ = aClass;
             portrait_ = skillPortrait;
+            description_ = skillDescription;
         }
         //constructor for skills without an object needed (eg. healing chime)
 
-        public Skill(string skillName, GameObject skillPrefab, float skillCooldown, float skillCost, string aClass, Sprite skillPortrait)
+        public Skill(string skillName, GameObject skillPrefab, float skillCooldown, float skillCost, string aClass, Sprite skillPortrait, string skillDescription)
         {
             name_ = skillName;
             skillSlot_ = 0;
@@ -349,6 +359,7 @@ public class ClassSystem : MonoBehaviour
             cost_ = skillCost;
             skillClass_ = aClass;
             portrait_ = skillPortrait;
+            description_ = skillDescription;
         }
 
 

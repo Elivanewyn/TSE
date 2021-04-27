@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.knight;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -28,8 +28,9 @@ public class PlayerCombat : MonoBehaviour
     Vector2 direction;
 
     public SpriteRenderer playerSprite;
-
-
+    public Transform meleeTransform;
+    public float meleeRange = 0.5f;
+    public LayerMask enemyLayer;
 
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class PlayerCombat : MonoBehaviour
 
 
         equippedSkill1 = currentClass.basicSkills[0];
-        equippedSkill2 = currentClass.basicSkills[1];
+        equippedSkill2 = currentClass.basicSkills[2];
 
         skill1Portrait.sprite = equippedSkill1.portrait;
         skill2Portrait.sprite = equippedSkill2.portrait;
@@ -236,5 +237,15 @@ public class PlayerCombat : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
         }
         rb2D.velocity = Vector2.zero;
+    }
+
+
+
+
+
+    private void OnDrawGizmosSelected()
+    {
+        if (meleeTransform == null) { return; }
+        Gizmos.DrawWireSphere(meleeTransform.position, meleeRange);
     }
 }

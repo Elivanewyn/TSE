@@ -663,11 +663,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillTree
       objectReference: {fileID: 0}
-    - target: {fileID: 3045273463260974961, guid: ba50307243701fa4ba67c92ec4082f88,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3045273463260974973, guid: ba50307243701fa4ba67c92ec4082f88,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1921,6 +1916,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1083620131}
     m_Modifications:
+    - target: {fileID: 1392657777678570, guid: ccd64f90b962e4a789be11ce73c18abe, type: 3}
+      propertyPath: m_Name
+      value: Skill1
+      objectReference: {fileID: 0}
     - target: {fileID: 224544318620525178, guid: ccd64f90b962e4a789be11ce73c18abe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2035,10 +2034,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392657777678570, guid: ccd64f90b962e4a789be11ce73c18abe, type: 3}
-      propertyPath: m_Name
-      value: Skill1
       objectReference: {fileID: 0}
     - target: {fileID: 224044075883417014, guid: ccd64f90b962e4a789be11ce73c18abe,
         type: 3}
@@ -2500,7 +2495,7 @@ PrefabInstance:
     - target: {fileID: 8573874761069162230, guid: 5b02a1f2d0bae354b9ee03206c087083,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b02a1f2d0bae354b9ee03206c087083, type: 3}
@@ -2933,7 +2928,7 @@ PrefabInstance:
     - target: {fileID: 8573874761069162230, guid: 5b02a1f2d0bae354b9ee03206c087083,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b02a1f2d0bae354b9ee03206c087083, type: 3}
@@ -35411,6 +35406,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1083620131}
     m_Modifications:
+    - target: {fileID: 1392657777678570, guid: ccd64f90b962e4a789be11ce73c18abe, type: 3}
+      propertyPath: m_Name
+      value: Skill2
+      objectReference: {fileID: 0}
     - target: {fileID: 224544318620525178, guid: ccd64f90b962e4a789be11ce73c18abe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35525,10 +35524,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392657777678570, guid: ccd64f90b962e4a789be11ce73c18abe, type: 3}
-      propertyPath: m_Name
-      value: Skill2
       objectReference: {fileID: 0}
     - target: {fileID: 224044075883417014, guid: ccd64f90b962e4a789be11ce73c18abe,
         type: 3}
@@ -44965,25 +44960,5 @@ PrefabInstance:
       propertyPath: skill2Portrait
       value: 
       objectReference: {fileID: 2048661465}
-    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.12250613
-      objectReference: {fileID: 0}
-    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.41780797
-      objectReference: {fileID: 0}
-    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.0032581761
-      objectReference: {fileID: 0}
-    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.1946436
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

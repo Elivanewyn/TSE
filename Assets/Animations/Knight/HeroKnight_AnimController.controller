@@ -1220,7 +1220,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: Roll
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 0.5
   m_Transitions:
   - {fileID: 1101724876055114406}
   m_StateMachineBehaviours: []
@@ -1232,7 +1232,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5118900a0fbea814ea3ffb8fada43696, type: 2}
+  m_Motion: {fileID: 7400000, guid: 09a608e7e602e0642946f6db3993a721, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1355,7 +1355,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Skill5
-  m_Speed: 1
+  m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101937813478775898}
@@ -1368,7 +1368,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 826ac278baf3bd54aaf960d2e79ea342, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5c4ff8845745b044a90233a637e0b38c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1529,7 +1529,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0cfe2276959603e40904eecacdfa08fc, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1f695ea799bdbc14f9798b63c0c02ebe, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -54,6 +54,8 @@ public class ClassSystem : MonoBehaviour
 
     public Sprite rollPortrait;
 
+    public Sprite lungePortrait;
+
 
     public GameObject throwingknife;
     public Sprite throwingknifePortrait;
@@ -166,7 +168,7 @@ public class ClassSystem : MonoBehaviour
         }
 
         knight.skillTreeOne[0] = knight.basicSkills[0];
-        knight.skillTreeOne[1] = new Skill("Lunge");
+        knight.skillTreeOne[1] = new Skill("Lunge", 3f, 2.5f, "Knight", lungePortrait, "Move forward rapidly using your sword");
         knight.skillTreeOne[2] = new Skill("Dual Slice");
         knight.skillTreeOne[3] = new Skill("Flame Sword");
         knight.skillTreeOne[4] = new Skill("");
@@ -572,6 +574,14 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightRoll());
+                    return;
+                }
+
+
+                else if (name_ == "Lunge")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightLunge());
                     return;
                 }
             }

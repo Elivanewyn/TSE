@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3232177238933907312}
   - component: {fileID: 3232177238933907279}
   - component: {fileID: 4880206641115017986}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SkeletonTank
   m_TagString: skeletontank
   m_Icon: {fileID: 0}

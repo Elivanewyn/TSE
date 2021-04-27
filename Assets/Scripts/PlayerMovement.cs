@@ -180,14 +180,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
-            animator.SetTrigger("Hurt");
+            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-2);
         }
 
         if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
         {
-            animator.SetTrigger("Hurt");
+            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-1);
         }
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonmage")
         {
-            animator.SetTrigger("Hurt");
+            //animator.SetTrigger("Hurt");
             ChangeHealth(-3);
         }
     }
@@ -230,10 +230,42 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightRoll()
     {
+        animator.SetTrigger("Roll");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
-        animator.SetTrigger("Roll");
+        evadeChance = 100;
         yield return new WaitForSeconds(0.5f);
+        evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator KnightLunge()
+    {
+        animator.SetTrigger("Skill5");
+        rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
+        stopManualMove = true;
+        evadeChance = 100;
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.meleeTransform.position, pc.meleeRange, pc.enemyLayer);
+        yield return new WaitForSeconds(1f);
+        foreach(Collider2D enemy in hitEnemies)
+        {
+
+            if(enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if(enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        evadeChance = 0;
         stopManualMove = false;
     }
 
@@ -244,4 +276,5 @@ public class PlayerMovement : MonoBehaviour
         bool m_rolling;
         m_rolling = false;
     }
+    
 }

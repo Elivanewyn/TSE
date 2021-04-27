@@ -6,7 +6,7 @@ public class SkeletonFS : MonoBehaviour
 {
     private GameObject Player;
     public float speed;
-    public int maxHealth = 400;
+    public float maxHealth = 400;
     new Rigidbody2D rigidbody2D;
 
     void Start()
@@ -40,6 +40,15 @@ public class SkeletonFS : MonoBehaviour
 
     void Update()
     {
+        if (maxHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
+
+    public void TakeDamage(float damage)
+    {
+        maxHealth -= damage;
     }
 }

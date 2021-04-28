@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     int numberOfJumps;
 
     public Animator animator;
+    public Animator particleAnimator;
     private float delayToIdle = 0.0f;
 
     // Start is called before the first frame update
@@ -227,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator WizardEvasionAmplification()
     {
         evadeChance += 10;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(25);
         evadeChance -= 10;
     }
 
@@ -324,6 +325,56 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         stopManualMove = false;
+    }
+
+
+    public IEnumerator KnightLionsRoar()
+    {
+        evadeChance += 30;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 30;
+    }
+
+    public IEnumerator KnightBlessedTouch()
+    {
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+
+    public IEnumerator KnightWarriorsSpirit()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(10);
+        defence -= 0.1f;
+    }
+
+    public IEnumerator KnightSprint()
+    {
+        speed += 5;
+        yield return new WaitForSeconds(8);
+        speed -= 5;
+    }
+
+    public IEnumerator KnightSpringBoots()
+    {
+        jumpForce += 5;
+        yield return new WaitForSeconds(8);
+        jumpForce -= 5;
     }
 
 

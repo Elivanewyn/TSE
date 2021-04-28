@@ -52,7 +52,6 @@ public class ClassSystem : MonoBehaviour
     public Sprite healthrenewalPortrait;
 
 
-    public Sprite rollPortrait;
 
     public Sprite largeswingPortrait;
     public Sprite lungePortrait;
@@ -60,6 +59,16 @@ public class ClassSystem : MonoBehaviour
     public Sprite dualslicePortrait;
 
     public Sprite blockPortrait;
+    public Sprite parryPortrait;
+    public Sprite wsPortrait;
+
+    public Sprite rollPortrait;
+    public Sprite lionsPortrait;
+    public Sprite btPortrait;
+
+    public Sprite sprintPortrait;
+    public Sprite springbootsPortrait;
+
 
 
     public GameObject throwingknife;
@@ -155,7 +164,7 @@ public class ClassSystem : MonoBehaviour
 
         wizard.skillTreeFour[0] = wizard.basicSkills[3];
         wizard.skillTreeFour[1] = new Skill("Speed Boost", 13f, 8.5f, "Wizard", speedboostPortrait, "Speeds you up for a short period of time");
-        wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 13f, 9f, "Wizard", evasionPortrait, "Have a chance to evade attacks for a short period of time");
+        wizard.skillTreeFour[2] = new Skill("Evasion Amplification", 35f, 9f, "Wizard", evasionPortrait, "Have a chance to evade attacks for a medium amount of time");
         wizard.skillTreeFour[3] = new Skill("Defence Boost", 13f, 9f, "Wizard", defenceboostPortrait, "Increase your defence for a short period of time");
         wizard.skillTreeFour[4] = new Skill("Health Renewal", 15f, 16f, "Wizard", healthrenewalPortrait, "Recover a medium amount of health");
 
@@ -165,7 +174,7 @@ public class ClassSystem : MonoBehaviour
         knight.basicSkills[0] = new Skill("Large Swing", 3f, 5f, "Knight", largeswingPortrait, "Swing your sword ahead, dealing large damage");
         knight.basicSkills[1] = new Skill("Block", 2.5f, 1f, "Knight", blockPortrait, "Block oncoming attacks for the next second");
         knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait, "Roll left or right");
-        knight.basicSkills[3] = new Skill("Sprint");
+        knight.basicSkills[3] = new Skill("Sprint", 15f, 3f, "Knight", sprintPortrait, "Increase your speed for a period of time");
 
         foreach (Skill i in knight.basicSkills)
         {
@@ -176,22 +185,22 @@ public class ClassSystem : MonoBehaviour
         knight.skillTreeOne[1] = new Skill("Lunge", 3f, 2.5f, "Knight", lungePortrait, "Move forward rapidly using your sword");
         knight.skillTreeOne[2] = new Skill("Triple Swipe", 0.25f, 1f, "Knight", tripleswipePortrait, "Small attack that deals more damage when used in quick succession (three times)");
         knight.skillTreeOne[3] = new Skill("Dual Slice", 5f, 5f, "Knight", dualslicePortrait, "Jump forward and attack twice in quick succession");
-        knight.skillTreeOne[4] = new Skill("Flame Sword");
+        knight.skillTreeOne[4] = new Skill("Jiawei's Skill 1");
 
         knight.skillTreeTwo[0] = knight.basicSkills[1];
-        knight.skillTreeTwo[1] = new Skill("Parry");
-        knight.skillTreeTwo[2] = new Skill("Warrior's Spirit");
+        knight.skillTreeTwo[1] = new Skill("Parry", 6f, 5f, "Knight", parryPortrait, "Block and counters any incoming attacks for a second");
+        knight.skillTreeTwo[2] = new Skill("Warrior's Spirit", 18f, 8.5f, "Knight", wsPortrait, "Raise your defence for a short period of time");
         knight.skillTreeTwo[3] = new Skill("");
         knight.skillTreeTwo[4] = new Skill("");
 
         knight.skillTreeThree[0] = knight.basicSkills[2];
-        knight.skillTreeThree[1] = new Skill("Lion's Roar");
-        knight.skillTreeThree[2] = new Skill("");
+        knight.skillTreeThree[1] = new Skill("Lion's Roar", 20f, 8f, "Knight", lionsPortrait, "Have a reasonable chance to evade attack for a short amount of time");
+        knight.skillTreeThree[2] = new Skill("Blessed Touch", 10f, 10f, "Knight", btPortrait, "Restore a small amount of health over time");
         knight.skillTreeThree[3] = new Skill("");
         knight.skillTreeThree[4] = new Skill("");
 
         knight.skillTreeFour[0] = knight.basicSkills[3];
-        knight.skillTreeFour[1] = new Skill("Dash");
+        knight.skillTreeFour[1] = new Skill("Spring Boots", 20f, 8f, "Knight", springbootsPortrait, "Increase your jump height for a period of time");
         knight.skillTreeFour[2] = new Skill("");
         knight.skillTreeFour[3] = new Skill("");
         knight.skillTreeFour[4] = new Skill("");
@@ -574,14 +583,6 @@ public class ClassSystem : MonoBehaviour
             else if (skillClass_ == "Knight")
             {
 
-
-                if(name_ == "Roll")
-                {
-                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    player.StartCoroutine(player.KnightRoll());
-                    return;
-                }
-
                 if(name_ == "Large Swing")
                 {
                     playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Skill4");
@@ -624,10 +625,57 @@ public class ClassSystem : MonoBehaviour
                 }
 
 
+
                 if (name_ == "Block")
                 {
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.KnightBlock());
+                    return;
+                }
+                else if (name_ == "Parry")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.KnightParry());
+                    return;
+                }
+                else if (name_ == "Warrior's Spirit")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightWarriorsSpirit());
+                    return;
+                }
+
+
+
+                if (name_ == "Roll")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightRoll());
+                    return;
+                }
+                else if (name_ == "Lion's Roar")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightLionsRoar());
+                    return;
+                }
+                else if (name_ == "Blessed Touch")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightBlessedTouch());
+                    return;
+                }
+
+                if (name_ == "Sprint")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightSprint());
+                    return;
+                }
+                else if(name_ == "Spring Boots")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightSpringBoots());
                     return;
                 }
             }

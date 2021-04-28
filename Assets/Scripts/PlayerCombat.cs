@@ -190,6 +190,8 @@ public class PlayerCombat : MonoBehaviour
         timeSinceTripleSwipe = 0.0f;
     }
 
+    
+
 
     public IEnumerator KnightBlock()
     {
@@ -199,6 +201,34 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         GetComponent<PlayerMovement>().evadeChance = 0;
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
+    }
+
+    public IEnumerator KnightParry()
+    {
+        GetComponent<PlayerMovement>().animator.SetTrigger("Block");
+        GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", true);
+        GetComponent<PlayerMovement>().evadeChance = 100;
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+        yield return new WaitForSeconds(1.5f);
+        GetComponent<PlayerMovement>().evadeChance = 0;
+        GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        GetComponent<PlayerMovement>().animator.SetTrigger("Attack" + 1);
     }
 
 

@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 1;
     int numberOfJumps;
 
-    private Animator animator;
+    public Animator animator;
     private float delayToIdle = 0.0f;
 
     // Start is called before the first frame update
@@ -89,8 +89,18 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float x2 = Input.GetAxis("Horizontal");
-        if(x2 > 0) { xDirection = 1; GetComponent<SpriteRenderer>().flipX = false; }
-        else if (x2 <0) { xDirection = -1; GetComponent<SpriteRenderer>().flipX = true; }
+        if(x2 > 0)
+        {
+            xDirection = 1;
+            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<PlayerCombat>().currentMelee = GetComponent<PlayerCombat>().meleeTransformR;
+        }
+        else if (x2 <0) 
+        {
+            xDirection = -1;
+            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<PlayerCombat>().currentMelee = GetComponent<PlayerCombat>().meleeTransformL;
+        }
         float moveBy = x * speed;
         if (!stopManualMove)
         {
@@ -230,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightRoll()
     {
+        Debug.Log("Rolling");
         animator.SetTrigger("Roll");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
@@ -242,12 +253,13 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightLunge()
     {
+        Debug.Log("Lunging");
         animator.SetTrigger("Skill5");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
         evadeChance = 100;
         PlayerCombat pc = GetComponent<PlayerCombat>();
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.meleeTransform.position, pc.meleeRange, pc.enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         yield return new WaitForSeconds(1f);
         foreach(Collider2D enemy in hitEnemies)
         {
@@ -266,6 +278,51 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator KnightDualSlice()
+    {
+        animator.SetTrigger("Skill6");
+        rb2D.velocity = new Vector2(xDirection * 10f, rb2D.velocity.y + 10f);
+        stopManualMove = true;
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        
+        yield return new WaitForSeconds(1f);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
         stopManualMove = false;
     }
 

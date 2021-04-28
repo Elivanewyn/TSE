@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &949772314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949772315}
+  m_Layer: 10
+  m_Name: MeleeAttackL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &949772315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949772314}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.294, y: -0.0069999695, z: 0}
+  m_LocalScale: {x: 1.85, y: 1.4748, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7591264296427334521}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551278595
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551278596}
   m_Layer: 10
-  m_Name: MeleeAttack
+  m_Name: MeleeAttackR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,6 +98,7 @@ Transform:
   - {fileID: 7591264296617953051}
   - {fileID: 4737666712265473435}
   - {fileID: 1551278596}
+  - {fileID: 949772315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,6 +178,7 @@ MonoBehaviour:
   inventory: {fileID: 0}
   evadeChance: 0
   maxJumps: 1
+  animator: {fileID: 0}
 --- !u!50 &7591264296427334527
 Rigidbody2D:
   serializedVersion: 4
@@ -232,7 +264,9 @@ MonoBehaviour:
   rechargeRate: 1
   maxMana: 20
   playerSprite: {fileID: 7591264296427334522}
-  meleeTransform: {fileID: 1551278596}
+  meleeTransformR: {fileID: 1551278596}
+  meleeTransformL: {fileID: 949772315}
+  currentMelee: {fileID: 1551278596}
   meleeRange: 1.5
   enemyLayer:
     serializedVersion: 2
@@ -316,7 +350,12 @@ MonoBehaviour:
   healthrenewalPortrait: {fileID: 21300004, guid: a75445bb16444f14f96fdf9c734945cc,
     type: 3}
   rollPortrait: {fileID: 21300152, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  largeswingPortrait: {fileID: 21300000, guid: 0b3bba659bcd0ac418e3118404926c5e, type: 3}
   lungePortrait: {fileID: 21300076, guid: 0b3bba659bcd0ac418e3118404926c5e, type: 3}
+  tripleswipePortrait: {fileID: 21300042, guid: ae297123f091bbf4e8f1835eb98fb293,
+    type: 3}
+  dualslicePortrait: {fileID: 21300056, guid: 0b3bba659bcd0ac418e3118404926c5e, type: 3}
+  blockPortrait: {fileID: 21300128, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   throwingknife: {fileID: 5324773578461033593, guid: ec0dc10da36e86e4995abfcf44a3d1e1,
     type: 3}
   throwingknifePortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0,

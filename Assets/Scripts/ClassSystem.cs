@@ -54,7 +54,12 @@ public class ClassSystem : MonoBehaviour
 
     public Sprite rollPortrait;
 
+    public Sprite largeswingPortrait;
     public Sprite lungePortrait;
+    public Sprite tripleswipePortrait;
+    public Sprite dualslicePortrait;
+
+    public Sprite blockPortrait;
 
 
     public GameObject throwingknife;
@@ -157,8 +162,8 @@ public class ClassSystem : MonoBehaviour
 
 
         knight.portrait = knightPortrait;
-        knight.basicSkills[0] = new Skill("Large Swing");
-        knight.basicSkills[1] = new Skill("Block");
+        knight.basicSkills[0] = new Skill("Large Swing", 3f, 5f, "Knight", largeswingPortrait, "Swing your sword ahead, dealing large damage");
+        knight.basicSkills[1] = new Skill("Block", 2.5f, 1f, "Knight", blockPortrait, "Block oncoming attacks for the next second");
         knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait, "Roll left or right");
         knight.basicSkills[3] = new Skill("Sprint");
 
@@ -169,9 +174,9 @@ public class ClassSystem : MonoBehaviour
 
         knight.skillTreeOne[0] = knight.basicSkills[0];
         knight.skillTreeOne[1] = new Skill("Lunge", 3f, 2.5f, "Knight", lungePortrait, "Move forward rapidly using your sword");
-        knight.skillTreeOne[2] = new Skill("Dual Slice");
-        knight.skillTreeOne[3] = new Skill("Flame Sword");
-        knight.skillTreeOne[4] = new Skill("");
+        knight.skillTreeOne[2] = new Skill("Triple Swipe", 0.25f, 1f, "Knight", tripleswipePortrait, "Small attack that deals more damage when used in quick succession (three times)");
+        knight.skillTreeOne[3] = new Skill("Dual Slice", 5f, 5f, "Knight", dualslicePortrait, "Jump forward and attack twice in quick succession");
+        knight.skillTreeOne[4] = new Skill("Flame Sword");
 
         knight.skillTreeTwo[0] = knight.basicSkills[1];
         knight.skillTreeTwo[1] = new Skill("Parry");
@@ -577,11 +582,52 @@ public class ClassSystem : MonoBehaviour
                     return;
                 }
 
+                if(name_ == "Large Swing")
+                {
+                    playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Skill4");
+                    PlayerCombat pc = playerObject.GetComponent<PlayerCombat>();
+                    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange + 1.5f, pc.enemyLayer);
+                    foreach (Collider2D enemy in hitEnemies)
+                    {
 
+                        if (enemy.tag == "skeletonfs")
+                        {
+                            enemy.GetComponent<SkeletonFS>().TakeDamage(200);
+                        }
+                        if (enemy.tag == "skeletonmage")
+                        {
+                            //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        }
+                        if (enemy.tag == "skeletontank")
+                        {
+                            //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        }
+                    }
+                    return;
+                }
                 else if (name_ == "Lunge")
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightLunge());
+                    return;
+                }
+                else if (name_ == "Triple Swipe")
+                {
+                    playerObject.GetComponent<PlayerCombat>().KnightTripleSwipe();
+                    return;
+                }
+                else if (name_ == "Dual Slice")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightDualSlice());
+                    return;
+                }
+
+
+                if (name_ == "Block")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.KnightBlock());
                     return;
                 }
             }

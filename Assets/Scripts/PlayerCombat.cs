@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.knight;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -28,9 +28,15 @@ public class PlayerCombat : MonoBehaviour
     Vector2 direction;
 
     public SpriteRenderer playerSprite;
-    public Transform meleeTransform;
+    public Transform meleeTransformR;
+    public Transform meleeTransformL;
+    public Transform currentMelee;
     public float meleeRange = 0.5f;
     public LayerMask enemyLayer;
+
+
+    private int tripleSwipeNumber = 0;
+    private float timeSinceTripleSwipe = 0.0f;
 
 
     // Start is called before the first frame update
@@ -38,11 +44,10 @@ public class PlayerCombat : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
-        //currentClass = ClassSystem.knight;
 
 
         equippedSkill1 = currentClass.basicSkills[0];
-        equippedSkill2 = currentClass.basicSkills[2];
+        equippedSkill2 = currentClass.basicSkills[1];
 
         skill1Portrait.sprite = equippedSkill1.portrait;
         skill2Portrait.sprite = equippedSkill2.portrait;
@@ -83,6 +88,8 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeSinceTripleSwipe += Time.deltaTime;
+
         if (Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
@@ -92,14 +99,14 @@ public class PlayerCombat : MonoBehaviour
         ChangeCooldown();
 
 
-        if ((Input.GetKey(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
+        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
             cooldownTime1 = Time.time + cooldown1;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill1.cost));
             equippedSkill1.Use(rb2D, direction, gameObject);
         }
-        if ((Input.GetKey(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
+        if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
@@ -149,6 +156,50 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime2 = 0;
     }
     
+
+    public void KnightTripleSwipe()
+    {
+        tripleSwipeNumber++;
+        if(tripleSwipeNumber>3)
+        {
+            tripleSwipeNumber = 1;
+        }
+        if(timeSinceTripleSwipe > 1.0f)
+        {
+            tripleSwipeNumber = 1;
+        }
+
+        GetComponent<PlayerMovement>().animator.SetTrigger("Attack" + tripleSwipeNumber);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(50 * tripleSwipeNumber);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        timeSinceTripleSwipe = 0.0f;
+    }
+
+
+    public IEnumerator KnightBlock()
+    {
+        GetComponent<PlayerMovement>().animator.SetTrigger("Block");
+        GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", true);
+        GetComponent<PlayerMovement>().evadeChance = 100;
+        yield return new WaitForSeconds(1.5f);
+        GetComponent<PlayerMovement>().evadeChance = 0;
+        GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
+    }
 
 
     public IEnumerator AssassinInvis()
@@ -245,7 +296,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (meleeTransform == null) { return; }
-        Gizmos.DrawWireSphere(meleeTransform.position, meleeRange);
+        if (meleeTransformR == null) { return; }
+        Gizmos.DrawWireSphere(meleeTransformR.position, meleeRange);
+        if (meleeTransformL == null) { return; }
+        Gizmos.DrawWireSphere(meleeTransformL.position, meleeRange);
     }
 }

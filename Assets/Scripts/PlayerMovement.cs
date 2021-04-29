@@ -241,7 +241,6 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightRoll()
     {
-        Debug.Log("Rolling");
         animator.SetTrigger("Roll");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
@@ -254,7 +253,6 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightLunge()
     {
-        Debug.Log("Lunging");
         animator.SetTrigger("Skill5");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;

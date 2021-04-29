@@ -90,6 +90,7 @@ public class PlayerCombat : MonoBehaviour
     {
         timeSinceTripleSwipe += Time.deltaTime;
 
+
         if (Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
@@ -110,7 +111,7 @@ public class PlayerCombat : MonoBehaviour
         {
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
-            ChangeMana(-(equippedSkill2.cooldown));
+            ChangeMana(-(equippedSkill2.cost));
             equippedSkill2.Use(rb2D, direction, gameObject);
         }
 

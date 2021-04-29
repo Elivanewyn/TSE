@@ -57,6 +57,8 @@ public class ClassSystem : MonoBehaviour
     public Sprite lungePortrait;
     public Sprite tripleswipePortrait;
     public Sprite dualslicePortrait;
+    public GameObject frictionspark;
+    public Sprite frictionPortrait;
 
     public Sprite blockPortrait;
     public Sprite parryPortrait;
@@ -185,7 +187,7 @@ public class ClassSystem : MonoBehaviour
         knight.skillTreeOne[1] = new Skill("Lunge", 3f, 2.5f, "Knight", lungePortrait, "Move forward rapidly using your sword");
         knight.skillTreeOne[2] = new Skill("Triple Swipe", 0.25f, 1f, "Knight", tripleswipePortrait, "Small attack that deals more damage when used in quick succession (three times)");
         knight.skillTreeOne[3] = new Skill("Dual Slice", 5f, 5f, "Knight", dualslicePortrait, "Jump forward and attack twice in quick succession");
-        knight.skillTreeOne[4] = new Skill("Jiawei's Skill 1");
+        knight.skillTreeOne[4] = new Skill("Friction Spark", frictionspark, 2f, 7f, "Knight", frictionPortrait, "Send a high damage spark hurling in front of you");
 
         knight.skillTreeTwo[0] = knight.basicSkills[1];
         knight.skillTreeTwo[1] = new Skill("Parry", 6f, 5f, "Knight", parryPortrait, "Block and counters any incoming attacks for a second");
@@ -621,6 +623,23 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightDualSlice());
+                    return;
+                }
+                else if (name_ == "Friction Spark")
+                {
+                    playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Attack" + 3);
+                    Vector2 off = new Vector2(0, -1.3f);
+                    if (direction == Vector2.left)
+                    {
+                        off = new Vector2(0, -1.3f);
+                    }
+                    GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+
+                    attack projectile = Spark.GetComponent<attack>();
+                    projectile.damage = 1;
+                    projectile.life = 3f;
+                    projectile.speed = 600;
+                    projectile.Launch(direction);
                     return;
                 }
 

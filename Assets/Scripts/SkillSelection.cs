@@ -152,35 +152,41 @@ public class SkillSelection : MonoBehaviour
 
     public void EquipSkill1()
     {
-        if(selectedSkill.isActive)
+        if (selectedSkill != null)
         {
-            PlayerCombat.equippedSkill1 = selectedSkill;
-            previousFrame1.color = new Color(1, 1, 0, 1);
-            selectedFrame.color = new Color(1, 0, 0, 1);
-            previousFrame1 = GetFrame(ref selectedFrame);
+            if (selectedSkill.isActive)
+            {
+                PlayerCombat.equippedSkill1 = selectedSkill;
+                previousFrame1.color = new Color(1, 1, 0, 1);
+                selectedFrame.color = new Color(1, 0, 0, 1);
+                previousFrame1 = GetFrame(ref selectedFrame);
+            }
+            else
+            {
+                Debug.Log("you have not bought that skill");
+            }
         }
-        else
-        {
-            Debug.Log("you have not bought that skill");
-        }
+        else { return; }
     }
 
     public void EquipSkill2()
     {
-        if (selectedSkill.isActive)
+        if (selectedSkill != null)
         {
-            PlayerCombat.equippedSkill2 = selectedSkill;
-            previousFrame2.color = new Color(1, 1, 0, 1);
-            selectedFrame.color = new Color(1, 0, 0, 1);
-            previousFrame2 = GetFrame(ref selectedFrame);
+            if (selectedSkill.isActive)
+            {
+                PlayerCombat.equippedSkill2 = selectedSkill;
+                previousFrame2.color = new Color(1, 1, 0, 1);
+                selectedFrame.color = new Color(1, 0, 0, 1);
+                previousFrame2 = GetFrame(ref selectedFrame);
+            }
+            else
+            {
+                Debug.Log("you have not bought that skill");
+            }
         }
-        else
-        {
-            Debug.Log("you have not bought that skill");
-        }
+        else { return; }
     }
-
-
 
 
     public ref ClassSystem.Skill GetSkill(ref ClassSystem.Skill skill)

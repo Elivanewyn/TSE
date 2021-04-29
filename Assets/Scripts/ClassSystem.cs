@@ -105,16 +105,23 @@ public class ClassSystem : MonoBehaviour
     public Sprite shadowclonePortrait;
 
 
+
     public GameObject arrowflurry;
     public Sprite arrowflurryPortrait;
     public GameObject spear;
     public Sprite spearPortrait;
     public Sprite spearflurryPortrait;
+    public GameObject bouncyarrow;
+    public Sprite bouncyarrowPortrait;
+    public GameObject heavansflurry;
+    public Sprite heavansSprite;
 
     public Sprite saddleupPortrait;
     public Sprite chargePortrait;
+    public Sprite flamechargePortrait;
 
     public Sprite hoodPortrait;
+    public Sprite swiftPortrait;
 
     public GameObject firearrow;
     public Sprite firearrowPortrait;
@@ -258,17 +265,17 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeOne[0] = ranger.basicSkills[0];
         ranger.skillTreeOne[1] = new Skill("Spear", spear, 1.5f, 5f, "Ranger", spearPortrait, "Shoot a spear in the direction you're facing");
         ranger.skillTreeOne[2] = new Skill("Spear Flurry", spear, 2.5f, 8f, "Ranger", spearflurryPortrait, "Shoot three spears in the direction you're facing");
-        ranger.skillTreeOne[3] = new Skill("Bouncy Arrow");
-        ranger.skillTreeOne[4] = new Skill("Heavan's Flurry");
+        ranger.skillTreeOne[3] = new Skill("Bouncy Arrow", bouncyarrow, 1.5f, 4f, "Ranger", bouncyarrowPortrait, "Shoots arrow which bounces off 2 walls before breaking");
+        ranger.skillTreeOne[4] = new Skill("Heavan's Flurry", heavansflurry, 4f, 5f, "Ranger", heavansSprite, "Rains down arrows from above for period of time");
 
         ranger.skillTreeTwo[0] = ranger.basicSkills[1];
         ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Make your horse charge a short distance");
         ranger.skillTreeTwo[2] = new Skill("");
-        ranger.skillTreeTwo[3] = new Skill("Flame Charge");
+        ranger.skillTreeTwo[3] = new Skill("Flame Charge", 8f, 6f, "Ranger", flamechargePortrait, "Make your horse charge forward a longer distance, becoming invincible while doing so");
         ranger.skillTreeTwo[4] = new Skill("Mount's Protection");
 
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
-        ranger.skillTreeThree[1] = new Skill("Swift Bird");
+        ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
         ranger.skillTreeThree[2] = new Skill("Ranger's Soul");
         ranger.skillTreeThree[3] = new Skill("");
         ranger.skillTreeThree[4] = new Skill("");
@@ -894,6 +901,24 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.RangerSpearFlurry(prefab));
                     return;
                 }
+                else if (name_ == "Bouncy Arrow")
+                {
+                    GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+
+                    attack projectile = Bouncy.GetComponent<attack>();
+                    projectile.damage = 3f;
+                    projectile.life = 1000;
+                    projectile.speed = 1000;
+                    projectile.isBouncy = 2;
+                    projectile.Launch(direction);
+                    return;
+                }
+                else if (name_ == "Heavan's Flurry")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerHeavansFlurry(prefab));
+                    return;
+                }
 
 
                 if(name_ == "Saddle Up")
@@ -916,8 +941,46 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Charge")
                 {
-                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
-                    player.StartCoroutine(player.RangerCharge());
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    bool wasSaddled = true;
+                    if (player.jumpForce == 10f)
+                    {
+                        player.speed += 5f;
+                        player.jumpForce -= 2f;
+                        player.transform.localScale = new Vector3(12, 15, 1);
+                        wasSaddled = false;
+                    }
+                    PlayerCombat playerC = playerObject.GetComponent<PlayerCombat>();
+                    playerC.StartCoroutine(playerC.RangerCharge());
+
+                    if (!wasSaddled)
+                    {
+                        player.speed -= 5f;
+                        player.jumpForce += 2f;
+                        player.transform.localScale = new Vector3(10, 10, 1);
+                    }
+                    return;
+                }
+                else if (name_ == "Flame Charge")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    bool wasSaddled = true;
+                    if (player.jumpForce == 10f)
+                    {
+                        player.speed += 5f;
+                        player.jumpForce -= 2f;
+                        player.transform.localScale = new Vector3(12, 15, 1);
+                        wasSaddled = false;
+                    }
+                    PlayerCombat playerC = playerObject.GetComponent<PlayerCombat>();
+                    playerC.StartCoroutine(playerC.RangerFlameCharge());
+
+                    if (!wasSaddled)
+                    {
+                        player.speed -= 5f;
+                        player.jumpForce += 2f;
+                        player.transform.localScale = new Vector3(10, 10, 1);
+                    }
                     return;
                 }
 
@@ -936,6 +999,12 @@ public class ClassSystem : MonoBehaviour
                         player.defence = 0.3f;
                         //decrease stealth back
                     }
+                    return;
+                }
+                else if (name_ == "Swift Bird")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.RangerSwiftBird());
                     return;
                 }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.knight;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -309,6 +309,104 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+    public IEnumerator RangerHeavansFlurry(GameObject prefab)
+    {
+        Vector2 off = new Vector2(8, 6f);
+        if (direction == Vector2.left)
+        {
+            off = new Vector2(-8, 6f);
+        }
+
+        GameObject Arrow1 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile1 = Arrow1.GetComponent<attack>();
+        projectile1.damage = 0.5f;
+        projectile1.life = 1000f;
+        projectile1.speed = 500;
+        projectile1.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow2 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile2 = Arrow2.GetComponent<attack>();
+        projectile2.damage = 0.5f;
+        projectile2.life = 1000f;
+        projectile2.speed = 500;
+        projectile2.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow3 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile3 = Arrow3.GetComponent<attack>();
+        projectile3.damage = 0.5f;
+        projectile3.life = 1000f;
+        projectile3.speed = 500;
+        projectile3.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow4 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile4 = Arrow4.GetComponent<attack>();
+        projectile4.damage = 0.5f;
+        projectile4.life = 1000f;
+        projectile4.speed = 500;
+        projectile4.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow5 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile5 = Arrow5.GetComponent<attack>();
+        projectile5.damage = 0.5f;
+        projectile5.life = 1000f;
+        projectile5.speed = 500;
+        projectile5.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow6 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile6 = Arrow6.GetComponent<attack>();
+        projectile6.damage = 0.5f;
+        projectile6.life = 1000f;
+        projectile6.speed = 500;
+        projectile6.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow7 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile7 = Arrow7.GetComponent<attack>();
+        projectile7.damage = 0.5f;
+        projectile7.life = 1000f;
+        projectile7.speed = 500;
+        projectile7.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow8 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile8 = Arrow8.GetComponent<attack>();
+        projectile8.damage = 0.5f;
+        projectile8.life = 1000f;
+        projectile8.speed = 500;
+        projectile8.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow9 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile9 = Arrow9.GetComponent<attack>();
+        projectile9.damage = 0.5f;
+        projectile9.life = 1000f;
+        projectile9.speed = 500;
+        projectile9.Launch(Vector2.down);
+
+        yield return new WaitForSeconds(0.4f);
+
+        GameObject Arrow10 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        attack projectile10 = Arrow10.GetComponent<attack>();
+        projectile10.damage = 0.5f;
+        projectile10.life = 1000f;
+        projectile10.speed = 500;
+        projectile10.Launch(Vector2.down);
+    }
+
+
     public IEnumerator RangerCharge()
     {
         Vector2 tempDirection = direction;
@@ -319,6 +417,20 @@ public class PlayerCombat : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
         }
         rb2D.velocity = Vector2.zero;
+    }
+
+    public IEnumerator RangerFlameCharge()
+    {
+        Vector2 tempDirection = direction;
+        GetComponent<PlayerMovement>().evadeChance = 100;
+        if (tempDirection == Vector2.up || tempDirection == Vector2.down) { tempDirection = Vector2.right; }
+        for (int i = 0; i <= 10; i++)
+        {
+            rb2D.velocity = tempDirection * 50;
+            yield return new WaitForSeconds(0.03f);
+        }
+        rb2D.velocity = Vector2.zero;
+        GetComponent<PlayerMovement>().evadeChance = 0;
     }
 
 

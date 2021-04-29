@@ -376,6 +376,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public IEnumerator RangerSwiftBird()
+    {
+        speed += 5;
+        fallMultiplier += 3;
+        yield return new WaitForSeconds(8);
+        speed -= 5;
+        fallMultiplier -= 3;
+    }
+
+
 
     void AE_ResetRoll()
     {

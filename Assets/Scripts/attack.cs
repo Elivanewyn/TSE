@@ -9,6 +9,7 @@ public class attack : MonoBehaviour
     public float damage;
     public float speed;
     public bool hitsEnemies = true;
+    public int isBouncy = 0;
 
     private void Awake()
     {
@@ -37,7 +38,18 @@ public class attack : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            if (isBouncy <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                isBouncy--;
+                Vector2 inDirection = rigidbody2d.velocity;
+                Vector2 inNormal = other.contacts[0].normal;
+                Vector2 newVelocity = Vector2.Reflect(inDirection, inNormal - new Vector2(0, -5));
+                rigidbody2d.AddForce(newVelocity);
+            }
         }
     }
 

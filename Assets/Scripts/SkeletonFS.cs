@@ -51,4 +51,13 @@ public class SkeletonFS : MonoBehaviour
     {
         maxHealth -= damage;
     }
+
+    public IEnumerator Stun(float stunTime)
+    {
+        Debug.Log("test");
+        float temp = speed;
+        speed = 0;
+        yield return new WaitForSecondsRealtime(stunTime);
+        speed = temp;
+    }
 }

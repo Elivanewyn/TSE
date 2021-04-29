@@ -9,7 +9,9 @@ public class attack : MonoBehaviour
     public float damage;
     public float speed;
     public bool hitsEnemies = true;
+
     public int isBouncy = 0;
+    public bool isStun = false; 
 
     public static float speedMultiplier = 1;
 
@@ -56,6 +58,35 @@ public class attack : MonoBehaviour
             }
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.gameObject.GetComponent<BoxCollider2D>().isTrigger);
+        if (other.gameObject.GetComponent<BoxCollider2D>().isTrigger)
+        {
+            if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonfs")))
+            {
+                Debug.Log("test2");
+                SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
+                if (isStun) { enemy.StartCoroutine(enemy.Stun(2f)); }
+            }
+            else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
+            {
+
+            }
+            else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletontank")))
+            {
+
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+
 
     void Update()
     {

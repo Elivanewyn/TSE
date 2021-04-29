@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb2D;
-    private int xDirection = 1;
+    public int xDirection = 1;
     private bool stopManualMove = false;
 
     public float speed = 7.0f;
@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator particleAnimator;
     private float delayToIdle = 0.0f;
+
+    public GameObject particleL;
+    public GameObject particleR;
 
     // Start is called before the first frame update
     void Start()

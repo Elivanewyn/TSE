@@ -420,7 +420,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Flamethrower")
                 {
-                    //will wait for level to be populated to test easier
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.WizardFlamethrower());
                     return;
                 }
                 else if (name_ == "Flame Burst")
@@ -478,7 +479,20 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Electric Cage")
                 {
-                    //will wait for level to be populated
+                    if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
+
+                    Vector2 off = new Vector2(8, -0.2f);
+                    if (direction == Vector2.left)
+                    {
+                        off = new Vector2(-8, -0.2f);
+                    }
+
+                    GameObject Cage = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    attack ecage = Cage.GetComponent<attack>();
+                    ecage.damage = 0;
+                    ecage.life = 6.0f;
+                    ecage.hitsEnemies = false;
+                    ecage.isStun = true;
                     return;
                 }
                 else if (name_ == "Plasma Charge")

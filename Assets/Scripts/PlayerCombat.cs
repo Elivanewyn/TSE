@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -156,7 +156,64 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime1 = 0;
         cooldownTime2 = 0;
     }
-    
+
+
+    public IEnumerator WizardFlamethrower()
+    {
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        if (player.xDirection == 1)
+        {
+            meleeRange = 1.5f;
+            player.particleR.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            player.particleR.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        else
+        {
+            meleeRange = 1.5f;
+            player.particleL.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            player.particleL.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        meleeRange = 0.5f;
+    }
+
 
     public void KnightTripleSwipe()
     {
@@ -231,6 +288,8 @@ public class PlayerCombat : MonoBehaviour
         }
         GetComponent<PlayerMovement>().animator.SetTrigger("Attack" + 1);
     }
+
+
 
 
     public IEnumerator AssassinInvis()

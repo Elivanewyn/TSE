@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         inventory.enabled = false;
         numberOfJumps = maxJumps;
         animator = GetComponent<Animator>();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -385,6 +386,12 @@ public class PlayerMovement : MonoBehaviour
         fallMultiplier -= 3;
     }
 
+    public IEnumerator RangerRangersSoul()
+    {
+        attack.speedMultiplier = 1.5f;
+        yield return new WaitForSeconds(8f);
+        attack.speedMultiplier = 1;
+    }
 
 
     void AE_ResetRoll()
@@ -392,5 +399,11 @@ public class PlayerMovement : MonoBehaviour
         bool m_rolling;
         m_rolling = false;
     }
-    
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundChecker == null) { return; }
+        Gizmos.DrawWireSphere(groundChecker.position, checkGroundRadius);
+    }
+
 }

@@ -119,9 +119,11 @@ public class ClassSystem : MonoBehaviour
     public Sprite saddleupPortrait;
     public Sprite chargePortrait;
     public Sprite flamechargePortrait;
+    public Sprite mountsproPortrait;
 
     public Sprite hoodPortrait;
     public Sprite swiftPortrait;
+    public Sprite soulPortrait;
 
     public GameObject firearrow;
     public Sprite firearrowPortrait;
@@ -272,11 +274,11 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Make your horse charge a short distance");
         ranger.skillTreeTwo[2] = new Skill("");
         ranger.skillTreeTwo[3] = new Skill("Flame Charge", 8f, 6f, "Ranger", flamechargePortrait, "Make your horse charge forward a longer distance, becoming invincible while doing so");
-        ranger.skillTreeTwo[4] = new Skill("Mount's Protection");
+        ranger.skillTreeTwo[4] = new Skill("Mount's Protection", 20f, 10f, "Ranger", mountsproPortrait, "For a period of time your mount will protect you from any damage");
 
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
         ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
-        ranger.skillTreeThree[2] = new Skill("Ranger's Soul");
+        ranger.skillTreeThree[2] = new Skill("Ranger's Soul", 15f, 7.5f, "Ranger", soulPortrait, "Projectile speed increased by 50% for a small period of time");
         ranger.skillTreeThree[3] = new Skill("");
         ranger.skillTreeThree[4] = new Skill("");
 
@@ -929,58 +931,36 @@ public class ClassSystem : MonoBehaviour
                     {
                         player.speed += 5f;
                         player.jumpForce -= 2f;
+                        player.fallMultiplier += 2f;
                         player.transform.localScale = new Vector3(12, 15, 1);
+                        player.groundChecker.localPosition += new Vector3(0, -0.025f, 0);
                     }
                     else
                     {
                         player.speed -= 5f;
                         player.jumpForce += 2f;
+                        player.fallMultiplier -= 2f;
                         player.transform.localScale = new Vector3(10, 10, 1);
+                        player.groundChecker.localPosition += new Vector3(0, 0.025f, 0);
                     }
                     return;
                 }
                 else if (name_ == "Charge")
                 {
-                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    bool wasSaddled = true;
-                    if (player.jumpForce == 10f)
-                    {
-                        player.speed += 5f;
-                        player.jumpForce -= 2f;
-                        player.transform.localScale = new Vector3(12, 15, 1);
-                        wasSaddled = false;
-                    }
-                    PlayerCombat playerC = playerObject.GetComponent<PlayerCombat>();
-                    playerC.StartCoroutine(playerC.RangerCharge());
-
-                    if (!wasSaddled)
-                    {
-                        player.speed -= 5f;
-                        player.jumpForce += 2f;
-                        player.transform.localScale = new Vector3(10, 10, 1);
-                    }
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerCharge());
                     return;
                 }
                 else if (name_ == "Flame Charge")
                 {
-                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    bool wasSaddled = true;
-                    if (player.jumpForce == 10f)
-                    {
-                        player.speed += 5f;
-                        player.jumpForce -= 2f;
-                        player.transform.localScale = new Vector3(12, 15, 1);
-                        wasSaddled = false;
-                    }
-                    PlayerCombat playerC = playerObject.GetComponent<PlayerCombat>();
-                    playerC.StartCoroutine(playerC.RangerFlameCharge());
-
-                    if (!wasSaddled)
-                    {
-                        player.speed -= 5f;
-                        player.jumpForce += 2f;
-                        player.transform.localScale = new Vector3(10, 10, 1);
-                    }
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerFlameCharge());
+                    return;
+                }
+                else if (name_ == "Mount's Protection")
+                {
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.RangerMountsProtection());
                     return;
                 }
 
@@ -1005,6 +985,12 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.RangerSwiftBird());
+                    return;
+                }
+                else if (name_ == "Ranger's Soul")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.RangerRangersSoul());
                     return;
                 }
 

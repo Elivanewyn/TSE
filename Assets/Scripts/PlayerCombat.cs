@@ -409,6 +409,15 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator RangerCharge()
     {
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        bool wasSaddled = true;
+        if (player.jumpForce == 10f)
+        {
+            player.transform.localScale = new Vector3(12, 15, 1);
+            player.groundChecker.localPosition += new Vector3(0, -0.025f, 0);
+            wasSaddled = false;
+        }
+
         Vector2 tempDirection = direction;
         if(tempDirection == Vector2.up || tempDirection == Vector2.down) { tempDirection = Vector2.right; }
         for(int i = 0; i <= 5; i++)
@@ -417,12 +426,27 @@ public class PlayerCombat : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
         }
         rb2D.velocity = Vector2.zero;
+
+        if (!wasSaddled)
+        {
+            player.transform.localScale = new Vector3(10, 10, 1);
+            player.groundChecker.localPosition += new Vector3(0, 0.025f, 0);
+        }
     }
 
     public IEnumerator RangerFlameCharge()
     {
-        Vector2 tempDirection = direction;
         GetComponent<PlayerMovement>().evadeChance = 100;
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        bool wasSaddled = true;
+        if (player.jumpForce == 10f)
+        {
+            player.transform.localScale = new Vector3(12, 15, 1);
+            player.groundChecker.localPosition += new Vector3(0, -0.025f, 0);
+            wasSaddled = false;
+        }
+
+        Vector2 tempDirection = direction;
         if (tempDirection == Vector2.up || tempDirection == Vector2.down) { tempDirection = Vector2.right; }
         for (int i = 0; i <= 10; i++)
         {
@@ -430,6 +454,41 @@ public class PlayerCombat : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
         }
         rb2D.velocity = Vector2.zero;
+        GetComponent<PlayerMovement>().evadeChance = 0;
+
+        if (!wasSaddled)
+        {
+            player.transform.localScale = new Vector3(10, 10, 1);
+            player.groundChecker.localPosition += new Vector3(0, 0.025f, 0);
+        }
+    }
+
+
+    public IEnumerator RangerMountsProtection()
+    {
+        GetComponent<PlayerMovement>().evadeChance = 100;
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        bool wasSaddled = true;
+        if (player.jumpForce == 10f)
+        {
+            player.speed += 5f;
+            player.jumpForce -= 2f;
+            player.fallMultiplier += 2f;
+            player.transform.localScale = new Vector3(12, 15, 1);
+            player.groundChecker.localPosition += new Vector3(0, -0.025f, 0);
+            wasSaddled = false;
+        }
+
+        yield return new WaitForSeconds(15f);
+
+        if(!wasSaddled)
+        {
+            player.speed -= 5f;
+            player.jumpForce += 2f;
+            player.fallMultiplier -= 2f;
+            player.transform.localScale = new Vector3(10, 10, 1);
+            player.groundChecker.localPosition += new Vector3(0, 0.025f, 0);
+        }
         GetComponent<PlayerMovement>().evadeChance = 0;
     }
 

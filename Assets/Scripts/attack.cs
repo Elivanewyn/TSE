@@ -11,6 +11,8 @@ public class attack : MonoBehaviour
     public bool hitsEnemies = true;
     public int isBouncy = 0;
 
+    public static float speedMultiplier = 1;
+
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -24,11 +26,13 @@ public class attack : MonoBehaviour
 
     public void Launch(Vector2 direction)
     {
+        speed = speed * speedMultiplier;
         rigidbody2d.AddForce(direction * speed);
     }
 
     public void Throw(Vector2 direction)
     {
+        speed = speed * speedMultiplier;
         rigidbody2d.AddForce(Vector2.up * 200);
         rigidbody2d.AddForce(direction * speed);
     }
@@ -55,7 +59,7 @@ public class attack : MonoBehaviour
 
     void Update()
     {
-
+        speed = speed * speedMultiplier;
     }
 
     IEnumerator wait(float life)
@@ -64,7 +68,4 @@ public class attack : MonoBehaviour
         yield return new WaitForSeconds(life);
         Destroy(gameObject);
     }
-
-
-    
 }

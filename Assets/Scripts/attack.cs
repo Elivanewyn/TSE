@@ -11,9 +11,16 @@ public class attack : MonoBehaviour
     public bool hitsEnemies = true;
 
     public int isBouncy = 0;
-    public bool isStun = false; 
+    public bool isStun = false;
+    public float stunTime = 0f;
+    public bool isFreeze = false;
+    public float freezeTime = 0f;
+    public bool isPoison = false;
+    public int poisonTime = 0;
+    public float poisonDPS = 0;
 
     public static float speedMultiplier = 1;
+    public static float damageMultiplier = 1;
 
     private void Awake()
     {
@@ -46,10 +53,39 @@ public class attack : MonoBehaviour
         {
             if (isBouncy <= 0)
             {
+                if (other.gameObject.CompareTag("skeletonfs"))
+                {
+                    SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
+                    if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
+                else if (other.gameObject.CompareTag("skeletonmage"))
+                {
+
+                }
+                else if (other.gameObject.CompareTag("skeletontank"))
+                {
+
+                }
                 Destroy(gameObject);
             }
             else
             {
+                if (other.gameObject.CompareTag("skeletonfs"))
+                {
+                    SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
+                else if (other.gameObject.CompareTag("skeletonmage"))
+                {
+
+                }
+                else if (other.gameObject.CompareTag("skeletontank"))
+                {
+
+                }
                 isBouncy--;
                 Vector2 inDirection = rigidbody2d.velocity;
                 Vector2 inNormal = other.contacts[0].normal;
@@ -67,9 +103,7 @@ public class attack : MonoBehaviour
         {
             if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonfs")))
             {
-                Debug.Log("test2");
-                SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
-                if (isStun) { enemy.StartCoroutine(enemy.Stun(2f)); }
+                //tried moveing the code to the enemy script. didnt work :(
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
             {
@@ -90,7 +124,6 @@ public class attack : MonoBehaviour
 
     void Update()
     {
-        speed = speed * speedMultiplier;
     }
 
     IEnumerator wait(float life)

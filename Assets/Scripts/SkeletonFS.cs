@@ -27,7 +27,9 @@ public class SkeletonFS : MonoBehaviour
     {
         if (other.gameObject.tag == "attack")
         {
-            maxHealth -= 200;
+            attack triggerAttack = other.gameObject.GetComponent<attack>();
+            if (triggerAttack.isStun) { StartCoroutine(Stun(triggerAttack.stunTime)); }
+            if (triggerAttack.isFreeze) { StartCoroutine(Freeze(triggerAttack.freezeTime)); }
         }
 
 
@@ -59,5 +61,22 @@ public class SkeletonFS : MonoBehaviour
         speed = 0;
         yield return new WaitForSecondsRealtime(stunTime);
         speed = temp;
+    }
+
+    public IEnumerator Freeze(float freezeTime)
+    {
+        float temp = speed;
+        speed *= 0.5f;
+        yield return new WaitForSecondsRealtime(freezeTime);
+        speed = temp;
+    }
+
+    public IEnumerator Poison(int poisonTime, float dps)
+    {
+        for(int i =0; i <= poisonTime; i++)
+        {
+            maxHealth -= dps;
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

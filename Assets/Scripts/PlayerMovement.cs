@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public int xDirection = 1;
     private bool stopManualMove = false;
 
+    public LayerMask enemyLayer;
+
     public float speed = 7.0f;
     public float jumpForce = 6.0f;
     public float fallMultiplier = 2.5f;
@@ -221,6 +223,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public IEnumerator WizardFrostWave()
+    {
+        attack.damageMultiplier = 1.2f;
+        yield return new WaitForSeconds(2.5f);
+        attack.damageMultiplier = 1;
+    }
+    public IEnumerator WizardIcePrison()
+    {
+        attack.damageMultiplier = 1.5f;
+        yield return new WaitForSeconds(5f);
+        attack.damageMultiplier = 1;
+    }
 
 
     public IEnumerator WizardSpeedBoost()
@@ -377,6 +391,47 @@ public class PlayerMovement : MonoBehaviour
         jumpForce += 5;
         yield return new WaitForSeconds(8);
         jumpForce -= 5;
+    }
+
+    public IEnumerator AssassinSlide()
+    {
+        rb2D.velocity = new Vector2(xDirection * 16f, rb2D.velocity.y);
+        stopManualMove = true;
+        evadeChance = 100;
+        yield return new WaitForSeconds(1f);
+        evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator AssassinAssassinate()
+    {
+        if(!isGrounded)
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, -1 * 10);
+            stopManualMove = true;
+            evadeChance = 100;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
+            yield return new WaitForSeconds(0.85f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(400);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            evadeChance = 0;
+            stopManualMove = false;
+        }
     }
 
 

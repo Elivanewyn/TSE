@@ -77,7 +77,7 @@ public class ClassSystem : MonoBehaviour
     public Sprite throwingknifePortrait;
     public GameObject poisondart;
     public Sprite poisondartPortrait;
-    public Sprite sidePortrait;
+    public Sprite slidePortrait;
     public Sprite tauntPortrait;
     public Sprite assassinatePortrait;
 
@@ -157,7 +157,7 @@ public class ClassSystem : MonoBehaviour
 
         wizard.skillTreeOne[0] = wizard.basicSkills[0];
         wizard.skillTreeOne[1] = new Skill("Fire Blast", fireblast, 0.2f, 1.5f, "Wizard", fireblastPortrait, "Shoot a medium sized fireball ahead of you");
-        wizard.skillTreeOne[2] = new Skill("Flamethrower", flamethrower, 0f, 0.1f, "Wizard", flamethrowerPortrait, "Shoots continuous fire ahead, small range");
+        wizard.skillTreeOne[2] = new Skill("Flamethrower", 2f, 2f, "Wizard", flamethrowerPortrait, "Shoots continuous fire ahead, small range");
         wizard.skillTreeOne[3] = new Skill("Flame Burst", flameburst, 0.4f, 4.5f, "Wizard", flameburstPortrait, "Shoot a large fireball ahead of you");
         wizard.skillTreeOne[4] = new Skill("Flame Inferno", flameinferno, 3.5f, 8f, "Wizard", flameinfernoPortrait, "Creates a tornado of fire, which moves forwards until it makes contact with a wall, will damage any enemies who makes contact with the tornado");
 
@@ -169,9 +169,9 @@ public class ClassSystem : MonoBehaviour
 
         wizard.skillTreeThree[0] = wizard.basicSkills[2];
         wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f, "Wizard", iceprisonPortrait, "Traps enemies in a cage, which will prevent movement and increases the damage taken for a period of time");
-        wizard.skillTreeThree[2] = new Skill("Freezing Breath", freezingbreath, 0f, 0.1f, "Wizard", freezingbreathPortrait, "Attacks forwards, damaging enemies in range and decreases enemies speed");
+        wizard.skillTreeThree[2] = new Skill("Freezing Breath", 2f, 4f, "Wizard", freezingbreathPortrait, "Attacks forwards, damaging enemies in range and decreases enemies speed");
         wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash, 0.5f, 5.5f, "Wizard", icecrashPortrait, "Shoot an icicle in front of you");
-        wizard.skillTreeThree[4] = new Skill("Freezing Land", freezingland, 10f, 10f, "Wizard", freezinglandPortrait, "Attacks forwards, damaging enemies in range, higher damage and range than 'Freezing Breath'");
+        wizard.skillTreeThree[4] = new Skill("Freezing Land", 5f, 7f, "Wizard", freezinglandPortrait, "Attacks forwards, damaging enemies in range, higher damage and range than 'Freezing Breath'");
 
         wizard.skillTreeFour[0] = wizard.basicSkills[3];
         wizard.skillTreeFour[1] = new Skill("Speed Boost", 13f, 8.5f, "Wizard", speedboostPortrait, "Speeds you up for a short period of time");
@@ -230,13 +230,13 @@ public class ClassSystem : MonoBehaviour
 
         assassin.skillTreeOne[0] = assassin.basicSkills[0];
         assassin.skillTreeOne[1] = new Skill("Poison Dart", poisondart, 4f, 2.5f, "Assassin", poisondartPortrait, "Fire a dart which inflicts the target with poison, which inflicts damage over time, but will leave the target at 1 hp");
-        assassin.skillTreeOne[2] = new Skill("Slide");
+        assassin.skillTreeOne[2] = new Skill("Slide", 3f, 4f, "Assassin", slidePortrait, "Slide along the floor, dodging any attacks");
         assassin.skillTreeOne[3] = new Skill("Taunt");
-        assassin.skillTreeOne[4] = new Skill("Assassinate");
+        assassin.skillTreeOne[4] = new Skill("Assassinate", 15f, 15f, "Assassin", assassinatePortrait, "When in the air, damage enemies below you to do massive damage");
 
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
         assassin.skillTreeTwo[1] = new Skill("Invisibility", 20f, 9.5f, "Assassin", invisPortrait, "Go invisible for a period of time. Enemies won't attack, but neither can you");
-        assassin.skillTreeTwo[2] = new Skill("Critical Strike");
+        assassin.skillTreeTwo[2] = new Skill("Critical Strike", 22f, 10f, "Assassin",criticalPortrait, "Invisibility but when you attack, your next attack will do double damage and will take you out of invisibility");
         assassin.skillTreeTwo[3] = new Skill("Shadow Sneak");
         assassin.skillTreeTwo[4] = new Skill("Super Stealth");
 
@@ -401,7 +401,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Fireball = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Fireball.GetComponent<attack>();
-                    projectile.damage = 1;
+                    projectile.damage = 20;
                     projectile.life = 0.5f;
                     projectile.speed = 800;
                     projectile.Launch(direction);
@@ -412,7 +412,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Fireblast = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Fireblast.GetComponent<attack>();
-                    projectile.damage = 2;
+                    projectile.damage = 30;
                     projectile.life = 3.0f;
                     projectile.speed = 650;
                     projectile.Launch(direction);
@@ -429,7 +429,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Flameburst = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Flameburst.GetComponent<attack>();
-                    projectile.damage = 3;
+                    projectile.damage = 50;
                     projectile.life = 6.0f;
                     projectile.speed = 500;
                     projectile.Launch(direction);
@@ -440,7 +440,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject FireTornado = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = FireTornado.GetComponent<attack>();
-                    projectile.damage = 4;
+                    projectile.damage = 100;
                     projectile.life = 1000f;
                     projectile.speed = 750;
                     projectile.hitsEnemies = false;
@@ -459,7 +459,7 @@ public class ClassSystem : MonoBehaviour
 
                     GameObject LightningStrike = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack strike = LightningStrike.GetComponent<attack>();
-                    strike.damage = 2;
+                    strike.damage = 50;
                     strike.life = 0.5f;
                     return;
                 }
@@ -473,7 +473,7 @@ public class ClassSystem : MonoBehaviour
 
                     GameObject LightningBolt = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack strike = LightningBolt.GetComponent<attack>();
-                    strike.damage = 3;
+                    strike.damage = 65;
                     strike.life = 0.5f;
                     return;
                 }
@@ -493,6 +493,7 @@ public class ClassSystem : MonoBehaviour
                     ecage.life = 6.0f;
                     ecage.hitsEnemies = false;
                     ecage.isStun = true;
+                    ecage.stunTime = 2f;
                     return;
                 }
                 else if (name_ == "Plasma Charge")
@@ -505,7 +506,7 @@ public class ClassSystem : MonoBehaviour
 
                     GameObject PlasmaCharge = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack strike = PlasmaCharge.GetComponent<attack>();
-                    strike.damage = 3;
+                    strike.damage = 85;
                     strike.life = 0.8f;
                     return;
                 }
@@ -519,7 +520,7 @@ public class ClassSystem : MonoBehaviour
 
                     GameObject LightningPillar = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack strike = LightningPillar.GetComponent<attack>();
-                    strike.damage = 0.1f;
+                    strike.damage = 10f;
                     strike.life = 150f;
                     strike.hitsEnemies = false;
                     return;
@@ -528,28 +529,52 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Frost Wave")
                 {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.WizardIcePrison());
+
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
-                    Vector2 off = new Vector2(8, -1.3f);
+                    Vector2 off = new Vector2(8, -0.2f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-8, -1.3f);
+                        off = new Vector2(-8, -0.2f);
                     }
 
-                    GameObject FrostWave = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
-                    attack fwave = FrostWave.GetComponent<attack>();
-                    fwave.damage = 1;
-                    fwave.life = 6.0f;
+                    GameObject Wave = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    attack fwave = Wave.GetComponent<attack>();
+                    fwave.damage = 0;
+                    fwave.life = 3.0f;
+                    fwave.hitsEnemies = false;
+                    fwave.isFreeze = true;
+                    fwave.freezeTime = 2.5f;
                     return;
                 }
                 else if (name_ == "Ice Prison")
                 {
-                    //will wait for level to be populated
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.WizardIcePrison());
+
+                    if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
+
+                    Vector2 off = new Vector2(8, -0.2f);
+                    if (direction == Vector2.left)
+                    {
+                        off = new Vector2(-8, -0.2f);
+                    }
+
+                    GameObject Prison = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    attack iprison = Prison.GetComponent<attack>();
+                    iprison.damage = 0;
+                    iprison.life = 6.0f;
+                    iprison.hitsEnemies = false;
+                    iprison.isFreeze = true;
+                    iprison.freezeTime = 5f;
                     return;
                 }
                 else if (name_ == "Freezing Breath")
                 {
-                    //will wait for level to be populated
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.WizardFreezingBreath());
                     return;
                 }
                 else if (name_ == "Ice Crash")
@@ -560,7 +585,7 @@ public class ClassSystem : MonoBehaviour
 
                     GameObject IceCrash = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
                     attack fwave = IceCrash.GetComponent<attack>();
-                    fwave.damage = 3.5f;
+                    fwave.damage = 70f;
                     fwave.life = 5.0f;
                     fwave.speed = 1000f;
                     fwave.Launch(direction);
@@ -568,7 +593,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Freezing Land")
                 {
-                    //will wait for level to be populated
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.WizardFreezingLand());
                     return;
                 }
 
@@ -659,7 +685,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
 
                     attack projectile = Spark.GetComponent<attack>();
-                    projectile.damage = 1;
+                    projectile.damage = 100;
                     projectile.life = 3f;
                     projectile.speed = 600;
                     projectile.Launch(direction);
@@ -729,7 +755,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = ThrowingKnife.GetComponent<attack>();
-                    projectile.damage = 0.5f;
+                    projectile.damage = 8f;
                     projectile.life = 1f;
                     projectile.speed = 1000;
                     projectile.Launch(direction);
@@ -743,39 +769,36 @@ public class ClassSystem : MonoBehaviour
                     projectile.damage = 0f;
                     projectile.life = 1f;
                     projectile.speed = 1500;
+                    projectile.isPoison = true;
+                    projectile.poisonTime = 5;
+                    projectile.poisonDPS = 35;
                     projectile.Launch(direction);
                     return;
                 }
                 else if (name_ == "Slide")
                 {
-                    //will wait until level is populated
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.AssassinSlide());
+                    return;
                 }
                 else if (name_ == "Taunt")
                 {
-                    //will wait until level is populated
+                    //decrease stealth
+                    //wait
+                    //increase stealth
                 }
                 else if (name_ == "Assassinate")
                 {
-                    //will wait until level is populated
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.AssassinAssassinate());
+                    return;
                 }
 
 
 
                 if (name_ == "Smoke Bomb")
                 {
-                    if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
-
-                    Vector2 off = new Vector2(8, 2.5f);
-                    if (direction == Vector2.left)
-                    {
-                        off = new Vector2(-8, 2.5f);
-                    }
-
-                    GameObject SmokeBomb = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
-                    attack bomb = SmokeBomb.GetComponent<attack>();
-                    bomb.damage = 0;
-                    bomb.life = 6.0f;
-                    return;
+                    //bomb
                 }
                 else if (name_ == "Invisibility")
                 {
@@ -787,7 +810,6 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.AssassinCriticalStrike());
-                    //will change damage when enemy/player interactions been done
                     return;
                 }
                 else if (name_ == "Shadow Sneak")

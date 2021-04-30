@@ -45118,6 +45118,16 @@ PrefabInstance:
       propertyPath: particleR
       value: 
       objectReference: {fileID: 1822026566}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: checkGroundRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: skill1Portrait
@@ -45146,6 +45156,16 @@ PrefabInstance:
       propertyPath: electriccage
       value: 
       objectReference: {fileID: 4963931230603883411, guid: 3eac401262770434695aeb83000bc9b2,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: iceprison
+      value: 
+      objectReference: {fileID: 5752411746835715213, guid: 1a5d9a49ecaf2244b9f2c5271afb2c77,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: slidePortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 28371f9328a2e48b796541177eb24014,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -215,6 +215,137 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+
+    public IEnumerator WizardFreezingBreath()
+    {
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        if (player.xDirection == 1)
+        {
+            meleeRange = 1.5f;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
+            player.particleR.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                }
+            }
+            player.particleR.GetComponent<SpriteRenderer>().enabled = false;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        else
+        {
+            meleeRange = 1.5f;
+            player.particleL.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
+            player.particleL.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            player.particleL.GetComponent<SpriteRenderer>().enabled = false;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        meleeRange = 0.5f;
+    }
+
+
+    public IEnumerator WizardFreezingLand()
+    {
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        if (player.xDirection == 1)
+        {
+            meleeRange = 2.5f;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
+            player.particleR.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                }
+            }
+            player.particleR.GetComponent<SpriteRenderer>().enabled = false;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        else
+        {
+            meleeRange = 2.5f;
+            player.particleL.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
+            player.particleL.GetComponent<SpriteRenderer>().enabled = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            yield return new WaitForSeconds(1.25f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            player.particleL.GetComponent<SpriteRenderer>().enabled = false;
+            player.particleR.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        meleeRange = 0.5f;
+    }
+
+
     public void KnightTripleSwipe()
     {
         tripleSwipeNumber++;
@@ -305,13 +436,34 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AssassinCriticalStrike()
     {
-        cooldownTime1 = 1000f;
-        cooldownTime2 = 1000f;
-        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        //playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        //attack.damageMultiplier = 2;
+        //StartCoroutine(ACSCheck());
         yield return new WaitForSeconds(15);
-        cooldownTime1 = 0;
-        cooldownTime2 = 0;
-        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        //StopCoroutine(ACSCheck());
+        //attack.damageMultiplier = 1;
+        //playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+    public IEnumerator ACSCheck()
+    {
+        while(1==1)
+        {
+            if(Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q))
+            {
+                StartCoroutine(StopACS());
+            }
+        }
+    }
+
+    public IEnumerator StopACS()
+    {
+        if (attack.damageMultiplier == 2)
+        {
+            playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            yield return new WaitForSeconds(1f);
+            attack.damageMultiplier = 1;
+        }
     }
 
 

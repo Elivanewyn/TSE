@@ -168,7 +168,7 @@ public class ClassSystem : MonoBehaviour
         wizard.skillTreeTwo[4] = new Skill("Lightning Pillar", lightningpillar, 18f, 14f, "Wizard", lightningpillarPortrait, "Sets up a pillar, which will attacks the enemy who is closest");
 
         wizard.skillTreeThree[0] = wizard.basicSkills[2];
-        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f, "Wizard", iceprisonPortrait, "Traps enemies in a cage, which will prevent movement and increases the damage taken for a period of time");
+        wizard.skillTreeThree[1] = new Skill("Ice Prison", iceprison, 12f, 10f, "Wizard", iceprisonPortrait, "Decrease enemies speed, and increase the damage taken for a longer period of time");
         wizard.skillTreeThree[2] = new Skill("Freezing Breath", 2f, 4f, "Wizard", freezingbreathPortrait, "Attacks forwards, damaging enemies in range and decreases enemies speed");
         wizard.skillTreeThree[3] = new Skill("Ice Crash", icecrash, 0.5f, 5.5f, "Wizard", icecrashPortrait, "Shoot an icicle in front of you");
         wizard.skillTreeThree[4] = new Skill("Freezing Land", 5f, 7f, "Wizard", freezinglandPortrait, "Attacks forwards, damaging enemies in range, higher damage and range than 'Freezing Breath'");
@@ -437,7 +437,13 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Flame Inferno")
                 {
-                    GameObject FireTornado = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    Vector2 off = new Vector2(5, 1.8f);
+                    if (direction == Vector2.left)
+                    {
+                        off = new Vector2(-5, 1.8f);
+                    }
+
+                    GameObject FireTornado = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
 
                     attack projectile = FireTornado.GetComponent<attack>();
                     projectile.damage = 100;
@@ -451,10 +457,10 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Lightning Strike")
                 {
-                    Vector2 off = new Vector2(5, -0.3f);
+                    Vector2 off = new Vector2(5, 0.5f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, -0.3f);
+                        off = new Vector2(-5, 0.5f);
                     }
 
                     GameObject LightningStrike = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -465,10 +471,10 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Bolt")
                 {
-                    Vector2 off = new Vector2(5, 1f);
+                    Vector2 off = new Vector2(5, 2.1f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 1f);
+                        off = new Vector2(-5, 2.1f);
                     }
 
                     GameObject LightningBolt = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -493,15 +499,15 @@ public class ClassSystem : MonoBehaviour
                     ecage.life = 6.0f;
                     ecage.hitsEnemies = false;
                     ecage.isStun = true;
-                    ecage.stunTime = 2f;
+                    ecage.stunTime = 3.2f;
                     return;
                 }
                 else if (name_ == "Plasma Charge")
                 {
-                    Vector2 off = new Vector2(5, 2.7f);
+                    Vector2 off = new Vector2(5, 4f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 2.7f);
+                        off = new Vector2(-5, 4f);
                     }
 
                     GameObject PlasmaCharge = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -512,16 +518,17 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Pillar")
                 {
-                    Vector2 off = new Vector2(5, 0.2f);
+                    Vector2 off = new Vector2(5, 1.7f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 0.2f);
+                        off = new Vector2(-5, 1.7f);
                     }
 
                     GameObject LightningPillar = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack strike = LightningPillar.GetComponent<attack>();
-                    strike.damage = 10f;
+                    strike.damage = 46f;
                     strike.life = 150f;
+                    strike.isPillar = true;
                     strike.hitsEnemies = false;
                     return;
                 }
@@ -556,10 +563,10 @@ public class ClassSystem : MonoBehaviour
 
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
-                    Vector2 off = new Vector2(8, -0.2f);
+                    Vector2 off = new Vector2(8, 0.4f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-8, -0.2f);
+                        off = new Vector2(-8, 0.4f);
                     }
 
                     GameObject Prison = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);

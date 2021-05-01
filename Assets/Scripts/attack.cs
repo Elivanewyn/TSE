@@ -18,9 +18,12 @@ public class attack : MonoBehaviour
     public bool isPoison = false;
     public int poisonTime = 0;
     public float poisonDPS = 0;
+    public bool isPillar = false;
 
     public static float speedMultiplier = 1;
     public static float damageMultiplier = 1;
+
+    public bool enemyLeft = false;
 
     private void Awake()
     {
@@ -96,14 +99,27 @@ public class attack : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private IEnumerator OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.GetComponent<BoxCollider2D>().isTrigger);
-        if (other.gameObject.GetComponent<BoxCollider2D>().isTrigger)
+        if (!other.isTrigger)
         {
-            if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonfs")))
+            enemyLeft = false;
+            if (other.gameObject.CompareTag("skeletonfs"))
             {
-                //tried moveing the code to the enemy script. didnt work :(
+                SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
+                if(damage > 0) { enemy.TakeDamage(damage); }
+                if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
+                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime)); }
+
+                if (isPillar)
+                {
+                    while (!enemyLeft)
+                    {
+                        enemy.TakeDamage(damage);
+                        yield return new WaitForSecondsRealtime(0.75f);
+                    }
+                }
+
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
             {
@@ -122,8 +138,20 @@ public class attack : MonoBehaviour
 
 
 
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.isTrigger)
+        {
+            enemyLeft = true;
+        }
+    }
+
+
+
     void Update()
     {
+
     }
 
     IEnumerator wait(float life)

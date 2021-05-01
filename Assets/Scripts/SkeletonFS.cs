@@ -27,9 +27,7 @@ public class SkeletonFS : MonoBehaviour
     {
         if (other.gameObject.tag == "attack")
         {
-            attack triggerAttack = other.gameObject.GetComponent<attack>();
-            if (triggerAttack.isStun) { StartCoroutine(Stun(triggerAttack.stunTime)); }
-            if (triggerAttack.isFreeze) { StartCoroutine(Freeze(triggerAttack.freezeTime)); }
+            
         }
 
 

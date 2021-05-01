@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -297,7 +297,7 @@ public class PlayerCombat : MonoBehaviour
                 if (enemy.tag == "skeletonfs")
                 {
                     enemy.GetComponent<SkeletonFS>().TakeDamage(57);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
@@ -327,7 +327,7 @@ public class PlayerCombat : MonoBehaviour
                 if (enemy.tag == "skeletonfs")
                 {
                     enemy.GetComponent<SkeletonFS>().TakeDamage(57);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
@@ -436,22 +436,23 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AssassinCriticalStrike()
     {
-        //playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        //attack.damageMultiplier = 2;
-        //StartCoroutine(ACSCheck());
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        attack.damageMultiplier = 2;
+        ACSCheck();
         yield return new WaitForSeconds(15);
-        //StopCoroutine(ACSCheck());
-        //attack.damageMultiplier = 1;
-        //playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        attack.damageMultiplier = 1;
+        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
-    public IEnumerator ACSCheck()
+    public void ACSCheck()
     {
-        while(1==1)
+        bool stop = false;
+        while(!stop)
         {
             if(Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q))
             {
                 StartCoroutine(StopACS());
+                stop = true;
             }
         }
     }

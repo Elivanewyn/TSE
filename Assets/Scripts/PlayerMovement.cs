@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particleL;
     public GameObject particleR;
 
+    private static bool playerExists;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +54,17 @@ public class PlayerMovement : MonoBehaviour
         numberOfJumps = maxJumps;
         animator = GetComponent<Animator>();
         Time.timeScale = 1;
+
+        if (!playerExists)
+        {
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     // Update is called once per frame

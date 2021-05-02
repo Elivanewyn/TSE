@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb2D;
-    private int xDirection = 1;
+    public int xDirection = 1;
     private bool stopManualMove = false;
+
+    public LayerMask enemyLayer;
 
     public float speed = 7.0f;
     public float jumpForce = 6.0f;
@@ -35,6 +37,13 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumps = 1;
     int numberOfJumps;
 
+    public Animator animator;
+    public Animator particleAnimator;
+    private float delayToIdle = 0.0f;
+
+    public GameObject particleL;
+    public GameObject particleR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
+        animator = GetComponent<Animator>();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -51,11 +62,14 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         BetterJump();
         CheckGrounded();
+        animator.SetFloat("AirSpeedY", rb2D.velocity.y);
 
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            ChangeHealth(-1f);
-        }
+
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    ChangeHealth(-1f);
+        //}
+
         if(Input.GetKeyDown(KeyCode.F) && (inventory.enabled))
         {
             Time.timeScale = 1f;
@@ -76,16 +90,42 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float x2 = Input.GetAxis("Horizontal");
-        if(x2 > 0) { xDirection = 1; }
-        else if (x2 <0) { xDirection = -1; }
+        if(x2 > 0)
+        {
+            xDirection = 1;
+            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<PlayerCombat>().currentMelee = GetComponent<PlayerCombat>().meleeTransformR;
+        }
+        else if (x2 <0) 
+        {
+            xDirection = -1;
+            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<PlayerCombat>().currentMelee = GetComponent<PlayerCombat>().meleeTransformL;
+        }
         float moveBy = x * speed;
         if (!stopManualMove)
         {
             rb2D.velocity = new Vector2(moveBy, rb2D.velocity.y);
+        }
+
+
+        if (Mathf.Abs(x2) > Mathf.Epsilon)
+        {
+            delayToIdle = 0.05f;
+            animator.SetInteger("AnimState", 1);
+        }
+
+        else
+        {
+            delayToIdle -= Time.deltaTime;
+            if (delayToIdle < 0)
+                animator.SetInteger("AnimState", 0);
         }
     }
 
@@ -93,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
+            animator.SetTrigger("Jump");
+            animator.SetBool("Grounded", false);
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             numberOfJumps--;
         }
@@ -102,7 +144,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(groundChecker.position, checkGroundRadius, groundLayer);
 
-        if(collider != null) { isGrounded = true; numberOfJumps = maxJumps; }
+        if(collider != null) 
+        {
+            isGrounded = true;
+            numberOfJumps = maxJumps;
+            animator.SetBool("Grounded", isGrounded);
+        }
         else
         {
             if(isGrounded)
@@ -110,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 lastTimeGrounded = Time.time;
             }
             isGrounded = false;
+            animator.SetBool("Grounded", isGrounded);
         }
     }
 
@@ -149,12 +197,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
+            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-2);
         }
 
         if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
         {
+            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-1);
         }
@@ -167,11 +217,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonmage")
         {
+            //animator.SetTrigger("Hurt");
             ChangeHealth(-3);
         }
     }
 
 
+    public IEnumerator WizardFrostWave()
+    {
+        attack.damageMultiplier = 1.2f;
+        yield return new WaitForSeconds(2.5f);
+        attack.damageMultiplier = 1;
+    }
+    public IEnumerator WizardIcePrison()
+    {
+        attack.damageMultiplier = 1.5f;
+        yield return new WaitForSeconds(5f);
+        attack.damageMultiplier = 1;
+    }
 
 
     public IEnumerator WizardSpeedBoost()
@@ -183,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator WizardEvasionAmplification()
     {
         evadeChance += 10;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(25);
         evadeChance -= 10;
     }
 
@@ -196,9 +259,209 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightRoll()
     {
+        animator.SetTrigger("Roll");
         rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
         stopManualMove = true;
-        yield return new WaitForSeconds(0.4f);
+        evadeChance = 100;
+        yield return new WaitForSeconds(0.5f);
+        evadeChance = 0;
         stopManualMove = false;
     }
+
+
+    public IEnumerator KnightLunge()
+    {
+        animator.SetTrigger("Skill5");
+        rb2D.velocity = new Vector2(xDirection * 6f, rb2D.velocity.y);
+        stopManualMove = true;
+        evadeChance = 100;
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        yield return new WaitForSeconds(1f);
+        foreach(Collider2D enemy in hitEnemies)
+        {
+
+            if(enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if(enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator KnightDualSlice()
+    {
+        animator.SetTrigger("Skill6");
+        rb2D.velocity = new Vector2(xDirection * 10f, rb2D.velocity.y + 10f);
+        stopManualMove = true;
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        
+        yield return new WaitForSeconds(1f);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        yield return new WaitForSeconds(0.3f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator KnightLionsRoar()
+    {
+        evadeChance += 30;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 30;
+    }
+
+    public IEnumerator KnightBlessedTouch()
+    {
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+        ChangeHealth(0.5f);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+
+    public IEnumerator KnightWarriorsSpirit()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(10);
+        defence -= 0.1f;
+    }
+
+    public IEnumerator KnightSprint()
+    {
+        speed += 5;
+        yield return new WaitForSeconds(8);
+        speed -= 5;
+    }
+
+    public IEnumerator KnightSpringBoots()
+    {
+        jumpForce += 5;
+        yield return new WaitForSeconds(8);
+        jumpForce -= 5;
+    }
+
+    public IEnumerator AssassinSlide()
+    {
+        rb2D.velocity = new Vector2(xDirection * 16f, rb2D.velocity.y);
+        stopManualMove = true;
+        evadeChance = 100;
+        yield return new WaitForSeconds(1f);
+        evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator AssassinAssassinate()
+    {
+        if(!isGrounded)
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, -1 * 10);
+            stopManualMove = true;
+            evadeChance = 100;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
+            yield return new WaitForSeconds(0.85f);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(400);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
+            }
+            evadeChance = 0;
+            stopManualMove = false;
+        }
+    }
+
+
+    public IEnumerator RangerSwiftBird()
+    {
+        speed += 5;
+        fallMultiplier += 3;
+        yield return new WaitForSeconds(8);
+        speed -= 5;
+        fallMultiplier -= 3;
+    }
+
+    public IEnumerator RangerRangersSoul()
+    {
+        attack.speedMultiplier = 1.5f;
+        yield return new WaitForSeconds(8f);
+        attack.speedMultiplier = 1;
+    }
+
+
+    void AE_ResetRoll()
+    {
+        bool m_rolling;
+        m_rolling = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundChecker == null) { return; }
+        Gizmos.DrawWireSphere(groundChecker.position, checkGroundRadius);
+    }
+
 }

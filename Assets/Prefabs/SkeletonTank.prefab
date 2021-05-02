@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3232177238933907312}
   - component: {fileID: 3232177238933907279}
   - component: {fileID: 4880206641115017986}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: SkeletonTank
   m_TagString: skeletontank
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3232177238933907312
 BoxCollider2D:
   m_ObjectHideFlags: 0

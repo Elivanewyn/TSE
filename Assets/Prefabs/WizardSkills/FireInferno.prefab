@@ -92,7 +92,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0037347376, y: 0.043049708}
@@ -124,8 +124,16 @@ MonoBehaviour:
   damage: 4
   speed: 750
   hitsEnemies: 0
-  cooldown: 0
-  cost: 0
+  isBouncy: 0
+  isStun: 0
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  enemyLeft: 0
 --- !u!50 &8491531817521522514
 Rigidbody2D:
   serializedVersion: 4

@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class angelAttack : MonoBehaviour
 {
-    public int attackDamage = 2;
-    public int enrageAttackDamage = 4;
+    Rigidbody2D rigidbody2d;
+    private GameObject Player;
+    public float speed;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        Player = GameObject.Find("Player");
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Destroy(gameObject);
+    }
 }

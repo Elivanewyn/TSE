@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SkeletonFS : MonoBehaviour
 {
     private GameObject Player;
     public float speed;
-    public int maxHealth = 400;
+    public float maxHealth = 400;
     new Rigidbody2D rigidbody2D;
-    public int EXPValue = 5;
 
     void Start()
     {
@@ -29,21 +27,54 @@ public class SkeletonFS : MonoBehaviour
     {
         if (other.gameObject.tag == "attack")
         {
-            maxHealth -= 200;
+            
         }
 
 
         if (maxHealth == 0)
         {
-            
             Destroy(gameObject);
-            
         }
     }
 
 
     void Update()
     {
+        if (maxHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
+
+    public void TakeDamage(float damage)
+    {
+        maxHealth -= damage;
+    }
+
+    public IEnumerator Stun(float stunTime)
+    {
+        Debug.Log("test");
+        float temp = speed;
+        speed = 0;
+        yield return new WaitForSecondsRealtime(stunTime);
+        speed = temp;
+    }
+
+    public IEnumerator Freeze(float freezeTime)
+    {
+        float temp = speed;
+        speed *= 0.5f;
+        yield return new WaitForSecondsRealtime(freezeTime);
+        speed = temp;
+    }
+
+    public IEnumerator Poison(int poisonTime, float dps)
+    {
+        for(int i =0; i <= poisonTime; i++)
+        {
+            maxHealth -= dps;
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

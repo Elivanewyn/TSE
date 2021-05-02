@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1095083570855044994}
   - component: {fileID: 1095083570855045053}
   - component: {fileID: 6940186334268195259}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: SkeletonMage
-  m_TagString: skeletonfs
+  m_TagString: skeletonmage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1095083570855044994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,6 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mageFire: {fileID: 2405201991037912033, guid: df37a2e0bc2fb7e44a022cf09d4680d9,
     type: 3}
-  speed: 0
+  speed: 1
   maxHealth: 400
   fireRate: 3

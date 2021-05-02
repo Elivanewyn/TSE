@@ -92,10 +92,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0027728677, y: 0.018374681}
+  m_Offset: {x: -0.017144807, y: 0.030314684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.40064788, y: 0.4960469}
+  m_Size: {x: 0.4559245, y: 0.5199269}
   m_EdgeRadius: 0
 --- !u!114 &8021371409166469619
 MonoBehaviour:
@@ -124,18 +124,6 @@ MonoBehaviour:
   damage: 0
   speed: 0
   hitsEnemies: 0
-  isBouncy: 0
-  isStun: 0
-  stunTime: 0
-  isFreeze: 0
-  freezeTime: 0
-  isPoison: 0
-  poisonTime: 0
-  poisonDPS: 0
-  isPillar: 0
-  isBlind: 0
-  blindTime: 0
-  enemyLeft: 0
 --- !u!50 &8021371409166469618
 Rigidbody2D:
   serializedVersion: 4

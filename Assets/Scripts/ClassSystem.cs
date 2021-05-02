@@ -220,7 +220,7 @@ public class ClassSystem : MonoBehaviour
 
         assassin.portrait = assassinPortrait;
         assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
-        assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 6f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
+        assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 8f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
         assassin.basicSkills[2] = new Skill("Slash");
         assassin.basicSkills[3] = new Skill("Counter");
         foreach (Skill i in assassin.basicSkills)
@@ -537,7 +537,7 @@ public class ClassSystem : MonoBehaviour
                 if (name_ == "Frost Wave")
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    player.StartCoroutine(player.WizardFrostWave());
+                    player.StartCoroutine(player.WizardIcePrison());
 
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
@@ -805,22 +805,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Smoke Bomb")
                 {
-                    if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
-
-                    Vector2 off = new Vector2(8, 2.5f);
-                    if (direction == Vector2.left)
-                    {
-                        off = new Vector2(-8, 2.5f);
-                    }
-
-                    GameObject Bomb = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
-                    attack sbomb = Bomb.GetComponent<attack>();
-                    sbomb.damage = 0;
-                    sbomb.life = 4.0f;
-                    sbomb.hitsEnemies = false;
-                    sbomb.isBlind = true;
-                    sbomb.blindTime = 3.5f;
-                    return;
+                    //bomb
                 }
                 else if (name_ == "Invisibility")
                 {

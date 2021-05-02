@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ShopController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ShopController : MonoBehaviour
     public RawImage m_RawImage;
     public Texture[] textureArray;
     public TextMeshProUGUI potionText;
-    public int[] potionQuantityArray;
+    static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
 
     public TextMeshProUGUI coinText;
     public int coinQuantity;
@@ -25,6 +26,10 @@ public class ShopController : MonoBehaviour
 
     public TextMeshProUGUI WeaponLvThreeCost;
     public TextMeshProUGUI WeaponLvThreeText;
+
+    public GameObject ErrorText_One;
+    public GameObject ErrorText_Two;
+    private float timeStamp_Two;
 
     private float timeStamp;
     int x = 0;
@@ -75,11 +80,16 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
-    }
 
-    private void FixedUpdate()
-    {
-        coinText.text = $"{coinQuantity}";
+        if (ErrorText_One.activeSelf && timeStamp_Two <= Time.time)
+        {
+            ErrorText_One.SetActive(false);
+        }
+
+        if (ErrorText_Two.activeSelf && timeStamp_Two <= Time.time)
+        {
+            ErrorText_Two.SetActive(false);
+        }
     }
 
     void CloseShop()
@@ -186,11 +196,21 @@ public class ShopController : MonoBehaviour
 
     public void AlreadyOwned()
     {
-        //add a nofication of some sort to tell user they have already purchased this weapon
+        if (!ErrorText_One.activeSelf && !ErrorText_Two.activeSelf)
+        {
+            ErrorText_One.SetActive(true);
+            timeStamp_Two = (float)(Time.time + 3);
+            Debug.Log("1");
+        }
     }
 
     void NotEnoughMoney()
     {
-        //add a nofication of some sort to tell user they dont have enough money
+        if (!ErrorText_One.activeSelf && !ErrorText_Two.activeSelf)
+        {
+            ErrorText_Two.SetActive(true);
+            timeStamp_Two = (float)(Time.time + 3);
+            Debug.Log("2");
+        }
     }
 }

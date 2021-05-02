@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 9065324893219428366}
   - component: {fileID: 9065324893219428365}
   - component: {fileID: 9065324893219428465}
-  - component: {fileID: 9065324893219428467}
   - component: {fileID: 9065324893219428466}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Boss_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,21 +149,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9065324893219428467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9065324893219428364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2e718f5b3fd4744b36c53536d8b680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 500
-  isInvulnerable: 0
-  enraged: 0
 --- !u!114 &9065324893219428466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,5 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3f528a57ac5a546b4d38adee0c1f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 500
+  isInvulnerable: 0
+  enraged: 0
+  AngelAttack: {fileID: 1164461969167398219, guid: b8a0447c3fb94f24ab4f03a67051b612,
+    type: 3}
+  fireRate: 1
   attackDamage: 2
-  enrageAttackDamage: 4

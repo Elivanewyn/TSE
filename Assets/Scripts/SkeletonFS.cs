@@ -8,6 +8,7 @@ public class SkeletonFS : MonoBehaviour
     public float speed;
     public float maxHealth = 400;
     new Rigidbody2D rigidbody2D;
+    private bool isBlind = false;
 
     void Start()
     {
@@ -19,7 +20,15 @@ public class SkeletonFS : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+            if (!isBlind)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+            }
+            else
+            {
+                System.Random multiplier = new System.Random();
+                transform.position = Vector2.MoveTowards(transform.position, multiplier.Next(-2, 2) * Player.transform.position, speed * Time.deltaTime);
+            }
         }
     }
 
@@ -76,5 +85,12 @@ public class SkeletonFS : MonoBehaviour
             maxHealth -= dps;
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public IEnumerator Blind(float blindTime)
+    {
+        isBlind = true;
+        yield return new WaitForSeconds(blindTime);
+        isBlind = false;
     }
 }

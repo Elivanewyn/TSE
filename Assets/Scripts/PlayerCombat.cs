@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -84,6 +84,20 @@ public class PlayerCombat : MonoBehaviour
         {
             player.speed = 14f;
             player.jumpForce = 12f;
+        }
+
+
+        if (currentClass.stealth == 1)
+        {
+            SkeletonFS.sightRange = 7;
+        }
+        else if(currentClass.stealth == 2)
+        {
+            SkeletonFS.sightRange = 5;
+        }
+        else if (currentClass.stealth == 3)
+        {
+            SkeletonFS.sightRange = 3;
         }
 
     }
@@ -441,6 +455,29 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+    public IEnumerator AssassinCounter()
+    {
+        GetComponent<PlayerMovement>().evadeChance = 50;
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+        yield return new WaitForSeconds(3f);
+        GetComponent<PlayerMovement>().evadeChance = 0;
+        foreach (Collider2D enemy in hitEnemies)
+        {
+
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(25);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+    }
 
 
     public IEnumerator AssassinInvis()

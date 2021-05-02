@@ -100,8 +100,9 @@ public class ClassSystem : MonoBehaviour
 
     public Sprite counterSprite;
     public Sprite doublePortrait;
-    public Sprite walljumpPortrait;
+    public Sprite overhealthPortrait;
     public Sprite triplePortrait;
+    public GameObject shadowclone;
     public Sprite shadowclonePortrait;
 
 
@@ -222,7 +223,7 @@ public class ClassSystem : MonoBehaviour
         assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
         assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 6f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
         assassin.basicSkills[2] = new Skill("Slash", 6f, 8f, "Assassin", slashPortrait, "Launch forward, doing damage to enemies in front of you");
-        assassin.basicSkills[3] = new Skill("Counter");
+        assassin.basicSkills[3] = new Skill("Counter", 10f, 8f, "Assassin", counterSprite, "Have a high chance of dodging attacks, briefly. Hit enemies in-front of you after");
         foreach (Skill i in assassin.basicSkills)
         {
             i.isActive = true;
@@ -231,7 +232,7 @@ public class ClassSystem : MonoBehaviour
         assassin.skillTreeOne[0] = assassin.basicSkills[0];
         assassin.skillTreeOne[1] = new Skill("Poison Dart", poisondart, 4f, 2.5f, "Assassin", poisondartPortrait, "Fire a dart which inflicts the target with poison, which inflicts damage over time, but will leave the target at 1 hp");
         assassin.skillTreeOne[2] = new Skill("Slide", 3f, 4f, "Assassin", slidePortrait, "Slide along the floor, dodging any attacks");
-        assassin.skillTreeOne[3] = new Skill("Taunt");
+        assassin.skillTreeOne[3] = new Skill("Taunt", 4f, 3f, "Assassin", tauntPortrait, "Taunt enemies from afar");
         assassin.skillTreeOne[4] = new Skill("Assassinate", 15f, 15f, "Assassin", assassinatePortrait, "When in the air, damage enemies below you to do massive damage");
 
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
@@ -248,9 +249,9 @@ public class ClassSystem : MonoBehaviour
 
         assassin.skillTreeFour[0] = assassin.basicSkills[3];
         assassin.skillTreeFour[1] = new Skill("Double Jump", 2f, 8f, "Assassin", doublePortrait, "Gain the ability to double jump when activated");
-        assassin.skillTreeFour[2] = new Skill("Wall Jump", 2f, 8f, "Assassin", walljumpPortrait, "Gain the ability to wall jump when activated");
+        assassin.skillTreeFour[2] = new Skill("Over-Health", 25f, 10f, "Assassin", overhealthPortrait, "Increase your strength for a period of time");
         assassin.skillTreeFour[3] = new Skill("Triple Jump", 2f, 10f, "Assassin", triplePortrait, "Gain the ability to triple jump when activated");
-        assassin.skillTreeFour[4] = new Skill("Shadow Clone");
+        assassin.skillTreeFour[4] = new Skill("Shadow Clone", shadowclone, 20f, 15f, "Assassin", shadowclonePortrait, "Clone a skeleton foot-soilder to fight for you");
 
 
 
@@ -258,7 +259,7 @@ public class ClassSystem : MonoBehaviour
         ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait, "Shoot three arrows in the direction you're facing");
         ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait, "Mount your horse to move faster");
         ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait, "Increase your stealth, decrease your defence");
-        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 3f, 3f, "Ranger", firearrowPortrait, "Shoot a fire arrow in the direction you're facing");
+        ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 5.5f, 3f, "Ranger", firearrowPortrait, "Shoot a high damage arrow in the direction you're facing");
         foreach (Skill i in ranger.basicSkills)
         {
             i.isActive = true;
@@ -283,10 +284,10 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeThree[4] = new Skill("");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
-        ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 3f, 3.5f, "Ranger", icearrowPortrait, "Shoot an ice arrow in the direction you're facing");
-        ranger.skillTreeFour[2] = new Skill("Thunder Arrow", thunderarrow, 4f, 5f, "Ranger", thunderarrowPortrait, "Shoot a thunder arrow in the direction you're facing");
-        ranger.skillTreeFour[3] = new Skill("Shadow Arrow", shadowarrow, 3f, 6f, "Ranger", shadowarrowPortrait, "Shoot a shadow arrow in the direction you're facing");
-        ranger.skillTreeFour[4] = new Skill("Light Arrow", lightarrow, 20f, 15f, "Ranger", lightarrowPortrait, "Shoot a light arrow in the direction you're facing. Kills most enemies instantly");
+        ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 5f, 3.5f, "Ranger", icearrowPortrait, "Shoot an ice arrow in the direction you're facing, damaging and freezing enemies");
+        ranger.skillTreeFour[2] = new Skill("Thunder Arrow", thunderarrow, 5f, 5f, "Ranger", thunderarrowPortrait, "Shoot a high damage, fast moving arrow in the direction you're facing");
+        ranger.skillTreeFour[3] = new Skill("Shadow Arrow", shadowarrow, 3f, 6f, "Ranger", shadowarrowPortrait, "Shoot a low damage arrow in the direction you're facing and another high damage arrow behing you");
+        ranger.skillTreeFour[4] = new Skill("Light Arrow", lightarrow, 20f, 15f, "Ranger", lightarrowPortrait, "Shoot a slow, short range arrow in the direction you're facing. Kills most enemies instantly");
     }
 
 
@@ -786,9 +787,9 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Taunt")
                 {
-                    //decrease stealth
-                    //wait
-                    //increase stealth
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.AssassinTaunt());
+                    return;
                 }
                 else if (name_ == "Assassinate")
                 {
@@ -910,7 +911,8 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Counter")
                 {
-                    //will wait until populated
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.AssassinCounter());
                 }
                 else if (name_ == "Double Jump")
                 {
@@ -922,14 +924,10 @@ public class ClassSystem : MonoBehaviour
                     else { player.maxJumps = 1; }   //deactivate double jump skill
                     return;
                 }
-                else if (name_ == "Wall Jump")
+                else if (name_ == "Over-Health")
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    if(player.checkGroundRadius == 0.5f)
-                    {
-                        player.checkGroundRadius = 1;           //activate wall jump skill
-                    }
-                    else { player.checkGroundRadius = 0.5f; }   //deactivate wall jump skill
+                    player.StartCoroutine(player.AssassinOverHealth());
                     return;
                 }
                 else if (name_ == "Triple Jump")
@@ -944,7 +942,16 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Clone")
                 {
-                    //will wait for the level to be populated
+                    if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
+
+                    Vector2 off = new Vector2(5, 2.5f);
+                    if (direction == Vector2.left)
+                    {
+                        off = new Vector2(-5, 2.5f);
+                    }
+
+                    GameObject Clone = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    return;
                 }
 
             }
@@ -1043,12 +1050,12 @@ public class ClassSystem : MonoBehaviour
                     if(player.defence == 0.3f)
                     {
                         player.defence = 0.1f;
-                        //increase stealth
+                        SkeletonFS.sightRange = 3;
                     }
                     else
                     {
                         player.defence = 0.3f;
-                        //decrease stealth back
+                        SkeletonFS.sightRange = 5;
                     }
                     return;
                 }
@@ -1071,7 +1078,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = FArrow.GetComponent<attack>();
-                    projectile.damage = 0.5f;
+                    projectile.damage = 100f;
                     projectile.life = 2f;
                     projectile.speed = 850;
                     projectile.Launch(direction);
@@ -1082,9 +1089,12 @@ public class ClassSystem : MonoBehaviour
                     GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = IArrow.GetComponent<attack>();
-                    projectile.damage = 0.5f;
+                    projectile.damage = 50f;
                     projectile.life = 2f;
                     projectile.speed = 850;
+                    projectile.isFreeze = true;
+                    projectile.freezeTime = 5f;
+                    projectile.freezeWeakness = 1.5f;
                     projectile.Launch(direction);
                     return;
                 }
@@ -1093,21 +1103,26 @@ public class ClassSystem : MonoBehaviour
                     GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = TArrow.GetComponent<attack>();
-                    projectile.damage = 0.5f;
-                    projectile.life = 5f;
-                    projectile.speed = 850;
+                    projectile.damage = 150;
+                    projectile.life = 3f;
+                    projectile.speed = 1300;
                     projectile.Launch(direction);
                     return;
                 }
                 else if (name_ == "Shadow Arrow")
                 {
                     GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
-
+                    GameObject SArrowClone = Instantiate(prefab, rb2D.position + -direction * 3f, Quaternion.identity);
                     attack projectile = SArrow.GetComponent<attack>();
-                    projectile.damage = 0.5f;
+                    attack projectile2 = SArrowClone.GetComponent<attack>();
+                    projectile.damage = 50f;
+                    projectile2.damage = 200f;
                     projectile.life = 5f;
+                    projectile2.life = 5f;
                     projectile.speed = 850;
+                    projectile2.speed = 850;
                     projectile.Launch(direction);
+                    projectile2.Launch(-direction);
                     return;
                 }
                 else if (name_ == "Light Arrow")
@@ -1115,9 +1130,9 @@ public class ClassSystem : MonoBehaviour
                     GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = LArrow.GetComponent<attack>();
-                    projectile.damage = 10f;
-                    projectile.life = 3f;
-                    projectile.speed = 850;
+                    projectile.damage = 1000f;
+                    projectile.life = 1f;
+                    projectile.speed = 400;
                     projectile.Launch(direction);
                     return;
                 }

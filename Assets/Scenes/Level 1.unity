@@ -3170,6 +3170,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1083620131}
     m_Modifications:
+    - target: {fileID: 1402460784372338555, guid: 81b089c2fc0741a4d815d8b00acbd791,
+        type: 3}
+      propertyPath: m_Name
+      value: PauseController
+      objectReference: {fileID: 0}
     - target: {fileID: 1110800510839130630, guid: 81b089c2fc0741a4d815d8b00acbd791,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3274,11 +3279,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402460784372338555, guid: 81b089c2fc0741a4d815d8b00acbd791,
-        type: 3}
-      propertyPath: m_Name
-      value: PauseController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81b089c2fc0741a4d815d8b00acbd791, type: 3}
@@ -45373,6 +45373,16 @@ PrefabInstance:
       propertyPath: slidePortrait
       value: 
       objectReference: {fileID: 21300000, guid: 28371f9328a2e48b796541177eb24014,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: shadowclone
+      value: 
+      objectReference: {fileID: 261487958943942989, guid: 7e207bece38e73c44b30af8ee989fc68,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: overhealthPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

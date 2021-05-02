@@ -404,6 +404,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public IEnumerator AssassinTaunt()
+    {
+        SkeletonFS.sightRange = 20;
+        //mage
+        //tank
+        yield return new WaitForSeconds(5f);
+        SkeletonFS.sightRange = 3;
+        //mage
+        //tank
+    }
+
+
     public IEnumerator AssassinAssassinate()
     {
         if(!isGrounded)
@@ -473,6 +485,30 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         evadeChance = 0;
         stopManualMove = false;
+    }
+
+
+    public IEnumerator AssassinOverHealth()
+    {
+        maxHealth = 20;
+        ChangeHealth(10);
+        yield return new WaitForSeconds(10f);
+        maxHealth = 10;
+        if(currentHealth - 10 <= 0)
+        {
+            if(currentHealth - 5 <= 0)
+            {
+                ChangeHealth(0);
+            }
+            else
+            {
+                ChangeHealth(-5);
+            }
+        }
+        else
+        {
+            ChangeHealth(-10);
+        }
     }
 
 

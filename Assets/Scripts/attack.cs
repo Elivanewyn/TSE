@@ -79,6 +79,7 @@ public class attack : MonoBehaviour
                     if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
                     if(isWeakness) { enemy.StartCoroutine(enemy.Weakness(weaknessTime)); }
                     if(isSlowness) { enemy.StartCoroutine(enemy.Slowness(slownessTime, slownessEffect)); }
+                    if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
                     damage *= damageMultiplier;
                     enemy.TakeDamage(damage);
                 }

@@ -11,12 +11,29 @@ public class SkeletonFS : MonoBehaviour
     private bool isBlind = false;
     public static bool playerInvis = false;
 
+    static BoxCollider2D sightCollider;
+
+    public static float sightRange = 7;
+
     public float damageMultiplier = 1f;
+
+    float hasStealthChanged;
 
     void Start()
     {
+        hasStealthChanged = sightRange;
         rigidbody2D = GetComponent<Rigidbody2D>();
         Player = GameObject.Find("Player");
+        BoxCollider2D[] bc2d = GetComponents<BoxCollider2D>();
+        if(bc2d[0].isTrigger)
+        {
+            sightCollider = bc2d[0];
+        }
+        else
+        {
+            sightCollider = bc2d[1];
+        }
+        sightCollider.size = new Vector2(sightRange, 2f);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -52,6 +69,12 @@ public class SkeletonFS : MonoBehaviour
 
     void Update()
     {
+        if(hasStealthChanged != sightRange)
+        {
+            sightCollider.size = new Vector2(sightRange, 2f);
+        }
+        hasStealthChanged = sightRange;
+
         if (maxHealth <= 0)
         {
             Destroy(gameObject);
@@ -65,6 +88,8 @@ public class SkeletonFS : MonoBehaviour
         maxHealth -= damage;
     }
 
+
+
     public IEnumerator Stun(float stunTime)
     {
         Debug.Log("test");
@@ -76,7 +101,7 @@ public class SkeletonFS : MonoBehaviour
 
     public IEnumerator Freeze(float freezeTime, float freezeWeakness)
     {
-        damageMultiplier *= freezeWeakness;
+        damageMultiplier = freezeWeakness;
         float temp = speed;
         speed *= 0.5f;
         yield return new WaitForSecondsRealtime(freezeTime);

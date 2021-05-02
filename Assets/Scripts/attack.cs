@@ -19,6 +19,8 @@ public class attack : MonoBehaviour
     public int poisonTime = 0;
     public float poisonDPS = 0;
     public bool isPillar = false;
+    public bool isBlind = false;
+    public float blindTime = 0f;
 
     public static float speedMultiplier = 1;
     public static float damageMultiplier = 1;
@@ -110,6 +112,7 @@ public class attack : MonoBehaviour
                 if(damage > 0) { enemy.TakeDamage(damage); }
                 if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
                 if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime)); }
+                if(isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }
 
                 if (isPillar)
                 {

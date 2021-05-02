@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -37,6 +37,9 @@ public class PlayerCombat : MonoBehaviour
 
     private int tripleSwipeNumber = 0;
     private float timeSinceTripleSwipe = 0.0f;
+
+
+    bool start = false;
 
 
     // Start is called before the first frame update
@@ -102,6 +105,14 @@ public class PlayerCombat : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
+
+            if(start)
+            {
+                StopCoroutine(AssassinCriticalStrike());
+                StartCoroutine(StopACS());
+                start = false;
+            }
+
             cooldownTime1 = Time.time + cooldown1;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill1.cost));
@@ -109,6 +120,13 @@ public class PlayerCombat : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
+            if (start)
+            {
+                StopCoroutine(AssassinCriticalStrike());
+                StartCoroutine(StopACS());
+                start = false;
+            }
+
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill2.cost));
@@ -125,6 +143,8 @@ public class PlayerCombat : MonoBehaviour
             ChangeMana(0.5f);
             nextRecharge = Time.time + rechargeRate;
         }
+
+
     }
 
     public void ChangeMana(float amount)
@@ -438,24 +458,13 @@ public class PlayerCombat : MonoBehaviour
     {
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         attack.damageMultiplier = 2;
-        ACSCheck();
+        start = true;
         yield return new WaitForSeconds(15);
+        start = false;
         attack.damageMultiplier = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
-    public void ACSCheck()
-    {
-        bool stop = false;
-        while(!stop)
-        {
-            if(Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q))
-            {
-                StartCoroutine(StopACS());
-                stop = true;
-            }
-        }
-    }
 
     public IEnumerator StopACS()
     {

@@ -221,7 +221,7 @@ public class ClassSystem : MonoBehaviour
         assassin.portrait = assassinPortrait;
         assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
         assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 6f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
-        assassin.basicSkills[2] = new Skill("Slash");
+        assassin.basicSkills[2] = new Skill("Slash", 6f, 8f, "Assassin", slashPortrait, "Launch forward, doing damage to enemies in front of you");
         assassin.basicSkills[3] = new Skill("Counter");
         foreach (Skill i in assassin.basicSkills)
         {
@@ -237,8 +237,8 @@ public class ClassSystem : MonoBehaviour
         assassin.skillTreeTwo[0] = assassin.basicSkills[1];
         assassin.skillTreeTwo[1] = new Skill("Invisibility", 20f, 9.5f, "Assassin", invisPortrait, "Go invisible for a period of time. Enemies won't attack, but neither can you");
         assassin.skillTreeTwo[2] = new Skill("Critical Strike", 22f, 10f, "Assassin",criticalPortrait, "Invisibility but when you attack, your next attack will do double damage and will take you out of invisibility");
-        assassin.skillTreeTwo[3] = new Skill("Shadow Sneak");
-        assassin.skillTreeTwo[4] = new Skill("Super Stealth");
+        assassin.skillTreeTwo[3] = new Skill("Shadow Sneak", 5f, 8.5f, "Assassin", shadowPortrait, "Teleport in a given direction");
+        assassin.skillTreeTwo[4] = new Skill("Super Stealth", 15f, 14f, "Assassin", superstealthPortrait, "Increase your stealth further, making it so enemies don't see you for a limited time");
 
         assassin.skillTreeThree[0] = assassin.basicSkills[2];
         assassin.skillTreeThree[1] = new Skill("Weakness", weakness, 10f, 7f, "Assassin", weaknessPortrait, "Throw a potion of weakness at the enemy, which increases the damage the enemy will recieve");
@@ -536,9 +536,6 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Frost Wave")
                 {
-                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    player.StartCoroutine(player.WizardFrostWave());
-
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, -0.2f);
@@ -554,13 +551,11 @@ public class ClassSystem : MonoBehaviour
                     fwave.hitsEnemies = false;
                     fwave.isFreeze = true;
                     fwave.freezeTime = 2.5f;
+                    fwave.freezeWeakness = 1.2f;
                     return;
                 }
                 else if (name_ == "Ice Prison")
                 {
-                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
-                    player.StartCoroutine(player.WizardIcePrison());
-
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, 0.4f);
@@ -576,6 +571,7 @@ public class ClassSystem : MonoBehaviour
                     iprison.hitsEnemies = false;
                     iprison.isFreeze = true;
                     iprison.freezeTime = 5f;
+                    iprison.freezeWeakness = 1.5f;
                     return;
                 }
                 else if (name_ == "Freezing Breath")
@@ -836,18 +832,24 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Sneak")
                 {
-                    //will wait until level is populated
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.AssassinShadowSneak());
+                    return;
                 }
                 else if (name_ == "Super Stealth")
                 {
-                    //will wait for stealth stat to be done
+                    PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
+                    player.StartCoroutine(player.AssassinSuperStealth());
+                    return;
                 }
                 
 
 
                 if (name_ == "Slash")
                 {
-                    //will wait until populated
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.AssassinSlash());
+                    return;
                 }
                 else if (name_ == "Weakness")
                 {
@@ -857,6 +859,8 @@ public class ClassSystem : MonoBehaviour
                     projectile.damage = 0f;
                     projectile.life = 1000f;
                     projectile.speed = 1200;
+                    projectile.isWeakness = true;
+                    projectile.weaknessTime = 5f;
                     projectile.Throw(direction);
                     return;
                 }
@@ -868,6 +872,9 @@ public class ClassSystem : MonoBehaviour
                     projectile.damage = 0f;
                     projectile.life = 1000f;
                     projectile.speed = 1200;
+                    projectile.isPoison = true;
+                    projectile.poisonTime = 8;
+                    projectile.poisonDPS = 40;
                     projectile.Throw(direction);
                     return;
                 }
@@ -879,6 +886,9 @@ public class ClassSystem : MonoBehaviour
                     projectile.damage = 0f;
                     projectile.life = 1000f;
                     projectile.speed = 500;
+                    projectile.isSlowness = true;
+                    projectile.slownessTime = 8f;
+                    projectile.slownessEffect = 0.5f;
                     projectile.Throw(direction);
                     return;
                 }
@@ -890,6 +900,9 @@ public class ClassSystem : MonoBehaviour
                     projectile.damage = 0f;
                     projectile.life = 1000f;
                     projectile.speed = 600;
+                    projectile.isSlowness = true;
+                    projectile.slownessTime = 5f;
+                    projectile.slownessEffect = 0f;
                     projectile.Throw(direction);
                     return;
                 }

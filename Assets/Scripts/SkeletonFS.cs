@@ -9,6 +9,9 @@ public class SkeletonFS : MonoBehaviour
     public float maxHealth = 400;
     new Rigidbody2D rigidbody2D;
     private bool isBlind = false;
+    public static bool playerInvis = false;
+
+    public float damageMultiplier = 1f;
 
     void Start()
     {
@@ -20,14 +23,14 @@ public class SkeletonFS : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (!isBlind)
+            if (!isBlind && !playerInvis)
             {
                 transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
             }
-            else
+            else if (isBlind)
             {
                 System.Random multiplier = new System.Random();
-                transform.position = Vector2.MoveTowards(transform.position, multiplier.Next(-2, 2) * Player.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, multiplier.Next(-4, 4) * Player.transform.position, speed * Time.deltaTime);
             }
         }
     }
@@ -58,6 +61,7 @@ public class SkeletonFS : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        damage *= damageMultiplier;
         maxHealth -= damage;
     }
 
@@ -70,12 +74,14 @@ public class SkeletonFS : MonoBehaviour
         speed = temp;
     }
 
-    public IEnumerator Freeze(float freezeTime)
+    public IEnumerator Freeze(float freezeTime, float freezeWeakness)
     {
+        damageMultiplier *= freezeWeakness;
         float temp = speed;
         speed *= 0.5f;
         yield return new WaitForSecondsRealtime(freezeTime);
         speed = temp;
+        damageMultiplier = 1f;
     }
 
     public IEnumerator Poison(int poisonTime, float dps)
@@ -92,5 +98,20 @@ public class SkeletonFS : MonoBehaviour
         isBlind = true;
         yield return new WaitForSeconds(blindTime);
         isBlind = false;
+    }
+
+    public IEnumerator Weakness(float weakTime)
+    {
+        damageMultiplier *= 1.5f;
+        yield return new WaitForSeconds(weakTime);
+        damageMultiplier = 1f;
+    }
+
+    public IEnumerator Slowness(float slownessTime, float slownessEffect)
+    {
+        float temp = speed;
+        speed *= slownessEffect;
+        yield return new WaitForSeconds(slownessTime);
+        speed = temp;
     }
 }

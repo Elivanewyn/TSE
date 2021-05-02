@@ -10,17 +10,32 @@ public class attack : MonoBehaviour
     public float speed;
     public bool hitsEnemies = true;
 
+
     public int isBouncy = 0;
+
     public bool isStun = false;
     public float stunTime = 0f;
+
     public bool isFreeze = false;
     public float freezeTime = 0f;
+    public float freezeWeakness = 1f;
+
     public bool isPoison = false;
     public int poisonTime = 0;
     public float poisonDPS = 0;
+
     public bool isPillar = false;
+
     public bool isBlind = false;
     public float blindTime = 0f;
+
+    public bool isWeakness = false;
+    public float weaknessTime = 0f;
+
+    public bool isSlowness = false;
+    public float slownessTime = 0f;
+    public float slownessEffect = 1f;
+
 
     public static float speedMultiplier = 1;
     public static float damageMultiplier = 1;
@@ -62,6 +77,8 @@ public class attack : MonoBehaviour
                 {
                     SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
                     if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
+                    if(isWeakness) { enemy.StartCoroutine(enemy.Weakness(weaknessTime)); }
+                    if(isSlowness) { enemy.StartCoroutine(enemy.Slowness(slownessTime, slownessEffect)); }
                     damage *= damageMultiplier;
                     enemy.TakeDamage(damage);
                 }
@@ -109,9 +126,8 @@ public class attack : MonoBehaviour
             if (other.gameObject.CompareTag("skeletonfs"))
             {
                 SkeletonFS enemy = other.gameObject.GetComponent<SkeletonFS>();
-                if(damage > 0) { enemy.TakeDamage(damage); }
                 if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
-                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime)); }
+                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
                 if(isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }
 
                 if (isPillar)
@@ -123,6 +139,7 @@ public class attack : MonoBehaviour
                     }
                 }
 
+                if (damage > 0) { enemy.TakeDamage(damage); }
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
             {

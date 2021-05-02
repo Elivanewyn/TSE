@@ -235,18 +235,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public IEnumerator WizardFrostWave()
-    {
-        attack.damageMultiplier = 1.2f;
-        yield return new WaitForSeconds(2.5f);
-        attack.damageMultiplier = 1;
-    }
-    public IEnumerator WizardIcePrison()
-    {
-        attack.damageMultiplier = 1.5f;
-        yield return new WaitForSeconds(5f);
-        attack.damageMultiplier = 1;
-    }
 
 
     public IEnumerator WizardSpeedBoost()
@@ -444,6 +432,47 @@ public class PlayerMovement : MonoBehaviour
             evadeChance = 0;
             stopManualMove = false;
         }
+    }
+
+    public IEnumerator AssassinSlash()
+    {
+        rb2D.velocity = new Vector2(xDirection * 25f, rb2D.velocity.y);
+        stopManualMove = true;
+        evadeChance = 100;
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        yield return new WaitForSeconds(1.2f);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+
+            if (enemy.tag == "skeletonfs")
+            {
+                enemy.GetComponent<SkeletonFS>().TakeDamage(180);
+            }
+            if (enemy.tag == "skeletonmage")
+            {
+                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+            }
+            if (enemy.tag == "skeletontank")
+            {
+                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+            }
+        }
+        evadeChance = 0;
+        stopManualMove = false;
+    }
+
+
+    public IEnumerator AssassinShadowSneak()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        rb2D.velocity = 50 * GetComponent<PlayerCombat>().direction;
+        stopManualMove = true;
+        evadeChance = 100;
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<SpriteRenderer>().enabled = true;
+        evadeChance = 0;
+        stopManualMove = false;
     }
 
 

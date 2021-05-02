@@ -25,7 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
     Rigidbody2D rb2D;
 
-    Vector2 direction;
+    public Vector2 direction;
 
     public SpriteRenderer playerSprite;
     public Transform meleeTransformR;
@@ -251,18 +251,18 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemy.tag == "skeletonfs")
                 {
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
                     enemy.GetComponent<SkeletonFS>().TakeDamage(40);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
+                    //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
                     //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                    //enemy.GetComponent<SkeletonMage>().Freeze(2f);
                 }
                 if (enemy.tag == "skeletontank")
                 {
+                    //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
                     //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                    //enemy.GetComponent<SkeletonTank>().Freeze(2f);
                 }
             }
             player.particleR.GetComponent<SpriteRenderer>().enabled = false;
@@ -281,8 +281,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemy.tag == "skeletonfs")
                 {
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
                     enemy.GetComponent<SkeletonFS>().TakeDamage(40);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
@@ -316,8 +316,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemy.tag == "skeletonfs")
                 {
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
                     enemy.GetComponent<SkeletonFS>().TakeDamage(57);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
@@ -346,8 +346,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (enemy.tag == "skeletonfs")
                 {
+                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
                     enemy.GetComponent<SkeletonFS>().TakeDamage(57);
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f));
                 }
                 if (enemy.tag == "skeletonmage")
                 {
@@ -447,34 +447,60 @@ public class PlayerCombat : MonoBehaviour
     {
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;
+        SkeletonFS.playerInvis = true;
+        //SkeletonMage.playerInvis = true;
+        //SkeletonTank.playerInvis = true;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         yield return new WaitForSeconds(15);
         cooldownTime1 = 0;
         cooldownTime2 = 0;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        SkeletonFS.playerInvis = false;
+        //SkeletonMage.playerInvis = false;
+        //SkeletonTank.playerInvis = false;
     }
 
     public IEnumerator AssassinCriticalStrike()
     {
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        SkeletonFS.playerInvis = true;
+        //SkeletonMage.playerInvis = true;
+        //SkeletonTank.playerInvis = true;
         attack.damageMultiplier = 2;
         start = true;
         yield return new WaitForSeconds(15);
         start = false;
         attack.damageMultiplier = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+        SkeletonFS.playerInvis = false;
+        //SkeletonMage.playerInvis = false;
+        //SkeletonTank.playerInvis = false;
     }
-
-
     public IEnumerator StopACS()
     {
         if (attack.damageMultiplier == 2)
         {
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-            yield return new WaitForSeconds(1f);
+            SkeletonFS.playerInvis = false;
+            //SkeletonMage.playerInvis = false;
+            //SkeletonTank.playerInvis = false;
+            yield return new WaitForSeconds(2f);
             attack.damageMultiplier = 1;
         }
     }
+
+
+    public IEnumerator AssassinSuperStealth()
+    {
+        SkeletonFS.playerInvis = true;
+        //SkeletonMage.playerInvis = true;
+        //SkeletonTank.playerInvis = true;
+        yield return new WaitForSeconds(5f);
+        SkeletonFS.playerInvis = false;
+        //SkeletonMage.playerInvis = false;
+        //SkeletonTank.playerInvis = false;
+    }
+
 
 
     public IEnumerator RangerArrowFlurry(GameObject prefab)

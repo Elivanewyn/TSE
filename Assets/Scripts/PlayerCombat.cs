@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -92,14 +92,20 @@ public class PlayerCombat : MonoBehaviour
         if (currentClass.stealth == 1)
         {
             SkeletonFS.sightRange = 7;
+            SkeletonMage.sightRange = 6;
+            SkeletonTank.sightRange = 5;
         }
         else if(currentClass.stealth == 2)
         {
             SkeletonFS.sightRange = 5;
+            SkeletonMage.sightRange = 5;
+            SkeletonTank.sightRange = 4;
         }
         else if (currentClass.stealth == 3)
         {
             SkeletonFS.sightRange = 3;
+            SkeletonMage.sightRange = 3;
+            SkeletonTank.sightRange = 3;
         }
 
     }

@@ -18,10 +18,7 @@ public class SkeletonFS : MonoBehaviour
     public float damageMultiplier = 1f;
 
     float hasStealthChanged;
-    // animator 
-    public Animator animator;
-    // damage number
-    public GameObject floatingPoints;
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -80,39 +77,21 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth <= 0)
         {
-            Die();
+            Destroy(gameObject);
         }
     }
 
 
     public void TakeDamage(float damage)
     {
-        // play hurt animation
-        animator.SetTrigger("Hurt");
-        // apply damage
+        //yo Jackie
         damage *= damageMultiplier;
-        GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
-        points.transform.GetChild(0).GetComponent<TextMesh>().text = "40";
         maxHealth -= damage;
-        // death
-        if (maxHealth <= 0)
-        {
-            Die();
-        }
+        //gonna make spaget
     }
 
-    void Die()
-    {
-        Debug.Log("Enemy died!");
-        //die animation
-        animator.SetBool("isDead", true);
-        Destroy(gameObject);
-        // disable enemy
-        this.enabled = false;
 
-    }
 
-    
     public IEnumerator Stun(float stunTime)
     {
         Debug.Log("test");
@@ -136,7 +115,10 @@ public class SkeletonFS : MonoBehaviour
     {
         for(int i =0; i <= poisonTime; i++)
         {
-            maxHealth -= dps;
+            if (maxHealth - dps > 0)
+            {
+                maxHealth -= dps;
+            }
             yield return new WaitForSeconds(1f);
         }
     }

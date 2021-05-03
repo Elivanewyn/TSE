@@ -277,21 +277,42 @@ public class PlayerMovement : MonoBehaviour
         evadeChance = 100;
         PlayerCombat pc = GetComponent<PlayerCombat>();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
-        yield return new WaitForSeconds(1f);
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
-
-            if(enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(75);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
-            if(enemy.tag == "skeletonmage")
+        }
+        yield return new WaitForSeconds(1f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (!enemy.isTrigger)
             {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         evadeChance = 0;
@@ -310,34 +331,40 @@ public class PlayerMovement : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
-            }
-            if (enemy.tag == "skeletonmage")
-            {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         yield return new WaitForSeconds(0.3f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies2)
         {
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
-            }
-            if (enemy.tag == "skeletonmage")
-            {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         stopManualMove = false;
@@ -371,6 +398,23 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
+    public IEnumerator KnightMagicArmour()
+    {
+        float temp = speed;
+        speed = 4;
+        evadeChance += 70;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 70;
+        speed = temp;
+    }
+
+    public IEnumerator KnightAdrenlineRush()
+    {
+        evadeChance += 65;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 65;
+    }
+
 
     public IEnumerator KnightWarriorsSpirit()
     {
@@ -378,6 +422,31 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(10);
         defence -= 0.1f;
     }
+
+
+    public IEnumerator KnightMothersPrayer()
+    {
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        stopManualMove = true;
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        stopManualMove = false;
+    }
+
+    public IEnumerator KnightKnightsSpirit()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(20);
+        defence -= 0.1f;
+    }
+
 
     public IEnumerator KnightSprint()
     {
@@ -451,22 +520,24 @@ public class PlayerMovement : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, -1 * 10);
             stopManualMove = true;
             evadeChance = 100;
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
             yield return new WaitForSeconds(0.85f);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(400);
-                }
-                if (enemy.tag == "skeletonmage")
-                {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(400);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
             }
             evadeChance = 0;
@@ -481,21 +552,42 @@ public class PlayerMovement : MonoBehaviour
         evadeChance = 100;
         PlayerCombat pc = GetComponent<PlayerCombat>();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
-        yield return new WaitForSeconds(1.2f);
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(180);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(75);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
-            if (enemy.tag == "skeletonmage")
+        }
+        yield return new WaitForSeconds(1.2f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (!enemy.isTrigger)
             {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(180);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         evadeChance = 0;
@@ -555,6 +647,24 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(8f);
         attack.speedMultiplier = 1;
     }
+
+    public IEnumerator RangerSharpenedBlade()
+    {
+        attack.damageMultiplier = 1.5f;
+        yield return new WaitForSeconds(8f);
+        attack.damageMultiplier = 1;
+    }
+
+    public IEnumerator RangersHerbalRemedy()
+    {
+        while(currentHealth != maxHealth)
+        {
+            ChangeHealth(1f);
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+
 
 
     void AE_ResetRoll()

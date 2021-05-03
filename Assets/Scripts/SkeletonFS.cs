@@ -84,8 +84,10 @@ public class SkeletonFS : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //yo Jackie
         damage *= damageMultiplier;
         maxHealth -= damage;
+        //gonna make spaget
     }
 
 

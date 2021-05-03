@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -171,8 +171,9 @@ public class PlayerCombat : MonoBehaviour
     {
         // Play attack animation
         animator.SetTrigger("PrimaryAttack");
+        //yo
         // Detect enemies
-
+        //sup
         // Apply damage
     }
     public void ChangeMana(float amount)
@@ -214,21 +215,42 @@ public class PlayerCombat : MonoBehaviour
             meleeRange = 1.5f;
             player.particleR.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
             }
             player.particleR.GetComponent<SpriteRenderer>().enabled = false;
@@ -239,21 +261,42 @@ public class PlayerCombat : MonoBehaviour
             meleeRange = 1.5f;
             player.particleL.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
             }
             player.particleL.GetComponent<SpriteRenderer>().enabled = false;
@@ -273,24 +316,48 @@ public class PlayerCombat : MonoBehaviour
             player.particleR.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
             player.particleR.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
             }
             player.particleR.GetComponent<SpriteRenderer>().enabled = false;
@@ -303,22 +370,48 @@ public class PlayerCombat : MonoBehaviour
             player.particleL.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
             player.particleL.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    }
                 }
             }
             player.particleL.GetComponent<SpriteRenderer>().enabled = false;
@@ -338,24 +431,48 @@ public class PlayerCombat : MonoBehaviour
             player.particleR.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
             player.particleR.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                    //enemy.GetComponent<SkeletonMage>().Freeze(2f);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                    //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                    }
                 }
             }
             player.particleR.GetComponent<SpriteRenderer>().enabled = false;
@@ -368,22 +485,48 @@ public class PlayerCombat : MonoBehaviour
             player.particleL.GetComponent<SpriteRenderer>().color = new Color(0, 0.2f, 1, 1);
             player.particleL.GetComponent<SpriteRenderer>().enabled = true;
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
-            yield return new WaitForSeconds(1.25f);
             foreach (Collider2D enemy in hitEnemies)
             {
-
-                if (enemy.tag == "skeletonfs")
+                if (!enemy.isTrigger)
                 {
-                    enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
-                    enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                    }
                 }
-                if (enemy.tag == "skeletonmage")
+            }
+            yield return new WaitForSeconds(1.25f);
+            Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies2)
+            {
+                if (!enemy.isTrigger)
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                }
-                if (enemy.tag == "skeletontank")
-                {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    if (enemy.tag == "skeletonfs")
+                    {
+                        enemy.GetComponent<SkeletonFS>().StartCoroutine(enemy.GetComponent<SkeletonFS>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonFS>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "skeletonmage")
+                    {
+                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                    }
+                    if (enemy.tag == "skeletontank")
+                    {
+                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                    }
                 }
             }
             player.particleL.GetComponent<SpriteRenderer>().enabled = false;
@@ -410,18 +553,20 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(50 * tripleSwipeNumber);
-            }
-            if (enemy.tag == "skeletonmage")
-            {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(50 * tripleSwipeNumber);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         timeSinceTripleSwipe = 0.0f;
@@ -447,22 +592,43 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().evadeChance = 100;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(1.5f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
-            if (enemy.tag == "skeletonmage")
+        }
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (!enemy.isTrigger)
             {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(50);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
         GetComponent<PlayerMovement>().animator.SetTrigger("Attack" + 1);
@@ -474,21 +640,42 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().evadeChance = 50;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(3f);
+        Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            if (enemy.tag == "skeletonfs")
+            if (!enemy.isTrigger)
             {
-                enemy.GetComponent<SkeletonFS>().TakeDamage(25);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(25);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
-            if (enemy.tag == "skeletonmage")
+        }
+        foreach (Collider2D enemy in hitEnemies2)
+        {
+            if (!enemy.isTrigger)
             {
-                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-            }
-            if (enemy.tag == "skeletontank")
-            {
-                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(25);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                }
             }
         }
     }

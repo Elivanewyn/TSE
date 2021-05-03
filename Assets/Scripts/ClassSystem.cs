@@ -655,18 +655,20 @@ public class ClassSystem : MonoBehaviour
                     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange + 1.5f, pc.enemyLayer);
                     foreach (Collider2D enemy in hitEnemies)
                     {
-
-                        if (enemy.tag == "skeletonfs")
+                        if (!enemy.isTrigger)
                         {
-                            enemy.GetComponent<SkeletonFS>().TakeDamage(200);
-                        }
-                        if (enemy.tag == "skeletonmage")
-                        {
-                            //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        }
-                        if (enemy.tag == "skeletontank")
-                        {
-                            //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                            if (enemy.tag == "skeletonfs")
+                            {
+                                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                            }
+                            if (enemy.tag == "skeletonmage")
+                            {
+                                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                            }
+                            if (enemy.tag == "skeletontank")
+                            {
+                                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                            }
                         }
                     }
                     return;

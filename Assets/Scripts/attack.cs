@@ -140,11 +140,7 @@ public class attack : MonoBehaviour
                     }
                 }
 
-                if (damage > 0) 
-                {
-                    damage *= damageMultiplier;
-                    enemy.TakeDamage(damage);
-                }
+                if (damage > 0) { enemy.TakeDamage(damage); }
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
             {

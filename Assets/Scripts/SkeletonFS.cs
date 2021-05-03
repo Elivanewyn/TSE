@@ -18,10 +18,12 @@ public class SkeletonFS : MonoBehaviour
     public float damageMultiplier = 1f;
 
     float hasStealthChanged;
+    
     // animator 
     public Animator animator;
     // damage number
     public GameObject floatingPoints;
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -57,12 +59,6 @@ public class SkeletonFS : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "attack")
-        {
-            
-        }
-
-
         if (maxHealth == 0)
         {
             Destroy(gameObject);
@@ -112,10 +108,10 @@ public class SkeletonFS : MonoBehaviour
 
     }
 
-    
+
+
     public IEnumerator Stun(float stunTime)
     {
-        Debug.Log("test");
         float temp = speed;
         speed = 0;
         yield return new WaitForSecondsRealtime(stunTime);
@@ -136,7 +132,10 @@ public class SkeletonFS : MonoBehaviour
     {
         for(int i =0; i <= poisonTime; i++)
         {
-            maxHealth -= dps;
+            if (maxHealth - dps > 0)
+            {
+                maxHealth -= dps;
+            }
             yield return new WaitForSeconds(1f);
         }
     }

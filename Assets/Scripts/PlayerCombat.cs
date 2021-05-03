@@ -41,6 +41,8 @@ public class PlayerCombat : MonoBehaviour
 
     bool start = false;
 
+    // PrimaryAttack animator
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -112,7 +114,11 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
-
+        // primary mouse button
+        if (Input.GetMouseButtonDown(0))
+        {
+            KnightAttack();
+        }
 
         ChangeCooldown();
 
@@ -161,6 +167,14 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+    void KnightAttack()
+    {
+        // Play attack animation
+        animator.SetTrigger("PrimaryAttack");
+        // Detect enemies
+
+        // Apply damage
+    }
     public void ChangeMana(float amount)
     {
         currentMana = Mathf.Clamp(currentMana + amount, 0f, maxMana);

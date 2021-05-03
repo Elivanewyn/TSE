@@ -63,10 +63,14 @@ public class ClassSystem : MonoBehaviour
     public Sprite blockPortrait;
     public Sprite parryPortrait;
     public Sprite wsPortrait;
+    public Sprite mpPortrait;
+    public Sprite ksPortrait;
 
     public Sprite rollPortrait;
     public Sprite lionsPortrait;
     public Sprite btPortrait;
+    public Sprite maPortrait;
+    public Sprite adrenlinePortrait;
 
     public Sprite sprintPortrait;
     public Sprite springbootsPortrait;
@@ -122,12 +126,15 @@ public class ClassSystem : MonoBehaviour
 
     public Sprite saddleupPortrait;
     public Sprite chargePortrait;
+    public Sprite horseshoesPortrait;
     public Sprite flamechargePortrait;
     public Sprite mountsproPortrait;
 
     public Sprite hoodPortrait;
     public Sprite swiftPortrait;
     public Sprite soulPortrait;
+    public Sprite sharpenedPortrait;
+    public Sprite herbalPortrait;
 
     public GameObject firearrow;
     public Sprite firearrowPortrait;
@@ -205,14 +212,14 @@ public class ClassSystem : MonoBehaviour
         knight.skillTreeTwo[0] = knight.basicSkills[1];
         knight.skillTreeTwo[1] = new Skill("Parry", 6f, 5f, "Knight", parryPortrait, "Block and counters any incoming attacks for a second");
         knight.skillTreeTwo[2] = new Skill("Warrior's Spirit", 18f, 8.5f, "Knight", wsPortrait, "Raise your defence for a short period of time");
-        knight.skillTreeTwo[3] = new Skill("");
-        knight.skillTreeTwo[4] = new Skill("");
+        knight.skillTreeTwo[3] = new Skill("Mother's Prayer", 20f, 1f, "Knight", mpPortrait, "Regain mana at the cost of remaining still");
+        knight.skillTreeTwo[4] = new Skill("Knight's Spirit", 28f, 10f, "Knight", ksPortrait, "Raise your defence for a longer period of time");
 
         knight.skillTreeThree[0] = knight.basicSkills[2];
         knight.skillTreeThree[1] = new Skill("Lion's Roar", 20f, 8f, "Knight", lionsPortrait, "Have a reasonable chance to evade attack for a short amount of time");
         knight.skillTreeThree[2] = new Skill("Blessed Touch", 10f, 10f, "Knight", btPortrait, "Restore a small amount of health over time");
-        knight.skillTreeThree[3] = new Skill("");
-        knight.skillTreeThree[4] = new Skill("");
+        knight.skillTreeThree[3] = new Skill("Magic Armour", 12f, 8f, "Knight", maPortrait, "Have a high chance to evade attacks at the cost of speed, for a short amount of time");
+        knight.skillTreeThree[4] = new Skill("Adrenaline Rush", 20f, 10f, "Knight", adrenlinePortrait, "Have a high chance of evading attacks for a short amount of time");
 
         knight.skillTreeFour[0] = knight.basicSkills[3];
         knight.skillTreeFour[1] = new Skill("Spring Boots", 20f, 8f, "Knight", springbootsPortrait, "Increase your jump height for a period of time");
@@ -276,15 +283,15 @@ public class ClassSystem : MonoBehaviour
 
         ranger.skillTreeTwo[0] = ranger.basicSkills[1];
         ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Make your horse charge a short distance");
-        ranger.skillTreeTwo[2] = new Skill("");
+        ranger.skillTreeTwo[2] = new Skill("Horse Shoes", 2f, 8.5f, "Ranger", horseshoesPortrait, "Give your horse new shoes to go faster");
         ranger.skillTreeTwo[3] = new Skill("Flame Charge", 8f, 6f, "Ranger", flamechargePortrait, "Make your horse charge forward a longer distance, becoming invincible while doing so");
         ranger.skillTreeTwo[4] = new Skill("Mount's Protection", 20f, 10f, "Ranger", mountsproPortrait, "For a period of time your mount will protect you from any damage");
 
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
         ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
         ranger.skillTreeThree[2] = new Skill("Ranger's Soul", 15f, 7.5f, "Ranger", soulPortrait, "Projectile speed increased by 50% for a small period of time");
-        ranger.skillTreeThree[3] = new Skill("");
-        ranger.skillTreeThree[4] = new Skill("");
+        ranger.skillTreeThree[3] = new Skill("Sharpened Blade", 15f, 8f, "Ranger", sharpenedPortrait, "Increase the amount of damage projectiles do for a period of time");
+        ranger.skillTreeThree[4] = new Skill("Herbal Remedy", 20f, 5f, "Ranger", herbalPortrait, "Gain back health over time until you're at max health");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
         ranger.skillTreeFour[1] = new Skill("Ice Arrow", icearrow, 5f, 3.5f, "Ranger", icearrowPortrait, "Shoot an ice arrow in the direction you're facing, damaging and freezing enemies");
@@ -648,18 +655,20 @@ public class ClassSystem : MonoBehaviour
                     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange + 1.5f, pc.enemyLayer);
                     foreach (Collider2D enemy in hitEnemies)
                     {
-
-                        if (enemy.tag == "skeletonfs")
+                        if (!enemy.isTrigger)
                         {
-                            enemy.GetComponent<SkeletonFS>().TakeDamage(200);
-                        }
-                        if (enemy.tag == "skeletonmage")
-                        {
-                            //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        }
-                        if (enemy.tag == "skeletontank")
-                        {
-                            //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                            if (enemy.tag == "skeletonfs")
+                            {
+                                enemy.GetComponent<SkeletonFS>().TakeDamage(150);
+                            }
+                            if (enemy.tag == "skeletonmage")
+                            {
+                                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                            }
+                            if (enemy.tag == "skeletontank")
+                            {
+                                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                            }
                         }
                     }
                     return;
@@ -719,6 +728,18 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.KnightWarriorsSpirit());
                     return;
                 }
+                else if (name_ == "Mother's Prayer")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightMothersPrayer());
+                    return;
+                }
+                else if (name_ == "Knight's Spirit")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightKnightsSpirit());
+                    return;
+                }
 
 
 
@@ -740,6 +761,19 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.KnightBlessedTouch());
                     return;
                 }
+                else if (name_ == "Magic Armour")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightMagicArmour());
+                    return;
+                }
+                else if (name_ == "Adrenline Rush")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightAdrenlineRush());
+                    return;
+                }
+
 
                 if (name_ == "Sprint")
                 {
@@ -990,7 +1024,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Spear.GetComponent<attack>();
-                    projectile.damage = 3f;
+                    projectile.damage = 20f;
                     projectile.life = 5;
                     projectile.speed = 1600;
                     projectile.Throw(direction);
@@ -1007,7 +1041,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Bouncy.GetComponent<attack>();
-                    projectile.damage = 3f;
+                    projectile.damage = 30f;
                     projectile.life = 1000;
                     projectile.speed = 1000;
                     projectile.isBouncy = 2;
@@ -1050,6 +1084,28 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.RangerCharge());
                     return;
                 }
+                else if (name == "Horse Shoes")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+
+                    if (player.jumpForce == 10f)
+                    {
+                        player.speed += 7f;
+                        player.jumpForce -= 1.5f;
+                        player.fallMultiplier += 1.5f;
+                        player.transform.localScale = new Vector3(12, 15, 1);
+                        player.groundChecker.localPosition += new Vector3(0, -0.025f, 0);
+                    }
+                    else
+                    {
+                        player.speed -= 7f;
+                        player.jumpForce += 1.5f;
+                        player.fallMultiplier -= 1.5f;
+                        player.transform.localScale = new Vector3(10, 10, 1);
+                        player.groundChecker.localPosition += new Vector3(0, 0.025f, 0);
+                    }
+                    return;
+                }
                 else if (name_ == "Flame Charge")
                 {
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
@@ -1090,6 +1146,18 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.RangerRangersSoul());
+                    return;
+                }
+                else if(name_ == "Sharpened Blade")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.RangerSharpenedBlade());
+                    return;
+                }
+                else if (name_ == "Herbal Remedy")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.RangersHerbalRemedy());
                     return;
                 }
 

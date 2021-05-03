@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-<<<<<<< HEAD
+
     public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
-=======
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
->>>>>>> parent of f495ae6 (Revert "Merge branch 'master' of https://github.com/Elivanewyn/TSE")
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -47,6 +44,8 @@ public class PlayerCombat : MonoBehaviour
 
     // PrimaryAttack animator
     public Animator animator;
+    public int attackDamage = 40;
+    public float attackRange = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -181,11 +180,17 @@ public class PlayerCombat : MonoBehaviour
     {
         // Play attack animation
         animator.SetTrigger("PrimaryAttack");
-        //yo
         // Detect enemies
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleeTransformR.position, attackRange, enemyLayer);
         //sup
         // Apply damage
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+        }
     }
+
     public void ChangeMana(float amount)
     {
         currentMana = Mathf.Clamp(currentMana + amount, 0f, maxMana);

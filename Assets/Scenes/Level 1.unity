@@ -343,16 +343,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8026252397323558106, guid: 3c593d12302753c4db2f6042befa0f7a,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026252397323558106, guid: 3c593d12302753c4db2f6042befa0f7a,
-        type: 3}
-      propertyPath: m_UsedByComposite
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c593d12302753c4db2f6042befa0f7a, type: 3}
 --- !u!1001 &103849659
@@ -45177,14 +45167,44 @@ PrefabInstance:
       propertyPath: skill2Portrait
       value: 
       objectReference: {fileID: 2048661465}
-    - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
-        type: 3}
-      propertyPath: attackPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1423381267, guid: 9536382fffc021146b260878ef4866e6, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 36a54b3440c28d340b1ed162484dae7c, type: 2}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: mpPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e0df596e3a9aec4db4516361823a40d,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: adrenlinePortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: ksPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: d2c46d6a6e7d821449f2f29ef3b15d17,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: maPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e0df596e3a9aec4db4516361823a40d,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: sharpenedPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: horseshoesPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c53732095d3d12429a6f3394959b03a,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: herbalPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 0951036edb6447149b56aed50fb43623,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

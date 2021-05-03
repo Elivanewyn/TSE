@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8026252397323558117}
   - component: {fileID: 8026252397323558106}
   - component: {fileID: 8026252397323558107}
-  - component: {fileID: 6315891025835783458}
   m_Layer: 12
   m_Name: SkeletonFootSoldier
   m_TagString: skeletonfs
@@ -171,26 +170,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   maxHealth: 400
-  damageMultiplier: 1
-  animator: {fileID: 6315891025835783458}
-  floatingPoints: {fileID: 433075994822002986, guid: 547786c96b899d04c9ebd03a70271257,
-    type: 3}
---- !u!95 &6315891025835783458
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8026252397323558104}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f30f8d16c63d1c4a9b88a7f2615862b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

@@ -343,6 +343,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026252397323558106, guid: 3c593d12302753c4db2f6042befa0f7a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026252397323558106, guid: 3c593d12302753c4db2f6042befa0f7a,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c593d12302753c4db2f6042befa0f7a, type: 3}
 --- !u!1001 &103849659
@@ -45167,6 +45177,11 @@ PrefabInstance:
       propertyPath: skill2Portrait
       value: 
       objectReference: {fileID: 2048661465}
+    - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1423381267, guid: 9536382fffc021146b260878ef4866e6, type: 3}
       propertyPath: m_Controller
       value: 

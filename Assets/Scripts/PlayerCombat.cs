@@ -43,6 +43,8 @@ public class PlayerCombat : MonoBehaviour
 
     // PrimaryAttack animator
     public Animator animator;
+    public int attackDamage = 40;
+    public float attackRange = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -172,8 +174,14 @@ public class PlayerCombat : MonoBehaviour
         // Play attack animation
         animator.SetTrigger("PrimaryAttack");
         // Detect enemies
-
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleeTransformR.position, attackRange, enemyLayer);
         // Apply damage
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+        }
+
     }
     public void ChangeMana(float amount)
     {
@@ -789,9 +797,6 @@ public class PlayerCombat : MonoBehaviour
         }
         GetComponent<PlayerMovement>().evadeChance = 0;
     }
-
-
-
 
 
     private void OnDrawGizmosSelected()

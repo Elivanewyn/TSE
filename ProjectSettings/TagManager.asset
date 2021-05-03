@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - attack
+  - player
+  - skeletonfs
+  - skeletontank
+  - skeletonmage
+  - spawner
   layers:
   - Default
   - TransparentFX
@@ -14,10 +20,10 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Attack
+  - Player
+  - Signs
+  - Enemy
   - 
   - 
   - 
@@ -40,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 2334028823
+    locked: 0
+  - name: Signs
+    uniqueID: 536777013
     locked: 0
   - name: Environment
     uniqueID: 1547424149

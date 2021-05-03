@@ -287,11 +287,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(75);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
             }
         }
@@ -307,11 +307,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -339,11 +339,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -359,11 +359,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -504,12 +504,12 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator AssassinTaunt()
     {
         SkeletonFS.sightRange = 20;
-        //mage
-        //tank
+        SkeletonMage.sightRange = 20;
+        SkeletonTank.sightRange = 20;
         yield return new WaitForSeconds(5f);
         SkeletonFS.sightRange = 3;
-        //mage
-        //tank
+        SkeletonMage.sightRange = 3;
+        SkeletonTank.sightRange = 3;
     }
 
 
@@ -532,11 +532,11 @@ public class PlayerMovement : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(400);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(400);
                     }
                 }
             }
@@ -562,11 +562,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(75);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
             }
         }
@@ -582,11 +582,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(180);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(180);
                 }
             }
         }

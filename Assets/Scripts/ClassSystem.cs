@@ -663,11 +663,11 @@ public class ClassSystem : MonoBehaviour
                             }
                             if (enemy.tag == "skeletonmage")
                             {
-                                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                                enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                             }
                             if (enemy.tag == "skeletontank")
                             {
-                                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                                enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                             }
                         }
                     }
@@ -1128,11 +1128,15 @@ public class ClassSystem : MonoBehaviour
                     {
                         player.defence = 0.1f;
                         SkeletonFS.sightRange = 3;
+                        SkeletonMage.sightRange = 3;
+                        SkeletonTank.sightRange = 3;
                     }
                     else
                     {
                         player.defence = 0.3f;
                         SkeletonFS.sightRange = 5;
+                        SkeletonMage.sightRange = 5;
+                        SkeletonTank.sightRange = 4;
                     }
                     return;
                 }

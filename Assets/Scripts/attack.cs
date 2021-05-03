@@ -85,11 +85,23 @@ public class attack : MonoBehaviour
                 }
                 else if (other.gameObject.CompareTag("skeletonmage"))
                 {
-
+                    SkeletonMage enemy = other.gameObject.GetComponent<SkeletonMage>();
+                    if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
+                    if (isWeakness) { enemy.StartCoroutine(enemy.Weakness(weaknessTime)); }
+                    if (isSlowness) { enemy.StartCoroutine(enemy.Slowness(slownessTime, slownessEffect)); }
+                    if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
                 }
                 else if (other.gameObject.CompareTag("skeletontank"))
                 {
-
+                    SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
+                    if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
+                    if (isWeakness) { enemy.StartCoroutine(enemy.Weakness(weaknessTime)); }
+                    if (isSlowness) { enemy.StartCoroutine(enemy.Slowness(slownessTime, slownessEffect)); }
+                    if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
                 }
                 Destroy(gameObject);
             }
@@ -103,11 +115,15 @@ public class attack : MonoBehaviour
                 }
                 else if (other.gameObject.CompareTag("skeletonmage"))
                 {
-
+                    SkeletonMage enemy = other.gameObject.GetComponent<SkeletonMage>();
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
                 }
                 else if (other.gameObject.CompareTag("skeletontank"))
                 {
-
+                    SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
                 }
                 isBouncy--;
                 Vector2 inDirection = rigidbody2d.velocity;
@@ -148,11 +164,47 @@ public class attack : MonoBehaviour
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
             {
+                SkeletonMage enemy = other.gameObject.GetComponent<SkeletonMage>();
+                if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
+                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                if (isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }
 
+                if (isPillar)
+                {
+                    while (!enemyLeft)
+                    {
+                        enemy.TakeDamage(damage);
+                        yield return new WaitForSecondsRealtime(0.75f);
+                    }
+                }
+
+                if (damage > 0)
+                {
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
             }
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletontank")))
             {
+                SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
+                if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
+                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                if (isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }
 
+                if (isPillar)
+                {
+                    while (!enemyLeft)
+                    {
+                        enemy.TakeDamage(damage);
+                        yield return new WaitForSecondsRealtime(0.75f);
+                    }
+                }
+
+                if (damage > 0)
+                {
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
             }
             else
             {

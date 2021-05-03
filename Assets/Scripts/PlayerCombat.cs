@@ -181,13 +181,26 @@ public class PlayerCombat : MonoBehaviour
         // Play attack animation
         animator.SetTrigger("PrimaryAttack");
         // Detect enemies
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleeTransformR.position, attackRange, enemyLayer);
-        //sup
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, attackRange, enemyLayer);   //changed it from meleeTransformR to currentMelee so you can attack from the left
         // Apply damage
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
-            enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+            if (!enemy.isTrigger)                   //make sure your not hitting the enemies from far away. without this you can hit their sight box collider
+            {
+                Debug.Log("We hit " + enemy.name);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+                }
+                if(enemy.tag == "skeletonmage")
+                {
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(attackDamage);
+                }
+                if(enemy.tag == "skeletontank")
+                {
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(attackDamage);
+                }
+            }
         }
     }
 
@@ -240,11 +253,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -260,11 +273,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -286,11 +299,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -306,11 +319,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -342,13 +355,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -365,13 +378,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -396,13 +409,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -419,13 +432,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -457,13 +470,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -480,13 +493,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -511,13 +524,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -534,13 +547,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -576,11 +589,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50 * tripleSwipeNumber);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50 * tripleSwipeNumber);
                 }
             }
         }
@@ -620,11 +633,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                 }
             }
         }
@@ -638,11 +651,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                 }
             }
         }
@@ -667,11 +680,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(25);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
             }
         }
@@ -685,11 +698,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(25);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
             }
         }
@@ -701,24 +714,24 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         yield return new WaitForSeconds(15);
         cooldownTime1 = 0;
         cooldownTime2 = 0;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
     }
 
     public IEnumerator AssassinCriticalStrike()
     {
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
         attack.damageMultiplier = 2;
         start = true;
         yield return new WaitForSeconds(15);
@@ -726,8 +739,8 @@ public class PlayerCombat : MonoBehaviour
         attack.damageMultiplier = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
     }
     public IEnumerator StopACS()
     {
@@ -735,8 +748,8 @@ public class PlayerCombat : MonoBehaviour
         {
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             SkeletonFS.playerInvis = false;
-            //SkeletonMage.playerInvis = false;
-            //SkeletonTank.playerInvis = false;
+            SkeletonMage.playerInvis = false;
+            SkeletonTank.playerInvis = false;
             yield return new WaitForSeconds(2f);
             attack.damageMultiplier = 1;
         }
@@ -746,12 +759,12 @@ public class PlayerCombat : MonoBehaviour
     public IEnumerator AssassinSuperStealth()
     {
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
         yield return new WaitForSeconds(5f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
     }
 
 

@@ -39,7 +39,7 @@ public class ShadowClone : MonoBehaviour
         {
             //animator.SetTrigger("Hurt");
             invincibleTime = Time.time + invincibleCooldown;
-            other.gameObject.GetComponent<SkeletonFS>().TakeDamage(50);
+            other.gameObject.GetComponent<SkeletonTank>().TakeDamage(50);
             TakeDamage(-100);
         }
 
@@ -53,7 +53,7 @@ public class ShadowClone : MonoBehaviour
         {
             //animator.SetTrigger("Hurt");
             invincibleTime = Time.time + invincibleCooldown;
-            other.gameObject.GetComponent<SkeletonFS>().TakeDamage(50);
+            other.gameObject.GetComponent<SkeletonMage>().TakeDamage(50);
             TakeDamage(-200);
         }
     }

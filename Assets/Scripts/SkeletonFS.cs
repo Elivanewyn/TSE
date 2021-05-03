@@ -113,7 +113,10 @@ public class SkeletonFS : MonoBehaviour
     {
         for(int i =0; i <= poisonTime; i++)
         {
-            maxHealth -= dps;
+            if (maxHealth - dps > 0)
+            {
+                maxHealth -= dps;
+            }
             yield return new WaitForSeconds(1f);
         }
     }

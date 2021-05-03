@@ -371,6 +371,23 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
+    public IEnumerator KnightMagicArmour()
+    {
+        float temp = speed;
+        speed = 4;
+        evadeChance += 70;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 70;
+        speed = temp;
+    }
+
+    public IEnumerator KnightAdrenlineRush()
+    {
+        evadeChance += 65;
+        yield return new WaitForSeconds(10);
+        evadeChance -= 65;
+    }
+
 
     public IEnumerator KnightWarriorsSpirit()
     {
@@ -378,6 +395,31 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(10);
         defence -= 0.1f;
     }
+
+
+    public IEnumerator KnightMothersPrayer()
+    {
+        PlayerCombat pc = GetComponent<PlayerCombat>();
+        stopManualMove = true;
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        yield return new WaitForSeconds(1f);
+        pc.ChangeMana(2f);
+        stopManualMove = false;
+    }
+
+    public IEnumerator KnightKnightsSpirit()
+    {
+        defence += 0.1f;
+        yield return new WaitForSeconds(20);
+        defence -= 0.1f;
+    }
+
 
     public IEnumerator KnightSprint()
     {
@@ -555,6 +597,24 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(8f);
         attack.speedMultiplier = 1;
     }
+
+    public IEnumerator RangerSharpenedBlade()
+    {
+        attack.damageMultiplier = 1.5f;
+        yield return new WaitForSeconds(8f);
+        attack.damageMultiplier = 1;
+    }
+
+    public IEnumerator RangersHerbalRemedy()
+    {
+        while(currentHealth != maxHealth)
+        {
+            ChangeHealth(1f);
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+
 
 
     void AE_ResetRoll()

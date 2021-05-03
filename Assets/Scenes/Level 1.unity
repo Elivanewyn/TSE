@@ -45221,5 +45221,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0951036edb6447149b56aed50fb43623,
         type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: bronzewandPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: b41c0c89a2705fd488e1554f7a973d81,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: oakwandPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: cb6315ec3fc35224db7d5bccd23c829a,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: goldwandPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 0aa1ed8fc3a68bd488df60766b692bb9,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: dragonbonewandPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: a1ead72c70e0481468726820d1f1ce49,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

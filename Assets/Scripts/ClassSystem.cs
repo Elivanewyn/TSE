@@ -147,6 +147,11 @@ public class ClassSystem : MonoBehaviour
     public GameObject lightarrow;
     public Sprite lightarrowPortrait;
 
+    public Sprite oakwandPortrait;
+    public Sprite bronzewandPortrait;
+    public Sprite goldwandPortrait;
+    public Sprite dragonbonewandPortrait;
+
 
     public static WizardClass wizard = new WizardClass();
     public static KnightClass knight = new KnightClass();
@@ -1237,11 +1242,20 @@ public class ClassSystem : MonoBehaviour
     public class WeaponType
     {
         protected string type_;
+        protected bool isBought_;
+
+        public Sprite portrait;
 
         public string type
         {
             get { return type_; }
             set { type_ = value; }
+        }
+
+        public bool isBought
+        {
+            get { return isBought_; }
+            set { isBought_ = value; }
         }
 
         public WeaponType(string type)
@@ -1267,11 +1281,13 @@ public class ClassSystem : MonoBehaviour
             set { damage_ = value; }
         }
 
-        public Wand(string name)
+        public Wand(string weaponName, int weaponDamage, Sprite weaponPortrait)
         {
             type_ = "Wand";
-            name_ = name;
-            //damage_ = ?
+            name_ = weaponName;
+            damage_ = weaponDamage;
+            portrait = weaponPortrait;
+            isBought_ = false;
         }
     }
 
@@ -1291,11 +1307,13 @@ public class ClassSystem : MonoBehaviour
             set { damage_ = value; }
         }
 
-        public Sword()
+        public Sword(string weaponName, int weaponDamage, Sprite weaponPortrait)
         {
             type_ = "Sword";
-            name_ = name;
-            //damage_ = ?
+            name_ = weaponName;
+            damage_ = weaponDamage;
+            portrait = weaponPortrait;
+            isBought_ = false;
         }
     }
 
@@ -1315,11 +1333,13 @@ public class ClassSystem : MonoBehaviour
             set { damage_ = value; }
         }
 
-        public Knife(string name)
+        public Knife(string weaponName, int weaponDamage, Sprite weaponPortrait)
         {
             type_ = "Knife";
-            name_ = name;
-            //damage_ = ?
+            name_ = weaponName;
+            damage_ = weaponDamage;
+            portrait = weaponPortrait;
+            isBought_ = false;
         }
     }
 
@@ -1339,11 +1359,13 @@ public class ClassSystem : MonoBehaviour
             set { damage_ = value; }
         }
 
-        public BowMount(string name)
+        public BowMount(string weaponName, int weaponDamage, Sprite weaponPortrait)
         {
             type_ = "BowMount";
-            name_ = name;
-            //damage_ = ?
+            name_ = weaponName;
+            damage_ = weaponDamage;
+            portrait = weaponPortrait;
+            isBought_ = false;
         }
     }
 

@@ -70,6 +70,9 @@ public class ClassSystem : MonoBehaviour
 
     public Sprite sprintPortrait;
     public Sprite springbootsPortrait;
+    public Sprite featherbootsPortrait;
+    public Sprite lightspringPortrait;
+    public Sprite lightfeatherPortrait;
 
 
 
@@ -213,9 +216,9 @@ public class ClassSystem : MonoBehaviour
 
         knight.skillTreeFour[0] = knight.basicSkills[3];
         knight.skillTreeFour[1] = new Skill("Spring Boots", 20f, 8f, "Knight", springbootsPortrait, "Increase your jump height for a period of time");
-        knight.skillTreeFour[2] = new Skill("");
-        knight.skillTreeFour[3] = new Skill("");
-        knight.skillTreeFour[4] = new Skill("");
+        knight.skillTreeFour[2] = new Skill("Feather Boots", 20f, 8.5f, "Knight", featherbootsPortrait, "Makes your jumps floatier");
+        knight.skillTreeFour[3] = new Skill("Light Spring Boots", 20f, 10f, "Knight", lightspringPortrait, "Increase your speed and jump height for a short time");
+        knight.skillTreeFour[4] = new Skill("Light Feather Boots", 20f, 10.5f, "Knight", lightfeatherPortrait, "Increase your speed and make your jumps floatier for a short time");
 
 
 
@@ -748,6 +751,24 @@ public class ClassSystem : MonoBehaviour
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightSpringBoots());
+                    return;
+                }
+                else if(name_ == "Feather Boots")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightFeatherBoots());
+                    return;
+                }
+                else if (name_ == "Light Spring Boots")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightLightSpringBoots());
+                    return;
+                }
+                else if (name_ == "Light Feather Boots")
+                {
+                    PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
+                    player.StartCoroutine(player.KnightLightFeatherBoots());
                     return;
                 }
             }

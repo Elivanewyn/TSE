@@ -45384,6 +45384,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
         type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: featherbootsPortrait
+      value: 
+      objectReference: {fileID: 21300168, guid: ae297123f091bbf4e8f1835eb98fb293,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: lightspringPortrait
+      value: 
+      objectReference: {fileID: 21300184, guid: ae297123f091bbf4e8f1835eb98fb293,
+        type: 3}
+    - target: {fileID: 39408865, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: lightfeatherPortrait
+      value: 
+      objectReference: {fileID: 21300170, guid: ae297123f091bbf4e8f1835eb98fb293,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}
 --- !u!1 &7591264296465694620 stripped

@@ -393,6 +393,34 @@ public class PlayerMovement : MonoBehaviour
         jumpForce -= 5;
     }
 
+    public IEnumerator KnightFeatherBoots()
+    {
+        float temp = fallMultiplier;
+        fallMultiplier = 0.5f;
+        yield return new WaitForSeconds(8);
+        fallMultiplier = temp;
+    }
+
+    public IEnumerator KnightLightSpringBoots()
+    {
+        speed += 4;
+        jumpForce += 4;
+        yield return new WaitForSeconds(6);
+        speed -= 4;
+        jumpForce -= 4;
+    }
+
+    public IEnumerator KnightLightFeatherBoots()
+    {
+        float temp = fallMultiplier;
+        fallMultiplier = 0.3f;
+        speed += 4;
+        yield return new WaitForSeconds(6);
+        speed -= 4;
+        fallMultiplier = temp;
+    }
+
+
     public IEnumerator AssassinSlide()
     {
         rb2D.velocity = new Vector2(xDirection * 16f, rb2D.velocity.y);

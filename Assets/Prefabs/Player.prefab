@@ -589,6 +589,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   animator: {fileID: 5410633247962168158}
+  attackRange: 0.5
 --- !u!114 &39408865
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - skeletontank
   - skeletonmage
   - spawner
+  - mageattack
   layers:
   - Default
   - TransparentFX

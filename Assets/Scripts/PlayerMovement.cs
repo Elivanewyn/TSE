@@ -221,13 +221,18 @@ public class PlayerMovement : MonoBehaviour
             ChangeHealth(-1);
         }
 
-        
+        if (other.gameObject.tag == "skeletonmage" && Time.time > nextInvincible)
+        {
+            //animator.SetTrigger("Hurt");
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-3);
+        }
 
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "skeletonmage")
+        if (other.gameObject.tag == "mageattack")
         {
             //animator.SetTrigger("Hurt");
             ChangeHealth(-3);

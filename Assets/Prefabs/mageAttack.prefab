@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2405201991037912044}
   - component: {fileID: 2405201991037912035}
   - component: {fileID: 2405201991037912034}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: mageAttack
-  m_TagString: skeletonmage
+  m_TagString: mageattack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405201991037912033}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

@@ -43,17 +43,22 @@ public class ShadowClone : MonoBehaviour
             TakeDamage(-100);
         }
 
-
+        if (other.gameObject.tag == "skeletonmage" && Time.time > invincibleTime)
+        {
+            //animator.SetTrigger("Hurt");
+            invincibleTime = Time.time + invincibleCooldown;
+            other.gameObject.GetComponent<SkeletonTank>().TakeDamage(50);
+            TakeDamage(-150);
+        }
 
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "skeletonmage" && Time.time > invincibleTime)
+        if (other.gameObject.tag == "mageattack" && Time.time > invincibleTime)
         {
             //animator.SetTrigger("Hurt");
             invincibleTime = Time.time + invincibleCooldown;
-            other.gameObject.GetComponent<SkeletonMage>().TakeDamage(50);
             TakeDamage(-200);
         }
     }

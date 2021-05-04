@@ -151,9 +151,11 @@ public class attack : MonoBehaviour
                 {
                     while (!enemyLeft)
                     {
+                        GetComponent<Animator>().SetBool("isAttack", true);
                         enemy.TakeDamage(damage);
                         yield return new WaitForSecondsRealtime(0.75f);
                     }
+                    GetComponent<Animator>().SetBool("isAttack", false);
                 }
 
                 if (damage > 0) 

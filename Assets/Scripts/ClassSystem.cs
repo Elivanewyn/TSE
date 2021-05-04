@@ -512,10 +512,10 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Lightning Strike")
                 {
-                    Vector2 off = new Vector2(5, 0.5f);
+                    Vector2 off = new Vector2(5, 0.3f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 0.5f);
+                        off = new Vector2(-5, 0.3f);
                     }
 
                     GameObject LightningStrike = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -526,10 +526,10 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Bolt")
                 {
-                    Vector2 off = new Vector2(5, 2.1f);
+                    Vector2 off = new Vector2(5, 1.9f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 2.1f);
+                        off = new Vector2(-5, 1.9f);
                     }
 
                     GameObject LightningBolt = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -559,10 +559,10 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Plasma Charge")
                 {
-                    Vector2 off = new Vector2(5, 4f);
+                    Vector2 off = new Vector2(5, 3.3f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 4f);
+                        off = new Vector2(-5, 3.3f);
                     }
 
                     GameObject PlasmaCharge = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);

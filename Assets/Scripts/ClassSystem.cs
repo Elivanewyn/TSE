@@ -602,7 +602,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Wave = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack fwave = Wave.GetComponent<attack>();
                     fwave.damage = 0;
-                    fwave.life = 3.0f;
+                    fwave.life = 5.0f;
                     fwave.hitsEnemies = false;
                     fwave.isFreeze = true;
                     fwave.freezeTime = 2.5f;

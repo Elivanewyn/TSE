@@ -45318,6 +45318,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1822026566, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664129391, guid: 9536382fffc021146b260878ef4866e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7591264296427334521, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45378,6 +45386,16 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1237386221}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: knightAnimController
+      value: 
+      objectReference: {fileID: 9100000, guid: 219a823282c546d4b848c9cbd37ce2f5, type: 2}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: wizardAnimController
+      value: 
+      objectReference: {fileID: 9100000, guid: 59eed083f5562af44895d53dd5822f7a, type: 2}
     - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: skill1Portrait
@@ -45548,14 +45566,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.001
       objectReference: {fileID: 0}
-    - target: {fileID: 1664129391, guid: 9536382fffc021146b260878ef4866e6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1822026566, guid: 9536382fffc021146b260878ef4866e6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1664129393, guid: 9536382fffc021146b260878ef4866e6, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -45582,5 +45592,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8fded994701debe468fb3e42b541820d,
         type: 3}
+    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.04725752
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591264296427334520, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.31019574
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410633247962168158, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 59eed083f5562af44895d53dd5822f7a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9536382fffc021146b260878ef4866e6, type: 3}

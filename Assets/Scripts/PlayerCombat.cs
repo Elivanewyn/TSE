@@ -136,14 +136,16 @@ public class PlayerCombat : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
-
-            if(start)
+            if (currentClass.name == "Wizard")
+            {
+                GetComponent<Animator>().SetTrigger("Skill Use");
+            }
+            if (start)
             {
                 StopCoroutine(AssassinCriticalStrike());
                 StartCoroutine(StopACS(start));
                 start = false;
             }
-
             cooldownTime1 = Time.time + cooldown1;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill1.cost));
@@ -151,13 +153,18 @@ public class PlayerCombat : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
+            if (currentClass.name == "Wizard")
+            {
+                GetComponent<Animator>().SetTrigger("Skill Use");
+            }
+
             if (start)
             {
                 StopCoroutine(AssassinCriticalStrike());
                 StartCoroutine(StopACS(start));
                 start = false;
             }
-
+            
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill2.cost));

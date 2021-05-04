@@ -41,6 +41,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator particleAnimator;
     private float delayToIdle = 0.0f;
 
+    public RuntimeAnimatorController knightAnimController;
+    public RuntimeAnimatorController wizardAnimController;
+
+
     public GameObject particleL;
     public GameObject particleR;
 
@@ -48,11 +52,20 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        if (PlayerCombat.currentClass.name == "Wizard")
+        {
+            animator.runtimeAnimatorController = wizardAnimController;
+        }
+        else if (PlayerCombat.currentClass.name == "Knight")
+        {
+            animator.runtimeAnimatorController = knightAnimController;
+        }
+
         rb2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
-        animator = GetComponent<Animator>();
         Time.timeScale = 1;
 
         if (!playerExists)

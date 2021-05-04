@@ -738,11 +738,13 @@ public class ClassSystem : MonoBehaviour
                 {
                     playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Attack" + 3);
                     Vector2 off = new Vector2(0, -1.3f);
+                    float rotation = 0;
                     if (direction == Vector2.left)
                     {
                         off = new Vector2(0, -1.3f);
+                        rotation = 180;
                     }
-                    GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Spark.GetComponent<attack>();
                     projectile.damage = 100;
@@ -856,8 +858,12 @@ public class ClassSystem : MonoBehaviour
                 if (name_ == "Throwing Knife")
                 {
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
+                    float rotation = 0;
+                    if(direction == Vector2.left) { rotation = 180; }
+                    if(direction == Vector2.up) { rotation = 90; }
+                    if(direction == Vector2.down) { rotation = 270;}
 
-                    GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = ThrowingKnife.GetComponent<attack>();
                     projectile.damage = 8f;
@@ -869,7 +875,11 @@ public class ClassSystem : MonoBehaviour
                 else if (name_ == "Poison Dart")
                 {
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
-                    GameObject PDart = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject PDart = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = PDart.GetComponent<attack>();
                     projectile.damage = 0f;
@@ -1074,7 +1084,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Spear")
                 {
-                    GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Spear.GetComponent<attack>();
                     projectile.damage = 20f;
@@ -1091,7 +1105,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Bouncy Arrow")
                 {
-                    GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Bouncy.GetComponent<attack>();
                     projectile.damage = 30f;
@@ -1221,7 +1239,11 @@ public class ClassSystem : MonoBehaviour
 
                 if(name_ == "Fire Arrow")
                 {
-                    GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = FArrow.GetComponent<attack>();
                     projectile.damage = 100f;
@@ -1232,7 +1254,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Ice Arrow")
                 {
-                    GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = IArrow.GetComponent<attack>();
                     projectile.damage = 50f;
@@ -1246,7 +1272,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Thunder Arrow")
                 {
-                    GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = TArrow.GetComponent<attack>();
                     projectile.damage = 150;
@@ -1257,8 +1287,12 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Arrow")
                 {
-                    GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
-                    GameObject SArrowClone = Instantiate(prefab, rb2D.position + -direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+                    GameObject SArrowClone = Instantiate(prefab, rb2D.position + -direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation +180f)));
                     attack projectile = SArrow.GetComponent<attack>();
                     attack projectile2 = SArrowClone.GetComponent<attack>();
                     projectile.damage = 50f;
@@ -1273,7 +1307,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Light Arrow")
                 {
-                    GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = LArrow.GetComponent<attack>();
                     projectile.damage = 1000f;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6641001359028091404}
   - component: {fileID: 6641001359028091411}
   - component: {fileID: 6641001359028091410}
+  - component: {fileID: 95624197944180380}
   m_Layer: 9
   m_Name: Friction Spark
   m_TagString: attack
@@ -124,6 +125,24 @@ MonoBehaviour:
   damage: 1
   speed: 0
   hitsEnemies: 1
+  isBouncy: 0
+  isStun: 0
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  freezeWeakness: 1
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  isBlind: 0
+  blindTime: 0
+  isWeakness: 0
+  weaknessTime: 0
+  isSlowness: 0
+  slownessTime: 0
+  slownessEffect: 1
+  enemyLeft: 0
 --- !u!50 &6641001359028091410
 Rigidbody2D:
   serializedVersion: 4
@@ -145,3 +164,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &95624197944180380
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6641001359028091409}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85cccc19c4fbd9f409f324837dab5d1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

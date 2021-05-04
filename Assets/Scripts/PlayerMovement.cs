@@ -655,9 +655,13 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator RangerSharpenedBlade()
     {
-        attack.damageMultiplier = 1.5f;
+        SkeletonFS.staticMultiplier += 0.5f;
+        SkeletonMage.staticMultiplier += 0.5f;
+        SkeletonTank.staticMultiplier += 0.5f;
         yield return new WaitForSeconds(8f);
-        attack.damageMultiplier = 1;
+        SkeletonFS.staticMultiplier -= 0.5f;
+        SkeletonMage.staticMultiplier -= 0.5f;
+        SkeletonTank.staticMultiplier -= 0.5f;
     }
 
     public IEnumerator RangersHerbalRemedy()

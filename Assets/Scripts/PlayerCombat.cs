@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
     public Image skill2Portrait;
+    public static ClassSystem.Weapon equippedWeapon;
 
     public float cooldown1;
     private float cooldownTime1;
@@ -56,6 +57,7 @@ public class PlayerCombat : MonoBehaviour
 
         equippedSkill1 = currentClass.basicSkills[0];
         equippedSkill2 = currentClass.basicSkills[1];
+        equippedWeapon = currentClass.weapons[0];
 
         skill1Portrait.sprite = equippedSkill1.portrait;
         skill2Portrait.sprite = equippedSkill2.portrait;
@@ -138,7 +140,7 @@ public class PlayerCombat : MonoBehaviour
             if(start)
             {
                 StopCoroutine(AssassinCriticalStrike());
-                StartCoroutine(StopACS());
+                StartCoroutine(StopACS(start));
                 start = false;
             }
 
@@ -152,7 +154,7 @@ public class PlayerCombat : MonoBehaviour
             if (start)
             {
                 StopCoroutine(AssassinCriticalStrike());
-                StartCoroutine(StopACS());
+                StartCoroutine(StopACS(start));
                 start = false;
             }
 
@@ -732,26 +734,35 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
-        attack.damageMultiplier = 2;
+
+        SkeletonFS.staticMultiplier += 1;
+        SkeletonMage.staticMultiplier += 1;
+        SkeletonTank.staticMultiplier += 1;
+
         start = true;
         yield return new WaitForSeconds(15);
         start = false;
-        attack.damageMultiplier = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
         SkeletonMage.playerInvis = false;
         SkeletonTank.playerInvis = false;
+
+        SkeletonFS.staticMultiplier -= 1;
+        SkeletonMage.staticMultiplier -= 1;
+        SkeletonTank.staticMultiplier -= 1;
     }
-    public IEnumerator StopACS()
+    public IEnumerator StopACS(bool runCode)
     {
-        if (attack.damageMultiplier == 2)
+        if (runCode)
         {
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             SkeletonFS.playerInvis = false;
             SkeletonMage.playerInvis = false;
             SkeletonTank.playerInvis = false;
             yield return new WaitForSeconds(2f);
-            attack.damageMultiplier = 1;
+            SkeletonFS.staticMultiplier -= 1;
+            SkeletonMage.staticMultiplier -= 1;
+            SkeletonTank.staticMultiplier -= 1;
         }
     }
 

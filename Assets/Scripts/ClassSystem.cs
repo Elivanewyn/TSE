@@ -152,6 +152,21 @@ public class ClassSystem : MonoBehaviour
     public Sprite goldwandPortrait;
     public Sprite dragonbonewandPortrait;
 
+    public Sprite woodenswordPortrait;
+    public Sprite ironswordPortrait;
+    public Sprite steelswordPortrait;
+    public Sprite obsidianswordPortrait;
+
+    public Sprite knifePortrait;
+    public Sprite sharpenedknifePortrait;
+    public Sprite daggerPortrait;
+    public Sprite sharpeneddaggerPortrait;
+
+    public Sprite bowPortrait;
+    public Sprite lightbowPortrait;
+    public Sprite darkbowPortrait;
+    public Sprite horsearmourPortrait;
+
 
     public static WizardClass wizard = new WizardClass();
     public static KnightClass knight = new KnightClass();
@@ -162,6 +177,12 @@ public class ClassSystem : MonoBehaviour
     void Awake()
     {
         wizard.portrait = wizardPortrait;
+        wizard.weapons[0] = new Weapon("Oak Wand", oakwandPortrait);
+        wizard.weapons[1] = new Weapon("Bronze Wand", bronzewandPortrait);
+        wizard.weapons[2] = new Weapon("Gold Wand", goldwandPortrait);
+        wizard.weapons[3] = new Weapon("Dragonbone Wand", dragonbonewandPortrait);
+        wizard.weapons[0].isBought = true;
+
         wizard.basicSkills[0] = new Skill("Fireball", fireball, 0.5f, 0.5f, "Wizard", fireballPortrait, "Shoots a small fireball ahead of you");
         wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike, 1.3f, 1f, "Wizard", lightningstrikePortrait, "Shoot a small lightning bolt in a spot ahead of you");
         wizard.basicSkills[2] = new Skill("Frost Wave", frostwave, 5f, 5f, "Wizard", frostwavePortrait, "Decreases enemies speed, and increases the damage taken for a period of time in a small area");
@@ -198,6 +219,12 @@ public class ClassSystem : MonoBehaviour
 
 
         knight.portrait = knightPortrait;
+        knight.weapons[0] = new Weapon("Wooden Sword", woodenswordPortrait);
+        knight.weapons[1] = new Weapon("Iron Sword", ironswordPortrait);
+        knight.weapons[2] = new Weapon("Steel Sword", steelswordPortrait);
+        knight.weapons[3] = new Weapon("Obsidian Sword", obsidianswordPortrait);
+        knight.weapons[0].isBought = true;
+
         knight.basicSkills[0] = new Skill("Large Swing", 3f, 5f, "Knight", largeswingPortrait, "Swing your sword ahead, dealing large damage");
         knight.basicSkills[1] = new Skill("Block", 2.5f, 1f, "Knight", blockPortrait, "Block oncoming attacks for the next second");
         knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait, "Roll left or right");
@@ -235,6 +262,12 @@ public class ClassSystem : MonoBehaviour
 
 
         assassin.portrait = assassinPortrait;
+        assassin.weapons[0] = new Weapon("Knife", knifePortrait);
+        assassin.weapons[1] = new Weapon("Sharpened Knife", sharpenedknifePortrait);
+        assassin.weapons[2] = new Weapon("Dagger", daggerPortrait);
+        assassin.weapons[3] = new Weapon("Sharpened Dagger", sharpeneddaggerPortrait);
+        assassin.weapons[0].isBought = true;
+
         assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
         assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 6f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
         assassin.basicSkills[2] = new Skill("Slash", 6f, 8f, "Assassin", slashPortrait, "Launch forward, doing damage to enemies in front of you");
@@ -271,6 +304,12 @@ public class ClassSystem : MonoBehaviour
 
 
         ranger.portrait = knightPortrait;
+        ranger.weapons[0] = new Weapon("Bow", bowPortrait);
+        ranger.weapons[1] = new Weapon("Light Bow", lightbowPortrait);
+        ranger.weapons[2] = new Weapon("Dark Bow", darkbowPortrait);
+        ranger.weapons[3] = new Weapon("Horse Armour", horsearmourPortrait);
+        ranger.weapons[0].isBought = true;
+
         ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait, "Shoot three arrows in the direction you're facing");
         ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait, "Mount your horse to move faster");
         ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait, "Increase your stealth, decrease your defence");
@@ -295,7 +334,7 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
         ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
         ranger.skillTreeThree[2] = new Skill("Ranger's Soul", 15f, 7.5f, "Ranger", soulPortrait, "Projectile speed increased by 50% for a small period of time");
-        ranger.skillTreeThree[3] = new Skill("Sharpened Blade", 15f, 8f, "Ranger", sharpenedPortrait, "Increase the amount of damage projectiles do for a period of time");
+        ranger.skillTreeThree[3] = new Skill("Sharpened Blade", 15f, 8f, "Ranger", sharpenedPortrait, "Increase the amount of damage you do for a period of time");
         ranger.skillTreeThree[4] = new Skill("Herbal Remedy", 20f, 5f, "Ranger", herbalPortrait, "Gain back health over time until you're at max health");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
@@ -1239,17 +1278,18 @@ public class ClassSystem : MonoBehaviour
     }
 
 
-    public class WeaponType
+    public class Weapon
     {
-        protected string type_;
         protected bool isBought_;
 
         public Sprite portrait;
 
-        public string type
+        private string name_;
+
+        public string name
         {
-            get { return type_; }
-            set { type_ = value; }
+            get { return name_; }
+            set { name_ = value; }
         }
 
         public bool isBought
@@ -1258,116 +1298,14 @@ public class ClassSystem : MonoBehaviour
             set { isBought_ = value; }
         }
 
-        public WeaponType(string type)
+        public Weapon(string weaponName, Sprite weaponPortrait)
         {
-            type_ = type;
-        }
-        public WeaponType() { }
-    }
-
-    public class Wand : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public Wand(string weaponName, int weaponDamage, Sprite weaponPortrait)
-        {
-            type_ = "Wand";
             name_ = weaponName;
-            damage_ = weaponDamage;
             portrait = weaponPortrait;
             isBought_ = false;
         }
     }
 
-    public class Sword : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public Sword(string weaponName, int weaponDamage, Sprite weaponPortrait)
-        {
-            type_ = "Sword";
-            name_ = weaponName;
-            damage_ = weaponDamage;
-            portrait = weaponPortrait;
-            isBought_ = false;
-        }
-    }
-
-    public class Knife : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public Knife(string weaponName, int weaponDamage, Sprite weaponPortrait)
-        {
-            type_ = "Knife";
-            name_ = weaponName;
-            damage_ = weaponDamage;
-            portrait = weaponPortrait;
-            isBought_ = false;
-        }
-    }
-
-    public class BowMount : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public BowMount(string weaponName, int weaponDamage, Sprite weaponPortrait)
-        {
-            type_ = "BowMount";
-            name_ = weaponName;
-            damage_ = weaponDamage;
-            portrait = weaponPortrait;
-            isBought_ = false;
-        }
-    }
 
 
 
@@ -1395,7 +1333,7 @@ public class ClassSystem : MonoBehaviour
         protected Skill[] skillTreeFour_ = new Skill[5];
         protected string skillTreeFourName_;
 
-        protected WeaponType weaponType_;
+        protected Weapon[] weapons_ = new Weapon[4];
         protected Sprite portrait_;
 
         public string name
@@ -1463,6 +1401,12 @@ public class ClassSystem : MonoBehaviour
             set { skillTreeFour_ = value; }
         }
 
+        public Weapon[] weapons
+        {
+            get { return weapons_; }
+            set { weapons_ = value; }
+        }
+
         public Sprite portrait
         {
             get { return portrait_; }
@@ -1477,7 +1421,6 @@ public class ClassSystem : MonoBehaviour
             intelligence_ = 0;
             stealth_ = 0;
             dext_ = 0;
-            weaponType_ = new WeaponType("default");
         }
     }
 
@@ -1493,7 +1436,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 2;
             dext_ = 1;
             SetSkills();
-            weaponType_ = new WeaponType("Wand");
         }
 
         private void SetSkills()
@@ -1517,7 +1459,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 1;
             dext_ = 1;
             SetSkills();
-            weaponType_ = new WeaponType("Sword");
         }
 
         private void SetSkills()
@@ -1541,7 +1482,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 3;
             dext_ = 3;
             SetSkills();
-            weaponType_ = new WeaponType("Knife");
         }
 
         private void SetSkills()
@@ -1565,7 +1505,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 2;
             dext_ = 2;
             SetSkills();
-            weaponType_ = new WeaponType("BowMount");
         }
 
         private void SetSkills()

@@ -17,6 +17,8 @@ public class SkeletonFS : MonoBehaviour
 
     public float damageMultiplier = 1f;
 
+    public static float staticMultiplier = 1f;
+
     float hasStealthChanged;
     
     // animator 
@@ -86,7 +88,7 @@ public class SkeletonFS : MonoBehaviour
         // play hurt animation
         animator.SetTrigger("Hurt");
         // apply damage
-        damage *= damageMultiplier;
+        damage *= damageMultiplier * staticMultiplier;
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
         points.transform.GetChild(0).GetComponent<TextMesh>().text = "40";
         maxHealth -= damage;

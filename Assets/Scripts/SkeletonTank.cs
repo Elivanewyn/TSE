@@ -16,6 +16,7 @@ public class SkeletonTank : MonoBehaviour
     public static float sightRange = 7;//??
 
     public float damageMultiplier = 1f;
+    public static float staticMultiplier = 1f;
 
     float hasStealthChanged;
 
@@ -77,7 +78,7 @@ public class SkeletonTank : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        damage *= damageMultiplier;
+        damage *= damageMultiplier * staticMultiplier;
         maxHealth -= damage;
     }
 

@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     public RuntimeAnimatorController knightAnimController;
     public RuntimeAnimatorController wizardAnimController;
+    public RuntimeAnimatorController assassinAnimController;
 
 
     public GameObject particleL;
@@ -60,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
         else if (PlayerCombat.currentClass.name == "Knight")
         {
             animator.runtimeAnimatorController = knightAnimController;
+        }
+        else if (PlayerCombat.currentClass.name == "Assassin")
+        {
+            animator.runtimeAnimatorController = assassinAnimController;
         }
 
         rb2D = GetComponent<Rigidbody2D>();
@@ -513,6 +518,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D.velocity = new Vector2(xDirection * 16f, rb2D.velocity.y);
         stopManualMove = true;
         evadeChance = 100;
+        animator.SetTrigger("Slide");
         yield return new WaitForSeconds(1f);
         evadeChance = 0;
         stopManualMove = false;
@@ -524,6 +530,7 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.sightRange = 20;
         SkeletonMage.sightRange = 20;
         SkeletonTank.sightRange = 20;
+        animator.SetTrigger("Taunt");
         yield return new WaitForSeconds(5f);
         SkeletonFS.sightRange = 3;
         SkeletonMage.sightRange = 3;
@@ -538,6 +545,7 @@ public class PlayerMovement : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, -1 * 10);
             stopManualMove = true;
             evadeChance = 100;
+            animator.SetTrigger("Assassinate");
             yield return new WaitForSeconds(0.85f);
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
@@ -588,6 +596,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        animator.SetTrigger("PrimaryAttack");
         yield return new WaitForSeconds(1.2f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies2)

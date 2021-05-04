@@ -855,6 +855,8 @@ public class ClassSystem : MonoBehaviour
             {
                 if (name_ == "Throwing Knife")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
+
                     GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = ThrowingKnife.GetComponent<attack>();
@@ -866,6 +868,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison Dart")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PDart = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = PDart.GetComponent<attack>();
@@ -901,6 +904,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Smoke Bomb")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, 2.5f);
@@ -953,6 +957,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Weakness")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject WPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = WPotion.GetComponent<attack>();
@@ -966,6 +971,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = PPotion.GetComponent<attack>();
@@ -980,6 +986,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Slowness")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject SPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = SPotion.GetComponent<attack>();
@@ -994,6 +1001,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Paralysis")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PLPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = PLPotion.GetComponent<attack>();
@@ -1041,6 +1049,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Clone")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(5, 2.5f);

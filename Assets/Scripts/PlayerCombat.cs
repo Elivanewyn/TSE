@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -677,6 +677,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().evadeChance = 50;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(3f);
+        GetComponent<Animator>().SetTrigger("PrimaryAttack");
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
         foreach (Collider2D enemy in hitEnemies)

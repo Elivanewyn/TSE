@@ -796,6 +796,7 @@ public class PlayerCombat : MonoBehaviour
         if (direction == Vector2.up) { rotation = 90; }
         if (direction == Vector2.down) { rotation = 270; }
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Arrow1.GetComponent<attack>();
         projectile1.damage = 10f;
@@ -804,6 +805,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Arrow2.GetComponent<attack>();
         projectile2.damage = 10f;
@@ -812,6 +814,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Arrow3.GetComponent<attack>();
         projectile3.damage = 10f;
@@ -827,6 +830,7 @@ public class PlayerCombat : MonoBehaviour
         if (direction == Vector2.up) { rotation = 90; }
         if (direction == Vector2.down) { rotation = 270; }
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Spear1.GetComponent<attack>();
         projectile1.damage = 20f;
@@ -835,6 +839,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Spear2.GetComponent<attack>();
         projectile2.damage = 20f;
@@ -843,6 +848,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
+        GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Spear3.GetComponent<attack>();
         projectile3.damage = 20f;
@@ -860,8 +866,9 @@ public class PlayerCombat : MonoBehaviour
         {
             off = new Vector2(-8, 6f);
         }
+        Vector3 tempP = rb2D.position + off + direction * 3f;
 
-        GameObject Arrow1 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow1 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Arrow1.GetComponent<attack>();
         projectile1.damage = 10f;
         projectile1.life = 1000f;
@@ -870,7 +877,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow2 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow2 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Arrow2.GetComponent<attack>();
         projectile2.damage = 10f;
         projectile2.life = 1000f;
@@ -879,7 +886,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow3 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow3 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Arrow3.GetComponent<attack>();
         projectile3.damage = 10.5f;
         projectile3.life = 1000f;
@@ -888,7 +895,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow4 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow4 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile4 = Arrow4.GetComponent<attack>();
         projectile4.damage = 10.5f;
         projectile4.life = 1000f;
@@ -897,7 +904,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow5 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow5 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile5 = Arrow5.GetComponent<attack>();
         projectile5.damage = 10.5f;
         projectile5.life = 1000f;
@@ -906,7 +913,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow6 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow6 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile6 = Arrow6.GetComponent<attack>();
         projectile6.damage = 10.5f;
         projectile6.life = 1000f;
@@ -915,7 +922,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow7 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow7 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile7 = Arrow7.GetComponent<attack>();
         projectile7.damage = 10.5f;
         projectile7.life = 1000f;
@@ -924,7 +931,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow8 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow8 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile8 = Arrow8.GetComponent<attack>();
         projectile8.damage =10.5f;
         projectile8.life = 1000f;
@@ -933,7 +940,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow9 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow9 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile9 = Arrow9.GetComponent<attack>();
         projectile9.damage = 10.5f;
         projectile9.life = 1000f;
@@ -942,7 +949,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow10 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+        GameObject Arrow10 = Instantiate(prefab, tempP, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile10 = Arrow10.GetComponent<attack>();
         projectile10.damage = 10.5f;
         projectile10.life = 1000f;

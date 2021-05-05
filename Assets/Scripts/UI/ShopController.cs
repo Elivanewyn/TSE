@@ -18,14 +18,19 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI coinText;
     public int coinQuantity;
 
+    public Image weapon0Image;
+
     public TextMeshProUGUI WeaponLvOneCost;
     public TextMeshProUGUI WeaponLvOneText;
+    public Image weapon1Image;
 
     public TextMeshProUGUI WeaponLvTwoCost;
     public TextMeshProUGUI WeaponLvTwoText;
+    public Image weapon2Image;
 
     public TextMeshProUGUI WeaponLvThreeCost;
     public TextMeshProUGUI WeaponLvThreeText;
+    public Image weapon3Image;
 
     public GameObject ErrorText_One;
     public GameObject ErrorText_Two;
@@ -36,7 +41,13 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
-        
+        weapon0Image.sprite = PlayerCombat.currentClass.weapons[0].portrait;
+        weapon1Image.sprite = PlayerCombat.currentClass.weapons[1].portrait;
+        WeaponLvOneText.text = PlayerCombat.currentClass.weapons[1].name;
+        weapon2Image.sprite = PlayerCombat.currentClass.weapons[2].portrait;
+        WeaponLvTwoText.text = PlayerCombat.currentClass.weapons[2].name;
+        weapon3Image.sprite = PlayerCombat.currentClass.weapons[3].portrait;
+        WeaponLvThreeText.text = PlayerCombat.currentClass.weapons[3].name;
     }
     void Update()
     {
@@ -138,6 +149,11 @@ public class ShopController : MonoBehaviour
                 WeaponLvOneCost.text = "";
                 WeaponLvOneText.text = "Already Owned";
                 //add in code for giving the user the weapon they purchased
+                PlayerCombat.currentClass.weapons[1].isBought = true;
+                PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[1];
+                SkeletonFS.staticMultiplier += 0.1f;
+                SkeletonMage.staticMultiplier += 0.1f;
+                SkeletonTank.staticMultiplier += 0.1f;
             }
             else
             {
@@ -160,6 +176,11 @@ public class ShopController : MonoBehaviour
                 WeaponLvTwoCost.text = "";
                 WeaponLvTwoText.text = "Already Owned";
                 //add in code for giving the user the weapon they purchased
+                PlayerCombat.currentClass.weapons[2].isBought = true;
+                PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[2];
+                SkeletonFS.staticMultiplier += 0.1f;
+                SkeletonMage.staticMultiplier += 0.1f;
+                SkeletonTank.staticMultiplier += 0.1f;
             }
             else
             {
@@ -182,6 +203,11 @@ public class ShopController : MonoBehaviour
                 WeaponLvThreeCost.text = "";
                 WeaponLvThreeText.text = "Already Owned";
                 //add in code for giving the user the weapon they purchased
+                PlayerCombat.currentClass.weapons[3].isBought = true;
+                PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[3];
+                SkeletonFS.staticMultiplier += 0.1f;
+                SkeletonMage.staticMultiplier += 0.1f;
+                SkeletonTank.staticMultiplier += 0.1f;
             }
             else
             {

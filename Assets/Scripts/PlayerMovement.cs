@@ -41,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
     public Animator particleAnimator;
     private float delayToIdle = 0.0f;
 
+    public RuntimeAnimatorController knightAnimController;
+    public RuntimeAnimatorController wizardAnimController;
+    public RuntimeAnimatorController assassinAnimController;
+
+
     public GameObject particleL;
     public GameObject particleR;
 
@@ -48,11 +53,24 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+        if (PlayerCombat.currentClass.name == "Wizard")
+        {
+            animator.runtimeAnimatorController = wizardAnimController;
+        }
+        else if (PlayerCombat.currentClass.name == "Knight")
+        {
+            animator.runtimeAnimatorController = knightAnimController;
+        }
+        else if (PlayerCombat.currentClass.name == "Assassin")
+        {
+            animator.runtimeAnimatorController = assassinAnimController;
+        }
+
         rb2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
-        animator = GetComponent<Animator>();
         Time.timeScale = 1;
 
         if (!playerExists)
@@ -221,13 +239,18 @@ public class PlayerMovement : MonoBehaviour
             ChangeHealth(-1);
         }
 
-        
+        if (other.gameObject.tag == "skeletonmage" && Time.time > nextInvincible)
+        {
+            //animator.SetTrigger("Hurt");
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-3);
+        }
 
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "skeletonmage")
+        if (other.gameObject.tag == "mageattack")
         {
             //animator.SetTrigger("Hurt");
             ChangeHealth(-3);
@@ -287,11 +310,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(75);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
             }
         }
@@ -307,11 +330,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -339,11 +362,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -359,11 +382,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
             }
         }
@@ -495,6 +518,7 @@ public class PlayerMovement : MonoBehaviour
         rb2D.velocity = new Vector2(xDirection * 16f, rb2D.velocity.y);
         stopManualMove = true;
         evadeChance = 100;
+        animator.SetTrigger("Slide");
         yield return new WaitForSeconds(1f);
         evadeChance = 0;
         stopManualMove = false;
@@ -504,12 +528,13 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator AssassinTaunt()
     {
         SkeletonFS.sightRange = 20;
-        //mage
-        //tank
+        SkeletonMage.sightRange = 20;
+        SkeletonTank.sightRange = 20;
+        animator.SetTrigger("Taunt");
         yield return new WaitForSeconds(5f);
         SkeletonFS.sightRange = 3;
-        //mage
-        //tank
+        SkeletonMage.sightRange = 3;
+        SkeletonTank.sightRange = 3;
     }
 
 
@@ -520,6 +545,7 @@ public class PlayerMovement : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, -1 * 10);
             stopManualMove = true;
             evadeChance = 100;
+            animator.SetTrigger("Assassinate");
             yield return new WaitForSeconds(0.85f);
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(groundChecker.position, 1.5f, enemyLayer);
             foreach (Collider2D enemy in hitEnemies)
@@ -532,11 +558,11 @@ public class PlayerMovement : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(400);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(400);
                     }
                 }
             }
@@ -562,14 +588,15 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(75);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
             }
         }
+        animator.SetTrigger("PrimaryAttack");
         yield return new WaitForSeconds(1.2f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies2)
@@ -582,11 +609,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(180);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(180);
                 }
             }
         }
@@ -650,9 +677,13 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator RangerSharpenedBlade()
     {
-        attack.damageMultiplier = 1.5f;
+        SkeletonFS.staticMultiplier += 0.5f;
+        SkeletonMage.staticMultiplier += 0.5f;
+        SkeletonTank.staticMultiplier += 0.5f;
         yield return new WaitForSeconds(8f);
-        attack.damageMultiplier = 1;
+        SkeletonFS.staticMultiplier -= 0.5f;
+        SkeletonMage.staticMultiplier -= 0.5f;
+        SkeletonTank.staticMultiplier -= 0.5f;
     }
 
     public IEnumerator RangersHerbalRemedy()

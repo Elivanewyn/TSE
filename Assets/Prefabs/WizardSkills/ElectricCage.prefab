@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4963931230603883406}
   - component: {fileID: 4963931230603883409}
   - component: {fileID: 4963931230603883408}
+  - component: {fileID: 885994468}
   m_Layer: 9
   m_Name: ElectricCage
   m_TagString: attack
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4963931230603883411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.026, y: -12.982, z: -0.2109375}
-  m_LocalScale: {x: 22.63909, y: 8.130052, z: 1}
+  m_LocalScale: {x: 2.899544, y: 3.4190607, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e6e621a53ed2b425eb3588825a42a930, type: 3}
-  m_Color: {r: 0.9905683, g: 1, b: 0.11372549, a: 0.5882353}
+  m_Sprite: {fileID: 21300014, guid: 8fded994701debe468fb3e42b541820d, type: 3}
+  m_Color: {r: 0.9905683, g: 1, b: 1, a: 0.7058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,18 +96,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008429479, y: -0.019823417}
+  m_Offset: {x: -0.0115900785, y: -0.0024012327}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.39, y: 0.49}
+    oldSize: {x: 2.34, y: 1.02}
     newSize: {x: 0.26, y: 0.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17272016, y: 0.41965088}
+  m_Size: {x: 0.8983209, y: 1.012011}
   m_EdgeRadius: 0
 --- !u!114 &4963931230603883409
 MonoBehaviour:
@@ -126,6 +127,22 @@ MonoBehaviour:
   hitsEnemies: 0
   isBouncy: 0
   isStun: 1
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  freezeWeakness: 1
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  isBlind: 0
+  blindTime: 0
+  isWeakness: 0
+  weaknessTime: 0
+  isSlowness: 0
+  slownessTime: 0
+  slownessEffect: 1
+  enemyLeft: 0
 --- !u!50 &4963931230603883408
 Rigidbody2D:
   serializedVersion: 4
@@ -147,3 +164,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &885994468
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963931230603883411}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f49a71903e8f1964e94662a0dfa7d1a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

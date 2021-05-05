@@ -23,6 +23,9 @@ public class mageAttack : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        if (!other.gameObject.CompareTag("attack"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

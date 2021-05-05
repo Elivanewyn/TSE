@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.wizard;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
     public Image skill2Portrait;
+    public static ClassSystem.Weapon equippedWeapon;
 
     public float cooldown1;
     private float cooldownTime1;
@@ -38,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
 
     private int tripleSwipeNumber = 0;
     private float timeSinceTripleSwipe = 0.0f;
-
+    private float timeSincePrimary = 0.0f;
 
     bool start = false;
 
@@ -56,6 +57,7 @@ public class PlayerCombat : MonoBehaviour
 
         equippedSkill1 = currentClass.basicSkills[0];
         equippedSkill2 = currentClass.basicSkills[1];
+        equippedWeapon = currentClass.weapons[0];
 
         skill1Portrait.sprite = equippedSkill1.portrait;
         skill2Portrait.sprite = equippedSkill2.portrait;
@@ -117,31 +119,34 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         timeSinceTripleSwipe += Time.deltaTime;
-
+        timeSincePrimary += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
-        // primary mouse button
-        if (Input.GetMouseButtonDown(0))
+        // primary mouse button, 
+        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > 1))
         {
             KnightAttack();
+            timeSincePrimary = 0;
         }
-
+        
         ChangeCooldown();
 
 
         if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
         {
-
-            if(start)
+            if (currentClass.name == "Wizard")
+            {
+                GetComponent<Animator>().SetTrigger("Skill Use");
+            }
+            if (start)
             {
                 StopCoroutine(AssassinCriticalStrike());
-                StartCoroutine(StopACS());
+                StartCoroutine(StopACS(start));
                 start = false;
             }
-
             cooldownTime1 = Time.time + cooldown1;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill1.cost));
@@ -149,13 +154,18 @@ public class PlayerCombat : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
         {
+            if (currentClass.name == "Wizard")
+            {
+                GetComponent<Animator>().SetTrigger("Skill Use");
+            }
+
             if (start)
             {
                 StopCoroutine(AssassinCriticalStrike());
-                StartCoroutine(StopACS());
+                StartCoroutine(StopACS(start));
                 start = false;
             }
-
+            
             cooldownTime2 = Time.time + cooldown2;
             nextRecharge = Time.time + rechargeRate;
             ChangeMana(-(equippedSkill2.cost));
@@ -181,13 +191,26 @@ public class PlayerCombat : MonoBehaviour
         // Play attack animation
         animator.SetTrigger("PrimaryAttack");
         // Detect enemies
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleeTransformR.position, attackRange, enemyLayer);
-        //sup
-        // Apply damage
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, attackRange, enemyLayer);   //changed it from meleeTransformR to currentMelee so you can attack from the left
+                                                                                                                // Apply damage
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
-            enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+            if (!enemy.isTrigger)                   //make sure your not hitting the enemies from far away. without this you can hit their sight box collider
+            {
+                Debug.Log("We hit " + enemy.name);
+                if (enemy.tag == "skeletonfs")
+                {
+                    enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
+                }
+                if (enemy.tag == "skeletonmage")
+                {
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(attackDamage);
+                }
+                if (enemy.tag == "skeletontank")
+                {
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(attackDamage);
+                }
+            }
         }
     }
 
@@ -240,11 +263,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -260,11 +283,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -286,11 +309,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -306,11 +329,11 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
                 }
             }
@@ -342,13 +365,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -365,13 +388,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -396,13 +419,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -419,13 +442,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(40);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f);
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
                 }
             }
@@ -457,13 +480,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -480,13 +503,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -511,13 +534,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -534,13 +557,13 @@ public class PlayerCombat : MonoBehaviour
                     }
                     if (enemy.tag == "skeletonmage")
                     {
-                        //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
-                        //enemy.GetComponent<SkeletonMage>().Freeze(2f);
+                        enemy.GetComponent<SkeletonMage>().StartCoroutine(enemy.GetComponent<SkeletonMage>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonMage>().TakeDamage(57);
                     }
                     if (enemy.tag == "skeletontank")
                     {
-                        //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
-                        //enemy.GetComponent<SkeletonTank>().Freeze(2f);
+                        enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
                 }
             }
@@ -576,11 +599,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50 * tripleSwipeNumber);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50 * tripleSwipeNumber);
                 }
             }
         }
@@ -620,11 +643,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                 }
             }
         }
@@ -638,11 +661,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(50);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                 }
             }
         }
@@ -655,6 +678,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().evadeChance = 50;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(3f);
+        GetComponent<Animator>().SetTrigger("PrimaryAttack");
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
         foreach (Collider2D enemy in hitEnemies)
@@ -667,11 +691,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(25);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
             }
         }
@@ -685,11 +709,11 @@ public class PlayerCombat : MonoBehaviour
                 }
                 if (enemy.tag == "skeletonmage")
                 {
-                    //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                    enemy.GetComponent<SkeletonMage>().TakeDamage(25);
                 }
                 if (enemy.tag == "skeletontank")
                 {
-                    //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                    enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
             }
         }
@@ -701,44 +725,53 @@ public class PlayerCombat : MonoBehaviour
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         yield return new WaitForSeconds(15);
         cooldownTime1 = 0;
         cooldownTime2 = 0;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
     }
 
     public IEnumerator AssassinCriticalStrike()
     {
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
-        attack.damageMultiplier = 2;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
+
+        SkeletonFS.staticMultiplier += 1;
+        SkeletonMage.staticMultiplier += 1;
+        SkeletonTank.staticMultiplier += 1;
+
         start = true;
         yield return new WaitForSeconds(15);
         start = false;
-        attack.damageMultiplier = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
+
+        SkeletonFS.staticMultiplier -= 1;
+        SkeletonMage.staticMultiplier -= 1;
+        SkeletonTank.staticMultiplier -= 1;
     }
-    public IEnumerator StopACS()
+    public IEnumerator StopACS(bool runCode)
     {
-        if (attack.damageMultiplier == 2)
+        if (runCode)
         {
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             SkeletonFS.playerInvis = false;
-            //SkeletonMage.playerInvis = false;
-            //SkeletonTank.playerInvis = false;
+            SkeletonMage.playerInvis = false;
+            SkeletonTank.playerInvis = false;
             yield return new WaitForSeconds(2f);
-            attack.damageMultiplier = 1;
+            SkeletonFS.staticMultiplier -= 1;
+            SkeletonMage.staticMultiplier -= 1;
+            SkeletonTank.staticMultiplier -= 1;
         }
     }
 
@@ -746,19 +779,24 @@ public class PlayerCombat : MonoBehaviour
     public IEnumerator AssassinSuperStealth()
     {
         SkeletonFS.playerInvis = true;
-        //SkeletonMage.playerInvis = true;
-        //SkeletonTank.playerInvis = true;
+        SkeletonMage.playerInvis = true;
+        SkeletonTank.playerInvis = true;
         yield return new WaitForSeconds(5f);
         SkeletonFS.playerInvis = false;
-        //SkeletonMage.playerInvis = false;
-        //SkeletonTank.playerInvis = false;
+        SkeletonMage.playerInvis = false;
+        SkeletonTank.playerInvis = false;
     }
 
 
 
     public IEnumerator RangerArrowFlurry(GameObject prefab)
     {
-        GameObject Arrow1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        float rotation = 0;
+        if (direction == Vector2.left) { rotation = 180; }
+        if (direction == Vector2.up) { rotation = 90; }
+        if (direction == Vector2.down) { rotation = 270; }
+
+        GameObject Arrow1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Arrow1.GetComponent<attack>();
         projectile1.damage = 10f;
         projectile1.life = 1f;
@@ -766,7 +804,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
-        GameObject Arrow2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        GameObject Arrow2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Arrow2.GetComponent<attack>();
         projectile2.damage = 10f;
         projectile2.life = 1f;
@@ -774,7 +812,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
-        GameObject Arrow3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        GameObject Arrow3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Arrow3.GetComponent<attack>();
         projectile3.damage = 10f;
         projectile3.life = 1f;
@@ -784,7 +822,12 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator RangerSpearFlurry(GameObject prefab)
     {
-        GameObject Spear1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        float rotation = 0;
+        if (direction == Vector2.left) { rotation = 180; }
+        if (direction == Vector2.up) { rotation = 90; }
+        if (direction == Vector2.down) { rotation = 270; }
+
+        GameObject Spear1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Spear1.GetComponent<attack>();
         projectile1.damage = 20f;
         projectile1.life = 5;
@@ -792,7 +835,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
-        GameObject Spear2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        GameObject Spear2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Spear2.GetComponent<attack>();
         projectile2.damage = 20f;
         projectile2.life = 5;
@@ -800,7 +843,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
-        GameObject Spear3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+        GameObject Spear3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Spear3.GetComponent<attack>();
         projectile3.damage = 20f;
         projectile3.life = 5;
@@ -811,13 +854,14 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator RangerHeavansFlurry(GameObject prefab)
     {
+        float rotation = 270;
         Vector2 off = new Vector2(8, 6f);
         if (direction == Vector2.left)
         {
             off = new Vector2(-8, 6f);
         }
 
-        GameObject Arrow1 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow1 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Arrow1.GetComponent<attack>();
         projectile1.damage = 10f;
         projectile1.life = 1000f;
@@ -826,7 +870,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow2 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow2 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Arrow2.GetComponent<attack>();
         projectile2.damage = 10f;
         projectile2.life = 1000f;
@@ -835,7 +879,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow3 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow3 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Arrow3.GetComponent<attack>();
         projectile3.damage = 10.5f;
         projectile3.life = 1000f;
@@ -844,7 +888,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow4 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow4 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile4 = Arrow4.GetComponent<attack>();
         projectile4.damage = 10.5f;
         projectile4.life = 1000f;
@@ -853,7 +897,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow5 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow5 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile5 = Arrow5.GetComponent<attack>();
         projectile5.damage = 10.5f;
         projectile5.life = 1000f;
@@ -862,7 +906,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow6 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow6 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile6 = Arrow6.GetComponent<attack>();
         projectile6.damage = 10.5f;
         projectile6.life = 1000f;
@@ -871,7 +915,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow7 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow7 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile7 = Arrow7.GetComponent<attack>();
         projectile7.damage = 10.5f;
         projectile7.life = 1000f;
@@ -880,7 +924,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow8 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow8 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile8 = Arrow8.GetComponent<attack>();
         projectile8.damage =10.5f;
         projectile8.life = 1000f;
@@ -889,7 +933,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow9 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow9 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile9 = Arrow9.GetComponent<attack>();
         projectile9.damage = 10.5f;
         projectile9.life = 1000f;
@@ -898,7 +942,7 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        GameObject Arrow10 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+        GameObject Arrow10 = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile10 = Arrow10.GetComponent<attack>();
         projectile10.damage = 10.5f;
         projectile10.life = 1000f;

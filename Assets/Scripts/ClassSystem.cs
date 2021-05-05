@@ -147,6 +147,26 @@ public class ClassSystem : MonoBehaviour
     public GameObject lightarrow;
     public Sprite lightarrowPortrait;
 
+    public Sprite oakwandPortrait;
+    public Sprite bronzewandPortrait;
+    public Sprite goldwandPortrait;
+    public Sprite dragonbonewandPortrait;
+
+    public Sprite woodenswordPortrait;
+    public Sprite ironswordPortrait;
+    public Sprite steelswordPortrait;
+    public Sprite obsidianswordPortrait;
+
+    public Sprite knifePortrait;
+    public Sprite sharpenedknifePortrait;
+    public Sprite daggerPortrait;
+    public Sprite sharpeneddaggerPortrait;
+
+    public Sprite bowPortrait;
+    public Sprite lightbowPortrait;
+    public Sprite darkbowPortrait;
+    public Sprite horsearmourPortrait;
+
 
     public static WizardClass wizard = new WizardClass();
     public static KnightClass knight = new KnightClass();
@@ -157,6 +177,12 @@ public class ClassSystem : MonoBehaviour
     void Awake()
     {
         wizard.portrait = wizardPortrait;
+        wizard.weapons[0] = new Weapon("Oak Wand", oakwandPortrait);
+        wizard.weapons[1] = new Weapon("Bronze Wand", bronzewandPortrait);
+        wizard.weapons[2] = new Weapon("Gold Wand", goldwandPortrait);
+        wizard.weapons[3] = new Weapon("Dragonbone Wand", dragonbonewandPortrait);
+        wizard.weapons[0].isBought = true;
+
         wizard.basicSkills[0] = new Skill("Fireball", fireball, 0.5f, 0.5f, "Wizard", fireballPortrait, "Shoots a small fireball ahead of you");
         wizard.basicSkills[1] = new Skill("Lightning Strike", lightningstrike, 1.3f, 1f, "Wizard", lightningstrikePortrait, "Shoot a small lightning bolt in a spot ahead of you");
         wizard.basicSkills[2] = new Skill("Frost Wave", frostwave, 5f, 5f, "Wizard", frostwavePortrait, "Decreases enemies speed, and increases the damage taken for a period of time in a small area");
@@ -193,6 +219,12 @@ public class ClassSystem : MonoBehaviour
 
 
         knight.portrait = knightPortrait;
+        knight.weapons[0] = new Weapon("Wooden Sword", woodenswordPortrait);
+        knight.weapons[1] = new Weapon("Iron Sword", ironswordPortrait);
+        knight.weapons[2] = new Weapon("Steel Sword", steelswordPortrait);
+        knight.weapons[3] = new Weapon("Obsidian Sword", obsidianswordPortrait);
+        knight.weapons[0].isBought = true;
+
         knight.basicSkills[0] = new Skill("Large Swing", 3f, 5f, "Knight", largeswingPortrait, "Swing your sword ahead, dealing large damage");
         knight.basicSkills[1] = new Skill("Block", 2.5f, 1f, "Knight", blockPortrait, "Block oncoming attacks for the next second");
         knight.basicSkills[2] = new Skill("Roll", 1.5f, 2f, "Knight", rollPortrait, "Roll left or right");
@@ -230,6 +262,12 @@ public class ClassSystem : MonoBehaviour
 
 
         assassin.portrait = assassinPortrait;
+        assassin.weapons[0] = new Weapon("Knife", knifePortrait);
+        assassin.weapons[1] = new Weapon("Sharpened Knife", sharpenedknifePortrait);
+        assassin.weapons[2] = new Weapon("Dagger", daggerPortrait);
+        assassin.weapons[3] = new Weapon("Sharpened Dagger", sharpeneddaggerPortrait);
+        assassin.weapons[0].isBought = true;
+
         assassin.basicSkills[0] = new Skill("Throwing Knife", throwingknife, 0.3f, 0.5f, "Assassin", throwingknifePortrait, "Throw knives in a given direction");
         assassin.basicSkills[1] = new Skill("Smoke Bomb", smokebomb, 6f, 3f, "Assassin", smokebombPortrait, "Blind enemies in an area");
         assassin.basicSkills[2] = new Skill("Slash", 6f, 8f, "Assassin", slashPortrait, "Launch forward, doing damage to enemies in front of you");
@@ -266,6 +304,12 @@ public class ClassSystem : MonoBehaviour
 
 
         ranger.portrait = knightPortrait;
+        ranger.weapons[0] = new Weapon("Bow", bowPortrait);
+        ranger.weapons[1] = new Weapon("Light Bow", lightbowPortrait);
+        ranger.weapons[2] = new Weapon("Dark Bow", darkbowPortrait);
+        ranger.weapons[3] = new Weapon("Horse Armour", horsearmourPortrait);
+        ranger.weapons[0].isBought = true;
+
         ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait, "Shoot three arrows in the direction you're facing");
         ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait, "Mount your horse to move faster");
         ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait, "Increase your stealth, decrease your defence");
@@ -290,7 +334,7 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
         ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
         ranger.skillTreeThree[2] = new Skill("Ranger's Soul", 15f, 7.5f, "Ranger", soulPortrait, "Projectile speed increased by 50% for a small period of time");
-        ranger.skillTreeThree[3] = new Skill("Sharpened Blade", 15f, 8f, "Ranger", sharpenedPortrait, "Increase the amount of damage projectiles do for a period of time");
+        ranger.skillTreeThree[3] = new Skill("Sharpened Blade", 15f, 8f, "Ranger", sharpenedPortrait, "Increase the amount of damage you do for a period of time");
         ranger.skillTreeThree[4] = new Skill("Herbal Remedy", 20f, 5f, "Ranger", herbalPortrait, "Gain back health over time until you're at max health");
 
         ranger.skillTreeFour[0] = ranger.basicSkills[3];
@@ -468,10 +512,10 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Lightning Strike")
                 {
-                    Vector2 off = new Vector2(5, 0.5f);
+                    Vector2 off = new Vector2(5, 0.3f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 0.5f);
+                        off = new Vector2(-5, 0.3f);
                     }
 
                     GameObject LightningStrike = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -482,10 +526,10 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Bolt")
                 {
-                    Vector2 off = new Vector2(5, 2.1f);
+                    Vector2 off = new Vector2(5, 1.9f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 2.1f);
+                        off = new Vector2(-5, 1.9f);
                     }
 
                     GameObject LightningBolt = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -515,10 +559,10 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Plasma Charge")
                 {
-                    Vector2 off = new Vector2(5, 4f);
+                    Vector2 off = new Vector2(5, 3.3f);
                     if (direction == Vector2.left)
                     {
-                        off = new Vector2(-5, 4f);
+                        off = new Vector2(-5, 3.3f);
                     }
 
                     GameObject PlasmaCharge = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
@@ -558,7 +602,7 @@ public class ClassSystem : MonoBehaviour
                     GameObject Wave = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
                     attack fwave = Wave.GetComponent<attack>();
                     fwave.damage = 0;
-                    fwave.life = 3.0f;
+                    fwave.life = 5.0f;
                     fwave.hitsEnemies = false;
                     fwave.isFreeze = true;
                     fwave.freezeTime = 2.5f;
@@ -663,11 +707,11 @@ public class ClassSystem : MonoBehaviour
                             }
                             if (enemy.tag == "skeletonmage")
                             {
-                                //enemy.GetComponent<SkeletonMage>().TakeDamge(300);
+                                enemy.GetComponent<SkeletonMage>().TakeDamage(150);
                             }
                             if (enemy.tag == "skeletontank")
                             {
-                                //enemy.GetComponent<SkeletonTank>().TakeDamage(300);
+                                enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                             }
                         }
                     }
@@ -694,11 +738,13 @@ public class ClassSystem : MonoBehaviour
                 {
                     playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Attack" + 3);
                     Vector2 off = new Vector2(0, -1.3f);
+                    float rotation = 0;
                     if (direction == Vector2.left)
                     {
                         off = new Vector2(0, -1.3f);
+                        rotation = 180;
                     }
-                    GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.identity);
+                    GameObject Spark = Instantiate(prefab, rb2D.position + off + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Spark.GetComponent<attack>();
                     projectile.damage = 100;
@@ -811,7 +857,13 @@ public class ClassSystem : MonoBehaviour
             {
                 if (name_ == "Throwing Knife")
                 {
-                    GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
+                    float rotation = 0;
+                    if(direction == Vector2.left) { rotation = 180; }
+                    if(direction == Vector2.up) { rotation = 90; }
+                    if(direction == Vector2.down) { rotation = 270;}
+
+                    GameObject ThrowingKnife = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = ThrowingKnife.GetComponent<attack>();
                     projectile.damage = 8f;
@@ -822,7 +874,12 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison Dart")
                 {
-                    GameObject PDart = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject PDart = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = PDart.GetComponent<attack>();
                     projectile.damage = 0f;
@@ -857,6 +914,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Smoke Bomb")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, 2.5f);
@@ -909,6 +967,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Weakness")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject WPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = WPotion.GetComponent<attack>();
@@ -922,6 +981,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = PPotion.GetComponent<attack>();
@@ -936,6 +996,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Slowness")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject SPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = SPotion.GetComponent<attack>();
@@ -950,6 +1011,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Paralysis")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PLPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = PLPotion.GetComponent<attack>();
@@ -997,6 +1059,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Clone")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(5, 2.5f);
@@ -1021,7 +1084,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Spear")
                 {
-                    GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject Spear = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Spear.GetComponent<attack>();
                     projectile.damage = 20f;
@@ -1038,7 +1105,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Bouncy Arrow")
                 {
-                    GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject Bouncy = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = Bouncy.GetComponent<attack>();
                     projectile.damage = 30f;
@@ -1128,11 +1199,15 @@ public class ClassSystem : MonoBehaviour
                     {
                         player.defence = 0.1f;
                         SkeletonFS.sightRange = 3;
+                        SkeletonMage.sightRange = 3;
+                        SkeletonTank.sightRange = 3;
                     }
                     else
                     {
                         player.defence = 0.3f;
                         SkeletonFS.sightRange = 5;
+                        SkeletonMage.sightRange = 5;
+                        SkeletonTank.sightRange = 4;
                     }
                     return;
                 }
@@ -1164,7 +1239,11 @@ public class ClassSystem : MonoBehaviour
 
                 if(name_ == "Fire Arrow")
                 {
-                    GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject FArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = FArrow.GetComponent<attack>();
                     projectile.damage = 100f;
@@ -1175,7 +1254,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Ice Arrow")
                 {
-                    GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject IArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = IArrow.GetComponent<attack>();
                     projectile.damage = 50f;
@@ -1189,7 +1272,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Thunder Arrow")
                 {
-                    GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject TArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = TArrow.GetComponent<attack>();
                     projectile.damage = 150;
@@ -1200,8 +1287,12 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Arrow")
                 {
-                    GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
-                    GameObject SArrowClone = Instantiate(prefab, rb2D.position + -direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject SArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
+                    GameObject SArrowClone = Instantiate(prefab, rb2D.position + -direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation +180f)));
                     attack projectile = SArrow.GetComponent<attack>();
                     attack projectile2 = SArrowClone.GetComponent<attack>();
                     projectile.damage = 50f;
@@ -1216,7 +1307,11 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Light Arrow")
                 {
-                    GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
+                    float rotation = 0;
+                    if (direction == Vector2.left) { rotation = 180; }
+                    if (direction == Vector2.up) { rotation = 90; }
+                    if (direction == Vector2.down) { rotation = 270; }
+                    GameObject LArrow = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
 
                     attack projectile = LArrow.GetComponent<attack>();
                     projectile.damage = 1000f;
@@ -1230,118 +1325,34 @@ public class ClassSystem : MonoBehaviour
     }
 
 
-    public class WeaponType
+    public class Weapon
     {
-        protected string type_;
+        protected bool isBought_;
 
-        public string type
-        {
-            get { return type_; }
-            set { type_ = value; }
-        }
+        public Sprite portrait;
 
-        public WeaponType(string type)
-        {
-            type_ = type;
-        }
-        public WeaponType() { }
-    }
-
-    public class Wand : WeaponType
-    {
         private string name_;
-        protected int damage_;
 
         public string name
         {
             get { return name_; }
             set { name_ = value; }
         }
-        public int damage
+
+        public bool isBought
         {
-            get { return damage_; }
-            set { damage_ = value; }
+            get { return isBought_; }
+            set { isBought_ = value; }
         }
 
-        public Wand(string name)
+        public Weapon(string weaponName, Sprite weaponPortrait)
         {
-            type_ = "Wand";
-            name_ = name;
-            //damage_ = ?
+            name_ = weaponName;
+            portrait = weaponPortrait;
+            isBought_ = false;
         }
     }
 
-    public class Sword : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public Sword()
-        {
-            type_ = "Sword";
-            name_ = name;
-            //damage_ = ?
-        }
-    }
-
-    public class Knife : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public Knife(string name)
-        {
-            type_ = "Knife";
-            name_ = name;
-            //damage_ = ?
-        }
-    }
-
-    public class BowMount : WeaponType
-    {
-        private string name_;
-        protected int damage_;
-
-        public string name
-        {
-            get { return name_; }
-            set { name_ = value; }
-        }
-        public int damage
-        {
-            get { return damage_; }
-            set { damage_ = value; }
-        }
-
-        public BowMount(string name)
-        {
-            type_ = "BowMount";
-            name_ = name;
-            //damage_ = ?
-        }
-    }
 
 
 
@@ -1369,7 +1380,7 @@ public class ClassSystem : MonoBehaviour
         protected Skill[] skillTreeFour_ = new Skill[5];
         protected string skillTreeFourName_;
 
-        protected WeaponType weaponType_;
+        protected Weapon[] weapons_ = new Weapon[4];
         protected Sprite portrait_;
 
         public string name
@@ -1437,6 +1448,12 @@ public class ClassSystem : MonoBehaviour
             set { skillTreeFour_ = value; }
         }
 
+        public Weapon[] weapons
+        {
+            get { return weapons_; }
+            set { weapons_ = value; }
+        }
+
         public Sprite portrait
         {
             get { return portrait_; }
@@ -1451,7 +1468,6 @@ public class ClassSystem : MonoBehaviour
             intelligence_ = 0;
             stealth_ = 0;
             dext_ = 0;
-            weaponType_ = new WeaponType("default");
         }
     }
 
@@ -1467,7 +1483,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 2;
             dext_ = 1;
             SetSkills();
-            weaponType_ = new WeaponType("Wand");
         }
 
         private void SetSkills()
@@ -1491,7 +1506,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 1;
             dext_ = 1;
             SetSkills();
-            weaponType_ = new WeaponType("Sword");
         }
 
         private void SetSkills()
@@ -1515,7 +1529,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 3;
             dext_ = 3;
             SetSkills();
-            weaponType_ = new WeaponType("Knife");
         }
 
         private void SetSkills()
@@ -1539,7 +1552,6 @@ public class ClassSystem : MonoBehaviour
             stealth_ = 2;
             dext_ = 2;
             SetSkills();
-            weaponType_ = new WeaponType("BowMount");
         }
 
         private void SetSkills()

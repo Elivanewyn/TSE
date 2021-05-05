@@ -39,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
 
     private int tripleSwipeNumber = 0;
     private float timeSinceTripleSwipe = 0.0f;
-
+    private float timeSincePrimary = 0.0f;
 
     bool start = false;
 
@@ -119,18 +119,19 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         timeSinceTripleSwipe += Time.deltaTime;
-
+        timeSincePrimary += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W)) { direction = Vector2.up; }
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
-        // primary mouse button
-        if (Input.GetMouseButtonDown(0))
+        // primary mouse button, 
+        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > 1))
         {
             KnightAttack();
+            timeSincePrimary = 0;
         }
-
+        
         ChangeCooldown();
 
 
@@ -184,7 +185,7 @@ public class PlayerCombat : MonoBehaviour
         animator.SetTrigger("PrimaryAttack");
         // Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, attackRange, enemyLayer);   //changed it from meleeTransformR to currentMelee so you can attack from the left
-        // Apply damage
+                                                                                                                // Apply damage
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.isTrigger)                   //make sure your not hitting the enemies from far away. without this you can hit their sight box collider
@@ -194,11 +195,11 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
                 }
-                if(enemy.tag == "skeletonmage")
+                if (enemy.tag == "skeletonmage")
                 {
                     enemy.GetComponent<SkeletonMage>().TakeDamage(attackDamage);
                 }
-                if(enemy.tag == "skeletontank")
+                if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(attackDamage);
                 }

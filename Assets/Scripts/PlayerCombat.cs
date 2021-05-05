@@ -43,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
 
     bool start = false;
 
-    // PrimaryAttack animator
+    // JYU_PrimaryAttack animator
     public Animator animator;
     public int attackDamage = 40;
     public float attackRange = 0.5f;
@@ -125,7 +125,7 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) { direction = Vector2.left; }
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
-        // primary mouse button, 
+        // JYU_primary mouse button, 
         if (Input.GetMouseButtonDown(0) && (timeSincePrimary > 1))
         {
             KnightAttack();
@@ -188,11 +188,11 @@ public class PlayerCombat : MonoBehaviour
 
     void KnightAttack()
     {
-        // Play attack animation
+        // JYU_Play attack animation
         animator.SetTrigger("PrimaryAttack");
-        // Detect enemies
+        // JYU_Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, attackRange, enemyLayer);   //changed it from meleeTransformR to currentMelee so you can attack from the left
-                                                                                                                // Apply damage
+        // JYU_Apply damage
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.isTrigger)                   //make sure your not hitting the enemies from far away. without this you can hit their sight box collider

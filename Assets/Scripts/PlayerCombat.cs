@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.assassin;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;

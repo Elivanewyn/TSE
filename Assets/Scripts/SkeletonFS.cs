@@ -90,7 +90,7 @@ public class SkeletonFS : MonoBehaviour
         // apply damage
         damage *= damageMultiplier * staticMultiplier;
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
-        points.transform.GetChild(0).GetComponent<TextMesh>().text = "40";
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
         maxHealth -= damage;
         // death
         if (maxHealth <= 0)

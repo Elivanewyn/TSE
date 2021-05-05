@@ -8,6 +8,7 @@ public class ClassSystem : MonoBehaviour
     public Sprite wizardPortrait;
     public Sprite knightPortrait;
     public Sprite assassinPortrait;
+    public Sprite rangerPortrait;
 
     public Animator knightAnimator;
 
@@ -303,15 +304,15 @@ public class ClassSystem : MonoBehaviour
 
 
 
-        ranger.portrait = knightPortrait;
+        ranger.portrait = rangerPortrait;
         ranger.weapons[0] = new Weapon("Bow", bowPortrait);
         ranger.weapons[1] = new Weapon("Light Bow", lightbowPortrait);
         ranger.weapons[2] = new Weapon("Dark Bow", darkbowPortrait);
-        ranger.weapons[3] = new Weapon("Horse Armour", horsearmourPortrait);
+        ranger.weapons[3] = new Weapon("Ranger's Bow", horsearmourPortrait);
         ranger.weapons[0].isBought = true;
 
         ranger.basicSkills[0] = new Skill("Arrow Flurry", arrowflurry, 2.5f, 5f, "Ranger", arrowflurryPortrait, "Shoot three arrows in the direction you're facing");
-        ranger.basicSkills[1] = new Skill("Saddle Up", 2f, 8f, "Ranger", saddleupPortrait, "Mount your horse to move faster");
+        ranger.basicSkills[1] = new Skill("Giant's Potion", 2f, 8f, "Ranger", saddleupPortrait, "Gain permanent size and speed");
         ranger.basicSkills[2] = new Skill("Hood", 2f, 8f, "Ranger", hoodPortrait, "Increase your stealth, decrease your defence");
         ranger.basicSkills[3] = new Skill("Fire Arrow", firearrow, 5.5f, 3f, "Ranger", firearrowPortrait, "Shoot a high damage arrow in the direction you're facing");
         foreach (Skill i in ranger.basicSkills)
@@ -326,10 +327,10 @@ public class ClassSystem : MonoBehaviour
         ranger.skillTreeOne[4] = new Skill("Heavan's Flurry", heavansflurry, 4f, 5f, "Ranger", heavansSprite, "Rains down arrows from above for period of time");
 
         ranger.skillTreeTwo[0] = ranger.basicSkills[1];
-        ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Make your horse charge a short distance");
-        ranger.skillTreeTwo[2] = new Skill("Horse Shoes", 2f, 8.5f, "Ranger", horseshoesPortrait, "Give your horse new shoes to go faster");
-        ranger.skillTreeTwo[3] = new Skill("Flame Charge", 8f, 6f, "Ranger", flamechargePortrait, "Make your horse charge forward a longer distance, becoming invincible while doing so");
-        ranger.skillTreeTwo[4] = new Skill("Mount's Protection", 20f, 10f, "Ranger", mountsproPortrait, "For a period of time your mount will protect you from any damage");
+        ranger.skillTreeTwo[1] = new Skill("Charge", 4f, 3f, "Ranger", chargePortrait, "Charge as a giant a short distance");
+        ranger.skillTreeTwo[2] = new Skill("Light Giant's Potion", 2f, 8.5f, "Ranger", horseshoesPortrait, "Gain permanent size and more speed");
+        ranger.skillTreeTwo[3] = new Skill("Flame Charge", 8f, 6f, "Ranger", flamechargePortrait, "Charge as a giant a longer distance, becoming invincible while doing so");
+        ranger.skillTreeTwo[4] = new Skill("Giant's Armour", 20f, 10f, "Ranger", mountsproPortrait, "For a period of time your armour will protect you from any damage");
 
         ranger.skillTreeThree[0] = ranger.basicSkills[2];
         ranger.skillTreeThree[1] = new Skill("Swift Bird", 20f, 7f, "Ranger", swiftPortrait, "Increase your movement speed for a short time");
@@ -1131,7 +1132,7 @@ public class ClassSystem : MonoBehaviour
                 }
 
 
-                if(name_ == "Saddle Up")
+                if(name_ == "Giant's Potion")
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
 
@@ -1159,7 +1160,7 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.RangerCharge());
                     return;
                 }
-                else if (name == "Horse Shoes")
+                else if (name == "Light Giant's Potion")
                 {
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
 
@@ -1187,7 +1188,7 @@ public class ClassSystem : MonoBehaviour
                     player.StartCoroutine(player.RangerFlameCharge());
                     return;
                 }
-                else if (name_ == "Mount's Protection")
+                else if (name_ == "Giant's Armour")
                 {
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.RangerMountsProtection());

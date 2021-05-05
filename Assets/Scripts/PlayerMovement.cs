@@ -42,9 +42,13 @@ public class PlayerMovement : MonoBehaviour
     private float delayToIdle = 0.0f;
 
     public RuntimeAnimatorController knightAnimController;
+    public Sprite knightSprite;
     public RuntimeAnimatorController wizardAnimController;
+    public Sprite wizardSprite;
     public RuntimeAnimatorController assassinAnimController;
+    public Sprite assassinSprite;
     public RuntimeAnimatorController rangerAnimController;
+    public Sprite rangerSprite;
 
 
     public GameObject particleL;
@@ -57,18 +61,22 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         if (PlayerCombat.currentClass.name == "Wizard")
         {
+            GetComponent<SpriteRenderer>().sprite = wizardSprite;
             animator.runtimeAnimatorController = wizardAnimController;
         }
         else if (PlayerCombat.currentClass.name == "Knight")
         {
+            GetComponent<SpriteRenderer>().sprite = knightSprite;
             animator.runtimeAnimatorController = knightAnimController;
         }
         else if (PlayerCombat.currentClass.name == "Assassin")
         {
+            GetComponent<SpriteRenderer>().sprite = assassinSprite;
             animator.runtimeAnimatorController = assassinAnimController;
         }
         else if (PlayerCombat.currentClass.name == "Ranger")
         {
+            GetComponent<SpriteRenderer>().sprite = rangerSprite;
             animator.runtimeAnimatorController = rangerAnimController;
         }
 
@@ -212,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(amount < 0)
         {
+            StartCoroutine(HurtAnim());
             amount += defence;
         }
 
@@ -227,6 +236,16 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
         UIBar.health.SetValue(currentHealth / (float)maxHealth);
     }
+
+
+    private IEnumerator HurtAnim()
+    {
+        Color temp = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = temp;
+    }
+
 
     void OnCollisionStay2D(Collision2D other)
     {

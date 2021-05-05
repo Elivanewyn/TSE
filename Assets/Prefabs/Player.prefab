@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949772314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.294, y: -0.0069999695, z: 0}
+  m_LocalPosition: {x: -0.354, y: -0.0069999695, z: 0}
   m_LocalScale: {x: 1.85, y: 1.4748, z: 1}
   m_Children: []
   m_Father: {fileID: 7591264296427334521}
@@ -218,6 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664129392}
   - component: {fileID: 1664129393}
+  - component: {fileID: 2042634685}
   m_Layer: 10
   m_Name: ParticleLObject
   m_TagString: Untagged
@@ -233,8 +234,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664129391}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -0.371, y: 0.021, z: 0}
-  m_LocalScale: {x: 0.77430135, y: 1.1532865, z: 1}
+  m_LocalPosition: {x: -0.365, y: 0.001, z: 0}
+  m_LocalScale: {x: 0.114957, y: 0.20715296, z: 1}
   m_Children: []
   m_Father: {fileID: 7591264296427334521}
   m_RootOrder: 6
@@ -276,10 +277,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 38ead65714fcf4c52b5b031a59cb4a83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fded994701debe468fb3e42b541820d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
-  m_FlipY: 1
+  m_FlipX: 0
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.44, y: 0.52}
   m_AdaptiveModeThreshold: 0.5
@@ -287,6 +288,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2042634685
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664129391}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8021336ee7fd4ab4a8da1c69f3f1216e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1822026566
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822026567}
   - component: {fileID: 1822026568}
+  - component: {fileID: 582435623}
   m_Layer: 10
   m_Name: ParticleRObject
   m_TagString: Untagged
@@ -312,8 +333,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822026566}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 0.4824, y: 0.011, z: 0}
-  m_LocalScale: {x: 0.7743009, y: 1.1532857, z: 1}
+  m_LocalPosition: {x: 0.401, y: -0.0136, z: 0}
+  m_LocalScale: {x: 0.11495701, y: 0.23824026, z: 1}
   m_Children: []
   m_Father: {fileID: 7591264296427334521}
   m_RootOrder: 5
@@ -355,7 +376,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 38ead65714fcf4c52b5b031a59cb4a83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fded994701debe468fb3e42b541820d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -366,6 +387,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &582435623
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822026566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8021336ee7fd4ab4a8da1c69f3f1216e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7591264296427334523
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +488,7 @@ SpriteRenderer:
   m_SortingLayerID: 1321832879
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb3711790d9a7304992355d8f5f9eeae, type: 3}
   m_Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -493,6 +533,18 @@ MonoBehaviour:
   maxJumps: 1
   animator: {fileID: 0}
   particleAnimator: {fileID: 1423381267}
+  knightAnimController: {fileID: 9100000, guid: 3c2a5b7097b0fe44394328c0bdb9252e,
+    type: 2}
+  knightSprite: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  wizardAnimController: {fileID: 9100000, guid: 59eed083f5562af44895d53dd5822f7a,
+    type: 2}
+  wizardSprite: {fileID: 21300000, guid: 9ff3d350e2246904494d7701219f0086, type: 3}
+  assassinAnimController: {fileID: 9100000, guid: b4bbe742e044c1e408b49374cdacadae,
+    type: 2}
+  assassinSprite: {fileID: 21300000, guid: 2e93c637a24e04d8ea6b2cfd9df53739, type: 3}
+  rangerAnimController: {fileID: 9100000, guid: 424de169d6d2d314292ac786ee2f8561,
+    type: 2}
+  rangerSprite: {fileID: 0}
   particleL: {fileID: 1664129391}
   particleR: {fileID: 1822026566}
 --- !u!50 &7591264296427334527
@@ -529,18 +581,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07472531, y: -0.0048825294}
+  m_Offset: {x: 0.04725752, y: -0.0048825294}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.44, y: 0.4}
+    pivot: {x: 0.4, y: 0.3}
+    oldSize: {x: 0.9846154, y: 0.73846155}
     newSize: {x: 0.324, y: 0.264}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32118285, y: 0.42957}
+  m_Size: {x: 0.31019574, y: 0.42957}
   m_EdgeRadius: 0
 --- !u!251 &7591264295744213756
 PlatformEffector2D:
@@ -589,6 +641,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   animator: {fileID: 5410633247962168158}
+  attackDamage: 40
   attackRange: 0.5
 --- !u!114 &39408865
 MonoBehaviour:
@@ -602,9 +655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439bf718db2c84e41b33d48267833b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wizardPortrait: {fileID: 21300000, guid: 0c95faed3aa5a43d3b19f112f0843c87, type: 3}
+  wizardPortrait: {fileID: 21300000, guid: 9ff3d350e2246904494d7701219f0086, type: 3}
   knightPortrait: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   assassinPortrait: {fileID: 21300000, guid: 2e93c637a24e04d8ea6b2cfd9df53739, type: 3}
+  rangerPortrait: {fileID: 21300000, guid: eb3711790d9a7304992355d8f5f9eeae, type: 3}
   knightAnimator: {fileID: 5410633247962168158}
   fireball: {fileID: 3369635124843261181, guid: 20b5168503a8e254784bc11e7db08c55,
     type: 3}
@@ -679,9 +733,13 @@ MonoBehaviour:
   blockPortrait: {fileID: 21300128, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   parryPortrait: {fileID: 21300038, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   wsPortrait: {fileID: 21300000, guid: d2c46d6a6e7d821449f2f29ef3b15d17, type: 3}
+  mpPortrait: {fileID: 21300000, guid: 0e0df596e3a9aec4db4516361823a40d, type: 3}
+  ksPortrait: {fileID: 21300000, guid: d2c46d6a6e7d821449f2f29ef3b15d17, type: 3}
   rollPortrait: {fileID: 21300152, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   lionsPortrait: {fileID: 21300142, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   btPortrait: {fileID: 21300000, guid: 55483373304e84a7c821d5390de99fdb, type: 3}
+  maPortrait: {fileID: 21300000, guid: 0e0df596e3a9aec4db4516361823a40d, type: 3}
+  adrenlinePortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
   sprintPortrait: {fileID: 21300022, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   springbootsPortrait: {fileID: 21300172, guid: ae297123f091bbf4e8f1835eb98fb293,
     type: 3}
@@ -747,12 +805,15 @@ MonoBehaviour:
   heavansSprite: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   saddleupPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   chargePortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  horseshoesPortrait: {fileID: 21300000, guid: 1c53732095d3d12429a6f3394959b03a, type: 3}
   flamechargePortrait: {fileID: 21300038, guid: 34ecf51bcd3f4424eafda7dafd885bd0,
     type: 3}
   mountsproPortrait: {fileID: 21300056, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   hoodPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   swiftPortrait: {fileID: 21300046, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   soulPortrait: {fileID: 21300000, guid: 04e5a1d1ff3dc4c7f81a700a52c1d002, type: 3}
+  sharpenedPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
+  herbalPortrait: {fileID: 21300000, guid: 0951036edb6447149b56aed50fb43623, type: 3}
   firearrow: {fileID: 2511490291506432640, guid: ad115c58b3ed7014eb0f49603b77ac92,
     type: 3}
   firearrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
@@ -770,6 +831,28 @@ MonoBehaviour:
   lightarrow: {fileID: 1080310119953201692, guid: f2978ea7a96a0344da1ba7c9761480bd,
     type: 3}
   lightarrowPortrait: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  oakwandPortrait: {fileID: 21300000, guid: cb6315ec3fc35224db7d5bccd23c829a, type: 3}
+  bronzewandPortrait: {fileID: 21300000, guid: b41c0c89a2705fd488e1554f7a973d81, type: 3}
+  goldwandPortrait: {fileID: 21300000, guid: 0aa1ed8fc3a68bd488df60766b692bb9, type: 3}
+  dragonbonewandPortrait: {fileID: 21300000, guid: a1ead72c70e0481468726820d1f1ce49,
+    type: 3}
+  woodenswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+    type: 3}
+  ironswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
+  steelswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
+  obsidianswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+    type: 3}
+  knifePortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1, type: 3}
+  sharpenedknifePortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
+    type: 3}
+  daggerPortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1, type: 3}
+  sharpeneddaggerPortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
+    type: 3}
+  bowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
+  lightbowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
+  darkbowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
+  horsearmourPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695,
+    type: 3}
 --- !u!95 &5410633247962168158
 Animator:
   serializedVersion: 3
@@ -780,7 +863,7 @@ Animator:
   m_GameObject: {fileID: 7591264296427334523}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 219a823282c546d4b848c9cbd37ce2f5, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4bbe742e044c1e408b49374cdacadae, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

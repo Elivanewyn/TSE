@@ -1084,6 +1084,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Spear")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1105,6 +1107,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Bouncy Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1239,6 +1243,8 @@ public class ClassSystem : MonoBehaviour
 
                 if(name_ == "Fire Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1254,6 +1260,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Ice Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1272,6 +1280,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Thunder Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1287,6 +1297,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }
@@ -1307,6 +1319,8 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Light Arrow")
                 {
+                    playerObject.GetComponent<Animator>().SetTrigger("Shoot");
+
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
                     if (direction == Vector2.up) { rotation = 90; }

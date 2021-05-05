@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public RuntimeAnimatorController knightAnimController;
     public RuntimeAnimatorController wizardAnimController;
     public RuntimeAnimatorController assassinAnimController;
+    public RuntimeAnimatorController rangerAnimController;
 
 
     public GameObject particleL;
@@ -65,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
         else if (PlayerCombat.currentClass.name == "Assassin")
         {
             animator.runtimeAnimatorController = assassinAnimController;
+        }
+        else if (PlayerCombat.currentClass.name == "Ranger")
+        {
+            animator.runtimeAnimatorController = rangerAnimController;
         }
 
         rb2D = GetComponent<Rigidbody2D>();

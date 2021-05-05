@@ -128,7 +128,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            animator.SetTrigger("Death");
+            //Destroy(gameObject);
         }
     }
 

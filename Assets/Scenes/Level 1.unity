@@ -45328,6 +45328,11 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1237386221}
+    - target: {fileID: 7591264296427334526, guid: 9536382fffc021146b260878ef4866e6,
+        type: 3}
+      propertyPath: knightAnimController
+      value: 
+      objectReference: {fileID: 9100000, guid: 219a823282c546d4b848c9cbd37ce2f5, type: 2}
     - target: {fileID: 7591264295744213747, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: skill1Portrait
@@ -45371,7 +45376,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 424de169d6d2d314292ac786ee2f8561, type: 2}
+      objectReference: {fileID: 9100000, guid: 59eed083f5562af44895d53dd5822f7a, type: 2}
     - target: {fileID: 7591264296427334522, guid: 9536382fffc021146b260878ef4866e6,
         type: 3}
       propertyPath: m_Sprite

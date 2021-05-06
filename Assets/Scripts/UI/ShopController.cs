@@ -73,7 +73,7 @@ public class ShopController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (x != 0)
             {
@@ -83,7 +83,7 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (x != 3)
             {

@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
-    public float maxHealth = 10;
-    public float health { get { return currentHealth; } set { value = currentHealth; } }
+    public float maxHealth;
+    public float health { get { return currentHealth; } set { currentHealth = value; } }
     float currentHealth;
 
     public float defence = 0.1f;
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb2D = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
         Time.timeScale = 1;
@@ -126,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
             
             inventory.enabled = true;
         }
-
 
         if (currentHealth <= 0)
         {
@@ -273,7 +272,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
-            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-2);
         }

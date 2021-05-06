@@ -229,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
             animator.SetTrigger("Jump");
+            FindObjectOfType<AudioManager>().PlaySound("Jump");
             animator.SetBool("Grounded", false);
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             numberOfJumps--;
@@ -272,11 +273,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(amount < 0)
         {
+            FindObjectOfType<AudioManager>().PlaySound("Hit");
             StartCoroutine(HurtAnim());
             amount += defence;
         }
         else
         {
+            FindObjectOfType<AudioManager>().PlaySound("Health");
             StartCoroutine(RenewAnim());
         }
 
@@ -405,7 +408,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<AudioManager>().PlaySound("Air");
+        yield return new WaitForSeconds(0.5f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies2)
         {
@@ -459,6 +464,8 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(0.3f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+
+        FindObjectOfType<AudioManager>().PlaySound("Attack");
         foreach (Collider2D enemy in hitEnemies2)
         {
             if (!enemy.isTrigger)
@@ -483,9 +490,11 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightLionsRoar()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         evadeChance += 30;
         yield return new WaitForSeconds(10);
         evadeChance -= 30;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
     public IEnumerator KnightBlessedTouch()
@@ -511,26 +520,32 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator KnightMagicArmour()
     {
         float temp = speed;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         speed = 4;
         evadeChance += 70;
         yield return new WaitForSeconds(10);
         evadeChance -= 70;
         speed = temp;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
     public IEnumerator KnightAdrenlineRush()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         evadeChance += 65;
         yield return new WaitForSeconds(10);
         evadeChance -= 65;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
 
     public IEnumerator KnightWarriorsSpirit()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DefenceBoost");
         defence += 0.1f;
         yield return new WaitForSeconds(10);
         defence -= 0.1f;
+        FindObjectOfType<AudioManager>().PlaySound("DefenceLost");
     }
 
 
@@ -552,17 +567,21 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightKnightsSpirit()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DefenceBoost");
         defence += 0.1f;
         yield return new WaitForSeconds(20);
         defence -= 0.1f;
+        FindObjectOfType<AudioManager>().PlaySound("DefenceLost");
     }
 
 
     public IEnumerator KnightSprint()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         speed += 5;
         yield return new WaitForSeconds(8);
         speed -= 5;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
 
     public IEnumerator KnightSpringBoots()

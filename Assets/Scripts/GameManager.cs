@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
         }
         else { pointsImage.color = new Color(1, 1, 0, 1); }
 
-        if(currentExp >= 10)
+        if(currentExp >= 5)
         {
-            currentExp -= 10;
+            currentExp -= 5;
             currentPoints++;
         }
 

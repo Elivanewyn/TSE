@@ -91,6 +91,8 @@ public class SkeletonFS : MonoBehaviour
     public void TakeDamage(float damage)
     {
         // play hurt animation
+
+        FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         animator.SetTrigger("Hurt");
         // apply damage
         damage *= damageMultiplier * staticMultiplier;

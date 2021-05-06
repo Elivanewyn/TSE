@@ -150,7 +150,7 @@ public class SkillSelection : MonoBehaviour
                         {
                             errorBoard.SetActive(true);
                         }
-                        errorText.text = "You dont have enough Skill Points!\nGain Skill Points by getting 10EXP.";
+                        errorText.text = "You dont have enough Skill Points!\nGain Skill Points by getting 5EXP.";
                     }
                 }
                 else

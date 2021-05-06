@@ -86,6 +86,7 @@ public class SkeletonMage : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         damage *= damageMultiplier * staticMultiplier;
         maxHealth -= damage;
     }

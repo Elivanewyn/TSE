@@ -79,7 +79,7 @@ public class SkeletonMage : MonoBehaviour
         {
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
-            coinDropper.coinDrop(3, 6);
+            coinDropper.coinDrop();
             Destroy(gameObject);
         }
     }

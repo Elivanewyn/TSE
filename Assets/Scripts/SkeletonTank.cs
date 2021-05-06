@@ -77,7 +77,7 @@ public class SkeletonTank : MonoBehaviour
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
-            coinDropper.coinDrop(4, 8);
+            coinDropper.coinDrop();
             Destroy(gameObject);
         }
     }

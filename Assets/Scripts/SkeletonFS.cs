@@ -106,7 +106,7 @@ public class SkeletonFS : MonoBehaviour
 
     void Die()
     {
-        coinDropper.coinDrop(1, 4);
+        coinDropper.coinDrop();
         Debug.Log("Enemy died!");
         //die animation
         animator.SetBool("isDead", true);

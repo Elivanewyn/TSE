@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particleL;
     public GameObject particleR;
 
+    ShopController shopController;
+
     private static bool playerExists;
     // Start is called before the first frame update
     void Start()
@@ -95,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        shopController = GameObject.Find("UIController").GetComponent<ShopController>();
     }
 
     // Update is called once per frame
@@ -133,7 +135,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    void PlayerDeath()
+    {
+        shopController.coinQuantity = 0;
+        for (int x = 0; x < 4; x++)
+        {
+            
+        }
+    }
 
 
     void Move()

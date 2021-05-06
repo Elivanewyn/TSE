@@ -20,6 +20,7 @@ public class SkeletonTank : MonoBehaviour
 
     float hasStealthChanged;
 
+    CoinDropper coinDropper;
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -35,6 +36,7 @@ public class SkeletonTank : MonoBehaviour
             sightCollider = bc2d[1];
         }
         sightCollider.size = new Vector2(sightRange, 2f);//??
+        coinDropper = GetComponent<CoinDropper>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -75,6 +77,7 @@ public class SkeletonTank : MonoBehaviour
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
+            coinDropper.coinDrop(4, 8);
             Destroy(gameObject);
         }
     }

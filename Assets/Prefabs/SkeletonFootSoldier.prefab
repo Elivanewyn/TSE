@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8026252397323558106}
   - component: {fileID: 8026252397323558107}
   - component: {fileID: 6315891025835783458}
+  - component: {fileID: 114696847903926780}
   m_Layer: 12
   m_Name: SkeletonFootSoldier
   m_TagString: skeletonfs
@@ -194,3 +195,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114696847903926780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026252397323558104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c531c6e1ce69eb44b6668d33dc42da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 4443886101176638454, guid: dc1eb847831831f4eb3d8a94f8c13730, type: 3}

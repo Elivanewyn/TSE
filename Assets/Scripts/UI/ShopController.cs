@@ -13,7 +13,7 @@ public class ShopController : MonoBehaviour
     public RawImage m_RawImage;
     public Texture[] textureArray;
     public TextMeshProUGUI potionText;
-    static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
+    public static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
 
     public TextMeshProUGUI coinText;
     public int coinQuantity;
@@ -135,6 +135,8 @@ public class ShopController : MonoBehaviour
                 //play sound effect
             }
         }
+
+        coinText.text = $"{coinQuantity}";
 
     }
 

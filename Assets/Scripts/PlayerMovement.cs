@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particleR;
 
     ShopController shopController;
+    GameManager gameManager;
+    PlayerCombat playerCombat;
+    ClassSystem classSystem;
 
     private static bool playerExists;
     // Start is called before the first frame update
@@ -98,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
         }
         shopController = GameObject.Find("UIController").GetComponent<ShopController>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -131,17 +135,56 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetTrigger("Death");
+            PlayerDeath();
             //Destroy(gameObject);
         }
     }
 
     void PlayerDeath()
     {
-        shopController.coinQuantity = 0;
+        ShopController.coinQuantity = 0;
         for (int x = 0; x < 4; x++)
         {
-            
+            ShopController.potionQuantityArray[x] = 0;
         }
+        gameManager.currentExp = 0;
+        PlayerCombat.equippedSkill1 = PlayerCombat.currentClass.basicSkills[0];
+        PlayerCombat.equippedSkill2 = PlayerCombat.currentClass.basicSkills[1];
+
+        int refundAmount = 0;
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeOne[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeOne[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeTwo[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeTwo[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeThree[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeThree[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeFour[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeFour[y].isActive = false;
+            }
+        }
+        gameManager.currentPoints += refundAmount;
     }
 
 

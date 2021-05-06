@@ -16,7 +16,7 @@ public class ShopController : MonoBehaviour
     public static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
 
     public TextMeshProUGUI coinText;
-    public int coinQuantity;
+    public static int coinQuantity;
 
     public Image weapon0Image;
 

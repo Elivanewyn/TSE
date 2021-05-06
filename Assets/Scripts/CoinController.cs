@@ -25,7 +25,7 @@ public class CoinController : MonoBehaviour
             int rndNum = rnd.Next(3, 6);
             for (int x = 0; x < rndNum; x++)
             {
-                shopController.coinQuantity += 1;
+                ShopController.coinQuantity += 1;
             }
             Destroy(this.gameObject);
         }

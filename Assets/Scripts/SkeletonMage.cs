@@ -24,6 +24,8 @@ public class SkeletonMage : MonoBehaviour
 
     float hasStealthChanged;
 
+    CoinDropper coinDropper;
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -39,6 +41,7 @@ public class SkeletonMage : MonoBehaviour
             sightCollider = bc2d[1];
         }
         sightCollider.size = new Vector2(sightRange, 4f);
+        coinDropper = GetComponent<CoinDropper>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -76,12 +79,14 @@ public class SkeletonMage : MonoBehaviour
         {
             GameManager.Instance.currentExp++;
             GameManager.Instance.currentExp++;
+            coinDropper.coinDrop();
             Destroy(gameObject);
         }
     }
 
     public void TakeDamage(float damage)
     {
+        FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         damage *= damageMultiplier * staticMultiplier;
         maxHealth -= damage;
     }

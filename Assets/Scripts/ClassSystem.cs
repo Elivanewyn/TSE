@@ -695,6 +695,7 @@ public class ClassSystem : MonoBehaviour
 
                 if(name_ == "Large Swing")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Skill4");
                     PlayerCombat pc = playerObject.GetComponent<PlayerCombat>();
                     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange + 1.5f, pc.enemyLayer);
@@ -726,17 +727,21 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Triple Swipe")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
                     playerObject.GetComponent<PlayerCombat>().KnightTripleSwipe();
                     return;
                 }
                 else if (name_ == "Dual Slice")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Jump");
+                    FindObjectOfType<AudioManager>().PlaySound("Attack");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightDualSlice());
                     return;
                 }
                 else if (name_ == "Friction Spark")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     playerObject.GetComponent<ClassSystem>().knightAnimator.SetTrigger("Attack" + 3);
                     Vector2 off = new Vector2(0, -1.3f);
                     float rotation = 0;
@@ -759,6 +764,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Block")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Block");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.KnightBlock());
                     return;
@@ -792,6 +798,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Roll")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Air");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.KnightRoll());
                     return;

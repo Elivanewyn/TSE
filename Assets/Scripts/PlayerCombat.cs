@@ -190,6 +190,7 @@ public class PlayerCombat : MonoBehaviour
     {
         // JYU_Play attack animation
         animator.SetTrigger("PrimaryAttack");
+        FindObjectOfType<AudioManager>().PlaySound("Attack");
         // JYU_Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, attackRange, enemyLayer);   //changed it from meleeTransformR to currentMelee so you can attack from the left
         // JYU_Apply damage
@@ -197,7 +198,6 @@ public class PlayerCombat : MonoBehaviour
         {
             if (!enemy.isTrigger)                   //make sure your not hitting the enemies from far away. without this you can hit their sight box collider
             {
-                Debug.Log("We hit " + enemy.name);
                 if (enemy.tag == "skeletonfs")
                 {
                     enemy.GetComponent<SkeletonFS>().TakeDamage(attackDamage);
@@ -216,6 +216,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void ChangeMana(float amount)
     {
+        FindObjectOfType<AudioManager>().PlaySound("Mana");
         currentMana = Mathf.Clamp(currentMana + amount, 0f, maxMana);
         UIBar.mana.SetValue(currentMana / (float)maxMana);
     }
@@ -627,12 +628,14 @@ public class PlayerCombat : MonoBehaviour
     {
         GetComponent<PlayerMovement>().animator.SetTrigger("Block");
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", true);
+        FindObjectOfType<AudioManager>().PlaySound("Block");
         GetComponent<PlayerMovement>().evadeChance = 100;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(1.5f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
+        FindObjectOfType<AudioManager>().PlaySound("Attack");
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.isTrigger)

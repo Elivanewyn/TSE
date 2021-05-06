@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2.0f;
 
-    public float maxHealth = 10;
-    public float health { get { return currentHealth; } set { value = currentHealth; } }
+    public float maxHealth;
+    public float health { get { return currentHealth; } set { currentHealth = value; } }
     float currentHealth;
 
     public float defence = 0.1f;
@@ -54,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particleL;
     public GameObject particleR;
 
+    ShopController shopController;
+    GameManager gameManager;
+    PlayerCombat playerCombat;
+    ClassSystem classSystem;
+
     private static bool playerExists;
     // Start is called before the first frame update
     void Start()
@@ -81,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb2D = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         inventory.enabled = false;
         numberOfJumps = maxJumps;
         Time.timeScale = 1;
@@ -95,7 +100,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        shopController = GameObject.Find("UIController").GetComponent<ShopController>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -125,15 +131,60 @@ public class PlayerMovement : MonoBehaviour
             inventory.enabled = true;
         }
 
-
         if (currentHealth <= 0)
         {
             animator.SetTrigger("Death");
+            PlayerDeath();
             //Destroy(gameObject);
         }
     }
 
+    void PlayerDeath()
+    {
+        ShopController.coinQuantity = 0;
+        for (int x = 0; x < 4; x++)
+        {
+            ShopController.potionQuantityArray[x] = 0;
+        }
+        gameManager.currentExp = 0;
+        PlayerCombat.equippedSkill1 = PlayerCombat.currentClass.basicSkills[0];
+        PlayerCombat.equippedSkill2 = PlayerCombat.currentClass.basicSkills[1];
 
+        int refundAmount = 0;
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeOne[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeOne[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeTwo[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeTwo[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeThree[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeThree[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeFour[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeFour[y].isActive = false;
+            }
+        }
+        gameManager.currentPoints += refundAmount;
+    }
 
 
     void Move()
@@ -178,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && ((isGrounded || Time.time - lastTimeGrounded <= rememberGrounded) || (numberOfJumps > 1)))
         {
             animator.SetTrigger("Jump");
+            FindObjectOfType<AudioManager>().PlaySound("Jump");
             animator.SetBool("Grounded", false);
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             numberOfJumps--;
@@ -221,11 +273,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if(amount < 0)
         {
+            FindObjectOfType<AudioManager>().PlaySound("Hit");
             StartCoroutine(HurtAnim());
             amount += defence;
         }
         else
         {
+            FindObjectOfType<AudioManager>().PlaySound("Health");
             StartCoroutine(RenewAnim());
         }
 
@@ -264,7 +318,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
-            //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
             ChangeHealth(-2);
         }
@@ -355,7 +408,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        FindObjectOfType<AudioManager>().PlaySound("Air");
+        yield return new WaitForSeconds(0.5f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
         foreach (Collider2D enemy in hitEnemies2)
         {
@@ -409,6 +464,8 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(0.3f);
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(pc.currentMelee.position, pc.meleeRange, pc.enemyLayer);
+
+        FindObjectOfType<AudioManager>().PlaySound("Attack");
         foreach (Collider2D enemy in hitEnemies2)
         {
             if (!enemy.isTrigger)
@@ -433,9 +490,11 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightLionsRoar()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         evadeChance += 30;
         yield return new WaitForSeconds(10);
         evadeChance -= 30;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
     public IEnumerator KnightBlessedTouch()
@@ -461,26 +520,32 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator KnightMagicArmour()
     {
         float temp = speed;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         speed = 4;
         evadeChance += 70;
         yield return new WaitForSeconds(10);
         evadeChance -= 70;
         speed = temp;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
     public IEnumerator KnightAdrenlineRush()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         evadeChance += 65;
         yield return new WaitForSeconds(10);
         evadeChance -= 65;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
 
     public IEnumerator KnightWarriorsSpirit()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DefenceBoost");
         defence += 0.1f;
         yield return new WaitForSeconds(10);
         defence -= 0.1f;
+        FindObjectOfType<AudioManager>().PlaySound("DefenceLost");
     }
 
 
@@ -502,17 +567,21 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KnightKnightsSpirit()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DefenceBoost");
         defence += 0.1f;
         yield return new WaitForSeconds(20);
         defence -= 0.1f;
+        FindObjectOfType<AudioManager>().PlaySound("DefenceLost");
     }
 
 
     public IEnumerator KnightSprint()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         speed += 5;
         yield return new WaitForSeconds(8);
         speed -= 5;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
 
     public IEnumerator KnightSpringBoots()
@@ -733,6 +802,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+    public IEnumerator DamagePotion()
+    {
+        SkeletonFS.staticMultiplier += 0.5f;
+        SkeletonMage.staticMultiplier += 0.5f;
+        SkeletonTank.staticMultiplier += 0.5f;
+        yield return new WaitForSeconds(10f);
+        SkeletonFS.staticMultiplier -= 0.5f;
+        SkeletonMage.staticMultiplier -= 0.5f;
+        SkeletonTank.staticMultiplier -= 0.5f;
+    }
+
+    public IEnumerator SpeedPotion()
+    {
+        speed += 5;
+        yield return new WaitForSeconds(5f);
+        speed -= 5;
+    }
+    
 
 
     void AE_ResetRoll()

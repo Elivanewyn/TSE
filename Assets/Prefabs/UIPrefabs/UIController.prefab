@@ -574,7 +574,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: GenericPotion
         m_Mode: 3
         m_Arguments:
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: LvTwoWeapon
         m_Mode: 1
         m_Arguments:
@@ -1214,7 +1214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9033835841131931364}
   - component: {fileID: 9033835841131931366}
-  - component: {fileID: 9033835841131931365}
+  - component: {fileID: 373309482}
   m_Layer: 5
   m_Name: ItemIcon
   m_TagString: Untagged
@@ -1249,7 +1249,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033835841131931371}
   m_CullTransparentMesh: 0
---- !u!114 &9033835841131931365
+--- !u!114 &373309482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033835841131931371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1267,13 +1267,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a1ead72c70e0481468726820d1f1ce49, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: a1ead72c70e0481468726820d1f1ce49, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &9033835841205891853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,7 +1962,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033835841447214426}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -373.363, y: -233.19542, z: 19.320312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1993,15 +1995,19 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 533591a8f98a4dc439f172db0767a0cd, type: 3}
   potionText: {fileID: 9033835842946969987}
   coinText: {fileID: 9033835841831192504}
-  coinQuantity: 0
+  weapon0Image: {fileID: 175674363}
   WeaponLvOneCost: {fileID: 9033835841391982803}
   WeaponLvOneText: {fileID: 9033835842157414174}
+  weapon1Image: {fileID: 1421241886}
   WeaponLvTwoCost: {fileID: 9033835842328294364}
   WeaponLvTwoText: {fileID: 9033835842501160981}
+  weapon2Image: {fileID: 1725731236}
   WeaponLvThreeCost: {fileID: 9033835842684726550}
   WeaponLvThreeText: {fileID: 9033835841389482257}
+  weapon3Image: {fileID: 373309482}
   ErrorText_One: {fileID: 5237264964445632525}
   ErrorText_Two: {fileID: 7239841859457288283}
+  player: {fileID: 0}
 --- !u!1 &9033835841479477752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: LvThreeWeapon
         m_Mode: 1
         m_Arguments:
@@ -2502,12 +2508,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 9033835841447214420}
+        m_MethodName: AlreadyOwned
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2728,7 +2734,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: LvOneWeapon
         m_Mode: 1
         m_Arguments:
@@ -3110,7 +3116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: GenericPotion
         m_Mode: 3
         m_Arguments:
@@ -3492,7 +3498,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: GenericPotion
         m_Mode: 3
         m_Arguments:
@@ -4345,7 +4351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5453e017044eeea458caeba23a8be8d7, type: 3}
+  m_Texture: {fileID: 2800000, guid: 1053367a8b3a3564c948322c2081f68c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5578,7 +5584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9033835842724318588}
   - component: {fileID: 9033835842724318590}
-  - component: {fileID: 9033835842724318589}
+  - component: {fileID: 1725731236}
   m_Layer: 5
   m_Name: ItemIcon
   m_TagString: Untagged
@@ -5613,7 +5619,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033835842724318531}
   m_CullTransparentMesh: 0
---- !u!114 &9033835842724318589
+--- !u!114 &1725731236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5622,7 +5628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033835842724318531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -5631,13 +5637,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0aa1ed8fc3a68bd488df60766b692bb9, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: 0aa1ed8fc3a68bd488df60766b692bb9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &9033835842785218816
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,7 +5764,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9033835841447214420}
         m_MethodName: GenericPotion
         m_Mode: 3
         m_Arguments:
@@ -5874,7 +5882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9033835842794434507}
   - component: {fileID: 9033835842794434501}
-  - component: {fileID: 9033835842794434500}
+  - component: {fileID: 175674363}
   m_Layer: 5
   m_Name: ItemIcon
   m_TagString: Untagged
@@ -5909,7 +5917,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033835842794434506}
   m_CullTransparentMesh: 0
---- !u!114 &9033835842794434500
+--- !u!114 &175674363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5918,7 +5926,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033835842794434506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -5927,13 +5935,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: cb6315ec3fc35224db7d5bccd23c829a, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: cb6315ec3fc35224db7d5bccd23c829a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &9033835842801206559
 GameObject:
   m_ObjectHideFlags: 0
@@ -6100,7 +6110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9033835842902491897}
   - component: {fileID: 9033835842902491899}
-  - component: {fileID: 9033835842902491898}
+  - component: {fileID: 1421241886}
   m_Layer: 5
   m_Name: ItemIcon
   m_TagString: Untagged
@@ -6135,7 +6145,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033835842902491896}
   m_CullTransparentMesh: 0
---- !u!114 &9033835842902491898
+--- !u!114 &1421241886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6144,7 +6154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9033835842902491896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -6153,13 +6163,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: b41c0c89a2705fd488e1554f7a973d81, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: b41c0c89a2705fd488e1554f7a973d81, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &9033835842946969985
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,10 @@ public class ShopController : MonoBehaviour
     public RawImage m_RawImage;
     public Texture[] textureArray;
     public TextMeshProUGUI potionText;
-    static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
+    public static int[] potionQuantityArray = new int[] { 0, 0, 0, 0 };
 
     public TextMeshProUGUI coinText;
-    public int coinQuantity;
+    public static int coinQuantity;
 
     public Image weapon0Image;
 
@@ -38,6 +38,8 @@ public class ShopController : MonoBehaviour
 
     private float timeStamp;
     int x = 0;
+
+    public GameObject player;
 
     void Start()
     {
@@ -71,7 +73,7 @@ public class ShopController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (x != 0)
             {
@@ -81,7 +83,7 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (x != 3)
             {
@@ -101,6 +103,42 @@ public class ShopController : MonoBehaviour
         {
             ErrorText_Two.SetActive(false);
         }
+
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(potionQuantityArray[x] > 0)
+            {
+                if(x == 0)
+                {
+                    player.GetComponent<PlayerMovement>().ChangeHealth(5);
+                    potionQuantityArray[x]--;
+                }
+                else if(x == 1)
+                {
+                    player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().DamagePotion());
+                    potionQuantityArray[x]--;
+                }
+                else if (x == 2)
+                {
+                    player.GetComponent<PlayerCombat>().ChangeMana(5);
+                    potionQuantityArray[x]--;
+                }
+                else if (x == 3)
+                {
+                    player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().SpeedPotion());
+                    potionQuantityArray[x]--;
+                }
+            }
+            else
+            {
+                //play sound effect
+            }
+        }
+
+        coinText.text = $"{coinQuantity}";
+        potionText.text = $"{potionQuantityArray[x]}";
+
     }
 
     void CloseShop()

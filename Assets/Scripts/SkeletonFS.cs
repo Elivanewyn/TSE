@@ -26,6 +26,8 @@ public class SkeletonFS : MonoBehaviour
     // damage number
     public GameObject floatingPoints;
 
+    CoinDropper coinDropper;
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -41,6 +43,8 @@ public class SkeletonFS : MonoBehaviour
             sightCollider = bc2d[1];
         }
         sightCollider.size = new Vector2(sightRange, 2f);
+
+        coinDropper = GetComponent<CoinDropper>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -87,6 +91,8 @@ public class SkeletonFS : MonoBehaviour
     public void TakeDamage(float damage)
     {
         // play hurt animation
+
+        FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         animator.SetTrigger("Hurt");
         // apply damage
         damage *= damageMultiplier * staticMultiplier;
@@ -102,6 +108,7 @@ public class SkeletonFS : MonoBehaviour
 
     void Die()
     {
+        coinDropper.coinDrop();
         Debug.Log("Enemy died!");
         //die animation
         animator.SetBool("isDead", true);

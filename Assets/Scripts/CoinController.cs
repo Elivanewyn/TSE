@@ -8,20 +8,25 @@ public class CoinController : MonoBehaviour
 
     void Start()
     {
-        //ShopController shopController = Canvas.GetComponent<ShopController>();
+        shopController = GameObject.Find("UIController").GetComponent<ShopController>();
 
     }
 
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            shopController.coinQuantity += 1;
+            System.Random rnd = new System.Random();
+            int rndNum = rnd.Next(3, 6);
+            for (int x = 0; x < rndNum; x++)
+            {
+                ShopController.coinQuantity += 1;
+            }
             Destroy(this.gameObject);
         }
     }

@@ -137,6 +137,7 @@ public class ShopController : MonoBehaviour
         }
 
         coinText.text = $"{coinQuantity}";
+        potionText.text = $"{potionQuantityArray[x]}";
 
     }
 

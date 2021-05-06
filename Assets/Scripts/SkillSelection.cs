@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SkillSelection : MonoBehaviour
 {
+    public GameObject errorBoard;
+    public Text errorText;
 
     Transform parent;
     Transform sibling;
@@ -114,8 +116,14 @@ public class SkillSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            errorText.text = "";
+            errorBoard.SetActive(false);
+        }
+
         //Debug.Log(currentClass.skillTreeOne[1].isActive);
-        if(selectedSkill != null)
+        if (selectedSkill != null)
         {
             skillDescription.text = selectedSkill.name + ": " + selectedSkill.description + ".";
         }
@@ -130,20 +138,38 @@ public class SkillSelection : MonoBehaviour
             {
                 if (previousSkill == null || previousSkill.isActive)
                 {
-                    if (true)
+                    if (GameManager.Instance.currentPoints >= 1)
                     {
                         selectedSkill.isActive = true;
-
+                        GameManager.Instance.currentPoints--;
                         selectedFrame.color = new Color(1, 1, 0, 1);
                     }
                     else
                     {
-                        Debug.Log("You dont have enough SP");
+                        if(!errorBoard.activeInHierarchy)
+                        {
+                            errorBoard.SetActive(true);
+                        }
+                        errorText.text = "You dont have enough Skill Points!\nGain Skill Points by getting 10EXP.";
                     }
                 }
-                else { Debug.Log("you need to unlock the previous skill"); }
+                else
+                {
+                    if (!errorBoard.activeInHierarchy)
+                    {
+                        errorBoard.SetActive(true);
+                    }
+                    errorText.text = "You must buy the previous skill to unlock this one.";
+                }
             }
-            else { return; }
+            else
+            {
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have already bought this skill!";
+            }
         }
         else { return; }
     }
@@ -163,7 +189,11 @@ public class SkillSelection : MonoBehaviour
             }
             else
             {
-                Debug.Log("you have not bought that skill");
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have not bought this skill.";
             }
         }
         else { return; }
@@ -182,7 +212,11 @@ public class SkillSelection : MonoBehaviour
             }
             else
             {
-                Debug.Log("you have not bought that skill");
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have not bought this skill.";
             }
         }
         else { return; }

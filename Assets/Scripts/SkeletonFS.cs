@@ -61,10 +61,10 @@ public class SkeletonFS : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (maxHealth == 0)
-        {
-            Destroy(gameObject);
-        }
+        //if (maxHealth == 0)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
 
@@ -78,6 +78,7 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth <= 0)
         {
+            GameManager.Instance.currentExp++;
             Die();
         }
     }
@@ -92,11 +93,11 @@ public class SkeletonFS : MonoBehaviour
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
         points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
         maxHealth -= damage;
-        // death
-        if (maxHealth <= 0)
-        {
-            Die();
-        }
+        //// death
+        //if (maxHealth <= 0)
+        //{
+        //    Die();
+        //}
     }
 
     void Die()

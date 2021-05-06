@@ -57,10 +57,10 @@ public class SkeletonMage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (maxHealth == 0)
-        {
-            Destroy(gameObject);
-        }
+        //if (maxHealth == 0)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
 
@@ -74,6 +74,8 @@ public class SkeletonMage : MonoBehaviour
 
         if (maxHealth <= 0)
         {
+            GameManager.Instance.currentExp++;
+            GameManager.Instance.currentExp++;
             Destroy(gameObject);
         }
     }

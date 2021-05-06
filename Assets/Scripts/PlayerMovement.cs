@@ -224,6 +224,10 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(HurtAnim());
             amount += defence;
         }
+        else
+        {
+            StartCoroutine(RenewAnim());
+        }
 
         if(amount < 0 && evadeChance > 0)
         {
@@ -244,6 +248,14 @@ public class PlayerMovement : MonoBehaviour
         Color temp = GetComponent<SpriteRenderer>().color;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(0.1f);
+        GetComponent<SpriteRenderer>().color = temp;
+    }
+
+    private IEnumerator RenewAnim()
+    {
+        Color temp = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = new Color(0.5f, 1f, 0.5f, 1);
+        yield return new WaitForSeconds(0.2f);
         GetComponent<SpriteRenderer>().color = temp;
     }
 

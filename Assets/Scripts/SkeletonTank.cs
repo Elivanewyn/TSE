@@ -55,10 +55,10 @@ public class SkeletonTank : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (maxHealth == 0)
-        {
-            Destroy(gameObject);
-        }
+        //if (maxHealth == 0)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
 
@@ -72,6 +72,9 @@ public class SkeletonTank : MonoBehaviour
 
         if (maxHealth <= 0)
         {
+            GameManager.Instance.currentExp++;
+            GameManager.Instance.currentExp++;
+            GameManager.Instance.currentExp++;
             Destroy(gameObject);
         }
     }

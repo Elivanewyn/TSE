@@ -39,6 +39,8 @@ public class ShopController : MonoBehaviour
     private float timeStamp;
     int x = 0;
 
+    public GameObject player;
+
     void Start()
     {
         weapon0Image.sprite = PlayerCombat.currentClass.weapons[0].portrait;
@@ -101,6 +103,39 @@ public class ShopController : MonoBehaviour
         {
             ErrorText_Two.SetActive(false);
         }
+
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(potionQuantityArray[x] > 0)
+            {
+                if(x == 0)
+                {
+                    player.GetComponent<PlayerMovement>().ChangeHealth(5);
+                    potionQuantityArray[x]--;
+                }
+                else if(x == 1)
+                {
+                    player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().DamagePotion());
+                    potionQuantityArray[x]--;
+                }
+                else if (x == 2)
+                {
+                    player.GetComponent<PlayerCombat>().ChangeMana(5);
+                    potionQuantityArray[x]--;
+                }
+                else if (x == 3)
+                {
+                    player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().SpeedPotion());
+                    potionQuantityArray[x]--;
+                }
+            }
+            else
+            {
+                //play sound effect
+            }
+        }
+
     }
 
     void CloseShop()

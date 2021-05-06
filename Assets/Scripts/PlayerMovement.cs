@@ -734,6 +734,25 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    public IEnumerator DamagePotion()
+    {
+        SkeletonFS.staticMultiplier += 0.5f;
+        SkeletonMage.staticMultiplier += 0.5f;
+        SkeletonTank.staticMultiplier += 0.5f;
+        yield return new WaitForSeconds(10f);
+        SkeletonFS.staticMultiplier -= 0.5f;
+        SkeletonMage.staticMultiplier -= 0.5f;
+        SkeletonTank.staticMultiplier -= 0.5f;
+    }
+
+    public IEnumerator SpeedPotion()
+    {
+        speed += 5;
+        yield return new WaitForSeconds(5f);
+        speed -= 5;
+    }
+    
+
 
     void AE_ResetRoll()
     {

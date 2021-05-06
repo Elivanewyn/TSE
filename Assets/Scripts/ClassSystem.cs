@@ -454,6 +454,7 @@ public class ClassSystem : MonoBehaviour
             {
                 if (name_ == "Fireball")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Fireball");
                     GameObject Fireball = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Fireball.GetComponent<attack>();
@@ -465,6 +466,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Fire Blast")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Fireball");
                     GameObject Fireblast = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Fireblast.GetComponent<attack>();
@@ -476,12 +478,14 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Flamethrower")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Flamethrower");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.WizardFlamethrower());
                     return;
                 }
                 else if (name_ == "Flame Burst")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Fireball");
                     GameObject Flameburst = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
                     attack projectile = Flameburst.GetComponent<attack>();
@@ -493,6 +497,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Flame Inferno")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Flamethrower");
                     Vector2 off = new Vector2(5, 1.8f);
                     if (direction == Vector2.left)
                     {

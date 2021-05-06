@@ -45,28 +45,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Jump
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: 8104283af7aea2f48bc1c1425016ddfc, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: 1c58c7f7749b57040b9ca8ab09f7d514, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: PrimaryAttack
+    clip: {fileID: 8300000, guid: 8ec32e085dc500243a1df3680f164189, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: LargeSwing
+    clip: {fileID: 8300000, guid: a6b9fe185a1239346a0cfd37c93aeee9, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: Air
+    clip: {fileID: 8300000, guid: 6ec252decff9ffb4780bd614d9c661d8, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 01e39309f251ed44fa21e31750437e2a, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Block
+    clip: {fileID: 8300000, guid: 0935eca375df3de4288dfa6a30f20719, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DefenceBoost
+    clip: {fileID: 8300000, guid: b55202a6cff9b174abe235480b441275, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DefenceLost
+    clip: {fileID: 8300000, guid: dc902544835146f4ba6c31ae33cc45a6, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Mana
+    clip: {fileID: 8300000, guid: c496710bfb267bb46bd8b259b0e0e97a, type: 3}
+    volume: 0.01
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedBoost
+    clip: {fileID: 8300000, guid: 89db9a30e91a9a947ab40be759f43f99, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SpeedLost
+    clip: {fileID: 8300000, guid: ad56c31104e3d8e4fbacd8a75b2ddd12, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EvadeBoost
+    clip: {fileID: 8300000, guid: 5ec70624fb09a5643891bfc29765bace, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EvadeLost
+    clip: {fileID: 8300000, guid: e780d63e18dd77e4ba47f4e23790b73f, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Health
+    clip: {fileID: 8300000, guid: 8f4ed0ddf4fe44f44b938c855fdd17fa, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
   audioMixer: {fileID: 243274316393926464, guid: 74e1aaf69dbb14740942eb2f47a3bef4,

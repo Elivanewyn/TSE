@@ -9,6 +9,7 @@ TagManager:
   - skeletonfs
   - skeletontank
   - skeletonmage
+  - angelboss
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Ground
   - Attack
   - Player
-  - 
+  - Boss
   - 
   - 
   - 

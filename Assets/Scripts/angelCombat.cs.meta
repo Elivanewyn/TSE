@@ -3,7 +3,9 @@ guid: 9e3f528a57ac5a546b4d38adee0c1f57
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - AngelAttack: {fileID: 1164461969167398219, guid: b8a0447c3fb94f24ab4f03a67051b612,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

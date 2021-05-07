@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6940186334268195259}
   m_Layer: 0
   m_Name: SkeletonMage
-  m_TagString: skeletonfs
+  m_TagString: skeletonmage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

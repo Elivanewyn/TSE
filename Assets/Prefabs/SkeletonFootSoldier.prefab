@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 8026252397323558117}
   - component: {fileID: 8026252397323558106}
   - component: {fileID: 8026252397323558107}
-  m_Layer: 0
+  - component: {fileID: 6315891025835783458}
+  - component: {fileID: 114696847903926780}
+  m_Layer: 12
   m_Name: SkeletonFootSoldier
   m_TagString: skeletonfs
   m_Icon: {fileID: 0}
@@ -170,3 +172,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   maxHealth: 400
+  damageMultiplier: 1
+  animator: {fileID: 6315891025835783458}
+  floatingPoints: {fileID: 433075994822002986, guid: 547786c96b899d04c9ebd03a70271257,
+    type: 3}
+--- !u!95 &6315891025835783458
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026252397323558104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f30f8d16c63d1c4a9b88a7f2615862b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114696847903926780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026252397323558104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c531c6e1ce69eb44b6668d33dc42da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 4443886101176638454, guid: dc1eb847831831f4eb3d8a94f8c13730, type: 3}

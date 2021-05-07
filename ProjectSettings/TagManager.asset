@@ -9,6 +9,8 @@ TagManager:
   - skeletonfs
   - skeletontank
   - skeletonmage
+  - spawner
+  - mageattack
   - angelboss
   layers:
   - Default
@@ -22,9 +24,10 @@ TagManager:
   - Ground
   - Attack
   - Player
+  - Signs
+  - Enemy
+  - Coins
   - Boss
-  - 
-  - 
   - 
   - 
   - 
@@ -46,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 2334028823
+    locked: 0
+  - name: Signs
+    uniqueID: 536777013
     locked: 0
   - name: Environment
     uniqueID: 1547424149

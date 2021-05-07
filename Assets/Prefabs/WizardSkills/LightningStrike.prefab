@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4883709049928314364}
   - component: {fileID: 4883709049928314339}
   - component: {fileID: 4883709049928314338}
+  - component: {fileID: 3994403441084602489}
   m_Layer: 9
   m_Name: LightningStrike
   m_TagString: attack
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4883709049928314337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.734, y: -7.683, z: -0.2109375}
-  m_LocalScale: {x: 4.0162, y: 7.875, z: 1}
+  m_LocalPosition: {x: 24.734, y: -7.8277, z: -0.2109375}
+  m_LocalScale: {x: 2.1228626, y: 1.4544811, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 05693a8fd758747cab019551188b0447, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 8fded994701debe468fb3e42b541820d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,21 +93,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0037347376, y: -0.09327485}
+  m_Offset: {x: -0.021634877, y: 0.06289089}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.81, y: 0.66}
+    oldSize: {x: 0.76, y: 3.42}
     newSize: {x: 0.26, y: 0.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25253052, y: 0.44654968}
+  m_Size: {x: 0.5031318, y: 3.0466292}
   m_EdgeRadius: 0
 --- !u!114 &4883709049928314339
 MonoBehaviour:
@@ -122,6 +123,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 6
   damage: 2
+  speed: 0
+  hitsEnemies: 1
+  isBouncy: 0
+  isStun: 0
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  freezeWeakness: 1
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  isBlind: 0
+  blindTime: 0
+  isWeakness: 0
+  weaknessTime: 0
+  isSlowness: 0
+  slownessTime: 0
+  slownessEffect: 1
+  enemyLeft: 0
 --- !u!50 &4883709049928314338
 Rigidbody2D:
   serializedVersion: 4
@@ -143,3 +164,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &3994403441084602489
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883709049928314337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60aa0d1632ab6ad4ba9625ffaf6716b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SkillSelection : MonoBehaviour
 {
+    public GameObject errorBoard;
+    public Text errorText;
 
     Transform parent;
     Transform sibling;
@@ -114,8 +116,14 @@ public class SkillSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            errorText.text = "";
+            errorBoard.SetActive(false);
+        }
+
         //Debug.Log(currentClass.skillTreeOne[1].isActive);
-        if(selectedSkill != null)
+        if (selectedSkill != null)
         {
             skillDescription.text = selectedSkill.name + ": " + selectedSkill.description + ".";
         }
@@ -130,20 +138,38 @@ public class SkillSelection : MonoBehaviour
             {
                 if (previousSkill == null || previousSkill.isActive)
                 {
-                    if (true)
+                    if (GameManager.Instance.currentPoints >= 1)
                     {
                         selectedSkill.isActive = true;
-
+                        GameManager.Instance.currentPoints--;
                         selectedFrame.color = new Color(1, 1, 0, 1);
                     }
                     else
                     {
-                        Debug.Log("You dont have enough SP");
+                        if(!errorBoard.activeInHierarchy)
+                        {
+                            errorBoard.SetActive(true);
+                        }
+                        errorText.text = "You dont have enough Skill Points!\nGain Skill Points by getting 5EXP.";
                     }
                 }
-                else { Debug.Log("you need to unlock the previous skill"); }
+                else
+                {
+                    if (!errorBoard.activeInHierarchy)
+                    {
+                        errorBoard.SetActive(true);
+                    }
+                    errorText.text = "You must buy the previous skill to unlock this one.";
+                }
             }
-            else { return; }
+            else
+            {
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have already bought this skill!";
+            }
         }
         else { return; }
     }
@@ -152,35 +178,49 @@ public class SkillSelection : MonoBehaviour
 
     public void EquipSkill1()
     {
-        if(selectedSkill.isActive)
+        if (selectedSkill != null)
         {
-            PlayerCombat.equippedSkill1 = selectedSkill;
-            previousFrame1.color = new Color(1, 1, 0, 1);
-            selectedFrame.color = new Color(1, 0, 0, 1);
-            previousFrame1 = GetFrame(ref selectedFrame);
+            if (selectedSkill.isActive)
+            {
+                PlayerCombat.equippedSkill1 = selectedSkill;
+                previousFrame1.color = new Color(1, 1, 0, 1);
+                selectedFrame.color = new Color(1, 0, 0, 1);
+                previousFrame1 = GetFrame(ref selectedFrame);
+            }
+            else
+            {
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have not bought this skill.";
+            }
         }
-        else
-        {
-            Debug.Log("you have not bought that skill");
-        }
+        else { return; }
     }
 
     public void EquipSkill2()
     {
-        if (selectedSkill.isActive)
+        if (selectedSkill != null)
         {
-            PlayerCombat.equippedSkill2 = selectedSkill;
-            previousFrame2.color = new Color(1, 1, 0, 1);
-            selectedFrame.color = new Color(1, 0, 0, 1);
-            previousFrame2 = GetFrame(ref selectedFrame);
+            if (selectedSkill.isActive)
+            {
+                PlayerCombat.equippedSkill2 = selectedSkill;
+                previousFrame2.color = new Color(1, 1, 0, 1);
+                selectedFrame.color = new Color(1, 0, 0, 1);
+                previousFrame2 = GetFrame(ref selectedFrame);
+            }
+            else
+            {
+                if (!errorBoard.activeInHierarchy)
+                {
+                    errorBoard.SetActive(true);
+                }
+                errorText.text = "You have not bought this skill.";
+            }
         }
-        else
-        {
-            Debug.Log("you have not bought that skill");
-        }
+        else { return; }
     }
-
-
 
 
     public ref ClassSystem.Skill GetSkill(ref ClassSystem.Skill skill)

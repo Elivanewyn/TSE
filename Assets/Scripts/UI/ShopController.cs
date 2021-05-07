@@ -9,6 +9,8 @@ public class ShopController : MonoBehaviour
 {
     public static bool isOpen = false;
     public GameObject ShopMenu;
+    public GameObject PauseMenu;
+    public Canvas SkillTree;
 
     public RawImage m_RawImage;
     public Texture[] textureArray;
@@ -53,7 +55,7 @@ public class ShopController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && (!PauseMenu.activeSelf) && (SkillTree.enabled == false))
         {
             if (isOpen)
             {

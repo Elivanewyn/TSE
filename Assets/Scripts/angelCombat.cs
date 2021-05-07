@@ -13,7 +13,7 @@ public class angelCombat : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     public float fireRate = 1.0f;
     private float nextFire;
-    public int attackDamage = 2;
+    public int attackDamage = 1000;
     
 
     void Start()
@@ -29,11 +29,6 @@ public class angelCombat : MonoBehaviour
             return;
 
         health -= damage;
-
-        if (health <= 200)
-        {
-            enraged = true;
-        }
 
         if (health <= 0)
         {
@@ -55,7 +50,40 @@ public class angelCombat : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "attack")
+        {
+            health -= attackDamage;
+        }
+
+
+        if (health == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        Enrage();
+    }
+
+    void Enrage()
+    {
+        if (health <= 200)
+        {
+            enraged = true;
+        }
+
+        if (enraged == true)
+        {
+            fireRate = fireRate * 2;
+            attackDamage = attackDamage * 2;
+        }
+    }
     
+
 
 
 }

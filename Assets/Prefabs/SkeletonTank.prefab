@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3232177238933907279}
   - component: {fileID: 4880206641115017986}
   - component: {fileID: 114930640002973986}
+  - component: {fileID: 95923450846641758}
   m_Layer: 12
   m_Name: SkeletonTank
   m_TagString: skeletontank
@@ -185,3 +186,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 4443886101176638454, guid: dc1eb847831831f4eb3d8a94f8c13730, type: 3}
+--- !u!95 &95923450846641758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232177238933907277}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f30f8d16c63d1c4a9b88a7f2615862b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

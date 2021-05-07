@@ -21,6 +21,8 @@ public class angelAttack : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
     }
 
+    
+
     void OnCollisionEnter2D(Collision2D other)
     {
         Destroy(gameObject);

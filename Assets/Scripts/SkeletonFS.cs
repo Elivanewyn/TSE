@@ -45,6 +45,8 @@ public class SkeletonFS : MonoBehaviour
         sightCollider.size = new Vector2(sightRange, 2f);
 
         coinDropper = GetComponent<CoinDropper>();
+        animator = GetComponent<Animator>();
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -54,6 +56,14 @@ public class SkeletonFS : MonoBehaviour
             if (!isBlind && !playerInvis)
             {
                 transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+                if (transform.position.x > Player.transform.position.x)
+                {
+                    transform.rotation = Quaternion.identity;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
             else if (isBlind)
             {
@@ -82,9 +92,18 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth <= 0)
         {
-            GameManager.Instance.currentExp++;
-            Die();
+                     
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        animator.SetBool("isDead", true);       
+        yield return new WaitForSeconds(1);        
+        GameManager.Instance.currentExp++;
+        coinDropper.coinDrop();
+        Die();
     }
 
 
@@ -93,7 +112,7 @@ public class SkeletonFS : MonoBehaviour
         // play hurt animation
 
         FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
-        animator.SetTrigger("Hurt");
+        animator.SetBool("isHurt", true);
         // apply damage
         damage *= damageMultiplier * staticMultiplier;
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
@@ -108,10 +127,9 @@ public class SkeletonFS : MonoBehaviour
 
     void Die()
     {
-        coinDropper.coinDrop();
-        Debug.Log("Enemy died!");
-        //die animation
-        animator.SetBool("isDead", true);
+        animator.SetBool("isDead", false);      
+        Debug.Log("Enemy died!");        
+        //die animation        
         Destroy(gameObject);
         // disable enemy
         this.enabled = false;

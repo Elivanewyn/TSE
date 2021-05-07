@@ -25,6 +25,7 @@ public class SkeletonMage : MonoBehaviour
     float hasStealthChanged;
 
     CoinDropper coinDropper;
+    public Animator animator;
 
     void Start()
     {
@@ -42,6 +43,8 @@ public class SkeletonMage : MonoBehaviour
         }
         sightCollider.size = new Vector2(sightRange, 4f);
         coinDropper = GetComponent<CoinDropper>();
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -52,6 +55,14 @@ public class SkeletonMage : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
                 GameObject mageAttack = Instantiate(mageFire, rigidbody2D.position + Vector2.up * 6f, Quaternion.identity);
+                if (transform.position.x > Player.transform.position.x)
+                {
+                    transform.rotation = Quaternion.identity;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
         }
 
@@ -76,12 +87,30 @@ public class SkeletonMage : MonoBehaviour
         hasStealthChanged = sightRange;
 
         if (maxHealth <= 0)
-        {
-            GameManager.Instance.currentExp++;
-            GameManager.Instance.currentExp++;
-            coinDropper.coinDrop();
-            Destroy(gameObject);
+        {                       
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.currentExp++;
+        GameManager.Instance.currentExp++;
+        coinDropper.coinDrop();
+        Die();
+    }
+
+    void Die()
+    {
+        animator.SetBool("isDead", false);
+        Debug.Log("Enemy died!");
+        //die animation        
+        Destroy(gameObject);
+        // disable enemy
+        this.enabled = false;
+
     }
 
     public void TakeDamage(float damage)

@@ -55,6 +55,14 @@ public class SkeletonMage : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
                 GameObject mageAttack = Instantiate(mageFire, rigidbody2D.position + Vector2.up * 6f, Quaternion.identity);
+                if (transform.position.x > Player.transform.position.x)
+                {
+                    transform.rotation = Quaternion.identity;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
         }
 

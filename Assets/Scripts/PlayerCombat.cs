@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.knight;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -627,7 +627,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().animator.SetTrigger("Block");
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", true);
         GetComponent<PlayerMovement>().evadeChance = 100;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         GetComponent<PlayerMovement>().evadeChance = 0;
         GetComponent<PlayerMovement>().animator.SetBool("IdleBlock", false);
     }

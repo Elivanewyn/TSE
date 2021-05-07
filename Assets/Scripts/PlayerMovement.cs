@@ -560,6 +560,8 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerCombat pc = GetComponent<PlayerCombat>();
         stopManualMove = true;
+        float temp = jumpForce;
+        jumpForce = 0;
         pc.ChangeMana(2f);
         yield return new WaitForSeconds(1f);
         pc.ChangeMana(2f);
@@ -570,6 +572,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         pc.ChangeMana(2f);
         stopManualMove = false;
+        jumpForce = temp;
     }
 
     public IEnumerator KnightKnightsSpirit()

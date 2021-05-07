@@ -17,6 +17,7 @@ public class SkeletonTank : MonoBehaviour
 
     public float damageMultiplier = 1f;
     public static float staticMultiplier = 1f;
+    public Animator animator;
 
     float hasStealthChanged;
 
@@ -37,6 +38,7 @@ public class SkeletonTank : MonoBehaviour
         }
         sightCollider.size = new Vector2(sightRange, 2f);//??
         coinDropper = GetComponent<CoinDropper>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -74,12 +76,31 @@ public class SkeletonTank : MonoBehaviour
 
         if (maxHealth <= 0)
         {
-            GameManager.Instance.currentExp++;
-            GameManager.Instance.currentExp++;
-            GameManager.Instance.currentExp++;
-            coinDropper.coinDrop();
-            Destroy(gameObject);
+                        
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1);
+        coinDropper.coinDrop();
+        GameManager.Instance.currentExp++;
+        GameManager.Instance.currentExp++;
+        GameManager.Instance.currentExp++;
+        Die();
+
+    }
+
+    void Die()
+    {
+        
+        
+        Debug.Log("Enemy died!");       
+        Destroy(gameObject);        
+        this.enabled = false;
+
     }
 
     public void TakeDamage(float damage)

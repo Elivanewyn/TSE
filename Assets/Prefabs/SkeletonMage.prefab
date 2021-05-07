@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1095083570855045053}
   - component: {fileID: 6940186334268195259}
   - component: {fileID: 114331258256385868}
+  - component: {fileID: 226222692}
   m_Layer: 12
   m_Name: SkeletonMage
   m_TagString: skeletonmage
@@ -175,6 +176,7 @@ MonoBehaviour:
   maxHealth: 400
   fireRate: 3
   damageMultiplier: 1
+  animator: {fileID: 0}
 --- !u!114 &114331258256385868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +190,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 4443886101176638454, guid: dc1eb847831831f4eb3d8a94f8c13730, type: 3}
+--- !u!95 &226222692
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095083570855045055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ecb94ae2c2be96741a15e8fa8fa97be3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

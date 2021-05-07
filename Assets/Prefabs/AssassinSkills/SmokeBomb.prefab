@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8021371409166469612}
   - component: {fileID: 8021371409166469619}
   - component: {fileID: 8021371409166469618}
+  - component: {fileID: 95016603814523320}
   m_Layer: 9
   m_Name: SmokeBomb
   m_TagString: attack
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8021371409166469617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.073, y: -11.101, z: -0.2109375}
-  m_LocalScale: {x: 27.529133, y: 20.381548, z: 1}
+  m_LocalPosition: {x: 26.083, y: -9.986, z: -0.2109375}
+  m_LocalScale: {x: 17.454351, y: 12.17824, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6cddca0fc40f143ef84e8cdbee2ba153, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8666667}
+  m_Color: {r: 0.9481132, g: 1, b: 0.99677813, a: 0.8666667}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,10 +93,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017144807, y: 0.030314684}
+  m_Offset: {x: -0.00003965944, y: 0.018374681}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -106,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4559245, y: 0.5199269}
+  m_Size: {x: 0.24758624, y: 0.4960469}
   m_EdgeRadius: 0
 --- !u!114 &8021371409166469619
 MonoBehaviour:
@@ -124,6 +125,24 @@ MonoBehaviour:
   damage: 0
   speed: 0
   hitsEnemies: 0
+  isBouncy: 0
+  isStun: 0
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  freezeWeakness: 1
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  isBlind: 0
+  blindTime: 0
+  isWeakness: 0
+  weaknessTime: 0
+  isSlowness: 0
+  slownessTime: 0
+  slownessEffect: 1
+  enemyLeft: 0
 --- !u!50 &8021371409166469618
 Rigidbody2D:
   serializedVersion: 4
@@ -145,3 +164,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &95016603814523320
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021371409166469617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90455bb14c8fe82489499d064c826eb1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

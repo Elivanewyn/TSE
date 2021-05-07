@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300020, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
-  m_Color: {r: 0.87920195, g: 0.90588236, b: 0.082352914, a: 1}
+  m_Sprite: {fileID: 21300018, guid: 2484720f12ce7674282b4fc932646b7d, type: 3}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,18 +95,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21787834, y: 0.01120472}
+  m_Offset: {x: -0.059016645, y: 0.01120472}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.13, y: 0.94}
+    oldSize: {x: 3.1538463, y: 1}
     newSize: {x: 0.26, y: 0.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6835747, y: 0.9311161}
+  m_Size: {x: 3.1297846, y: 0.9311161}
   m_EdgeRadius: 0
 --- !u!114 &2287464470175325549
 MonoBehaviour:
@@ -124,6 +124,24 @@ MonoBehaviour:
   damage: 0.5
   speed: 850
   hitsEnemies: 1
+  isBouncy: 0
+  isStun: 0
+  stunTime: 0
+  isFreeze: 0
+  freezeTime: 0
+  freezeWeakness: 1
+  isPoison: 0
+  poisonTime: 0
+  poisonDPS: 0
+  isPillar: 0
+  isBlind: 0
+  blindTime: 0
+  isWeakness: 0
+  weaknessTime: 0
+  isSlowness: 0
+  slownessTime: 0
+  slownessEffect: 1
+  enemyLeft: 0
 --- !u!50 &2287464470175325548
 Rigidbody2D:
   serializedVersion: 4

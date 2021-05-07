@@ -518,6 +518,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Lightning Strike")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     Vector2 off = new Vector2(5, 0.3f);
                     if (direction == Vector2.left)
                     {
@@ -532,6 +533,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Bolt")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     Vector2 off = new Vector2(5, 1.9f);
                     if (direction == Vector2.left)
                     {
@@ -546,6 +548,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Electric Cage")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, -0.2f);
@@ -565,6 +568,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Plasma Charge")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("LargeSwing");
                     Vector2 off = new Vector2(5, 3.3f);
                     if (direction == Vector2.left)
                     {
@@ -579,6 +583,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Lightning Pillar")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Pillar");
                     Vector2 off = new Vector2(5, 1.7f);
                     if (direction == Vector2.left)
                     {
@@ -597,6 +602,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Frost Wave")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Ice");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, -0.2f);
@@ -617,6 +623,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Ice Prison")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Ice");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
                     Vector2 off = new Vector2(8, 0.4f);
@@ -637,12 +644,14 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Freezing Breath")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Flamethrower");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.WizardFreezingBreath());
                     return;
                 }
                 else if (name_ == "Ice Crash")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Fireball");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
 
@@ -657,6 +666,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Freezing Land")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Flamethrower");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.WizardFreezingLand());
                     return;
@@ -870,6 +880,7 @@ public class ClassSystem : MonoBehaviour
             {
                 if (name_ == "Throwing Knife")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     float rotation = 0;
                     if(direction == Vector2.left) { rotation = 180; }
@@ -887,6 +898,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison Dart")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     float rotation = 0;
                     if (direction == Vector2.left) { rotation = 180; }
@@ -906,18 +918,21 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Slide")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Air");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.AssassinSlide());
                     return;
                 }
                 else if (name_ == "Taunt")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.AssassinTaunt());
                     return;
                 }
                 else if (name_ == "Assassinate")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Block");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.AssassinAssassinate());
                     return;
@@ -927,6 +942,7 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Smoke Bomb")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Bomb");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
@@ -959,6 +975,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Sneak")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Blink");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.AssassinShadowSneak());
                     return;
@@ -974,12 +991,14 @@ public class ClassSystem : MonoBehaviour
 
                 if (name_ == "Slash")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Attack");
                     PlayerMovement player = playerObject.GetComponent<PlayerMovement>();
                     player.StartCoroutine(player.AssassinSlash());
                     return;
                 }
                 else if (name_ == "Weakness")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject WPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
@@ -994,6 +1013,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Poison")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
@@ -1009,6 +1029,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Slowness")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject SPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
@@ -1024,6 +1045,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Paralysis")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     GameObject PLPotion = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.identity);
 
@@ -1072,6 +1094,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Clone")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Ice");
                     playerObject.GetComponent<Animator>().SetTrigger("Throw");
                     if ((direction == Vector2.up) || (direction == Vector2.down)) { direction = Vector2.right; }
 
@@ -1097,6 +1120,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Spear")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1120,6 +1144,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Bouncy Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1138,6 +1163,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Heavan's Flurry")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Heavan");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.RangerHeavansFlurry(prefab));
                     return;
@@ -1150,6 +1176,7 @@ public class ClassSystem : MonoBehaviour
 
                     if (player.jumpForce == 10f)
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("Giant");
                         player.speed += 5f;
                         player.jumpForce -= 2f;
                         player.fallMultiplier += 2f;
@@ -1158,6 +1185,7 @@ public class ClassSystem : MonoBehaviour
                     }
                     else
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("Small");
                         player.speed -= 5f;
                         player.jumpForce += 2f;
                         player.fallMultiplier -= 2f;
@@ -1168,6 +1196,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Charge")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Air");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.RangerCharge());
                     return;
@@ -1178,6 +1207,7 @@ public class ClassSystem : MonoBehaviour
 
                     if (player.jumpForce == 10f)
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("Giant");
                         player.speed += 7f;
                         player.jumpForce -= 1.5f;
                         player.fallMultiplier += 1.5f;
@@ -1186,6 +1216,7 @@ public class ClassSystem : MonoBehaviour
                     }
                     else
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("Small");
                         player.speed -= 7f;
                         player.jumpForce += 1.5f;
                         player.fallMultiplier -= 1.5f;
@@ -1196,6 +1227,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Flame Charge")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Fireball");
                     PlayerCombat player = playerObject.GetComponent<PlayerCombat>();
                     player.StartCoroutine(player.RangerFlameCharge());
                     return;
@@ -1214,6 +1246,7 @@ public class ClassSystem : MonoBehaviour
 
                     if(player.defence == 0.3f)
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("Invis");
                         player.defence = 0.1f;
                         SkeletonFS.sightRange = 3;
                         SkeletonMage.sightRange = 3;
@@ -1221,6 +1254,7 @@ public class ClassSystem : MonoBehaviour
                     }
                     else
                     {
+                        FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
                         player.defence = 0.3f;
                         SkeletonFS.sightRange = 5;
                         SkeletonMage.sightRange = 5;
@@ -1256,6 +1290,7 @@ public class ClassSystem : MonoBehaviour
 
                 if(name_ == "Fire Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1273,6 +1308,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Ice Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1293,6 +1329,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Thunder Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1310,6 +1347,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Shadow Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;
@@ -1332,6 +1370,7 @@ public class ClassSystem : MonoBehaviour
                 }
                 else if (name_ == "Light Arrow")
                 {
+                    FindObjectOfType<AudioManager>().PlaySound("Throw");
                     playerObject.GetComponent<Animator>().SetTrigger("Shoot");
 
                     float rotation = 0;

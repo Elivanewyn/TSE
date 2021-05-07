@@ -91,7 +91,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Mana
     clip: {fileID: 8300000, guid: c496710bfb267bb46bd8b259b0e0e97a, type: 3}
-    volume: 0.01
+    volume: 0.05
     loop: 0
     source: {fileID: 0}
   - name: SpeedBoost
@@ -116,6 +116,101 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Health
     clip: {fileID: 8300000, guid: 8f4ed0ddf4fe44f44b938c855fdd17fa, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fireball
+    clip: {fileID: 8300000, guid: 18557335ca845c241a169c29ec9011a1, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flamethrower
+    clip: {fileID: 8300000, guid: db3d455f853b21a43b5c7803d15a5517, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pillar
+    clip: {fileID: 8300000, guid: 09c4acdb130de4845b8eb54f58fd7d00, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ice
+    clip: {fileID: 8300000, guid: 69b979f1f560c734297f6acdd34de3df, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: d53b54be91bd92142a3ca39fe1b7eca4, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bomb
+    clip: {fileID: 8300000, guid: 1b35789828ff58c41b0c2d6680b6748e, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Invis
+    clip: {fileID: 8300000, guid: 949a3735b31552a4bafbaf5b1c292ec0, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LooseInvis
+    clip: {fileID: 8300000, guid: b82330e0661cfc944b43b7e8b3dcef12, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Blink
+    clip: {fileID: 8300000, guid: 04a843bd7dca1884aba2f3554398c9f2, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bounce
+    clip: {fileID: 8300000, guid: f252d8031f71ee440b37958afaa942b9, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Heavan
+    clip: {fileID: 8300000, guid: e468ef6de2b28ac48899e582fd3084dc, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Giant
+    clip: {fileID: 8300000, guid: 25b73ff12b0b1e145983b9e44791c313, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Small
+    clip: {fileID: 8300000, guid: b5e9bdd3eb0f347408eb081db5a31112, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DamageBoost
+    clip: {fileID: 8300000, guid: 7117bd83ce35e744198f51b47198e532, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DamageLost
+    clip: {fileID: 8300000, guid: ec60c7bff69b79b49a27ad3b33ed249d, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: abcd15f6b9243434287552efd9eecdac, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin
+    clip: {fileID: 8300000, guid: 5ac6242608b593342802f2c42954d298, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: dc902544835146f4ba6c31ae33cc45a6, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Empty
+    clip: {fileID: 8300000, guid: 32dcff4de7e0b2643aad9a0247880525, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}

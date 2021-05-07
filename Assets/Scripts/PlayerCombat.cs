@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
 
-    public static ClassSystem.PlayerClass currentClass = ClassSystem.knight;
+    public static ClassSystem.PlayerClass currentClass = ClassSystem.ranger;
     public static ClassSystem.Skill equippedSkill1;
     public static ClassSystem.Skill equippedSkill2;
     public Image skill1Portrait;
@@ -47,6 +47,8 @@ public class PlayerCombat : MonoBehaviour
     public Animator animator;
     public int attackDamage = 40;
     public float attackRange = 0.5f;
+
+    float oneSec = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -126,8 +128,14 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
         // JYU_primary mouse button, 
-        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > 1))
+        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > oneSec))
         {
+            if (start)
+            {
+                StopCoroutine(AssassinCriticalStrike());
+                StartCoroutine(StopACS(start));
+                start = false;
+            }
             KnightAttack();
             timeSincePrimary = 0;
         }
@@ -681,6 +689,7 @@ public class PlayerCombat : MonoBehaviour
         GetComponent<PlayerMovement>().evadeChance = 50;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         yield return new WaitForSeconds(3f);
+        FindObjectOfType<AudioManager>().PlaySound("Attack");
         GetComponent<Animator>().SetTrigger("PrimaryAttack");
         Collider2D[] hitEnemies2 = Physics2D.OverlapCircleAll(currentMelee.position, meleeRange, enemyLayer);
         GetComponent<PlayerMovement>().evadeChance = 0;
@@ -725,8 +734,10 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AssassinInvis()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Invis");
         cooldownTime1 = 1000f;
         cooldownTime2 = 1000f;
+        oneSec = 1000f;
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
@@ -734,14 +745,17 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(15);
         cooldownTime1 = 0;
         cooldownTime2 = 0;
+        oneSec = 1;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         SkeletonFS.playerInvis = false;
         SkeletonMage.playerInvis = false;
         SkeletonTank.playerInvis = false;
+        FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
     }
 
     public IEnumerator AssassinCriticalStrike()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Invis");
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
@@ -753,20 +767,26 @@ public class PlayerCombat : MonoBehaviour
 
         start = true;
         yield return new WaitForSeconds(15);
-        start = false;
-        playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-        SkeletonFS.playerInvis = false;
-        SkeletonMage.playerInvis = false;
-        SkeletonTank.playerInvis = false;
+        if (SkeletonFS.playerInvis)
+        {
+            start = false;
+            playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            SkeletonFS.playerInvis = false;
+            SkeletonMage.playerInvis = false;
+            SkeletonTank.playerInvis = false;
 
-        SkeletonFS.staticMultiplier -= 1;
-        SkeletonMage.staticMultiplier -= 1;
-        SkeletonTank.staticMultiplier -= 1;
+            SkeletonFS.staticMultiplier -= 1;
+            SkeletonMage.staticMultiplier -= 1;
+            SkeletonTank.staticMultiplier -= 1;
+
+            FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
+        }
     }
     public IEnumerator StopACS(bool runCode)
     {
-        if (runCode)
+        if (SkeletonFS.playerInvis)
         {
+            FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
             playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             SkeletonFS.playerInvis = false;
             SkeletonMage.playerInvis = false;
@@ -781,6 +801,7 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator AssassinSuperStealth()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Invis");
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
@@ -788,6 +809,7 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = false;
         SkeletonMage.playerInvis = false;
         SkeletonTank.playerInvis = false;
+        FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
     }
 
 
@@ -799,6 +821,7 @@ public class PlayerCombat : MonoBehaviour
         if (direction == Vector2.up) { rotation = 90; }
         if (direction == Vector2.down) { rotation = 270; }
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Arrow1.GetComponent<attack>();
@@ -808,6 +831,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Arrow2.GetComponent<attack>();
@@ -817,6 +841,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Launch(direction);
         yield return new WaitForSeconds(0.3f);
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Arrow3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Arrow3.GetComponent<attack>();
@@ -833,6 +858,7 @@ public class PlayerCombat : MonoBehaviour
         if (direction == Vector2.up) { rotation = 90; }
         if (direction == Vector2.down) { rotation = 270; }
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear1 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile1 = Spear1.GetComponent<attack>();
@@ -842,6 +868,7 @@ public class PlayerCombat : MonoBehaviour
         projectile1.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear2 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile2 = Spear2.GetComponent<attack>();
@@ -851,6 +878,7 @@ public class PlayerCombat : MonoBehaviour
         projectile2.Throw(direction);
         yield return new WaitForSeconds(0.3f);
 
+        FindObjectOfType<AudioManager>().PlaySound("Throw");
         GetComponent<Animator>().SetTrigger("Shoot");
         GameObject Spear3 = Instantiate(prefab, rb2D.position + direction * 3f, Quaternion.Euler(new Vector3(0, 0, rotation)));
         attack projectile3 = Spear3.GetComponent<attack>();
@@ -1020,6 +1048,7 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator RangerMountsProtection()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         GetComponent<PlayerMovement>().evadeChance = 100;
         PlayerMovement player = GetComponent<PlayerMovement>();
         bool wasSaddled = true;
@@ -1035,7 +1064,8 @@ public class PlayerCombat : MonoBehaviour
 
         yield return new WaitForSeconds(15f);
 
-        if(!wasSaddled)
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
+        if (!wasSaddled)
         {
             player.speed -= 7f;
             player.jumpForce += 1.5f;

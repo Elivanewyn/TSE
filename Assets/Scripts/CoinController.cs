@@ -21,6 +21,7 @@ public class CoinController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            FindObjectOfType<AudioManager>().PlaySound("Coin");
             System.Random rnd = new System.Random();
             int rndNum = rnd.Next(3, 6);
             for (int x = 0; x < rndNum; x++)

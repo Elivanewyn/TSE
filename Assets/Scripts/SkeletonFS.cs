@@ -144,7 +144,7 @@ public class SkeletonFS : MonoBehaviour
         {
             if (maxHealth - dps > 0)
             {
-                maxHealth -= dps;
+                TakeDamage(dps);
             }
             yield return new WaitForSeconds(1f);
         }

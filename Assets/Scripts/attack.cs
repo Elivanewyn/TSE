@@ -107,6 +107,7 @@ public class attack : MonoBehaviour
             }
             else
             {
+                FindObjectOfType<AudioManager>().PlaySound("Bounce");
                 transform.rotation =Quaternion.Euler(new Vector3(0, 0, 225));
                 if (other.gameObject.CompareTag("skeletonfs"))
                 {

@@ -132,7 +132,7 @@ public class ShopController : MonoBehaviour
             }
             else
             {
-                //play sound effect
+                FindObjectOfType<AudioManager>().PlaySound("Empty");
             }
         }
 

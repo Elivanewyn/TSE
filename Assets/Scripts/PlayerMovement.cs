@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerDeath()
     {
+        //FindObjectOfType<AudioManager>().PlaySound("GameOver");
         ShopController.coinQuantity = 0;
         for (int x = 0; x < 4; x++)
         {
@@ -352,22 +353,28 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator WizardSpeedBoost()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         speed += 3;
         yield return new WaitForSeconds(8);
         speed -= 3;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
     public IEnumerator WizardEvasionAmplification()
     {
+        FindObjectOfType<AudioManager>().PlaySound("EvadeBoost");
         evadeChance += 10;
         yield return new WaitForSeconds(25);
         evadeChance -= 10;
+        FindObjectOfType<AudioManager>().PlaySound("EvadeLost");
     }
 
     public IEnumerator WizardDefenceBoost()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DefenceBoost");
         defence += 0.1f;
         yield return new WaitForSeconds(15);
         defence -= 0.1f;
+        FindObjectOfType<AudioManager>().PlaySound("DefenceLost");
     }
 
     public IEnumerator KnightRoll()
@@ -767,22 +774,27 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator RangerSwiftBird()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         speed += 5;
         fallMultiplier += 3;
         yield return new WaitForSeconds(8);
         speed -= 5;
         fallMultiplier -= 3;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
 
     public IEnumerator RangerRangersSoul()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         attack.speedMultiplier = 1.5f;
         yield return new WaitForSeconds(8f);
         attack.speedMultiplier = 1;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
 
     public IEnumerator RangerSharpenedBlade()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DamageBoost");
         SkeletonFS.staticMultiplier += 0.5f;
         SkeletonMage.staticMultiplier += 0.5f;
         SkeletonTank.staticMultiplier += 0.5f;
@@ -790,6 +802,7 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.staticMultiplier -= 0.5f;
         SkeletonMage.staticMultiplier -= 0.5f;
         SkeletonTank.staticMultiplier -= 0.5f;
+        FindObjectOfType<AudioManager>().PlaySound("DamageLost");
     }
 
     public IEnumerator RangersHerbalRemedy()
@@ -805,6 +818,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator DamagePotion()
     {
+        FindObjectOfType<AudioManager>().PlaySound("DamageBoost");
         SkeletonFS.staticMultiplier += 0.5f;
         SkeletonMage.staticMultiplier += 0.5f;
         SkeletonTank.staticMultiplier += 0.5f;
@@ -812,13 +826,16 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.staticMultiplier -= 0.5f;
         SkeletonMage.staticMultiplier -= 0.5f;
         SkeletonTank.staticMultiplier -= 0.5f;
+        FindObjectOfType<AudioManager>().PlaySound("DamageLost");
     }
 
     public IEnumerator SpeedPotion()
     {
+        FindObjectOfType<AudioManager>().PlaySound("SpeedBoost");
         speed += 5;
         yield return new WaitForSeconds(5f);
         speed -= 5;
+        FindObjectOfType<AudioManager>().PlaySound("SpeedLost");
     }
     
 

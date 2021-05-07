@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
         if(currentExp >= 5)
         {
+            FindObjectOfType<AudioManager>().PlaySound("LevelUp");
             currentExp -= 5;
             currentPoints++;
         }

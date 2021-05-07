@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2405201991037912046}
   - component: {fileID: 2405201991037912045}
-  - component: {fileID: 2405201991037912044}
   - component: {fileID: 2405201991037912035}
+  - component: {fileID: 2405201991037912044}
   - component: {fileID: 2405201991037912034}
   m_Layer: 12
   m_Name: mageAttack

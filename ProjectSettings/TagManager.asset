@@ -11,6 +11,7 @@ TagManager:
   - skeletonmage
   - spawner
   - mageattack
+  - angelboss
   layers:
   - Default
   - TransparentFX
@@ -26,6 +27,7 @@ TagManager:
   - Signs
   - Enemy
   - Coins
+  - Boss
   - 
   - 
   - 

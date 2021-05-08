@@ -74,7 +74,7 @@ public class SkillSelection : MonoBehaviour
 
     Color previousColor;
 
-    private static bool exists;
+    private bool exists = false;
 
     // Start is called before the first frame update
     void Start()

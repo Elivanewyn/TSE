@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class UIDontDestroyScript : MonoBehaviour
 {
-    private static bool exists;
+    private bool exists = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!exists)
         {
+            Debug.Log("dont destroy");
             exists = true;
-            DontDestroyOnLoad(transform.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
+            Debug.Log("Destroy");
             Destroy(gameObject);
         }
     }

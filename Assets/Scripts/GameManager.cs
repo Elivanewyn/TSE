@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int currentPoints = 0;
     public Image pointsImage;
     public Text pointsText;
-    private static bool exists;
+    private bool exists;
 
     public static GameManager Instance { get; private set; }
 
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //if(Input.GetKeyDown(KeyCode.V))
+        //if (Input.GetKeyDown(KeyCode.V))
         //{
         //    currentExp++;
         //}

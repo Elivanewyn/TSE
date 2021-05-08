@@ -182,7 +182,7 @@ public class attack : MonoBehaviour
                     enemy.TakeDamage(damage);
                 }
             }
-            else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletonmage")))
+            else if ((other.gameObject.CompareTag("skeletonmage")))
             {
                 SkeletonMage enemy = other.gameObject.GetComponent<SkeletonMage>();
                 if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
@@ -204,7 +204,7 @@ public class attack : MonoBehaviour
                     enemy.TakeDamage(damage);
                 }
             }
-            else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletontank")))
+            else if ((other.gameObject.CompareTag("skeletontank")))
             {
                 SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
                 if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }

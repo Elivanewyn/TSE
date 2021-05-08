@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb2D;
@@ -58,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
     GameManager gameManager;
     PlayerCombat playerCombat;
     ClassSystem classSystem;
+
+    public GameObject shopMenu;
+    public GameObject pauseMenu;
 
     private static bool playerExists;
     // Start is called before the first frame update
@@ -124,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1f;
             inventory.enabled = false;
         }
-        else if(Input.GetKeyDown(KeyCode.F))
+        else if(Input.GetKeyDown(KeyCode.F) && (!pauseMenu.activeSelf) && (!shopMenu.activeSelf))
         {
             Time.timeScale = 0.0f;
             
@@ -135,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetTrigger("Death");
             PlayerDeath();
+            SceneManager.LoadScene("DeathScene");
             //Destroy(gameObject);
         }
     }

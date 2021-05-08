@@ -23,6 +23,8 @@ public class SkeletonMage : MonoBehaviour
     public static float staticMultiplier = 1f;
 
     float hasStealthChanged;
+    private AudioSource death;
+    bool soundplayed;
 
     CoinDropper coinDropper;
     public Animator animator;
@@ -30,6 +32,7 @@ public class SkeletonMage : MonoBehaviour
     void Start()
     {
         hasStealthChanged = sightRange;
+        death = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         Player = GameObject.Find("Player");
         BoxCollider2D[] bc2d = GetComponents<BoxCollider2D>();
@@ -87,7 +90,15 @@ public class SkeletonMage : MonoBehaviour
         hasStealthChanged = sightRange;
 
         if (maxHealth <= 0)
-        {                       
+        {
+            if (!soundplayed)
+            {
+                death.Play();
+                soundplayed = true;
+            }
+
+
+
             StartCoroutine(Death());
         }
     }

@@ -16,10 +16,11 @@ public class SkeletonFS : MonoBehaviour
     public static float sightRange = 7;
 
     public float damageMultiplier = 1f;
-
+    bool soundplayed;
     public static float staticMultiplier = 1f;
 
     float hasStealthChanged;
+    private AudioSource death;
     
     // animator 
     public Animator animator;
@@ -27,12 +28,15 @@ public class SkeletonFS : MonoBehaviour
     public GameObject floatingPoints;
 
     CoinDropper coinDropper;
+    
 
     void Start()
     {
         hasStealthChanged = sightRange;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        death = GetComponent<AudioSource>();
         Player = GameObject.Find("Player");
+        soundplayed = false;
         BoxCollider2D[] bc2d = GetComponents<BoxCollider2D>();
         if(bc2d[0].isTrigger)
         {
@@ -92,14 +96,20 @@ public class SkeletonFS : MonoBehaviour
 
         if (maxHealth <= 0)
         {
-                     
+            if (!soundplayed)
+            {
+                death.Play();
+                soundplayed = true;
+            }
+                       
             StartCoroutine(Death());
         }
     }
 
     IEnumerator Death()
     {
-        animator.SetBool("isDead", true);       
+        animator.SetBool("isDead", true);
+        
         yield return new WaitForSeconds(1);        
         GameManager.Instance.currentExp++;
         coinDropper.coinDrop();

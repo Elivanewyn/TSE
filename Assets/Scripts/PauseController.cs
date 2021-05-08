@@ -7,9 +7,11 @@ public class PauseController : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject shopMenu;
+    public Canvas skillTree;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && (!shopMenu.activeSelf) && (skillTree.enabled == false))
         {
             if (isPaused)
             {

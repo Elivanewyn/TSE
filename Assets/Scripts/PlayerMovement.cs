@@ -181,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
+        currentHealth = 10;
         stopManualMove = true;
         jumpForce = 0f;
         //FindObjectOfType<AudioManager>().PlaySound("GameOver");

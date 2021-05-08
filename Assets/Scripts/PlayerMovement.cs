@@ -341,6 +341,11 @@ public class PlayerMovement : MonoBehaviour
             ChangeHealth(-3);
         }
 
+        if(other.gameObject.tag == "angelboss" && Time.time > nextInvincible)
+        {
+            nextInvincible = Time.time + invincibleTime;
+            ChangeHealth(-4);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -417,6 +422,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(75);
+                }
             }
         }
         yield return new WaitForSeconds(0.5f);
@@ -438,6 +447,10 @@ public class PlayerMovement : MonoBehaviour
                 if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(150);
+                }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(75);
                 }
             }
         }
@@ -471,6 +484,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(150);
+                }
             }
         }
         yield return new WaitForSeconds(0.3f);
@@ -492,6 +509,10 @@ public class PlayerMovement : MonoBehaviour
                 if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(150);
+                }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(150);
                 }
             }
         }
@@ -650,11 +671,13 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.sightRange = 20;
         SkeletonMage.sightRange = 20;
         SkeletonTank.sightRange = 20;
+        AngelBoss.sightRange = 20;
         animator.SetTrigger("Taunt");
         yield return new WaitForSeconds(5f);
         SkeletonFS.sightRange = 3;
         SkeletonMage.sightRange = 3;
         SkeletonTank.sightRange = 3;
+        AngelBoss.sightRange = 8;
     }
 
 
@@ -683,6 +706,10 @@ public class PlayerMovement : MonoBehaviour
                     if (enemy.tag == "skeletontank")
                     {
                         enemy.GetComponent<SkeletonTank>().TakeDamage(400);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().TakeDamage(400);
                     }
                 }
             }
@@ -714,6 +741,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(75);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(75);
+                }
             }
         }
         animator.SetTrigger("PrimaryAttack");
@@ -734,6 +765,10 @@ public class PlayerMovement : MonoBehaviour
                 if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(180);
+                }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(180);
                 }
             }
         }
@@ -805,10 +840,12 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.staticMultiplier += 0.5f;
         SkeletonMage.staticMultiplier += 0.5f;
         SkeletonTank.staticMultiplier += 0.5f;
+        AngelBoss.staticMultiplier += 0.5f;
         yield return new WaitForSeconds(8f);
         SkeletonFS.staticMultiplier -= 0.5f;
         SkeletonMage.staticMultiplier -= 0.5f;
         SkeletonTank.staticMultiplier -= 0.5f;
+        AngelBoss.staticMultiplier -= 0.5f;
         FindObjectOfType<AudioManager>().PlaySound("DamageLost");
     }
 
@@ -829,10 +866,12 @@ public class PlayerMovement : MonoBehaviour
         SkeletonFS.staticMultiplier += 0.5f;
         SkeletonMage.staticMultiplier += 0.5f;
         SkeletonTank.staticMultiplier += 0.5f;
+        AngelBoss.staticMultiplier += 0.5f;
         yield return new WaitForSeconds(10f);
         SkeletonFS.staticMultiplier -= 0.5f;
         SkeletonMage.staticMultiplier -= 0.5f;
         SkeletonTank.staticMultiplier -= 0.5f;
+        AngelBoss.staticMultiplier -= 0.5f;
         FindObjectOfType<AudioManager>().PlaySound("DamageLost");
     }
 

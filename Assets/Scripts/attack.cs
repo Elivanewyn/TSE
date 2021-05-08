@@ -103,6 +103,16 @@ public class attack : MonoBehaviour
                     damage *= damageMultiplier;
                     enemy.TakeDamage(damage);
                 }
+                else if (other.gameObject.CompareTag("angelboss"))
+                {
+                    AngelBoss enemy = other.gameObject.GetComponent<AngelBoss>();
+                    if (isPoison) { enemy.StartCoroutine(enemy.Poison(poisonTime, poisonDPS)); }
+                    if (isWeakness) { enemy.StartCoroutine(enemy.Weakness(weaknessTime)); }
+                    if (isSlowness) { enemy.StartCoroutine(enemy.Slowness(slownessTime, slownessEffect)); }
+                    if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
                 Destroy(gameObject);
             }
             else
@@ -124,6 +134,12 @@ public class attack : MonoBehaviour
                 else if (other.gameObject.CompareTag("skeletontank"))
                 {
                     SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
+                else if (other.gameObject.CompareTag("angelboss"))
+                {
+                    AngelBoss enemy = other.gameObject.GetComponent<AngelBoss>();
                     damage *= damageMultiplier;
                     enemy.TakeDamage(damage);
                 }
@@ -191,6 +207,28 @@ public class attack : MonoBehaviour
             else if ((!hitsEnemies) && (other.gameObject.CompareTag("skeletontank")))
             {
                 SkeletonTank enemy = other.gameObject.GetComponent<SkeletonTank>();
+                if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
+                if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
+                if (isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }
+
+                if (isPillar)
+                {
+                    while (!enemyLeft)
+                    {
+                        enemy.TakeDamage(damage);
+                        yield return new WaitForSecondsRealtime(0.75f);
+                    }
+                }
+
+                if (damage > 0)
+                {
+                    damage *= damageMultiplier;
+                    enemy.TakeDamage(damage);
+                }
+            }
+            else if (other.gameObject.CompareTag("angelboss"))
+            {
+                AngelBoss enemy = other.gameObject.GetComponent<AngelBoss>();
                 if (isStun) { enemy.StartCoroutine(enemy.Stun(stunTime)); }
                 if (isFreeze) { enemy.StartCoroutine(enemy.Freeze(freezeTime, freezeWeakness)); }
                 if (isBlind) { enemy.StartCoroutine(enemy.Blind(blindTime)); }

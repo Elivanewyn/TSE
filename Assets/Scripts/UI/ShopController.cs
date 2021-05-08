@@ -194,6 +194,7 @@ public class ShopController : MonoBehaviour
                 SkeletonFS.staticMultiplier += 0.1f;
                 SkeletonMage.staticMultiplier += 0.1f;
                 SkeletonTank.staticMultiplier += 0.1f;
+                AngelBoss.staticMultiplier += 0.1f;
             }
             else
             {
@@ -221,6 +222,7 @@ public class ShopController : MonoBehaviour
                 SkeletonFS.staticMultiplier += 0.1f;
                 SkeletonMage.staticMultiplier += 0.1f;
                 SkeletonTank.staticMultiplier += 0.1f;
+                AngelBoss.staticMultiplier += 0.1f;
             }
             else
             {
@@ -248,6 +250,7 @@ public class ShopController : MonoBehaviour
                 SkeletonFS.staticMultiplier += 0.1f;
                 SkeletonMage.staticMultiplier += 0.1f;
                 SkeletonTank.staticMultiplier += 0.1f;
+                AngelBoss.staticMultiplier += 0.1f;
             }
             else
             {

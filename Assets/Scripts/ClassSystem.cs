@@ -730,6 +730,10 @@ public class ClassSystem : MonoBehaviour
                             {
                                 enemy.GetComponent<SkeletonTank>().TakeDamage(150);
                             }
+                            if (enemy.tag == "angelboss")
+                            {
+                                enemy.GetComponent<AngelBoss>().TakeDamage(150);
+                            }
                         }
                     }
                     return;
@@ -1251,6 +1255,7 @@ public class ClassSystem : MonoBehaviour
                         SkeletonFS.sightRange = 3;
                         SkeletonMage.sightRange = 3;
                         SkeletonTank.sightRange = 3;
+                        AngelBoss.sightRange = 5;
                     }
                     else
                     {
@@ -1259,6 +1264,7 @@ public class ClassSystem : MonoBehaviour
                         SkeletonFS.sightRange = 5;
                         SkeletonMage.sightRange = 5;
                         SkeletonTank.sightRange = 4;
+                        AngelBoss.sightRange = 8;
                     }
                     return;
                 }

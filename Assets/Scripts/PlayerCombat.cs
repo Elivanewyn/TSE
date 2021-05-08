@@ -101,18 +101,21 @@ public class PlayerCombat : MonoBehaviour
             SkeletonFS.sightRange = 7;
             SkeletonMage.sightRange = 6;
             SkeletonTank.sightRange = 5;
+            AngelBoss.sightRange = 8;
         }
         else if(currentClass.stealth == 2)
         {
             SkeletonFS.sightRange = 5;
             SkeletonMage.sightRange = 5;
             SkeletonTank.sightRange = 4;
+            AngelBoss.sightRange = 8;
         }
         else if (currentClass.stealth == 3)
         {
             SkeletonFS.sightRange = 3;
             SkeletonMage.sightRange = 3;
             SkeletonTank.sightRange = 3;
+            AngelBoss.sightRange = 8;
         }
 
     }
@@ -218,6 +221,10 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(attackDamage);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(attackDamage);
+                }
             }
         }
     }
@@ -278,6 +285,10 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().TakeDamage(50);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -297,6 +308,10 @@ public class PlayerCombat : MonoBehaviour
                     if (enemy.tag == "skeletontank")
                     {
                         enemy.GetComponent<SkeletonTank>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().TakeDamage(50);
                     }
                 }
             }
@@ -324,6 +339,10 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().TakeDamage(50);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -343,6 +362,10 @@ public class PlayerCombat : MonoBehaviour
                     if (enemy.tag == "skeletontank")
                     {
                         enemy.GetComponent<SkeletonTank>().TakeDamage(50);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().TakeDamage(50);
                     }
                 }
             }
@@ -382,6 +405,11 @@ public class PlayerCombat : MonoBehaviour
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(40);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -404,6 +432,11 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(40);
                     }
                 }
             }
@@ -436,6 +469,11 @@ public class PlayerCombat : MonoBehaviour
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(40);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(40);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -458,6 +496,11 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(2f, 1.15f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(40);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(2f, 1.15f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(40);
                     }
                 }
             }
@@ -497,6 +540,11 @@ public class PlayerCombat : MonoBehaviour
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(57);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -519,6 +567,11 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(57);
                     }
                 }
             }
@@ -551,6 +604,11 @@ public class PlayerCombat : MonoBehaviour
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(57);
                     }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(57);
+                    }
                 }
             }
             yield return new WaitForSeconds(1.25f);
@@ -573,6 +631,11 @@ public class PlayerCombat : MonoBehaviour
                     {
                         enemy.GetComponent<SkeletonTank>().StartCoroutine(enemy.GetComponent<SkeletonTank>().Freeze(4f, 1.25f));
                         enemy.GetComponent<SkeletonTank>().TakeDamage(57);
+                    }
+                    if (enemy.tag == "angelboss")
+                    {
+                        enemy.GetComponent<AngelBoss>().StartCoroutine(enemy.GetComponent<AngelBoss>().Freeze(4f, 1.25f));
+                        enemy.GetComponent<AngelBoss>().TakeDamage(57);
                     }
                 }
             }
@@ -613,6 +676,10 @@ public class PlayerCombat : MonoBehaviour
                 if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(50 * tripleSwipeNumber);
+                }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(50 * tripleSwipeNumber);
                 }
             }
         }
@@ -660,6 +727,10 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(50);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(50);
+                }
             }
         }
         foreach (Collider2D enemy in hitEnemies2)
@@ -677,6 +748,10 @@ public class PlayerCombat : MonoBehaviour
                 if (enemy.tag == "skeletontank")
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(50);
+                }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(50);
                 }
             }
         }
@@ -709,6 +784,10 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(25);
+                }
             }
         }
         foreach (Collider2D enemy in hitEnemies2)
@@ -727,6 +806,10 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonTank>().TakeDamage(25);
                 }
+                if (enemy.tag == "angelboss")
+                {
+                    enemy.GetComponent<AngelBoss>().TakeDamage(25);
+                }
             }
         }
     }
@@ -741,6 +824,7 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
+        AngelBoss.playerInvis = true;
         playerSprite.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         yield return new WaitForSeconds(15);
         cooldownTime1 = 0;
@@ -750,6 +834,7 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = false;
         SkeletonMage.playerInvis = false;
         SkeletonTank.playerInvis = false;
+        AngelBoss.playerInvis = false;
         FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
     }
 
@@ -760,10 +845,12 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
+        AngelBoss.playerInvis = true;
 
         SkeletonFS.staticMultiplier += 1;
         SkeletonMage.staticMultiplier += 1;
         SkeletonTank.staticMultiplier += 1;
+        AngelBoss.staticMultiplier += 1;
 
         start = true;
         yield return new WaitForSeconds(15);
@@ -774,10 +861,12 @@ public class PlayerCombat : MonoBehaviour
             SkeletonFS.playerInvis = false;
             SkeletonMage.playerInvis = false;
             SkeletonTank.playerInvis = false;
+            AngelBoss.playerInvis = false;
 
             SkeletonFS.staticMultiplier -= 1;
             SkeletonMage.staticMultiplier -= 1;
             SkeletonTank.staticMultiplier -= 1;
+            AngelBoss.staticMultiplier -= 1;
 
             FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
         }
@@ -791,10 +880,12 @@ public class PlayerCombat : MonoBehaviour
             SkeletonFS.playerInvis = false;
             SkeletonMage.playerInvis = false;
             SkeletonTank.playerInvis = false;
+            AngelBoss.playerInvis = false;
             yield return new WaitForSeconds(2f);
             SkeletonFS.staticMultiplier -= 1;
             SkeletonMage.staticMultiplier -= 1;
             SkeletonTank.staticMultiplier -= 1;
+            AngelBoss.staticMultiplier -= 1;
         }
     }
 
@@ -805,10 +896,12 @@ public class PlayerCombat : MonoBehaviour
         SkeletonFS.playerInvis = true;
         SkeletonMage.playerInvis = true;
         SkeletonTank.playerInvis = true;
+        AngelBoss.playerInvis = true;
         yield return new WaitForSeconds(5f);
         SkeletonFS.playerInvis = false;
         SkeletonMage.playerInvis = false;
         SkeletonTank.playerInvis = false;
+        AngelBoss.playerInvis = false;
         FindObjectOfType<AudioManager>().PlaySound("LooseInvis");
     }
 

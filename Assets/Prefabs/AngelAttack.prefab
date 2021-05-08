@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1164461969167398212}
   - component: {fileID: 1164461969167398213}
   - component: {fileID: 1164461969167398218}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AngelAttack
-  m_TagString: angelboss
+  m_TagString: mageattack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

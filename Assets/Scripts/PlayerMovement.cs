@@ -137,14 +137,15 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetTrigger("Death");
-            PlayerDeath();
-            SceneManager.LoadScene("DeathScene");
+            StartCoroutine(PlayerDeath());
             //Destroy(gameObject);
         }
     }
 
-    void PlayerDeath()
+    IEnumerator PlayerDeath()
     {
+        stopManualMove = true;
+        jumpForce = 0f;
         //FindObjectOfType<AudioManager>().PlaySound("GameOver");
         ShopController.coinQuantity = 0;
         for (int x = 0; x < 4; x++)
@@ -189,6 +190,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         gameManager.currentPoints += refundAmount;
+
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene("DeathScene");
     }
 
 

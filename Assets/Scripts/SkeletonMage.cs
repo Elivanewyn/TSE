@@ -28,6 +28,7 @@ public class SkeletonMage : MonoBehaviour
 
     CoinDropper coinDropper;
     public Animator animator;
+    public GameObject floatingPoints;
 
     void Start()
     {
@@ -128,6 +129,8 @@ public class SkeletonMage : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         damage *= damageMultiplier * staticMultiplier;
+        GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
         maxHealth -= damage;
     }
 

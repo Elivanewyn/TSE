@@ -175,6 +175,8 @@ MonoBehaviour:
   maxHealth: 800
   damageMultiplier: 1
   animator: {fileID: 0}
+  floatingPoints: {fileID: 433075994822002986, guid: 547786c96b899d04c9ebd03a70271257,
+    type: 3}
 --- !u!114 &114930640002973986
 MonoBehaviour:
   m_ObjectHideFlags: 0

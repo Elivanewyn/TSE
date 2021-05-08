@@ -22,7 +22,7 @@ public class SkeletonTank : MonoBehaviour
     public Animator animator;
 
     float hasStealthChanged;
-
+    public GameObject floatingPoints;
     CoinDropper coinDropper;
     void Start()
     {
@@ -125,6 +125,8 @@ public class SkeletonTank : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         damage *= damageMultiplier * staticMultiplier;
+        GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
         maxHealth -= damage;
     }
 

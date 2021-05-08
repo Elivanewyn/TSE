@@ -367,27 +367,27 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "skeletonfs" && Time.time > nextInvincible)
         {
             nextInvincible = Time.time + invincibleTime;
-            ChangeHealth(-2);
+            ChangeHealth(-0.5f);
         }
 
         if (other.gameObject.tag == "skeletontank" && Time.time > nextInvincible)
         {
             //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
-            ChangeHealth(-1);
+            ChangeHealth(-1f);
         }
 
         if (other.gameObject.tag == "skeletonmage" && Time.time > nextInvincible)
         {
             //animator.SetTrigger("Hurt");
             nextInvincible = Time.time + invincibleTime;
-            ChangeHealth(-3);
+            ChangeHealth(-1f);
         }
 
         if(other.gameObject.tag == "angelboss" && Time.time > nextInvincible)
         {
             nextInvincible = Time.time + invincibleTime;
-            ChangeHealth(-4);
+            ChangeHealth(-2);
         }
     }
 
@@ -396,7 +396,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "mageattack")
         {
             //animator.SetTrigger("Hurt");
-            ChangeHealth(-3);
+            ChangeHealth(-1.2f);
         }
     }
 

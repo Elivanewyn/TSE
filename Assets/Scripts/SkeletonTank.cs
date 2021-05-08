@@ -12,6 +12,8 @@ public class SkeletonTank : MonoBehaviour
     public static bool playerInvis = false;
 
     static BoxCollider2D sightCollider;
+    private AudioSource death;
+    bool soundplayed;
 
     public static float sightRange = 7;//??
 
@@ -26,6 +28,7 @@ public class SkeletonTank : MonoBehaviour
     {
         hasStealthChanged = sightRange;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        death = GetComponent<AudioSource>();
         Player = GameObject.Find("Player");
         BoxCollider2D[] bc2d = GetComponents<BoxCollider2D>();
         if (bc2d[0].isTrigger)
@@ -84,7 +87,14 @@ public class SkeletonTank : MonoBehaviour
 
         if (maxHealth <= 0)
         {
-                        
+            if (!soundplayed)
+            {
+                death.Play();
+                soundplayed = true;
+            }
+
+
+
             StartCoroutine(Death());
         }
     }

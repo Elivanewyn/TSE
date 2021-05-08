@@ -547,6 +547,8 @@ MonoBehaviour:
   rangerSprite: {fileID: 21300000, guid: eb3711790d9a7304992355d8f5f9eeae, type: 3}
   particleL: {fileID: 1664129391}
   particleR: {fileID: 1822026566}
+  shopMenu: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!50 &7591264296427334527
 Rigidbody2D:
   serializedVersion: 4
@@ -831,27 +833,27 @@ MonoBehaviour:
   lightarrow: {fileID: 1080310119953201692, guid: f2978ea7a96a0344da1ba7c9761480bd,
     type: 3}
   lightarrowPortrait: {fileID: 21300000, guid: 194351b01f29ddf43b4107f9fed6c96c, type: 3}
-  oakwandPortrait: {fileID: 21300000, guid: cb6315ec3fc35224db7d5bccd23c829a, type: 3}
-  bronzewandPortrait: {fileID: 21300000, guid: b41c0c89a2705fd488e1554f7a973d81, type: 3}
-  goldwandPortrait: {fileID: 21300000, guid: 0aa1ed8fc3a68bd488df60766b692bb9, type: 3}
-  dragonbonewandPortrait: {fileID: 21300000, guid: a1ead72c70e0481468726820d1f1ce49,
+  oakwandPortrait: {fileID: 21300056, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  bronzewandPortrait: {fileID: 21300066, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  goldwandPortrait: {fileID: 21300068, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  dragonbonewandPortrait: {fileID: 21300074, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
-  woodenswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+  woodenswordPortrait: {fileID: 21300000, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
-  ironswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
-  steelswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a, type: 3}
-  obsidianswordPortrait: {fileID: 21300000, guid: 96a688e17c685d242bd389b8d8222b6a,
+  ironswordPortrait: {fileID: 21300002, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  steelswordPortrait: {fileID: 21300004, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  obsidianswordPortrait: {fileID: 21300006, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
-  knifePortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1, type: 3}
-  sharpenedknifePortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
+  knifePortrait: {fileID: 21300008, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  sharpenedknifePortrait: {fileID: 21300010, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
-  daggerPortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1, type: 3}
-  sharpeneddaggerPortrait: {fileID: 21300000, guid: ec83c23f9ed057d4aa121c66f718c0f1,
+  daggerPortrait: {fileID: 21300012, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  sharpeneddaggerPortrait: {fileID: 21300014, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
-  bowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
-  lightbowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
-  darkbowPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695, type: 3}
-  horsearmourPortrait: {fileID: 21300000, guid: ed72ed956276422468b50df1ba189695,
+  bowPortrait: {fileID: 21300024, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  lightbowPortrait: {fileID: 21300026, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  darkbowPortrait: {fileID: 21300028, guid: 391312419d607dc4eafee6a91f7d04ff, type: 3}
+  horsearmourPortrait: {fileID: 21300030, guid: 391312419d607dc4eafee6a91f7d04ff,
     type: 3}
 --- !u!95 &5410633247962168158
 Animator:

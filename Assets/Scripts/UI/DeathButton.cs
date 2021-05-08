@@ -12,6 +12,6 @@ public class DeathButton : MonoBehaviour
     }
     public void ManageScene()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
     }
 }

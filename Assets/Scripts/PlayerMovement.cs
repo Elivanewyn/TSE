@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shopMenu;
     public GameObject pauseMenu;
 
+    public GameObject gameManager1;
+
     private static bool playerExists;
     // Start is called before the first frame update
     void Start()

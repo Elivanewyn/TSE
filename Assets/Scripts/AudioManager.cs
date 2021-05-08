@@ -7,9 +7,20 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public AudioMixerGroup audioMixer;
+    private static bool exists;
 
     void Start()
     {
+        if (!exists)
+        {
+            exists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

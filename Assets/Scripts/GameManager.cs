@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int currentPoints = 0;
     public Image pointsImage;
     public Text pointsText;
+    private static bool exists;
 
     public static GameManager Instance { get; private set; }
 
@@ -17,6 +18,19 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) { Instance = this; } else if (Instance != this) { Destroy(this); }
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        if (!exists)
+        {
+            exists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()

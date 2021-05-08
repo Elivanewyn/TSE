@@ -74,10 +74,21 @@ public class SkillSelection : MonoBehaviour
 
     Color previousColor;
 
+    private static bool exists;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (!exists)
+        {
+            exists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         skill1OneFrame.color = new Color(1, 0, 0, 1);
         skill2OneFrame.color = new Color(1, 0, 0, 1);
         previousFrame1 = GetFrame(ref skill1OneFrame);

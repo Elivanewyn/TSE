@@ -866,8 +866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentExp: 0
   currentPoints: 0
-  pointsText: {fileID: 1638741348}
   pointsImage: {fileID: 1350295026}
+  pointsText: {fileID: 1638741348}
 --- !u!4 &267057134
 Transform:
   m_ObjectHideFlags: 0
@@ -939,6 +939,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1638741346, guid: ba50307243701fa4ba67c92ec4082f88, type: 3}
+      propertyPath: m_Name
+      value: Text_Find
+      objectReference: {fileID: 0}
     - target: {fileID: 3045273463260974961, guid: ba50307243701fa4ba67c92ec4082f88,
         type: 3}
       propertyPath: m_Name
@@ -1048,6 +1052,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046360316589273329, guid: ba50307243701fa4ba67c92ec4082f88,
+        type: 3}
+      propertyPath: m_Name
+      value: Frame_Find
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba50307243701fa4ba67c92ec4082f88, type: 3}
@@ -3115,7 +3124,7 @@ GameObject:
   - component: {fileID: 906679109}
   - component: {fileID: 906679108}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Skill1_image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47223,7 +47232,7 @@ GameObject:
   - component: {fileID: 2048661466}
   - component: {fileID: 2048661465}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Skill2_image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

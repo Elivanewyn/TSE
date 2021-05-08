@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SkillUI : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class SkillUI : MonoBehaviour
     // Update is called once per frame
     public void SetValue(float value)
     {
-        bar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+        if (SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
+        {
+            bar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+        }
     }
 }

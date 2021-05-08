@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PlayerCombat : MonoBehaviour
 {
 
@@ -49,6 +49,20 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
 
     float oneSec = 1;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
+        {
+            skill1Portrait = GameObject.Find("Skill1_image").GetComponent<Image>();
+            skill2Portrait = GameObject.Find("Skill2_image").GetComponent<Image>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +145,7 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) { direction = Vector2.down; }
         if (Input.GetKey(KeyCode.D)) { direction = Vector2.right; }
         // JYU_primary mouse button, 
-        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > oneSec))
+        if (Input.GetMouseButtonDown(0) && (timeSincePrimary > oneSec) && SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
         {
             if (start)
             {
@@ -146,7 +160,7 @@ public class PlayerCombat : MonoBehaviour
         ChangeCooldown();
 
 
-        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost))
+        if ((Input.GetKeyDown(KeyCode.E)) && (Time.time > cooldownTime1) && (currentMana >= equippedSkill1.cost) && SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
         {
             if (currentClass.name == "Wizard")
             {
@@ -163,7 +177,7 @@ public class PlayerCombat : MonoBehaviour
             ChangeMana(-(equippedSkill1.cost));
             equippedSkill1.Use(rb2D, direction, gameObject);
         }
-        if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost))
+        if ((Input.GetKeyDown(KeyCode.Q)) && (Time.time > cooldownTime2) && (currentMana >= equippedSkill2.cost) && SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
         {
             if (currentClass.name == "Wizard")
             {
@@ -183,12 +197,12 @@ public class PlayerCombat : MonoBehaviour
             equippedSkill2.Use(rb2D, direction, gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
         {
             ChangeSkills();
         }
 
-        if (currentMana < maxMana && Time.time > nextRecharge)
+        if (currentMana < maxMana && Time.time > nextRecharge && SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
         {
             ChangeMana(0.5f);
             nextRecharge = Time.time + rechargeRate;

@@ -141,6 +141,11 @@ public class ShopController : MonoBehaviour
         coinText.text = $"{coinQuantity}";
         potionText.text = $"{potionQuantityArray[x]}";
 
+
+        //if(Input.GetKey(KeyCode.X))
+        //{
+        //    coinQuantity++;
+        //}
     }
 
     void CloseShop()
@@ -183,7 +188,7 @@ public class ShopController : MonoBehaviour
     {
         if (WeaponLvOneCost.text != "")
         {
-            if (coinQuantity >= 250)
+            if (coinQuantity >= 50)
             {
                 coinQuantity -= 50;
                 WeaponLvOneCost.text = "";
@@ -211,9 +216,9 @@ public class ShopController : MonoBehaviour
     {
         if (WeaponLvTwoCost.text != "")
         {
-            if (coinQuantity >= 250)
+            if (coinQuantity >= 100)
             {
-                coinQuantity -= 50;
+                coinQuantity -= 100;
                 WeaponLvTwoCost.text = "";
                 WeaponLvTwoText.text = "Already Owned";
                 //add in code for giving the user the weapon they purchased
@@ -241,7 +246,7 @@ public class ShopController : MonoBehaviour
         {
             if (coinQuantity >= 250)
             {
-                coinQuantity -= 50;
+                coinQuantity -= 250;
                 WeaponLvThreeCost.text = "";
                 WeaponLvThreeText.text = "Already Owned";
                 //add in code for giving the user the weapon they purchased

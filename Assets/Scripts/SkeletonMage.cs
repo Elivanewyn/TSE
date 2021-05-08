@@ -116,7 +116,7 @@ public class SkeletonMage : MonoBehaviour
     void Die()
     {
         animator.SetBool("isDead", false);
-        Debug.Log("Enemy died!");
+        //Debug.Log("Enemy died!");
         //die animation        
         Destroy(gameObject);
         // disable enemy

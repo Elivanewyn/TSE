@@ -9,11 +9,13 @@ public class ShadowClone : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     private float invincibleTime;
     private float invincibleCooldown = 3f;
+    private GameObject Player;
 
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        Player = GameObject.Find("Player");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -21,6 +23,14 @@ public class ShadowClone : MonoBehaviour
         if ((collision.gameObject.tag == "skeletonfs") || (collision.gameObject.tag == "skeletonmage") || (collision.gameObject.tag == "skeletontank"))
         {
             transform.position = Vector2.MoveTowards(transform.position, collision.gameObject.transform.position, speed * Time.deltaTime);
+            if (transform.position.x < Player.transform.position.x)
+            {
+                transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
     }
 

@@ -3104,7 +3104,7 @@ PrefabInstance:
     - target: {fileID: 224389055592128360, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -533.8
+      value: -440
       objectReference: {fileID: 0}
     - target: {fileID: 224389055592128360, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
@@ -3239,7 +3239,7 @@ PrefabInstance:
     - target: {fileID: 114593807904573974, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
       propertyPath: m_Text
-      value: EQUIP TO SLOT 2
+      value: EQUIP TO SLOT Q
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5131754af739541a7a443bd0498d5498, type: 3}
@@ -3312,12 +3312,12 @@ PrefabInstance:
     - target: {fileID: 224389055592128360, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 89.2
+      value: 88.9
       objectReference: {fileID: 0}
     - target: {fileID: 224389055592128360, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -440.4
+      value: -532.8
       objectReference: {fileID: 0}
     - target: {fileID: 224389055592128360, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
@@ -3452,7 +3452,7 @@ PrefabInstance:
     - target: {fileID: 114593807904573974, guid: 5131754af739541a7a443bd0498d5498,
         type: 3}
       propertyPath: m_Text
-      value: EQUIP TO SLOT 1
+      value: EQUIP TO SLOT E
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5131754af739541a7a443bd0498d5498, type: 3}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class ShopController : MonoBehaviour
 {
@@ -106,7 +105,6 @@ public class ShopController : MonoBehaviour
             ErrorText_Two.SetActive(false);
         }
 
-
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             if(potionQuantityArray[x] > 0)
@@ -137,15 +135,8 @@ public class ShopController : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlaySound("Empty");
             }
         }
-
         coinText.text = $"{coinQuantity}";
         potionText.text = $"{potionQuantityArray[x]}";
-
-
-        if (Input.GetKey(KeyCode.X))
-        {
-            coinQuantity++;
-        }
     }
 
     void CloseShop()
@@ -193,7 +184,6 @@ public class ShopController : MonoBehaviour
                 coinQuantity -= 50;
                 WeaponLvOneCost.text = "";
                 WeaponLvOneText.text = "Already Owned";
-                //add in code for giving the user the weapon they purchased
                 PlayerCombat.currentClass.weapons[1].isBought = true;
                 PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[1];
                 SkeletonFS.staticMultiplier += 0.1f;
@@ -221,7 +211,6 @@ public class ShopController : MonoBehaviour
                 coinQuantity -= 100;
                 WeaponLvTwoCost.text = "";
                 WeaponLvTwoText.text = "Already Owned";
-                //add in code for giving the user the weapon they purchased
                 PlayerCombat.currentClass.weapons[2].isBought = true;
                 PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[2];
                 SkeletonFS.staticMultiplier += 0.1f;
@@ -249,7 +238,6 @@ public class ShopController : MonoBehaviour
                 coinQuantity -= 250;
                 WeaponLvThreeCost.text = "";
                 WeaponLvThreeText.text = "Already Owned";
-                //add in code for giving the user the weapon they purchased
                 PlayerCombat.currentClass.weapons[3].isBought = true;
                 PlayerCombat.equippedWeapon = PlayerCombat.currentClass.weapons[3];
                 SkeletonFS.staticMultiplier += 0.1f;

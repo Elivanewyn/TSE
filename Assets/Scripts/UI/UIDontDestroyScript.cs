@@ -8,6 +8,7 @@ public class UIDontDestroyScript : MonoBehaviour
     private bool exists = false;
 
 
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -25,6 +26,11 @@ public class UIDontDestroyScript : MonoBehaviour
     {
         if (!exists)
         {
+
+    void Awake()
+    {
+        if (!exists)
+        {
             exists = true;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -32,11 +38,5 @@ public class UIDontDestroyScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

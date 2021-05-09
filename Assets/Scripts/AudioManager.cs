@@ -18,21 +18,22 @@ public class AudioManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "TitleScene" || SceneManager.GetActiveScene().name == "DeathScene")
         {
-            Destroy(gameObject);
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            Destroy(this.gameObject);
         }
     }
 
     void Start()
     {
-        if (!exists)
-        {
-            exists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (!exists)
+        //{
+        //    exists = true;
+        DontDestroyOnLoad(transform.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         foreach (Sound s in sounds)
         {

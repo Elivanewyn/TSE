@@ -25,15 +25,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (!exists)
-        {
-            exists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (!exists)
+        //{
+        //    exists = true;
+        //    DontDestroyOnLoad(transform.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void OnEnable()
@@ -69,9 +69,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            currentExp++;
-        }
+       
     }
 }

@@ -141,11 +141,7 @@ public class ShopController : MonoBehaviour
         coinText.text = $"{coinQuantity}";
         potionText.text = $"{potionQuantityArray[x]}";
 
-
-        if (Input.GetKey(KeyCode.X))
-        {
-            coinQuantity++;
-        }
+        
     }
 
     void CloseShop()

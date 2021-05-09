@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "TitleScene" || SceneManager.GetActiveScene().name == "DeathScene")
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             Destroy(gameObject);
         }
 
@@ -136,15 +137,15 @@ public class PlayerMovement : MonoBehaviour
         numberOfJumps = maxJumps;
         Time.timeScale = 1;
 
-        if (!playerExists)
-        {
-            playerExists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (!playerExists)
+        //{
+        //    playerExists = true;
+        DontDestroyOnLoad(transform.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
         shopController = GameObject.Find("UIController").GetComponent<ShopController>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }

@@ -86,6 +86,7 @@ public class SkillSelection : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "TitleScene" || SceneManager.GetActiveScene().name == "DeathScene")
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             Destroy(gameObject);
         }
     }
@@ -93,15 +94,15 @@ public class SkillSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!exists)
-        {
-            exists = true;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (!exists)
+        //{
+        //    exists = true;
+        DontDestroyOnLoad(transform.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         skill1OneFrame.color = new Color(1, 0, 0, 1);
         skill2OneFrame.color = new Color(1, 0, 0, 1);

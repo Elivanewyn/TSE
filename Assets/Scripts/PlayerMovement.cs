@@ -241,7 +241,60 @@ public class PlayerMovement : MonoBehaviour
         SceneManager.LoadScene("DeathScene");
     }
 
+    IEnumerator FallDeath()
+    {
+        currentHealth = 10;
+        stopManualMove = true;
+        jumpForce = 0f;
+        //FindObjectOfType<AudioManager>().PlaySound("GameOver");
+        ShopController.coinQuantity = 0;
+        for (int x = 0; x < 4; x++)
+        {
+            ShopController.potionQuantityArray[x] = 0;
+        }
+        gameManager.currentExp = 0;
+        PlayerCombat.equippedSkill1 = PlayerCombat.currentClass.basicSkills[0];
+        PlayerCombat.equippedSkill2 = PlayerCombat.currentClass.basicSkills[1];
 
+        int refundAmount = 0;
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeOne[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeOne[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeTwo[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeTwo[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeThree[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeThree[y].isActive = false;
+            }
+        }
+        for (int y = 1; y < 5; y++)
+        {
+            if (PlayerCombat.currentClass.skillTreeFour[y].isActive == true)
+            {
+                refundAmount++;
+                PlayerCombat.currentClass.skillTreeFour[y].isActive = false;
+            }
+        }
+        GameManager.currentPoints += refundAmount;
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene("DeathScene");
+    }
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
@@ -413,7 +466,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("killbox"))
         {
             animator.SetTrigger("Death");
-            StartCoroutine(PlayerDeath());
+            StartCoroutine(FallDeath());
         }
     }
 

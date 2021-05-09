@@ -27,9 +27,11 @@ public class AngelBoss : MonoBehaviour
     public bool isEnraged;
 
     CanScript canScript;
+    public GameObject door;
 
     void Start()
     {
+        door.SetActive(false);
         hasStealthChanged = sightRange;
         rigidbody2D = GetComponent<Rigidbody2D>();
         Player = GameObject.Find("Player");
@@ -101,6 +103,7 @@ public class AngelBoss : MonoBehaviour
 
         if (maxHealth <= 0)
         {
+            door.SetActive(true);
             CanScript.bossDead = true;
             Destroy(gameObject);
         }

@@ -172,5 +172,5 @@ MonoBehaviour:
     type: 3}
   speed: 0
   maxHealth: 600
-  fireRate: 3
+  fireRate: 6
   expValue: 20

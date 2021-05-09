@@ -847,6 +847,7 @@ MonoBehaviour:
   fireRate: 1
   damageMultiplier: 1
   isEnraged: 0
+  door: {fileID: 1172503906}
 --- !u!95 &481843381
 Animator:
   serializedVersion: 3
@@ -2911,12 +2912,12 @@ PrefabInstance:
     - target: {fileID: 1095083570855044993, guid: 780397452fd54884cbde9307793ea7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.09
+      value: 24.38
       objectReference: {fileID: 0}
     - target: {fileID: 1095083570855044993, guid: 780397452fd54884cbde9307793ea7e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.1
+      value: -6.84
       objectReference: {fileID: 0}
     - target: {fileID: 1095083570855044993, guid: 780397452fd54884cbde9307793ea7e6,
         type: 3}
@@ -3054,6 +3055,7 @@ GameObject:
   - component: {fileID: 1172503910}
   - component: {fileID: 1172503909}
   - component: {fileID: 1172503908}
+  - component: {fileID: 1172503907}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -3061,6 +3063,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1172503907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172503906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8721ee4fce7869a459a324f50f60c273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1172503908
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3143,7 +3157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172503906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.92, y: -8.87, z: 0}
+  m_LocalPosition: {x: 31.57, y: -8.84, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

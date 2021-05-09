@@ -21,6 +21,6 @@ public class ButtonAudioManager : MonoBehaviour
     {
         audioSource.clip = audioClip;
         audioSource.Play();
-        Debug.Log("Played");
+        //Debug.Log("Played");
     }
 }

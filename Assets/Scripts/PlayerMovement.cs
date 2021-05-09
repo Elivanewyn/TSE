@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         stopManualMove = true;
         jumpForce = 0f;
         //FindObjectOfType<AudioManager>().PlaySound("GameOver");
-        ShopController.coinQuantity = 0;
+        //ShopController.coinQuantity = 0;
         for (int x = 0; x < 4; x++)
         {
             ShopController.potionQuantityArray[x] = 0;
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         stopManualMove = true;
         jumpForce = 0f;
         //FindObjectOfType<AudioManager>().PlaySound("GameOver");
-        ShopController.coinQuantity = 0;
+        //ShopController.coinQuantity = 0;
         for (int x = 0; x < 4; x++)
         {
             ShopController.potionQuantityArray[x] = 0;

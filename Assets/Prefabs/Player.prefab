@@ -806,9 +806,9 @@ MonoBehaviour:
     type: 3}
   heavansSprite: {fileID: 21300000, guid: 8a1680ec09858bc4aa7b4e3ad474dd89, type: 3}
   saddleupPortrait: {fileID: 21300000, guid: ce7ce35077fa2bb42b7ae82999bb67e7, type: 3}
-  chargePortrait: {fileID: 21300000, guid: 194351b01f29ddf43b4107f9fed6c96c, type: 3}
+  chargePortrait: {fileID: 21300000, guid: c8b2fb0fbe7e18f479abe3e18d9d4f47, type: 3}
   horseshoesPortrait: {fileID: 21300000, guid: c9251bc79ff924a4e857b26c0819c2d5, type: 3}
-  flamechargePortrait: {fileID: 21300000, guid: ef2d9269e6c3bf048b8a9cf2a16c9725,
+  flamechargePortrait: {fileID: 21300000, guid: 84cf5c36519a150409c1843e778fdaac,
     type: 3}
   mountsproPortrait: {fileID: 21300000, guid: 8273d28106174e04aa5f083e0e18776e, type: 3}
   hoodPortrait: {fileID: 21300000, guid: bfa491db9b4718849944980f21518f40, type: 3}

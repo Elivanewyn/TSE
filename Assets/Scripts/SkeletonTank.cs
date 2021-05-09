@@ -117,7 +117,7 @@ public class SkeletonTank : MonoBehaviour
     {
         
         
-        Debug.Log("Enemy died!");       
+        //Debug.Log("Enemy died!");       
         Destroy(gameObject);        
         this.enabled = false;
 

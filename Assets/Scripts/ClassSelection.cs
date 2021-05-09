@@ -9,42 +9,42 @@ public class ClassSelection : MonoBehaviour
     public void WizardSelect()
     {
         PlayerCombat.currentClass = ClassSystem.wizard;
-        Debug.Log("Class: Wizard");
+        //Debug.Log("Class: Wizard");
         SceneManager.LoadScene("Level 1");
     }
 
     public void KnightSelect()
     {
         PlayerCombat.currentClass = ClassSystem.knight;
-        Debug.Log("Class: Knight");
+        //Debug.Log("Class: Knight");
         SceneManager.LoadScene("Level 1");
     }
 
     public void AssassinSelect()
     {
         PlayerCombat.currentClass = ClassSystem.assassin;
-        Debug.Log("Class: Assassin");
+        //Debug.Log("Class: Assassin");
         SceneManager.LoadScene("Level 1");
     }
 
     public void TankSelect()
     {
-        //Code to set class to tank.
-        Debug.Log("Class: Tank");
+        ////Code to set class to tank.
+        //Debug.Log("Class: Tank");
         SceneManager.LoadScene("Level 1");
     }
 
     public void BrawlerSelect()
     {
-        //Code to set class to brawler.
-        Debug.Log("Class: Brawler");
+        ////Code to set class to brawler.
+        //Debug.Log("Class: Brawler");
         SceneManager.LoadScene("Level 1");
     }
 
     public void RangerSelect()
     {
         PlayerCombat.currentClass = ClassSystem.ranger;
-        Debug.Log("Class: Ranger");
+        //Debug.Log("Class: Ranger");
         SceneManager.LoadScene("Level 1");
     }
 }

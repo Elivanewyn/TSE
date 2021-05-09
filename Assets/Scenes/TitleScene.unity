@@ -1042,7 +1042,19 @@ MonoBehaviour:
 
     -Skill icons. Warrior
 
-    -Awesome Fantasy Skill Icon Pack'
+    -Awesome Fantasy Skill Icon Pack
+
+    -Magician Game Character Holding a Staff
+
+    -Three Kingdoms Bow and Arrow Archery
+
+    -Bloodsmoke Spear, Cavalry Spear
+
+    -Pixel Weapon Icon Game Material
+
+    -Boutique Skill Icons, Interface UI
+
+    -Cemetery Doctor Grave'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1071,8 +1083,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1112,12 +1124,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1326289808}
-    characterCount: 229
+    characterCount: 580
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 33
+    spaceCount: 85
+    wordCount: 86
     linkCount: 0
-    lineCount: 11
+    lineCount: 23
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

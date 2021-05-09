@@ -291,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
         }
         GameManager.currentPoints += refundAmount;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
 
         SceneManager.LoadScene("DeathScene");
     }

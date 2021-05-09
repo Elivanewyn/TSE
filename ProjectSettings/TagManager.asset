@@ -12,6 +12,7 @@ TagManager:
   - spawner
   - mageattack
   - angelboss
+  - killbox
   layers:
   - Default
   - TransparentFX

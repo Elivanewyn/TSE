@@ -183,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(PlayerDeath());
             //Destroy(gameObject);
         }
+
     }
 
     IEnumerator PlayerDeath()
@@ -404,9 +405,17 @@ public class PlayerMovement : MonoBehaviour
             //animator.SetTrigger("Hurt");
             ChangeHealth(-1.2f);
         }
+        
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("killbox"))
+        {
+            animator.SetTrigger("Death");
+            StartCoroutine(PlayerDeath());
+        }
+    }
 
 
     public IEnumerator WizardSpeedBoost()

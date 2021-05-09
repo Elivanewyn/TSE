@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int currentExp = 0;
-    public int currentPoints = 0;
+    public static int currentPoints = 0;
     public Image pointsImage;
     public Text pointsText;
     private bool exists;
 
     public static GameManager Instance { get; private set; }
+
+
+   
 
     void Awake()
     {
@@ -66,9 +69,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    currentExp++;
-        //}
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            currentExp++;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SkillSelection : MonoBehaviour
 {
@@ -76,6 +77,19 @@ public class SkillSelection : MonoBehaviour
 
     private bool exists = false;
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "TitleScene" || SceneManager.GetActiveScene().name == "DeathScene")
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -122,10 +136,6 @@ public class SkillSelection : MonoBehaviour
         skillfourfive.sprite = currentClass.skillTreeFour[4].portrait;
     }
 
-    private void OnEnable()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -152,10 +162,10 @@ public class SkillSelection : MonoBehaviour
             {
                 if (previousSkill == null || previousSkill.isActive)
                 {
-                    if (GameManager.Instance.currentPoints >= 1)
+                    if (GameManager.currentPoints >= 1)
                     {
                         selectedSkill.isActive = true;
-                        GameManager.Instance.currentPoints--;
+                        GameManager.currentPoints--;
                         previousColor = new Color(1, 1, 0, 1);
                     }
                     else

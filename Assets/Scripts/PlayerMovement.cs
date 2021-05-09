@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shopMenu;
     public GameObject pauseMenu;
 
-    private static bool playerExists;
+    private bool playerExists;
 
     private void OnEnable()
     {
@@ -70,34 +70,39 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {   
-        if(SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
+    {
+        if (SceneManager.GetActiveScene().name == "TitleScene" || SceneManager.GetActiveScene().name == "DeathScene")
         {
-            shopController = GameObject.Find("UIController").GetComponent<ShopController>();
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            animator = GetComponent<Animator>();
-            if (PlayerCombat.currentClass.name == "Wizard")
-            {
-                GetComponent<SpriteRenderer>().sprite = wizardSprite;
-                animator.runtimeAnimatorController = wizardAnimController;
-            }
-            else if (PlayerCombat.currentClass.name == "Knight")
-            {
-                GetComponent<SpriteRenderer>().sprite = knightSprite;
-                animator.runtimeAnimatorController = knightAnimController;
-            }
-            else if (PlayerCombat.currentClass.name == "Assassin")
-            {
-                GetComponent<SpriteRenderer>().sprite = assassinSprite;
-                animator.runtimeAnimatorController = assassinAnimController;
-            }
-            else if (PlayerCombat.currentClass.name == "Ranger")
-            {
-                GetComponent<SpriteRenderer>().sprite = rangerSprite;
-                animator.runtimeAnimatorController = rangerAnimController;
-            }
-            inventory = GameObject.Find("SkillTree").GetComponent<Canvas>();
+            Destroy(gameObject);
         }
+
+            if (SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
+            {
+                //shopController = GameObject.Find("UIController").GetComponent<ShopController>();
+                //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+                //animator = GetComponent<Animator>();
+                //if (PlayerCombat.currentClass.name == "Wizard")
+                //{
+                //    GetComponent<SpriteRenderer>().sprite = wizardSprite;
+                //    animator.runtimeAnimatorController = wizardAnimController;
+                //}
+                //else if (PlayerCombat.currentClass.name == "Knight")
+                //{
+                //    GetComponent<SpriteRenderer>().sprite = knightSprite;
+                //    animator.runtimeAnimatorController = knightAnimController;
+                //}
+                //else if (PlayerCombat.currentClass.name == "Assassin")
+                //{
+                //    GetComponent<SpriteRenderer>().sprite = assassinSprite;
+                //    animator.runtimeAnimatorController = assassinAnimController;
+                //}
+                //else if (PlayerCombat.currentClass.name == "Ranger")
+                //{
+                //    GetComponent<SpriteRenderer>().sprite = rangerSprite;
+                //    animator.runtimeAnimatorController = rangerAnimController;
+                //}
+                //inventory = GameObject.Find("SkillTree").GetComponent<Canvas>();
+            }
     }
 
     // Start is called before the first frame update
@@ -227,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
                 PlayerCombat.currentClass.skillTreeFour[y].isActive = false;
             }
         }
-        gameManager.currentPoints += refundAmount;
+        GameManager.currentPoints += refundAmount;
 
         yield return new WaitForSeconds(2);
 

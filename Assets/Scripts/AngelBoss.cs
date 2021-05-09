@@ -26,6 +26,8 @@ public class AngelBoss : MonoBehaviour
 
     public bool isEnraged;
 
+    CanScript canScript;
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -44,6 +46,8 @@ public class AngelBoss : MonoBehaviour
         sightCollider.size = new Vector2(sightRange, 6f);
 
         isEnraged = false;
+
+        canScript = GameObject.Find("Canvas").GetComponent<CanScript>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -93,6 +97,12 @@ public class AngelBoss : MonoBehaviour
         {
             fireRate = nextFire/2;
 
+        }
+
+        if (maxHealth <= 0)
+        {
+            CanScript.bossDead = true;
+            Destroy(gameObject);
         }
     }
 

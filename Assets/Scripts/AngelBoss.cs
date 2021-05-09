@@ -25,6 +25,7 @@ public class AngelBoss : MonoBehaviour
     float hasStealthChanged;
 
     public bool isEnraged;
+    public GameObject floatingPoints;
 
     CanScript canScript;
 
@@ -111,6 +112,9 @@ public class AngelBoss : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("PrimaryAttack");
         damage *= damageMultiplier * staticMultiplier;
+        GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
+        points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
+        Destroy(points, 2);
         maxHealth -= damage;
     }
 

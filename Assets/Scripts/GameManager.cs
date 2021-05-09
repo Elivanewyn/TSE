@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             }
             else { pointsImage.color = new Color(1, 1, 0, 1); }
 
-            if (currentExp >= 5)
+            if (currentExp >= 15)
             {
                 FindObjectOfType<AudioManager>().PlaySound("LevelUp");
                 currentExp -= 15;

@@ -849,7 +849,7 @@ MonoBehaviour:
   isEnraged: 0
   floatingPoints: {fileID: 433075994822002986, guid: 547786c96b899d04c9ebd03a70271257,
     type: 3}
-  door: {fileID: 0}
+  door: {fileID: 1172503906}
 --- !u!95 &481843381
 Animator:
   serializedVersion: 3
@@ -3057,6 +3057,7 @@ GameObject:
   - component: {fileID: 1172503910}
   - component: {fileID: 1172503909}
   - component: {fileID: 1172503908}
+  - component: {fileID: 1172503907}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -3064,6 +3065,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1172503907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172503906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726720a5dc4853d45aee788fd65af7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1172503908
 BoxCollider2D:
   m_ObjectHideFlags: 0

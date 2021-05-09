@@ -65,10 +65,5 @@ public class GameManager : MonoBehaviour
                 currentPoints++;
             }
         }
-
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    currentExp++;
-        //}
     }
 }

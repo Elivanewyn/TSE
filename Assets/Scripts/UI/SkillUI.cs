@@ -12,7 +12,6 @@ public class SkillUI : MonoBehaviour
     public Image bar;
     float originalSize;
 
-
     public bool isSkill1;
 
     void Awake()
@@ -33,12 +32,8 @@ public class SkillUI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     public void SetValue(float value)
     {
-        if (SceneManager.GetActiveScene().name != "TitleScene" && SceneManager.GetActiveScene().name != "DeathScene")
-        {
-            bar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
-        }
+        bar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
     }
 }

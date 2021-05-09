@@ -30,7 +30,6 @@ public class UIBar : MonoBehaviour
         originalSize = bar.rectTransform.rect.width;
     }
 
-    // Update is called once per frame
     public void SetValue(float value)
     {
         bar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);

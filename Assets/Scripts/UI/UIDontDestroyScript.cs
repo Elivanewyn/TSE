@@ -6,12 +6,11 @@ public class UIDontDestroyScript : MonoBehaviour
 {
     private bool exists = false;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (!exists)
         {
-            Debug.Log("dont destroy");
+            Debug.Log("Don't Destroy");
             exists = true;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -20,11 +19,5 @@ public class UIDontDestroyScript : MonoBehaviour
             Debug.Log("Destroy");
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -24,6 +24,8 @@ public class SkeletonTank : MonoBehaviour
     float hasStealthChanged;
     public GameObject floatingPoints;
     CoinDropper coinDropper;
+
+
     void Start()
     {
         hasStealthChanged = sightRange;
@@ -127,6 +129,7 @@ public class SkeletonTank : MonoBehaviour
         damage *= damageMultiplier * staticMultiplier;
         GameObject points = Instantiate(floatingPoints, transform.position, Quaternion.identity) as GameObject;
         points.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
+        Destroy(points, 2);
         maxHealth -= damage;
     }
 

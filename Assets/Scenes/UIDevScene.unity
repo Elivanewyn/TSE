@@ -1445,8 +1445,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2103812923}
-  shopMenu: {fileID: 0}
-  skillTree: {fileID: 0}
 --- !u!114 &397763148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,8 +1458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopMenu: {fileID: 553399424}
-  PauseMenu: {fileID: 0}
-  SkillTree: {fileID: 0}
   m_RawImage: {fileID: 215549752}
   textureArray:
   - {fileID: 2800000, guid: de1812a7b6e1fca41920ce54ab6b85a8, type: 3}
@@ -1469,20 +1465,15 @@ MonoBehaviour:
   - {fileID: 2800000, guid: aa948c0b50d790b468b922d2c9e51678, type: 3}
   - {fileID: 2800000, guid: 533591a8f98a4dc439f172db0767a0cd, type: 3}
   potionText: {fileID: 638546335}
+  potionQuantityArray: 00000000000000000000000000000000
   coinText: {fileID: 1804502948}
-  weapon0Image: {fileID: 0}
+  coinQuantity: 0
   WeaponLvOneCost: {fileID: 1096333519}
   WeaponLvOneText: {fileID: 385402626}
-  weapon1Image: {fileID: 0}
   WeaponLvTwoCost: {fileID: 154121152}
   WeaponLvTwoText: {fileID: 58585097}
-  weapon2Image: {fileID: 0}
   WeaponLvThreeCost: {fileID: 913239306}
   WeaponLvThreeText: {fileID: 1093832973}
-  weapon3Image: {fileID: 0}
-  ErrorText_One: {fileID: 0}
-  ErrorText_Two: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &414491181
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,12 @@ public class CoinController : MonoBehaviour
     void Start()
     {
         shopController = GameObject.Find("UIController").GetComponent<ShopController>();
+
+    }
+
+    void Update()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
